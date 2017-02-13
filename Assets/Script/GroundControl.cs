@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundControll : MonoBehaviour {
+public class GroundControl : MonoBehaviour {
 
     //Material texture offset rate
     float speed = .5f;
