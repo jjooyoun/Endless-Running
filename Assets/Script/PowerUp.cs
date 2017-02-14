@@ -29,6 +29,7 @@ public class PowerUp : Entity {
 	private static Func<Entity, Collider,bool>[] colliderHandlers = {
 		ScaleFunc
 	};
+
 	public PowerUpType type = PowerUpType.SCALE;
 
 	void Start(){
@@ -36,9 +37,10 @@ public class PowerUp : Entity {
 	}
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log ("OnTriggerEnter:");
+		Debug.Log ("OnTriggerEnter:" + other.name);
 		Entity ent = other.GetComponent<Entity> ();
-		if(ent && ent.entityType != ENTITY_TYPE.POWER_UP){
+		Debug.Log ("ent:" + ent);
+		if(ent){
 			colliderHandlers [(int)this.type] (this, other);
 		}
 	}
