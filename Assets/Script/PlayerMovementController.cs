@@ -16,6 +16,20 @@ public class PlayerMovementController : MonoBehaviour {
 	bool LERPING;
 	Vector3 destPos;
 
+	// Shake variables
+
+	double accelerometerUpdateInterval = 1.0 / 60.0;
+	// The greater the value of LowPassKernelWidthInSeconds, the slower the filtered value will converge towards current input sample (and vice versa).
+	double lowPassKernelWidthInSeconds = 1.0;
+	// This next parameter is initialized to 2.0 per Apple's recommendation, or at least according to Brady! ;)
+	double shakeDetectionThreshold = 2.0;
+
+	//double lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
+	private double lowPassFilterFactor = 1.0/60.0;
+	private Vector3 lowPassValue = Vector3.zero;
+	private Vector3 acceleration ;
+	private Vector3 deltaAcceleration;
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +37,10 @@ public class PlayerMovementController : MonoBehaviour {
 		transform.position = CenterLanePos.position;
 
 		LERPING = false;
+
+		// Shake detection
+		shakeDetectionThreshold *= shakeDetectionThreshold;
+		lowPassValue = Input.acceleration;
 	}
 	
 	// Update is called once per frame
@@ -63,6 +81,16 @@ public class PlayerMovementController : MonoBehaviour {
 			float perc = currentLerpTime / lerpTime;
 			transform.position = Vector3.Lerp(transform.position, destPos, perc);
 		}
+
+		acceleration = Input.acceleration;
+		lowPassValue = Vector3.Lerp(lowPassValue, acceleration, (float)lowPassFilterFactor);
+		deltaAcceleration = acceleration - lowPassValue;
+		if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
+		{
+			// Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
+			Debug.Log("Shake event detected at time "+Time.time);
+		}
+
 	}
 
 	void MoveLeft() {
