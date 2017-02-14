@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4887498723986782}
   - component: {fileID: 33026445431083510}
-  - component: {fileID: 135895409940977350}
   - component: {fileID: 23650778155891122}
-  - component: {fileID: 54506224355979094}
-  - component: {fileID: 114878518370002460}
+  - component: {fileID: 54965046255047598}
+  - component: {fileID: 65439369935817084}
+  - component: {fileID: 114950185051449154}
+  - component: {fileID: 114878846152984288}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -82,7 +83,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282680247372788}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54506224355979094
+--- !u!54 &54965046255047598
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -97,7 +98,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114878518370002460
+--- !u!65 &65439369935817084
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282680247372788}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114878846152984288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282680247372788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d89a9a31837f71419d1111067959ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityType: 2
+  type: 0
+--- !u!114 &114950185051449154
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,15 +135,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSpeed: -0.5
---- !u!135 &135895409940977350
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282680247372788}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
