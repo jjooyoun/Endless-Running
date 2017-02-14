@@ -4,9 +4,7 @@ using System;
 using UnityEngine;
 
 public class PowerUp : Entity {
-	private float scalingFactor = 0.5f;
-	private int scaleCounter = 0;
-	private int maxScaleCounter = 2;
+	private float scalingFactor = 0.25f;
 
 	public enum PowerUpType{
 		SCALE = 0,
@@ -17,12 +15,11 @@ public class PowerUp : Entity {
 	static bool ScaleFunc(Entity ent, Collider other){
 		PowerUp th1s = (PowerUp)ent;
 		Debug.Log ("scaling!!!");
-		if (th1s.scaleCounter == th1s.maxScaleCounter) {
+		if (other.transform.localScale.x > 2.0f){
 			return true;
 		}
 		th1s.gameObject.SetActive (false);
 		other.gameObject.transform.localScale += new Vector3 (th1s.scalingFactor, th1s.scalingFactor, th1s.scalingFactor);
-		th1s.scaleCounter += 1;
 		return true;
 	}
 		
