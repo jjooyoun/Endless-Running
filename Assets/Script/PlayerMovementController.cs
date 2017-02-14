@@ -30,18 +30,18 @@ public class PlayerMovementController : MonoBehaviour {
 		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
 
 		// Control by touch input 
-
-		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
-			Vector2 touchPosition = Input.GetTouch (0).position;
-			double halfscreen = Screen.width / 2.0;
-			if (touchPosition.x > halfscreen) {
-				MoveRight ();
-			}
-			if (touchPosition.x < halfscreen) {
-				MoveLeft ();
+		if(!LERPING) {
+			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
+				Vector2 touchPosition = Input.GetTouch (0).position;
+				double halfscreen = Screen.width / 2.0;
+				if (touchPosition.x > halfscreen) {
+					MoveRight ();
+				}
+				if (touchPosition.x < halfscreen) {
+					MoveLeft ();
+				}
 			}
 		}
-
 		if(!LERPING) {
 			if(Input.GetKeyDown(KeyCode.LeftArrow)) {
 				MoveLeft();
