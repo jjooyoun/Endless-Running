@@ -14,9 +14,10 @@ public class SpawnScript : MonoBehaviour {
         timeElapsed += Time.deltaTime;
         if (timeElapsed > spawnCycle)
         {
-            GameObject tmp = (GameObject)Instantiate(obstacle, new Vector3(0, 1, 42), Quaternion.identity);
-			//Vector3 pos = obstacle.transform.position;
-			tmp.transform.position = lanes[Random.Range (0, lanes.Length)].position;
+            //            GameObject tmp = (GameObject)Instantiate(obstacle, new Vector3(0, 1, 42), Quaternion.identity);
+            GameObject tmp = (GameObject)GameObjectUtil.Instantiate(obstacle, new Vector3(0, 1, 42));
+            //Vector3 pos = obstacle.transform.position;
+            tmp.transform.position = lanes[Random.Range (0, lanes.Length)].position;
             timeElapsed -= spawnCycle;
         }
     }

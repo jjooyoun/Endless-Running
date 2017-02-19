@@ -5,7 +5,7 @@ using UnityEngine;
 public class Despawner : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) {
-		Destroy(other.gameObject);
+        GameObjectUtil.Destroy(other.gameObject);
 	}
 
 }
