@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUp : Entity {
+
 	private float scalingFactor = 0.25f;
 
 	public enum PowerUpType{
@@ -41,4 +43,5 @@ public class PowerUp : Entity {
 			colliderHandlers [(int)this.type] (this, other);
 		}
 	}
+		
 }
