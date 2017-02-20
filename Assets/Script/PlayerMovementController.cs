@@ -89,6 +89,7 @@ public class PlayerMovementController : MonoBehaviour {
 		{
 			// Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
 			Debug.Log("Shake event detected at time "+Time.time);
+			Handheld.Vibrate();
 		}
 
 	}
