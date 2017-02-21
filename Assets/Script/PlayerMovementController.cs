@@ -95,16 +95,22 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	void MoveLeft() {
+		Debug.Log ("MoveLeft");
 		if( currentLane == Lane.Left) {
 			//do nothing, already in left lane
+			Debug.Log("Already in left!!");
 		}
 		if( currentLane == Lane.Center) {
+			Debug.Log("center>left");
 			//move to left lane
-			GoLaneLeft();
+			//GoLaneLeft();
+			GoLane(LeftLanePos.position, Lane.Left);
 		}
 		if(currentLane == Lane.Right) {
+			Debug.Log ("right>center");
 			//move to center lane
-			GoLaneCenter();
+			//GoLaneCenter();
+			GoLane(CenterLanePos.position, Lane.Center);
 		}
 	}
 
@@ -114,11 +120,13 @@ public class PlayerMovementController : MonoBehaviour {
 		}
 		if( currentLane == Lane.Center) {
 			//move to Right lane
-			GoLaneRight();
+			//GoLaneRight();
+			GoLane(RightLanePos.position, Lane.Right);
 		}
 		if( currentLane == Lane.Left) {
 			//move to center lane
-			GoLaneCenter();
+			//GoLaneCenter();
+			GoLane(CenterLanePos.position, Lane.Center);
 		}
 	}
 
@@ -148,6 +156,13 @@ public class PlayerMovementController : MonoBehaviour {
 		currentLane = Lane.Right;
 		currentLerpTime = 0f;
 			
+	}
+
+	void GoLane(Vector3 lane, Lane laneEnum){
+		destPos = new Vector3(lane.x, transform.position.y, lane.z); // keep current y
+		LERPING = true;
+		currentLane = laneEnum;
+		currentLerpTime = 0f;
 	}
 
 
