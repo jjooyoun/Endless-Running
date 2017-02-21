@@ -24,10 +24,9 @@ GameObject:
   - component: {fileID: 54965046255047598}
   - component: {fileID: 65439369935817084}
   - component: {fileID: 114950185051449154}
-  - component: {fileID: 114878846152984288}
   - component: {fileID: 114551438055166258}
   m_Layer: 0
-  m_Name: PowerUp
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6fd099d339b4ae34692c8258e4f87531, type: 2}
+  - {fileID: 2100000, guid: cb200af9ca01c2247af2f1529b4c9654, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,19 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df121f4aa2ef9c49be9b3d70a36aa0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114878846152984288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282680247372788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d89a9a31837f71419d1111067959ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityType: 2
-  type: 0
 --- !u!114 &114950185051449154
 MonoBehaviour:
   m_ObjectHideFlags: 1
