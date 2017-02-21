@@ -17,35 +17,45 @@ public class PowerUp : Entity {
 		JAPANESE_GAME
 	};
 
-	public static bool ScaleUp(Entity ent, Collider other){
+    public static bool ScaleUp(Transform entTransform)
+    {
+        return Scale(entTransform, PowerUp.SCALING_FACTOR);
+    }
+
+    public static bool ScaleDown(Transform entTransform)
+    {
+        return Scale(entTransform, -PowerUp.SCALING_FACTOR);
+    }
+
+    private static bool PowerUpScaleUp(Entity ent, Collider other){
 		//hide power up
 		PowerUp th1s = (PowerUp)ent;
 		th1s.gameObject.SetActive (false);
 		//scale entity
 		if (other.gameObject.transform.localScale.x > MAX_SCALE)
 			return true;
-		return Scale (other.gameObject.transform, PowerUp.SCALING_FACTOR);
+		return ScaleUp (other.gameObject.transform);
 	}
 
-	public static bool ScaleDown(Entity ent, Collider other){
+	private static bool PowerUpScaleDown(Entity ent, Collider other){
 		PowerUp th1s = (PowerUp)ent;
 		th1s.gameObject.SetActive (false);
 		if (other.gameObject.transform.localScale.x <= 1)
 			return true;
-		return Scale (other.gameObject.transform, -PowerUp.SCALING_FACTOR);
+		return ScaleDown (other.gameObject.transform);
 	}
 
-
-	static bool Scale(Transform entTransform, float scalingFactor){
+   
+	private static bool Scale(Transform entTransform, float scalingFactor){
 		entTransform.localScale += new Vector3 (scalingFactor, scalingFactor, scalingFactor);
 		entTransform.transform.position += new Vector3 (0.0f, scalingFactor * 0.5f, 0.0f);
 		return true;
 	}
 		
 	private static Func<Entity, Collider,bool>[] colliderHandlers = {
-		ScaleUp,
-		ScaleDown
-	};
+        PowerUpScaleUp,
+        PowerUpScaleDown
+    };
 
 	public PowerUpType type = PowerUpType.SCALE_UP;
 
