@@ -844,7 +844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42cc4143c7249b47ba3bf898e3d2660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 1282680247372788, guid: 63e3df5b7624b314db43abe874eec87d, type: 2}
+  powerup: {fileID: 1282680247372788, guid: 63e3df5b7624b314db43abe874eec87d, type: 2}
+  obstacle: {fileID: 1282680247372788, guid: 6f3c4092113659e47b50088113ec6fda, type: 2}
   lanes:
   - {fileID: 2079191904}
   - {fileID: 1628464872}
