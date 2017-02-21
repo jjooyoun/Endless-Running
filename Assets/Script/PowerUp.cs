@@ -19,14 +19,15 @@ public class PowerUp : Entity {
 
     public static bool ScaleUp(Transform entTransform)
     {
-        if (entTransform.localScale.x <= 1)
+        if (entTransform.localScale.x > MAX_SCALE)
             return true;
+        
         return Scale(entTransform, PowerUp.SCALING_FACTOR);
     }
 
     public static bool ScaleDown(Transform entTransform)
     {
-        if (entTransform.localScale.x > MAX_SCALE)
+        if (entTransform.localScale.x <= 1)
             return true;
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
