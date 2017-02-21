@@ -14,8 +14,14 @@ public class ScoreSystem : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		count++;
-		SetCountText ();
+		Entity ent = other.GetComponent<Entity> ();
+		if (ent && ent.entityType == Entity.ENTITY_TYPE.ENEMY) {
+			//life decrease
+		} else {
+			count++;
+			SetCountText ();
+		}
+
 	}
 	
 	// Update is called once per frame
