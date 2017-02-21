@@ -19,11 +19,15 @@ public class PowerUp : Entity {
 
     public static bool ScaleUp(Transform entTransform)
     {
+        if (entTransform.localScale.x <= 1)
+            return true;
         return Scale(entTransform, PowerUp.SCALING_FACTOR);
     }
 
     public static bool ScaleDown(Transform entTransform)
     {
+        if (entTransform.localScale.x > MAX_SCALE)
+            return true;
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
 
@@ -32,16 +36,12 @@ public class PowerUp : Entity {
 		PowerUp th1s = (PowerUp)ent;
 		th1s.gameObject.SetActive (false);
 		//scale entity
-		if (other.gameObject.transform.localScale.x > MAX_SCALE)
-			return true;
 		return ScaleUp (other.gameObject.transform);
 	}
 
 	private static bool PowerUpScaleDown(Entity ent, Collider other){
 		PowerUp th1s = (PowerUp)ent;
 		th1s.gameObject.SetActive (false);
-		if (other.gameObject.transform.localScale.x <= 1)
-			return true;
 		return ScaleDown (other.gameObject.transform);
 	}
 
