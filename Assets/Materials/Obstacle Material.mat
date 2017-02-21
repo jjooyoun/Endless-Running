@@ -6,13 +6,13 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RollerBallGrey
-  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _LIGHTMAPPING_BAKED _LIGHTMAPPING_STATIC_LIGHTMAPS _UVPRIM_UV1
-    _UVSEC_UV1
-  m_LightmapFlags: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_Name: Obstacle Material
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
+  m_LightmapFlags: 1
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -59,12 +59,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Occlusion
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _OcclusionMap
       second:
         m_Texture: {fileID: 0}
@@ -76,16 +70,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _SpecGlossMap
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _AlphaTestRef
-      second: 0.5
     - first:
         name: _BumpScale
       second: 1
@@ -93,41 +78,26 @@ Material:
         name: _Cutoff
       second: 0.5
     - first:
-        name: _DetailAlbedoMultiplier
-      second: 2
-    - first:
-        name: _DetailMode
-      second: 0
-    - first:
         name: _DetailNormalMapScale
       second: 1
     - first:
         name: _DstBlend
-      second: 0
-    - first:
-        name: _EmissionScale
-      second: 1
-    - first:
-        name: _EmissionScaleUI
-      second: 1
+      second: 10
     - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.4
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
-    - first:
-        name: _Lightmapping
-      second: 0
     - first:
         name: _Metallic
       second: 0
     - first:
         name: _Mode
-      second: 0
+      second: 3
     - first:
         name: _OcclusionStrength
       second: 1
@@ -144,30 +114,15 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _UVPrim
-      second: 0
-    - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
-      second: 1
+      second: 0
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0, g: 0.13103437, b: 1, a: 1}
+      second: {r: 1, g: 0, b: 0, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _EmissionColorUI
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _EmissionColorWithMapUI
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.5514706, g: 0.5514706, b: 0.5514706, a: 1}
-    - first:
-        name: _SpecularColor
-      second: {r: 0.058823526, g: 0.058823526, b: 0.058823526, a: 1}
