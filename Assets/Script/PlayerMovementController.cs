@@ -8,6 +8,9 @@ public class PlayerMovementController : MonoBehaviour {
 	public Transform CenterLanePos;
 	public Transform RightLanePos;
 
+	public Transform LeftWall;
+	public Transform RightWall;
+
 	Lane currentLane;
 	enum Lane {Left, Center, Right};
 
@@ -15,6 +18,8 @@ public class PlayerMovementController : MonoBehaviour {
 	float currentLerpTime;
 	bool LERPING;
 	Vector3 destPos;
+
+	float speed = 10.0f;
 
 	// Shake variables
 
@@ -45,6 +50,9 @@ public class PlayerMovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log ("x:" + transform.position.x);
+		Debug.Log ("left:" + LeftWall.position.x);
+		Debug.Log ("right:" + RightWall.position.x);
 		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
 
 		// Control by touch input 
@@ -57,6 +65,25 @@ public class PlayerMovementController : MonoBehaviour {
 				}
 				if (touchPosition.x < halfscreen) {
 					MoveLeft ();
+				}
+			}
+			if (Input.acceleration.x > 0) {
+				//MoveRight ();
+
+				//destPos = transform.position;
+				if(destPos.x < RightWall.position.x){
+					destPos = new Vector3(transform.position.x + Input.acceleration.x,transform.position.y, transform.position.z);//calDestByAcc(speed, Input.acceleration.x);
+					LERPING = true;
+					currentLerpTime = 0f;
+				}//transform.position += new Vector3(Input.acceleration.x,transform.position.y,transform.position.z);
+			}
+			else if (Input.acceleration.x < 0) {
+				
+				//destPos = transform.position;
+				if (destPos.x > LeftWall.position.x) {
+					destPos = new Vector3 (transform.position.x - Input.acceleration.x, transform.position.y, transform.position.z);//calDestByAcc(speed, Input.acceleration.x);
+					LERPING = true;
+					currentLerpTime = 0f;
 				}
 			}
 		}
@@ -164,6 +191,22 @@ public class PlayerMovementController : MonoBehaviour {
 		LERPING = true;
 		currentLane = laneEnum;
 		currentLerpTime = 0f;
+	}
+
+	Vector3 calDestByAcc(float s, float acc) {
+		LERPING = true;
+
+		Vector3 dir = Vector3.zero;
+
+		dir.x = acc;
+
+		if (dir.sqrMagnitude > 1) {
+			dir.Normalize ();
+		}
+
+		dir *= Time.deltaTime;
+
+		return dir * s;
 	}
 
 

@@ -10,7 +10,7 @@ public class ScoreSystem : MonoBehaviour {
 	private const string LIVE_TEXT = "Lives: ";
 	private const string SCORE_TEXT = "Score: ";
 	private int count = 0;
-	private int lives = 3;
+	private int lives = 10;
 
 	// Use this for initialization
 	void Start () {
