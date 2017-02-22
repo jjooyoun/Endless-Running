@@ -67,21 +67,23 @@ public class PlayerMovementController : MonoBehaviour {
 					MoveLeft ();
 				}
 			}
-			if (Input.acceleration.x > 0) {
-				//MoveRight ();
 
-				//destPos = transform.position;
-				if(destPos.x < RightWall.position.x){
-					destPos = new Vector3(transform.position.x + Input.acceleration.x,transform.position.y, transform.position.z);//calDestByAcc(speed, Input.acceleration.x);
+			// Accelerometer
+			if (Input.acceleration.x > 0) {
+				
+
+				//  Left Wall
+				if(destPos.x < RightWall.position.x - 2){
+					destPos = new Vector3(transform.position.x + Input.acceleration.x,transform.position.y, transform.position.z);
 					LERPING = true;
 					currentLerpTime = 0f;
-				}//transform.position += new Vector3(Input.acceleration.x,transform.position.y,transform.position.z);
+				}
 			}
 			else if (Input.acceleration.x < 0) {
 				
-				//destPos = transform.position;
-				if (destPos.x > LeftWall.position.x) {
-					destPos = new Vector3 (transform.position.x - Input.acceleration.x, transform.position.y, transform.position.z);//calDestByAcc(speed, Input.acceleration.x);
+				// Right Wall
+				if (destPos.x > LeftWall.position.x + 2) {
+					destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
 					LERPING = true;
 					currentLerpTime = 0f;
 				}
