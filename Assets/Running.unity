@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44659364, g: 0.4964301, b: 0.5748256, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1091,11 +1091,76 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1692375226}
+--- !u!1 &1699898881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1699898883}
+  - component: {fileID: 1699898882}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1699898882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1699898881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0438d09222abf49a945d6753a8dad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entPowerupCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: EntityCollidePowerUpEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  entEnemyCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: EntityCollideEnemyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!4 &1699898883
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1699898881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4070473, y: -10.144863, z: 27.161798}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1753551282 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1860218963462410, guid: c00bbe054875f4766a0fa406d3325667,
     type: 2}
   m_PrefabInternal: {fileID: 275545969}
+--- !u!54 &1753551283
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1753551282}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1753551289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,6 +1172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbdf664dec5343f5a9925cfb561d145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitFlash: {r: 0.2445934, g: 0.2739618, b: 0.85294116, a: 0}
+  flashTime: 5
   countText: {fileID: 1692375228}
   countLives: {fileID: 2095502051}
 --- !u!1 &2079191903

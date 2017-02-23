@@ -50,9 +50,9 @@ public class PlayerMovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("x:" + transform.position.x);
-		Debug.Log ("left:" + LeftWall.position.x);
-		Debug.Log ("right:" + RightWall.position.x);
+		//Debug.Log ("x:" + transform.position.x);
+		//Debug.Log ("left:" + LeftWall.position.x);
+		//Debug.Log ("right:" + RightWall.position.x);
 		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
 
 		// Control by touch input 

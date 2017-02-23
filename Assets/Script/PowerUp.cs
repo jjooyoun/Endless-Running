@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PowerUp : Entity {
 	private static float SCALING_FACTOR = 0.15f;
 	private static int LEVEL = 5;
@@ -32,18 +33,18 @@ public class PowerUp : Entity {
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
 
-    private static bool PowerUpScaleUp(Entity ent, Collider other){
+	private static void PowerUpScaleUp(Entity ent, Entity powerUp){
 		//hide power up
-		PowerUp th1s = (PowerUp)ent;
+		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
 		//scale entity
-		return ScaleUp (other.gameObject.transform);
+		ScaleUp (ent.gameObject.transform);
 	}
 
-	private static bool PowerUpScaleDown(Entity ent, Collider other){
-		PowerUp th1s = (PowerUp)ent;
+	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
+		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
-		return ScaleDown (other.gameObject.transform);
+		ScaleDown (ent.gameObject.transform);
 	}
 
    
@@ -53,7 +54,7 @@ public class PowerUp : Entity {
 		return true;
 	}
 		
-	private static Func<Entity, Collider,bool>[] colliderHandlers = {
+	private static Action<Entity, Entity>[] colliderHandlers = {
         PowerUpScaleUp,
         PowerUpScaleDown
     };
@@ -64,13 +65,8 @@ public class PowerUp : Entity {
 		entityType = ENTITY_TYPE.POWER_UP;
 	}
 
-	void OnTriggerEnter(Collider other){
-		//Debug.Log ("OnTriggerEnter:" + other.name);
-		Entity ent = other.GetComponent<Entity> ();
-		//Debug.Log ("ent:" + ent);
-		if(ent){
-			colliderHandlers [(int)this.type] (this, other);
-        }
+	public void PowerUpHandler(Entity ent, Entity th1s){
+		colliderHandlers [(int)this.type] (ent, th1s);
 	}
 		
 }

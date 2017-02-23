@@ -3572,7 +3572,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1190428318}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca08ce7fecddf9440b49cf6095e48854, type: 3}
   m_Name: 
@@ -3622,6 +3622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42cc4143c7249b47ba3bf898e3d2660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerup: {fileID: 0}
   obstacle: {fileID: 407342223}
   lanes:
   - {fileID: 313062252}
@@ -3771,6 +3772,8 @@ MonoBehaviour:
   LeftLanePos: {fileID: 1554255234}
   CenterLanePos: {fileID: 1593253365}
   RightLanePos: {fileID: 1408555598}
+  LeftWall: {fileID: 0}
+  RightWall: {fileID: 0}
 --- !u!114 &1713031791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3783,6 +3786,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityType: 0
+--- !u!114 &1713031792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1713031789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcbdf664dec5343f5a9925cfb561d145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitFlash: {r: 0.3074037, g: 0.08363968, b: 0.875, a: 0}
+  flashTime: 20
+  countText: {fileID: 0}
+  countLives: {fileID: 0}
 --- !u!1 &2096330032
 GameObject:
   m_ObjectHideFlags: 0
