@@ -46,6 +46,9 @@ public class PlayerMovementController : MonoBehaviour {
 		// Shake detection
 		shakeDetectionThreshold *= shakeDetectionThreshold;
 		lowPassValue = Input.acceleration;
+
+		EventManager.instance.swipeLeftEvent.AddListener (onSwipeLeft);
+		EventManager.instance.swipeRightEvent.AddListener (onSwipeRight);
 	}
 	
 	// Update is called once per frame
@@ -225,6 +228,14 @@ public class PlayerMovementController : MonoBehaviour {
 		dir *= Time.deltaTime;
 
 		return dir * s;
+	}
+	
+	void onSwipeLeft(){
+		MoveLeft ();
+	}
+
+	void onSwipeRight(){
+		MoveRight ();
 	}
 
 

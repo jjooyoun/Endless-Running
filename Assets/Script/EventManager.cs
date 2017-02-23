@@ -18,6 +18,8 @@ public class EventManager : MonoBehaviour {
 
 	public EntityCollidePowerUpEvent entPowerupCollisionEvent;
 	public EntityCollideEnemyEvent entEnemyCollisionEvent;
+	public UnityEvent swipeLeftEvent;
+	public UnityEvent swipeRightEvent;
 
 	private static EventManager eventManager;
 
