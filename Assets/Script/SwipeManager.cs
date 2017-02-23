@@ -16,8 +16,6 @@ public class SwipeManager : MonoBehaviour {
 
 	private static SwipeManager instance;
 	public static SwipeManager Instance{get {return instance;}}
-
-	private PlayerMovementController pmc; // slick
 	public SwipeDirection Direction{ set; get;}
 
 	private Vector3 touchPosition;
@@ -27,7 +25,6 @@ public class SwipeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		instance = this;
-		pmc = GetComponent<PlayerMovementController> ();
 	}
 	
 	// Update is called once per frame
@@ -43,10 +40,12 @@ public class SwipeManager : MonoBehaviour {
 				// Swipe on the X axis
 				//Direction |= (deltaSwipe.x < 0) ? SwipeDirection.Right : SwipeDirection.Left;
 				if (deltaSwipe.x < 0) {
-					pmc.MoveRight ();
+					EventManager.instance.swipeLeftEvent.Invoke ();
 				} else {
-					pmc.MoveLeft ();
+					EventManager.instance.swipeRightEvent.Invoke ();
 				}
+
+
 			}
 
 			if (Mathf.Abs (deltaSwipe.y) > swipeResistanceY) {
