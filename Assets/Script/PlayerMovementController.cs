@@ -56,8 +56,9 @@ public class PlayerMovementController : MonoBehaviour {
 		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
 
 		// Control by touch input 
+
 		if(!LERPING) {
-			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
+			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
 				Vector2 touchPosition = Input.GetTouch (0).position;
 				double halfscreen = Screen.width / 2.0;
 				if (touchPosition.x > halfscreen) {
@@ -67,6 +68,17 @@ public class PlayerMovementController : MonoBehaviour {
 					MoveLeft ();
 				}
 			}
+			*/
+
+			/*if (SwipeManager.Instance.isSwiping (SwipeDirection.Left)) {
+				Debug.Log ("swipe left");
+				MoveLeft ();
+			}
+
+			else if (SwipeManager.Instance.isSwiping (SwipeDirection.Right)) {
+				Debug.Log ("swipe right");
+				MoveRight ();
+			}*/
 
 			// Accelerometer
 			if (Input.acceleration.x > 0) {
@@ -124,7 +136,7 @@ public class PlayerMovementController : MonoBehaviour {
 
 	}
 
-	void MoveLeft() {
+	public void MoveLeft() {
 		Debug.Log ("MoveLeft");
 		if( currentLane == Lane.Left) {
 			//do nothing, already in left lane
@@ -144,16 +156,20 @@ public class PlayerMovementController : MonoBehaviour {
 		}
 	}
 
-	void MoveRight() {
+	public void MoveRight() {
+		Debug.Log ("MoveRight");
 		if(currentLane == Lane.Right) {
+			Debug.Log("Already in right!!");
 			//do nothing, already in right lane
 		}
 		if( currentLane == Lane.Center) {
+			Debug.Log("center>right");
 			//move to Right lane
 			//GoLaneRight();
 			GoLane(RightLanePos.position, Lane.Right);
 		}
 		if( currentLane == Lane.Left) {
+			Debug.Log ("left>center");
 			//move to center lane
 			//GoLaneCenter();
 			GoLane(CenterLanePos.position, Lane.Center);
