@@ -18,6 +18,7 @@ public class PlayerMovementController : MonoBehaviour {
 	float currentLerpTime;
 	bool LERPING;
 	Vector3 destPos;
+	public bool useAcc = false;
 
 	float speed = 10.0f;
 
@@ -34,6 +35,9 @@ public class PlayerMovementController : MonoBehaviour {
 	private Vector3 lowPassValue = Vector3.zero;
 	private Vector3 acceleration ;
 	private Vector3 deltaAcceleration;
+
+
+
 
 
 	// Use this for initialization
@@ -84,23 +88,25 @@ public class PlayerMovementController : MonoBehaviour {
 			}*/
 
 			// Accelerometer
-			if (Input.acceleration.x > 0) {
+
+			if (useAcc == true) {
+				if (Input.acceleration.x > 0) {
 				
 
-				//  Left Wall
-				if(destPos.x < RightWall.position.x - 2){
-					destPos = new Vector3(transform.position.x + Input.acceleration.x,transform.position.y, transform.position.z);
-					LERPING = true;
-					currentLerpTime = 0f;
-				}
-			}
-			else if (Input.acceleration.x < 0) {
+					//  Left Wall
+					if (destPos.x < RightWall.position.x - 2) {
+						destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+						LERPING = true;
+						currentLerpTime = 0f;
+					}
+				} else if (Input.acceleration.x < 0) {
 				
-				// Right Wall
-				if (destPos.x > LeftWall.position.x + 2) {
-					destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-					LERPING = true;
-					currentLerpTime = 0f;
+					// Right Wall
+					if (destPos.x > LeftWall.position.x + 2) {
+						destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+						LERPING = true;
+						currentLerpTime = 0f;
+					}
 				}
 			}
 		}
@@ -236,6 +242,10 @@ public class PlayerMovementController : MonoBehaviour {
 
 	void onSwipeRight(){
 		MoveRight ();
+	}
+
+	public void useAccelerometer(bool acc) {
+		useAcc = acc;
 	}
 
 
