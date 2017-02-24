@@ -94,7 +94,7 @@ public class PlayerMovementController : MonoBehaviour {
 				
 
 					//  Left Wall
-					if (destPos.x < RightWall.position.x - 2) {
+					if (destPos.x < RightWall.position.x - 2.5) {
 						destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
 						LERPING = true;
 						currentLerpTime = 0f;
@@ -102,7 +102,7 @@ public class PlayerMovementController : MonoBehaviour {
 				} else if (Input.acceleration.x < 0) {
 				
 					// Right Wall
-					if (destPos.x > LeftWall.position.x + 2) {
+					if (destPos.x > LeftWall.position.x + 2.5) {
 						destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
 						LERPING = true;
 						currentLerpTime = 0f;
