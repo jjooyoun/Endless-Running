@@ -21,7 +21,9 @@ public class ScoreSystem : MonoBehaviour {
 		SetText(countText, SCORE_TEXT, count.ToString());
         //listen to event
 		EventManager.instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
-		EventManager.instance.entEnemyCollisionEvent.AddListener (EntEnemyCollisionHandler);
+		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
+		EventManager.instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
+		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
 	}
 		
 
@@ -30,7 +32,13 @@ public class ScoreSystem : MonoBehaviour {
 		SetText(countText, SCORE_TEXT, count.ToString());
 	}
 
-	void EntEnemyCollisionHandler(Entity ent, Entity other){
+	void EntCrushEntHandler(Entity ent, Entity other){
+		other.gameObject.SetActive (false);
+		count = count + 10;
+		SetText(countText, SCORE_TEXT, count.ToString());
+	}
+
+	void FlashAndLoseLive(Entity ent, Entity other){
 		//flashing the entity
 		Renderer entRenderer = ent.GetComponent<Renderer>();
 		ent.GetComponent<Collider>().enabled = false;

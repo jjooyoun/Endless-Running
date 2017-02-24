@@ -10,7 +10,8 @@ public class Entity : MonoBehaviour {
 
 	public enum ENTITY_TYPE{
 		PLAYER,
-		ENEMY,
+		ENEMY,		//big to attack
+		OBSTACLE, //small to attack
 		POWER_UP
 	};
 
@@ -27,19 +28,22 @@ public class Entity : MonoBehaviour {
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
 				Debug.Log ("powerup!!!");
 				EventManager.instance.entPowerupCollisionEvent.Invoke (this, otherEnt);
-				PowerUp.PowerUpHandler(this, otherEnt);
-			} else { //player collided with enemy
-                
-                //has shield just destroying shield without broadcast event
-                if (PowerUp.hasShield)
-                {
-                    PowerUp.PowerUpShieldDown(this);
-                }
-                else
-                {
-                    Debug.Log("Collided with enemy!!!");
-                    EventManager.instance.entEnemyCollisionEvent.Invoke(this, otherEnt);
-                } 
+				PowerUp.PowerUpHandler (this, otherEnt);
+			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
+				//has shield just destroying shield without broadcast event
+				if (PowerUp.hasShield) {
+					PowerUp.PowerUpShieldDown (this);
+					return;
+				}
+
+				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+					EventManager.instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
+				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE && this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x) {
+					EventManager.instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
+				} else {
+					//flash lose live
+					EventManager.instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
+				}
 			}
 		}
 	}

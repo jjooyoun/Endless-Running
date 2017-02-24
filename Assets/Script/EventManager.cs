@@ -12,7 +12,9 @@ public class EntityEntityCollision : UnityEvent<Entity, Entity>
 public class EventManager : MonoBehaviour {
 
 	public EntityEntityCollision entPowerupCollisionEvent;
+	public EntityEntityCollision entObstacleCollisionEvent;
 	public EntityEntityCollision entEnemyCollisionEvent;
+	public EntityEntityCollision FlashAndLoseLiveEvent;
 	public UnityEvent swipeLeftEvent;
 	public UnityEvent swipeRightEvent;
 
