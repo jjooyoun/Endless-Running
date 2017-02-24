@@ -40,9 +40,9 @@ public class SwipeManager : MonoBehaviour {
 				// Swipe on the X axis
 				//Direction |= (deltaSwipe.x < 0) ? SwipeDirection.Right : SwipeDirection.Left;
 				if (deltaSwipe.x < 0) {
-					EventManager.instance.swipeLeftEvent.Invoke ();
-				} else {
 					EventManager.instance.swipeRightEvent.Invoke ();
+				} else {
+					EventManager.instance.swipeLeftEvent.Invoke ();
 				}
 
 
