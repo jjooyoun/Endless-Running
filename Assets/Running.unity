@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -144,46 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c0a19192ea946bb85e3645c345bbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &234245722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 234245724}
-  - component: {fileID: 234245723}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &234245723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 234245722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08800ced16b643eda0290a769bc63a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &234245724
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 234245722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.43, y: 0.73, z: -5.84}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &275545969
 Prefab:
   m_ObjectHideFlags: 0
@@ -1133,8 +1093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42cc4143c7249b47ba3bf898e3d2660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerup: {fileID: 1282680247372788, guid: 63e3df5b7624b314db43abe874eec87d, type: 2}
-  obstacle: {fileID: 1282680247372788, guid: 6f3c4092113659e47b50088113ec6fda, type: 2}
+  Spawners:
+  - {fileID: 1282680247372788, guid: 63e3df5b7624b314db43abe874eec87d, type: 2}
+  - {fileID: 1282680247372788, guid: 6f3c4092113659e47b50088113ec6fda, type: 2}
+  - {fileID: 1126375629436402, guid: 94ed5f8ab13415a43ae68581029b66f3, type: 2}
   lanes:
   - {fileID: 2079191904}
   - {fileID: 1628464872}
@@ -1467,12 +1429,12 @@ MonoBehaviour:
   entPowerupCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: EntityCollidePowerUpEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: EntityEntityCollision, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   entEnemyCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: EntityCollideEnemyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: EntityEntityCollision, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   swipeLeftEvent:
     m_PersistentCalls:

@@ -4,20 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class EntityCollidePowerUpEvent : UnityEvent<Entity, Entity>
+public class EntityEntityCollision : UnityEvent<Entity, Entity>
 {
-	
-}
 
-[System.Serializable]
-public class EntityCollideEnemyEvent : UnityEvent<Entity, Entity>
-{
 }
 
 public class EventManager : MonoBehaviour {
 
-	public EntityCollidePowerUpEvent entPowerupCollisionEvent;
-	public EntityCollideEnemyEvent entEnemyCollisionEvent;
+	public EntityEntityCollision entPowerupCollisionEvent;
+	public EntityEntityCollision entEnemyCollisionEvent;
 	public UnityEvent swipeLeftEvent;
 	public UnityEvent swipeRightEvent;
 
