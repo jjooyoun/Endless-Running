@@ -12,6 +12,13 @@ public class SpawnScript : MonoBehaviour {
     float timeElapsed = 0;
     float spawnCycle = 0.5f;
 
+
+	// 0 Power Up
+	// 1 Obstacle
+	// 2 Shield
+	// 3 Enemy
+	int[] a = {1, 1 ,1, 1, 3, 3, 3, 3, 2};
+
     void Update()
     {
         timeElapsed += Time.deltaTime;
@@ -34,9 +41,17 @@ public class SpawnScript : MonoBehaviour {
             }
             timeElapsed -= spawnCycle;
             spawnPowerup = !spawnPowerup;*/
-            int spawnerIndex = Random.Range(0, Spawners.Length);
-            GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[spawnerIndex], new Vector3(0, 1, 42));
-            tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
+            //int spawnerIndex = Random.Range(0, Spawners.Length);
+			int spawnerIndex = Random.Range(0, a.Length);
+			int randomZ = Random.Range (2, 36);
+            //GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[spawnerIndex], new Vector3(0, 1, 42));
+			GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[0], new Vector3(0, 1, randomZ));
+            //tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
+			tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
+			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate(Spawners[a[spawnerIndex]], new Vector3(0, 1, randomZ));
+			tmp1.transform.position = lanes[Random.Range(0, lanes.Length)].position;
+			//GameObject tmp2 = (GameObject)GameObjectUtil.Instantiate(Spawners[1], new Vector3(0, 1, 1));
+			//tmp2.transform.position = lanes[2].position;
             timeElapsed -= spawnCycle;
         }
     }
