@@ -71,7 +71,7 @@ public class PowerUp : Entity {
         if (hasShield)
         {
             Debug.Log("destroying sphere");
-            Destroy(ent.child);
+            GameObjectUtil.Destroy(ent.child);
             hasShield = !hasShield;
         }
     }
