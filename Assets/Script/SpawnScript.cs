@@ -8,9 +8,9 @@ public class SpawnScript : MonoBehaviour {
     //public GameObject obstacle;
     public GameObject[] Spawners;
     public Transform[] lanes;
+	public bool spawning = false;
     float timeElapsed = 0;
     float spawnCycle = 0.5f;
-    bool spawnPowerup = true;
 
     void Update()
     {

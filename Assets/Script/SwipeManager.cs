@@ -16,7 +16,6 @@ public class SwipeManager : MonoBehaviour {
 
 	private static SwipeManager instance;
 	public static SwipeManager Instance{get {return instance;}}
-	public SwipeDirection Direction{ set; get;}
 
 	private Vector3 touchPosition;
 	private float swipeResistanceX = 50.0f;
@@ -50,13 +49,15 @@ public class SwipeManager : MonoBehaviour {
 
 			if (Mathf.Abs (deltaSwipe.y) > swipeResistanceY) {
 				// Swipe on the Y axis
-				Direction |= (deltaSwipe.x < 0) ? SwipeDirection.Up : SwipeDirection.Down;
+				if (deltaSwipe.x < 0) {
+					EventManager.instance.swipeUpEvent.Invoke ();
+				}
 			}
 		}
-	}
 
-	public bool isSwiping(SwipeDirection dir) {
-		return (Direction & dir) == dir;
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			EventManager.instance.swipeUpEvent.Invoke ();
+		}
 	}
 }
 

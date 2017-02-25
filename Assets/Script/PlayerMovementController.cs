@@ -20,7 +20,18 @@ public class PlayerMovementController : MonoBehaviour {
 	Vector3 destPos;
 	public bool useAcc = false;
 
-	float speed = 10.0f;
+
+	public bool isJumping = false;
+	public float height_Offset = 5.0f;
+	public bool reachedTop = false;
+	public bool reachedBottom = false;
+	public float speed = 5.0f;
+	private float originalY = 0.0f;
+	private float topY = 0.0f;
+
+
+
+
 
 	// Shake variables
 
@@ -40,6 +51,7 @@ public class PlayerMovementController : MonoBehaviour {
 
 
 
+
 	// Use this for initialization
 	void Start () {
 		currentLane = Lane.Center;
@@ -53,18 +65,29 @@ public class PlayerMovementController : MonoBehaviour {
 
 		EventManager.instance.swipeLeftEvent.AddListener (onSwipeLeft);
 		EventManager.instance.swipeRightEvent.AddListener (onSwipeRight);
+		EventManager.instance.swipeUpEvent.AddListener (Jump);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log ("x:" + transform.position.x);
-		//Debug.Log ("left:" + LeftWall.position.x);
-		//Debug.Log ("right:" + RightWall.position.x);
+		if (isJumping) {
+			//Debug.Log (transform.position);
+			if (!reachedTop) {
+				if (MoveUp(speed,transform.position.y,topY)) {
+					reachedTop = !reachedTop;
+				}
+			}else if(!reachedBottom){
+				if (MoveDown(speed,transform.position.y,originalY)) {
+					reachedBottom = !reachedBottom;
+					isJumping = !isJumping;
+				}
+			}
+		}
 		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
 
 		// Control by touch input 
 
-		if(!LERPING) {
+		if(!LERPING && !isJumping) {
 			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
 				Vector2 touchPosition = Input.GetTouch (0).position;
 				double halfscreen = Screen.width / 2.0;
@@ -76,17 +99,6 @@ public class PlayerMovementController : MonoBehaviour {
 				}
 			}
 			*/
-
-			/*if (SwipeManager.Instance.isSwiping (SwipeDirection.Left)) {
-				Debug.Log ("swipe left");
-				MoveLeft ();
-			}
-
-			else if (SwipeManager.Instance.isSwiping (SwipeDirection.Right)) {
-				Debug.Log ("swipe right");
-				MoveRight ();
-			}*/
-
 			// Accelerometer
 
 			if (useAcc == true) {
@@ -120,7 +132,7 @@ public class PlayerMovementController : MonoBehaviour {
 			}
 		}
 
-		if(LERPING) {
+		if(LERPING && !isJumping) {
 			currentLerpTime += Time.deltaTime;
 			if (currentLerpTime > lerpTime) {
 				currentLerpTime = lerpTime;
@@ -248,5 +260,35 @@ public class PlayerMovementController : MonoBehaviour {
 		useAcc = acc;
 	}
 
+	public void Jump(){
+		Debug.Log ("im jumping!!!");
+		if (!isJumping) {
+			originalY = transform.position.y;
+			topY = transform.position.y + height_Offset;
+			reachedTop = false;
+			reachedBottom = false;
+			isJumping = !isJumping;
+		}
+	}
+
+	public bool MoveUp(float speed, float currentY, float destY){
+		float newY = currentY + speed * Time.deltaTime;
+		if (newY > destY) {
+			transform.position = new Vector3 (transform.position.x, destY, transform.position.z);
+			return true;
+		}
+		transform.position = new Vector3 (transform.position.x, newY, transform.position.z);
+		return false;
+	}
+
+	public bool MoveDown(float speed, float currentY, float destY){
+		float newY = currentY - speed * Time.deltaTime;
+		if (newY < destY) {
+			transform.position = new Vector3 (transform.position.x, destY, transform.position.z);
+			return true;
+		}
+		transform.position = new Vector3 (transform.position.x, newY, transform.position.z);
+		return false;
+	}
 
 }
