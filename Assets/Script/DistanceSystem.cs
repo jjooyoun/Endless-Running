@@ -15,6 +15,7 @@ public class DistanceSystem : MonoBehaviour {
 	public float ellapsed;
 	public float rellapsed;
 
+	public bool distanceIncreasing;
 
 	void Awake(){
 		distance = Vector3.Distance (player.position, transform.position);
@@ -23,17 +24,20 @@ public class DistanceSystem : MonoBehaviour {
 	}
 
 	void Update(){
-		score ();
+		if (distanceIncreasing) {
+			score ();
+		}
 		ellapsed = Time.time-t;
 		rellapsed = Mathf.Round (ellapsed);
 		Totaltime.text = "Timer: " + rellapsed.ToString ()+"  sec";
+		countDistance.text= "Distance: "+ distance.ToString ();
 	}
 	void score(){
 		distance += Vector3.Distance (player.position, transform.position);
-		countDistance.text= "Distance: "+ distance.ToString ();
 	}
 //	void OnGUI(){
 //		GUI.Label (new Rect (10, 10, 100, 20), distance.ToString ());
 //	}
+
 }
 

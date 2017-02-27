@@ -19,6 +19,7 @@ public class ScoreSystem : MonoBehaviour {
 	private int count = 0;
 	private int lives = 10;
 	private int distances = 0;
+	private DistanceSystem distancesystem;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,7 @@ public class ScoreSystem : MonoBehaviour {
 		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
 		EventManager.instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
 		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
+		distancesystem = FindObjectOfType<DistanceSystem>();
 	}
 		
 
@@ -65,6 +67,7 @@ public class ScoreSystem : MonoBehaviour {
         StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
+			distancesystem.distanceIncreasing=false;
 		}
 		lives--;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
