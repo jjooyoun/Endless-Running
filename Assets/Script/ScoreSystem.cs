@@ -7,18 +7,24 @@ public class ScoreSystem : MonoBehaviour {
 
 	public Color HitFlash;
 	public int flashTime;
+	public float distance;
+	public Transform player;
 
 	public Text countText;
 	public Text countLives;
+	public Text countDistance;
 	private const string LIVE_TEXT = "Lives: ";
 	private const string SCORE_TEXT = "Score: ";
+	private const string DISTANCE_TEXT = "Distance: ";
 	private int count = 0;
 	private int lives = 10;
+	private int distances = 0;
 
 	// Use this for initialization
 	void Start () {
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
+	//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
         //listen to event
 		EventManager.instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
 		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
@@ -26,6 +32,20 @@ public class ScoreSystem : MonoBehaviour {
 		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
 	}
 		
+
+//	void Awake(){
+//		distance = Vector3.Distance (player.position, transform.position);
+//	}
+
+//	void Update(){
+//		score ();
+//	}
+
+//	void score(){
+//		distance = Vector3.Distance (player.position, transform.position);
+//		SetText(countDistance, DISTANCE_TEXT, distances.ToString());
+//		countDistance.text= distance.ToString ();
+//	}
 
 	void EntPowerUpCollisionHandler(Entity ent, Entity other){
 		count++;
