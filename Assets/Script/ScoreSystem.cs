@@ -12,7 +12,7 @@ public class ScoreSystem : MonoBehaviour {
 	public Text countLives;
 	private const string LIVE_TEXT = "Lives: ";
 	private const string SCORE_TEXT = "Score: ";
-	private int count = 0;
+	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance.
 	private int lives = 10;
 
 	// Use this for initialization
