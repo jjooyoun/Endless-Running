@@ -70,78 +70,77 @@ public class PlayerMovementController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
 		if (isJumping) {
 			//Debug.Log (transform.position);
 			if (!reachedTop) {
-				if (MoveUp(speed,transform.position.y,topY)) {
+				if (MoveUp (speed, transform.position.y, topY)) {
 					reachedTop = !reachedTop;
 				}
-			}else if(!reachedBottom){
-				if (MoveDown(speed,transform.position.y,originalY)) {
+			} else if (!reachedBottom) {
+				if (MoveDown (speed, transform.position.y, originalY)) {
 					reachedBottom = !reachedBottom;
 					isJumping = !isJumping;
 				}
 			}
-		}
-		transform.Rotate ( new Vector3(1,0,0) * ( 150.0f * Time.deltaTime ) );
+		} else {
+			// Control by touch input 
 
-		// Control by touch input 
-
-		if(!LERPING && !isJumping) {
-			/*if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
-				Vector2 touchPosition = Input.GetTouch (0).position;
-				double halfscreen = Screen.width / 2.0;
-				if (touchPosition.x > halfscreen) {
-					MoveRight ();
-				}
-				if (touchPosition.x < halfscreen) {
-					MoveLeft ();
-				}
-			}
-			*/
-			// Accelerometer
-
-			if (useAcc == true) {
-				if (Input.acceleration.x > 0) {
-				
-
-					//  Left Wall
-					if (destPos.x < RightWall.position.x - 2.5) {
-						destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-						LERPING = true;
-						currentLerpTime = 0f;
+			if(!LERPING) {
+				/*
+				if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Stationary) {
+					Vector2 touchPosition = Input.GetTouch (0).position;
+					double halfscreen = Screen.width / 2.0;
+					if (touchPosition.x > halfscreen) {
+						MoveRight ();
 					}
-				} else if (Input.acceleration.x < 0) {
-				
-					// Right Wall
-					if (destPos.x > LeftWall.position.x + 2.5) {
-						destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-						LERPING = true;
-						currentLerpTime = 0f;
+					if (touchPosition.x < halfscreen) {
+						MoveLeft ();
+					}
+				}
+				*/
+				// Accelerometer
+
+				if (useAcc == true) {
+					if (Input.acceleration.x > 0) {
+						//  Left Wall
+						if (destPos.x < RightWall.position.x - 2.5) {
+							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+							LERPING = true;
+							currentLerpTime = 0f;
+						}
+					} else if (Input.acceleration.x < 0) {
+
+						// Right Wall
+						if (destPos.x > LeftWall.position.x + 2.5) {
+							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+							LERPING = true;
+							currentLerpTime = 0f;
+						}
 					}
 				}
 			}
-		}
-		if(!LERPING) {
-			if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-				MoveLeft();
+			if(!LERPING) {
+				if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+					MoveLeft();
+				}
+
+				if(Input.GetKeyDown(KeyCode.RightArrow)) {
+					MoveRight();
+				}
 			}
 
-			if(Input.GetKeyDown(KeyCode.RightArrow)) {
-				MoveRight();
-			}
-		}
+			if(LERPING) {
+				currentLerpTime += Time.deltaTime;
+				if (currentLerpTime > lerpTime) {
+					currentLerpTime = lerpTime;
+					LERPING = false;
+				}
 
-		if(LERPING && !isJumping) {
-			currentLerpTime += Time.deltaTime;
-			if (currentLerpTime > lerpTime) {
-				currentLerpTime = lerpTime;
-				LERPING = false;
+				//lerp!
+				float perc = currentLerpTime / lerpTime;
+				transform.position = Vector3.Lerp(transform.position, destPos, perc);
 			}
-
-			//lerp!
-			float perc = currentLerpTime / lerpTime;
-			transform.position = Vector3.Lerp(transform.position, destPos, perc);
 		}
 
 		acceleration = Input.acceleration;

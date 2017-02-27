@@ -7,25 +7,47 @@ public class ScoreSystem : MonoBehaviour {
 
 	public Color HitFlash;
 	public int flashTime;
+	public float distance;
+	public Transform player;
 
 	public Text countText;
 	public Text countLives;
+	public Text countDistance;
 	private const string LIVE_TEXT = "Lives: ";
 	private const string SCORE_TEXT = "Score: ";
-	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance.
+	private const string DISTANCE_TEXT = "Distance: ";
+	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance
 	private int lives = 10;
+	private int distances = 0;
+	private DistanceSystem distancesystem;
 
 	// Use this for initialization
 	void Start () {
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
-        //listen to event
+		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
+		//listen to event
 		EventManager.instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
 		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
 		EventManager.instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
 		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
+		distancesystem = FindObjectOfType<DistanceSystem>();
 	}
-		
+
+
+	//	void Awake(){
+	//		distance = Vector3.Distance (player.position, transform.position);
+	//	}
+
+	//	void Update(){
+	//		score ();
+	//	}
+
+	//	void score(){
+	//		distance = Vector3.Distance (player.position, transform.position);
+	//		SetText(countDistance, DISTANCE_TEXT, distances.ToString());
+	//		countDistance.text= distance.ToString ();
+	//	}
 
 	void EntPowerUpCollisionHandler(Entity ent, Entity other){
 		count++;
@@ -42,9 +64,10 @@ public class ScoreSystem : MonoBehaviour {
 		//flashing the entity
 		Renderer entRenderer = ent.GetComponent<Renderer>();
 		ent.GetComponent<Collider>().enabled = false;
-        StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
+		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
+			distancesystem.distanceIncreasing=false;
 		}
 		lives--;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
@@ -60,7 +83,7 @@ public class ScoreSystem : MonoBehaviour {
 		ent.GetComponent<Collider> ().enabled = true;
 		Debug.Log ("finished flashing!!!");
 	}
-		
+
 	void SetText(Text text, string preMsg, string msg){
 		text.text = preMsg + msg;
 	}
