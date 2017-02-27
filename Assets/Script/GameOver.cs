@@ -1,1 +1,25 @@
-﻿using System; using System.Collections; using System.Collections.Generic; using UnityEngine; using UnityEngine.UI;   public class GameOver: MonoBehaviour { 	private static int playerScore;  //  A new Static variable to hold our score. 	public Text scoreText;  	void Start() 	{ 		playerScore = ScoreSystem.count;  //  Update our score 		scoreText.text = "Your score: " + playerScore.ToString (); 	}   }  /*public class ScoreSystem : MonoBehaviour {  	public Color HitFlash; 	public int flashTime;  	public Text countText; 	public Text countLives; 	private const string LIVE_TEXT = "Lives: "; 	private const string SCORE_TEXT = "Score: "; 	private int count = 0; 	private int lives = 10;  	// Use this for initialization 	void Start () { 		SetText (countLives, LIVE_TEXT, lives.ToString ()); 		SetText(countText, SCORE_TEXT, count.ToString()); 		//listen to event 		EventManager.instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler); 		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler); 		EventManager.instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler); 		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive); 	}   	void EntPowerUpCollisionHandler(Entity ent, Entity other){ 		count++; 		SetText(countText, SCORE_TEXT, count.ToString()); 	}  	void EntCrushEntHandler(Entity ent, Entity other){ 		other.gameObject.SetActive (false); 		count = count + 10; 		SetText(countText, SCORE_TEXT, count.ToString()); 	}  	void FlashAndLoseLive(Entity ent, Entity other){ 		//flashing the entity 		Renderer entRenderer = ent.GetComponent<Renderer>(); 		ent.GetComponent<Collider>().enabled = false; 		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash)); 		if (lives - 1 == 0) { 			Time.timeScale = 0; 		} 		lives--; 		SetText (countLives, LIVE_TEXT, lives.ToString ()); 	}  	IEnumerator Flash(Entity ent, Renderer entRenderer, Color originalColor, Color flashColor){ 		for (int i = 0; i < flashTime; i++) { 			entRenderer.material.color = flashColor; 			yield return new WaitForSeconds (.3f); 			entRenderer.material.color = originalColor; 			yield return new WaitForSeconds (.3f); 		} 		ent.GetComponent<Collider> ().enabled = true; 		Debug.Log ("finished flashing!!!"); 	}  	void SetText(Text text, string preMsg, string msg){ 		text.text = preMsg + msg; 	} } */ 
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class GameOver: MonoBehaviour {
+	private static int playerScore;  //  A new Static variable to hold our score.
+	private static float timer;
+	public Text scoreText;
+	public Text timeText;
+
+	void Start()
+	{
+		playerScore = ScoreSystem.count;  //  Update our score from ScoreSystem
+		scoreText.text = "Your score: " + playerScore.ToString ();
+
+		timer = DistanceSystem.ellapsed; //  Update the time from DistanceSystem
+		timeText.text = "Time elapsed: " + Mathf.Round(timer).ToString () + " sec";
+
+	}
+
+
+}

@@ -12,7 +12,7 @@ public class DistanceSystem : MonoBehaviour {
 
 	public float distance;
 	public float t;
-	public float ellapsed;
+	public static float ellapsed; //Static variable to pull from GameOver scene
 	public float rellapsed;
 
 	public bool distanceIncreasing;
