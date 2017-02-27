@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreSystem : MonoBehaviour {
 
@@ -68,6 +69,7 @@ public class ScoreSystem : MonoBehaviour {
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
 			distancesystem.distanceIncreasing=false;
+			SceneManager.LoadScene (2);
 		}
 		lives--;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
