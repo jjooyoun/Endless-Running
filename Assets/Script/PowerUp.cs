@@ -56,7 +56,7 @@ public class PowerUp : Entity {
         {
             Debug.Log("creating sphere");
             ent.child = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            ent.child.GetComponent<SphereCollider>().enabled = false;
+            //ent.child.GetComponent<SphereCollider>().enabled = false;
             ent.child.transform.position = ent.transform.position;
             ent.child.transform.parent = ent.transform;//inherit rotation
             ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
@@ -71,7 +71,8 @@ public class PowerUp : Entity {
         if (hasShield)
         {
             Debug.Log("destroying sphere");
-            GameObjectUtil.Destroy(ent.child);
+            //GameObjectUtil.Destroy(ent.child); // Keep this, maybe use later
+			Destroy(ent.child); // because i just copy the sphere, so no need to use gameobjectutil, for now
             hasShield = !hasShield;
         }
     }
