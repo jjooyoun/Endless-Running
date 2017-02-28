@@ -17,7 +17,8 @@ public class SpawnScript : MonoBehaviour {
 	// 1 Obstacle
 	// 2 Shield
 	// 3 Enemy
-	int[] a = {1, 1 ,1, 1, 3, 3, 3, 3, 2};
+	// 4 Barrier
+	int[] a = {1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
 
     void Update()
     {
