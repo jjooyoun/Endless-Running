@@ -12,6 +12,8 @@ public class SpawnScript : MonoBehaviour {
     float timeElapsed = 0;
     float spawnCycle = 0.5f;
 
+	private int centerLaneIndex = 2;
+
 
 	// 0 Power Up
 	// 1 Obstacle
@@ -45,12 +47,17 @@ public class SpawnScript : MonoBehaviour {
             //int spawnerIndex = Random.Range(0, Spawners.Length);
 			int spawnerIndex = Random.Range(0, a.Length);
 			int randomZ = Random.Range (2, 36);
+			Vector3 spawnerPos = new Vector3 (0, 1, randomZ);
+
             //GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[spawnerIndex], new Vector3(0, 1, 42));
 			GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[0], new Vector3(0, 1, randomZ));
             //tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
 			tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
-			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate(Spawners[a[spawnerIndex]], new Vector3(0, 1, randomZ));
-			tmp1.transform.position = lanes[Random.Range(0, lanes.Length)].position;
+			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate(Spawners[a[spawnerIndex]], spawnerPos);
+			if (spawnerIndex == 4) {
+				tmp1.transform.position = lanes [centerLaneIndex].position;
+			}
+			else tmp1.transform.position = lanes[Random.Range(0, lanes.Length)].position;
 			//GameObject tmp2 = (GameObject)GameObjectUtil.Instantiate(Spawners[1], new Vector3(0, 1, 1));
 			//tmp2.transform.position = lanes[2].position;
             timeElapsed -= spawnCycle;
