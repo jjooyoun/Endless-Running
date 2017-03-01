@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
-  entityType: 2
+  entityType: 3
+  entityName: PowerUp
   powerUptype: 0
 --- !u!114 &114950185051449154
 MonoBehaviour:

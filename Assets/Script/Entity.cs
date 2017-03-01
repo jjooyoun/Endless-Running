@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour {
 	};
 
 	public ENTITY_TYPE entityType =  ENTITY_TYPE.PLAYER;
+	public string entityName = "Entity";
 
 	private void OnTriggerEnter(Collider other){
 		//send colliding event accordingly
@@ -27,8 +28,8 @@ public class Entity : MonoBehaviour {
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
 				Debug.Log ("powerup!!!");
-				EventManager.instance.entPowerupCollisionEvent.Invoke (this, otherEnt);
-				PowerUp.PowerUpHandler (this, otherEnt);
+				//EventManager.instance.entPowerupCollisionEvent.Invoke (this, otherEnt);
+				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				//has shield just destroying shield without broadcast event
 				if (PowerUp.hasShield) {

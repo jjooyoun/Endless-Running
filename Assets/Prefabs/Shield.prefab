@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
-  entityType: 2
+  entityType: 3
+  entityName: Shield
   powerUptype: 2
 --- !u!114 &114925304604171680
 MonoBehaviour:

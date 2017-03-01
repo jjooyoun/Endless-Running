@@ -58,6 +58,11 @@ public class SwipeManager : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			EventManager.instance.swipeUpEvent.Invoke ();
 		}
+
+		if (Input.GetKeyDown (KeyCode.S)) {
+			EventManager.instance.shakeEvent.Invoke (); //to test shake
+		}
+		
 	}
 }
 

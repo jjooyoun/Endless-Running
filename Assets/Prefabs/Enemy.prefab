@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 0}
   entityType: 1
+  entityName: Enemy
 --- !u!114 &114872932866375642
 MonoBehaviour:
   m_ObjectHideFlags: 1

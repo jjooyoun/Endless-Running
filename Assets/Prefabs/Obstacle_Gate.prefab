@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 0}
   entityType: 2
+  entityName: Gate
 --- !u!114 &114145937452800336
 MonoBehaviour:
   m_ObjectHideFlags: 1

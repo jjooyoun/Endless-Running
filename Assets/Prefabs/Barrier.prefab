@@ -119,3 +119,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 0}
   entityType: 2
+  entityName: Barrier

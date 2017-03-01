@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 0}
   entityType: 2
+  entityName: Obstacle
 --- !u!114 &114551438055166258
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -15,6 +15,7 @@ public class EventManager : MonoBehaviour {
 	public EntityEntityCollision entObstacleCollisionEvent;
 	public EntityEntityCollision entEnemyCollisionEvent;
 	public EntityEntityCollision FlashAndLoseLiveEvent;
+	public UnityEvent shakeEvent;
 	public UnityEvent swipeLeftEvent;
 	public UnityEvent swipeRightEvent;
 	public UnityEvent swipeUpEvent;

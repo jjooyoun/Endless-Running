@@ -24,14 +24,14 @@ public class PowerUp : Entity {
     public static bool ScaleUp(Transform entTransform)
     {
         if (entTransform.localScale.x > MAX_SCALE)
-            return true;
+            return false;
         return Scale(entTransform, PowerUp.SCALING_FACTOR);
     }
 
     public static bool ScaleDown(Transform entTransform)
     {
         if (entTransform.localScale.x <= 1)
-            return true;
+            return false;
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
 
@@ -40,13 +40,15 @@ public class PowerUp : Entity {
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
 		//scale entity
-		ScaleUp (ent.gameObject.transform);
+		if(ScaleUp (ent.gameObject.transform)) //scale up sucessful
+			EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
 	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
-		ScaleDown (ent.gameObject.transform);
+		if(ScaleDown (ent.gameObject.transform)) //scale down sucessful
+			EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
     private static void PowerUpShieldUp(Entity ent, Entity powerUp)
@@ -54,6 +56,7 @@ public class PowerUp : Entity {
         //already have shield?
         if (!hasShield)
         {
+			hasShield = !hasShield;
             Debug.Log("creating sphere");
             ent.child = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             //ent.child.GetComponent<SphereCollider>().enabled = false;
@@ -62,7 +65,7 @@ public class PowerUp : Entity {
             ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
             ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
             ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
-            hasShield = !hasShield;
+			EventManager.instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
         }
     }
 
@@ -70,10 +73,10 @@ public class PowerUp : Entity {
     {
         if (hasShield)
         {
+			hasShield = !hasShield;
             Debug.Log("destroying sphere");
             //GameObjectUtil.Destroy(ent.child);
-			Destroy(ent.child);
-            hasShield = !hasShield;
+			Destroy(ent.child);       
         }
     }
 
