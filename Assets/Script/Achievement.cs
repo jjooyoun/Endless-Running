@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Achievement : MonoBehaviour {
 	//level 1
 	public int snowBalls = 0;
-	public int snowBallAchievement = 10;
+	public int snowBallAchievement = 5;
 
 	//level 2
 	public int walker = 0;
@@ -52,6 +52,7 @@ public class Achievement : MonoBehaviour {
 				EventManager.instance.entPowerupCollisionEvent.RemoveListener (OnSnowAdded);
 				text.text = "Level 1 achievement unlocked!!!";
 				//Debug.Log ("Level 1 achievement unlocked!!!");
+				EventManager.instance.level1AchievementEvent.Invoke();
 			}
 			snowBalls++;
 		}
@@ -67,6 +68,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 achievement unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
+			EventManager.instance.level2AchievementEvent.Invoke();
 		}
 		walker++;
 		
@@ -77,6 +79,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.instance.shakeEvent.RemoveListener (OnShake);
 			text.text = "Level 3 achievement unlocked!!!";
 			//Debug.Log ("Level 3 achievement unlocked!!!");
+			EventManager.instance.level3AchievementEvent.Invoke();
 		}
 		shake++;
 	}
@@ -86,6 +89,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
 			text.text = "Level 4 achievement unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
+			EventManager.instance.level4AchievementEvent.Invoke();
 		}
 		obstacle++;
 
@@ -96,6 +100,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.instance.swipeUpEvent.RemoveListener (OnJump);
 			text.text = "Level 5 achievement unlocked!!!";
 			//Debug.Log ("Level 5 achievement unlocked!!!");
+			EventManager.instance.level5AchievementEvent.Invoke();
 		}
 		jump++;
 	}
@@ -107,6 +112,7 @@ public class Achievement : MonoBehaviour {
 				EventManager.instance.entPowerupCollisionEvent.RemoveListener (OnShieldAdded);
 				text.text = "Level 7 achievement unlocked!!!";
 				//Debug.Log ("Level 7 achievement unlocked!!!");
+				EventManager.instance.level7AchievementEvent.Invoke();
 			}
 			shield++;
 		}
