@@ -20,7 +20,7 @@ public class SpawnScript : MonoBehaviour {
 	// 2 Shield
 	// 3 Enemy
 	// 4 Barrier
-	int[] a = {1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
+	int[] a = {0, 0, 0, 0, 1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
 
     void Update()
     {
@@ -49,12 +49,14 @@ public class SpawnScript : MonoBehaviour {
 			int randomZ = Random.Range (2, 36);
 			Vector3 spawnerPos = new Vector3 (0, 1, randomZ);
 
+
+
             //GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[spawnerIndex], new Vector3(0, 1, 42));
-			GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[0], new Vector3(0, 1, randomZ));
+			//GameObject tmp = (GameObject)GameObjectUtil.Instantiate(Spawners[0], new Vector3(0, 1, randomZ));
             //tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
-			tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
+			//tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
 			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate(Spawners[a[spawnerIndex]], spawnerPos);
-			if (spawnerIndex == 4) {
+			if (spawnerIndex == 8) {
 				tmp1.transform.position = lanes [centerLaneIndex].position;
 			}
 			else tmp1.transform.position = lanes[Random.Range(0, lanes.Length)].position;
