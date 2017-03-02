@@ -25,6 +25,8 @@ public class EventManager : MonoBehaviour {
 	public UnityEvent swipeLeftEvent;
 	public UnityEvent swipeRightEvent;
 	public UnityEvent swipeUpEvent;
+	public UnityEvent pauseEvent;
+	public UnityEvent resumeEvent;
 
 	private static EventManager eventManager;
 

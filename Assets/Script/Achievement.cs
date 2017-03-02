@@ -48,12 +48,13 @@ public class Achievement : MonoBehaviour {
 			canvas.enabled = false;
 			return;
 		}
-		Debug.Log ("current spriteIndex:" + spriteIndex);
+		//Debug.Log ("current spriteIndex:" + spriteIndex);
 		if (Instructions [spriteIndex] == "-1") { // none sprite
 			Time.timeScale = 1;
+			EventManager.instance.resumeEvent.Invoke ();
 			spriteIndex++;
 			ShowInstruction (false);
-			Debug.Log ("Im gonna return");
+			//Debug.Log ("Im gonna return");
 			return;
 		}
 		instructionImage.sprite = levelInstructionSprites [spriteIndex];
@@ -68,6 +69,7 @@ public class Achievement : MonoBehaviour {
 		}
 		if (enabled && !canvas.enabled) {
 			Time.timeScale = 0;
+			EventManager.instance.pauseEvent.Invoke ();
 			canvas.enabled = true;
 		}else if (!enabled && canvas.enabled) {
 			canvas.enabled = false;
@@ -78,6 +80,7 @@ public class Achievement : MonoBehaviour {
 	void Start () {
 		if (!testEnv) {
 			Time.timeScale = 0;
+			EventManager.instance.pauseEvent.Invoke ();
 		}
 		NextInstruction ();
 		EventManager.instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
@@ -121,7 +124,7 @@ public class Achievement : MonoBehaviour {
 				text.text = "Level 1 achievement unlocked!!!";
 				//Debug.Log ("Level 1 achievement unlocked!!!");
 				EventManager.instance.level1AchievementEvent.Invoke();
-				//NextInstruction ();
+				NextInstruction ();
 				ShowInstruction (true);
 			}
 			snowBalls++;
@@ -139,7 +142,7 @@ public class Achievement : MonoBehaviour {
 			text.text = "Level 2 achievement unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
 			EventManager.instance.level2AchievementEvent.Invoke();
-			//NextInstruction ();
+			NextInstruction ();
 			ShowInstruction (true);
 		}
 		walker++;
@@ -152,7 +155,7 @@ public class Achievement : MonoBehaviour {
 			text.text = "Level 3 achievement unlocked!!!";
 			//Debug.Log ("Level 3 achievement unlocked!!!");
 			EventManager.instance.level3AchievementEvent.Invoke();
-			//NextInstruction ();
+			NextInstruction ();
 			ShowInstruction (true);
 		}
 		shake++;
@@ -164,7 +167,7 @@ public class Achievement : MonoBehaviour {
 			text.text = "Level 4 achievement unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
 			EventManager.instance.level4AchievementEvent.Invoke();
-			//NextInstruction ();
+			NextInstruction ();
 			ShowInstruction (true);
 		}
 		obstacle++;
@@ -177,7 +180,7 @@ public class Achievement : MonoBehaviour {
 			text.text = "Level 5 achievement unlocked!!!";
 			//Debug.Log ("Level 5 achievement unlocked!!!");
 			EventManager.instance.level5AchievementEvent.Invoke();
-			//NextInstruction ();
+			NextInstruction ();
 			ShowInstruction (true);
 		}
 		jump++;
@@ -191,7 +194,7 @@ public class Achievement : MonoBehaviour {
 				text.text = "Level 7 achievement unlocked!!!";
 				//Debug.Log ("Level 7 achievement unlocked!!!");
 				EventManager.instance.level7AchievementEvent.Invoke();
-				//NextInstruction ();
+				NextInstruction ();
 				ShowInstruction (true);
 			}
 			shield++;

@@ -61,6 +61,8 @@ public class ScoreSystem : MonoBehaviour {
 	}
 
 	void FlashAndLoseLive(Entity ent, Entity other){
+		Debug.Log ("ent:" + ent.name);
+		Debug.Log ("other:" + other.name);
 		//flashing the entity
 		Renderer entRenderer = ent.GetComponent<Renderer>();
 		ent.GetComponent<Collider>().enabled = false;
