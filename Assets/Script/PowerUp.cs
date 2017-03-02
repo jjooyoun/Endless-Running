@@ -40,15 +40,15 @@ public class PowerUp : Entity {
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
 		//scale entity
-		if(ScaleUp (ent.gameObject.transform)) //scale up sucessful
-			EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
+		ScaleUp (ent.gameObject.transform);
+		EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
 	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
-		if(ScaleDown (ent.gameObject.transform)) //scale down sucessful
-			EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
+		ScaleDown (ent.gameObject.transform);
+		EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
     private static void PowerUpShieldUp(Entity ent, Entity powerUp)
