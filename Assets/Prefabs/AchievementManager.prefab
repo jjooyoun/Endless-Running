@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 222884541248166582}
   - component: {fileID: 114742466492276196}
   m_Layer: 0
-  m_Name: Text
+  m_Name: AchievementText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 222827185520659496}
   - component: {fileID: 114538199287079596}
   m_Layer: 0
-  m_Name: Instruction
+  m_Name: InstructionImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +110,23 @@ GameObject:
   - component: {fileID: 114722623726133972}
   m_Layer: 0
   m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1778230999222166
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224327367997029648}
+  - component: {fileID: 222007947773155620}
+  - component: {fileID: 114762881951521156}
+  m_Layer: 0
+  m_Name: InstructionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +264,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114238912440114836}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114709776090081786}
+        m_MethodName: NextInstruction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114441395589616114
@@ -289,16 +317,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2ca4156513aa7f544ba09869d686129e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -327,7 +355,20 @@ MonoBehaviour:
   jumpAchievement: 5
   shield: 0
   shieldAchievement: 2
+  canvas: {fileID: 223187814225438262}
   text: {fileID: 114742466492276196}
+  instructionText: {fileID: 114762881951521156}
+  instructionImage: {fileID: 114538199287079596}
+  levelInstructionSprites:
+  - {fileID: 21300000, guid: 2ca4156513aa7f544ba09869d686129e, type: 3}
+  - {fileID: 21300000, guid: 3d6ff2b8a425e204f9cab78c77d76b47, type: 3}
+  - {fileID: 21300000, guid: 1f552dafa8591464f8c84e5e70983733, type: 3}
+  spriteIndex: 0
+  Instructions:
+  - Try to get the snow ball
+  - You will get bigger
+  - And bigger
+  - -1
 --- !u!114 &114722623726133972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -396,6 +437,47 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Achievement
+--- !u!114 &114762881951521156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778230999222166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.036332168, g: 0.8235294, b: 0.7909556, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7cb2912222469634ba17a77055919ea8, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Try to get the
+
+    snow ball'
+--- !u!222 &222007947773155620
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778230999222166}
 --- !u!222 &222060384651206042
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -434,7 +516,7 @@ Canvas:
   m_GameObject: {fileID: 1010356204686910}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -459,10 +541,28 @@ RectTransform:
   m_Father: {fileID: 224713645358666220}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9, y: -57.8}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 304.15002, y: -57.300003}
+  m_SizeDelta: {x: 218.29993, y: 57}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224327367997029648
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778230999222166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224713645358666220}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -268.2, y: 14}
+  m_SizeDelta: {x: 79, y: 103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224540568653667968
 RectTransform:
@@ -477,10 +577,10 @@ RectTransform:
   m_Father: {fileID: 224713645358666220}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: -59.600006, y: -155.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 80}
+  m_SizeDelta: {x: 568.4, y: -155.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224544348092499258
 RectTransform:
@@ -495,10 +595,10 @@ RectTransform:
   m_Father: {fileID: 224713645358666220}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -15.5}
-  m_SizeDelta: {x: 168.8, y: 132.7}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 248, y: 16.635002}
+  m_SizeDelta: {x: 99.82, y: -305.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224579180186281072
 RectTransform:
@@ -506,9 +606,9 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1010356204686910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.84}
-  m_LocalScale: {x: 0.04333091, y: 0.043330994, z: 0.043330994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224713645358666220}
   m_Father: {fileID: 4863713747320756}
@@ -516,9 +616,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.95, y: -2.1}
-  m_SizeDelta: {x: 217.1, y: 180.4}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!224 &224713645358666220
 RectTransform:
   m_ObjectHideFlags: 1
@@ -532,13 +632,14 @@ RectTransform:
   - {fileID: 224540568653667968}
   - {fileID: 224092476536208296}
   - {fileID: 224544348092499258}
+  - {fileID: 224327367997029648}
   m_Father: {fileID: 224579180186281072}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.47528076, y: 24}
-  m_SizeDelta: {x: 2.5, y: 5.100006}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.97528076, y: 24}
+  m_SizeDelta: {x: 629.5, y: 433.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224778804207439742
 RectTransform:
