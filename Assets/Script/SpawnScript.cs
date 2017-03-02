@@ -32,9 +32,9 @@ public class SpawnScript : MonoBehaviour {
 		EventManager.instance.level1AchievementEvent.AddListener (unlockLev2);
 		//EventManager.instance.level2AchievementEvent.AddListener (unlockLev3);
 		EventManager.instance.level3AchievementEvent.AddListener (unlockLev4);
-		EventManager.instance.level4AchievementEvent.AddListener (unlockLev4);
-		//EventManager.instance.level5AchievementEvent.AddListener (unlockLev5);
-		EventManager.instance.level7AchievementEvent.AddListener(unlockLev8);
+		//EventManager.instance.level4AchievementEvent.AddListener (unlockLev5);
+		EventManager.instance.level5AchievementEvent.AddListener (unlockLev7);
+		//EventManager.instance.level7AchievementEvent.AddListener(unlockLev8);
 	}
 
 	void unlockLev2() {
@@ -46,7 +46,7 @@ public class SpawnScript : MonoBehaviour {
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX };
 	}
 
-	void unlockLev8() {
+	void unlockLev7() {
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX };
 	}
 
@@ -77,7 +77,7 @@ public class SpawnScript : MonoBehaviour {
 			int spawnerIndex = Random.Range(0, a.Length);
 			int randomZ = Random.Range (2, 36);
 			Vector3 spawnerPos = new Vector3 (0, 1, randomZ);//Spawners[a[spawnerIndex]].transform.position;//new Vector3 (0, 1, randomZ);
-			Debug.Log("pos  = :" + spawnerPos);
+			//Debug.Log("pos  = :" + spawnerPos);
 			Vector3 lanePos = lanes[Random.Range(0, lanes.Length)].position;
 
 

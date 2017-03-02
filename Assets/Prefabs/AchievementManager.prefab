@@ -343,8 +343,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edde0ece58e814f86be88d3e72d69fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testEnv: 0
   snowBalls: 0
-  snowBallAchievement: 10
+  snowBallAchievement: 5
   walker: 0
   walkerAchievement: 10
   shake: 0
@@ -363,11 +364,44 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2ca4156513aa7f544ba09869d686129e, type: 3}
   - {fileID: 21300000, guid: 3d6ff2b8a425e204f9cab78c77d76b47, type: 3}
   - {fileID: 21300000, guid: 1f552dafa8591464f8c84e5e70983733, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 8314d9ed3367048c3be34b4911a3fde0, type: 3}
+  - {fileID: 21300000, guid: 55f06614c09324b8ca335a126204057c, type: 3}
+  - {fileID: 21300000, guid: 5e6e828c915924330a70b5aaf7c07bc2, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 8997f47cf412a41948c39cf34dfffc8d, type: 3}
+  - {fileID: 21300000, guid: e4cb191724d264b2aa4889e4fcdbab7a, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: e65632abc7e2a4fbfa5cf5599d503d84, type: 3}
+  - {fileID: 21300000, guid: a38b06ae5a3ec481ea43935ecf2c8598, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 9b6c056e872334933b1dc11fd35eb47b, type: 3}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 85a84c9a7c6d741c4bbc5df1a046a277, type: 3}
+  - {fileID: 21300000, guid: e834cf6e38a7d4ff786cdf6289a2857a, type: 3}
+  - {fileID: 21300000, guid: 7a3ef4565dff043e29a41665a691b092, type: 3}
+  - {fileID: 0}
   spriteIndex: 0
   Instructions:
   - Try to get the snow ball
   - You will get bigger
   - And bigger
+  - -1
+  - Try to destoy walker
+  - 'Must be large\n to destroy walker '
+  - 'Otherwise you will \n take damage '
+  - -1
+  - Shake phone to shrink
+  - You are small now
+  - -1
+  - Must be small to \n pass through gate
+  - Otherwise take damage
+  - -1
+  - Swipe up to jump
+  - -1
+  - S.H.I.E.L.D.
+  - Protects you once \n from damage
+  - Lose shield when \n damaged
   - -1
 --- !u!114 &114722623726133972
 MonoBehaviour:
