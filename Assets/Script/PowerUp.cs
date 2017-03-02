@@ -56,15 +56,15 @@ public class PowerUp : Entity {
         //already have shield?
         if (!hasShield)
         {
-			hasShield = !hasShield;
-            Debug.Log("creating sphere");
+            //Debug.Log("creating sphere");
             ent.child = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             //ent.child.GetComponent<SphereCollider>().enabled = false;
             ent.child.transform.position = ent.transform.position;
             ent.child.transform.parent = ent.transform;//inherit rotation
             ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
             ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
-            ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
+			ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
+			hasShield = !hasShield;
 			EventManager.instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
         }
     }
@@ -73,10 +73,10 @@ public class PowerUp : Entity {
     {
         if (hasShield)
         {
-			hasShield = !hasShield;
-            Debug.Log("destroying sphere");
+            //Debug.Log("destroying sphere");
             //GameObjectUtil.Destroy(ent.child);
-			Destroy(ent.child);       
+			Destroy(ent.child); 
+			hasShield = !hasShield;
         }
     }
 

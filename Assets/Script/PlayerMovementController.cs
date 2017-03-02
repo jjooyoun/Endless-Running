@@ -164,19 +164,19 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	public void MoveLeft() {
-		Debug.Log ("MoveLeft");
+		//Debug.Log ("MoveLeft");
 		if( currentLane == Lane.Left) {
 			//do nothing, already in left lane
-			Debug.Log("Already in left!!");
+			//Debug.Log("Already in left!!");
 		}
 		if( currentLane == Lane.Center) {
-			Debug.Log("center>left");
+			//Debug.Log("center>left");
 			//move to left lane
 			//GoLaneLeft();
 			GoLane(LeftLanePos.position, Lane.Left);
 		}
 		if(currentLane == Lane.Right) {
-			Debug.Log ("right>center");
+			//Debug.Log ("right>center");
 			//move to center lane
 			//GoLaneCenter();
 			GoLane(CenterLanePos.position, Lane.Center);
@@ -184,19 +184,19 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	public void MoveRight() {
-		Debug.Log ("MoveRight");
+		//Debug.Log ("MoveRight");
 		if(currentLane == Lane.Right) {
-			Debug.Log("Already in right!!");
+			//Debug.Log("Already in right!!");
 			//do nothing, already in right lane
 		}
 		if( currentLane == Lane.Center) {
-			Debug.Log("center>right");
+			//Debug.Log("center>right");
 			//move to Right lane
 			//GoLaneRight();
 			GoLane(RightLanePos.position, Lane.Right);
 		}
 		if( currentLane == Lane.Left) {
-			Debug.Log ("left>center");
+			//Debug.Log ("left>center");
 			//move to center lane
 			//GoLaneCenter();
 			GoLane(CenterLanePos.position, Lane.Center);
@@ -267,7 +267,7 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	public void Jump(){
-		Debug.Log ("im jumping!!!");
+		//Debug.Log ("im jumping!!!");
 		if (!isJumping) {
 			originalY = transform.position.y;
 			topY = transform.position.y + height_Offset;

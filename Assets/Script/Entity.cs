@@ -22,17 +22,19 @@ public class Entity : MonoBehaviour {
 		//send colliding event accordingly
 		Entity otherEnt = other.gameObject.GetComponent<Entity>();
 		if (otherEnt) {
-			if (otherEnt.entityType == ENTITY_TYPE.PLAYER) { // what if we have to handle other player ? NOTE to make use of guid later on
+			if (otherEnt.entityType == ENTITY_TYPE.PLAYER || otherEnt.entityType == entityType) { // what if we have to handle other player ? NOTE to make use of guid later on
 				return;
 			}
+
+
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
-				Debug.Log ("powerup!!!");
-				//EventManager.instance.entPowerupCollisionEvent.Invoke (this, otherEnt);
+				//Debug.Log ("powerup!!!");
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				//has shield just destroying shield without broadcast event
 				if (PowerUp.hasShield) {
+					Debug.Log ("has Shield");
 					PowerUp.PowerUpShieldDown (this);
 					return;
 				}

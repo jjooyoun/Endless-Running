@@ -451,15 +451,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testEnv: 0
   snowBalls: 0
-  snowBallAchievement: 5
+  snowBallAchievement: 1
   walker: 0
-  walkerAchievement: 10
+  walkerAchievement: 1
   shake: 0
-  shakeAchievement: 10
+  shakeAchievement: 1
   obstacle: 0
-  obstacleAchievement: 10
+  obstacleAchievement: 1
   jump: 0
-  jumpAchievement: 5
+  jumpAchievement: 1
   shield: 0
   shieldAchievement: 2
   canvas: {fileID: 223187814225438262}
@@ -467,6 +467,7 @@ MonoBehaviour:
   count: {fileID: 114304491414339282}
   total: 0
   counter: 0
+  nextButton: {fileID: 114261705542090882}
   instructionText: {fileID: 114762881951521156}
   instructionImage: {fileID: 114538199287079596}
   levelInstructionSprites:

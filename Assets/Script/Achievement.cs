@@ -36,22 +36,25 @@ public class Achievement : MonoBehaviour {
 	public int total;
 	public int counter;
 
+	public Button nextButton;
 	public Text instructionText;
 	public Image instructionImage;
 	public Sprite[] levelInstructionSprites;
 	public int spriteIndex = 0;
 	public string[] Instructions = {}; // correspond to leveinstructionsprites
 
+	public bool isPaused = false;
 
 	public void NextInstruction(){
-		if (testEnv) {
+		//Debug.Log ("current spriteIndex:" + spriteIndex);
+		if (spriteIndex == Instructions.Length - 1 || testEnv) {
+			if(isPaused)
+				ResumeGame ();
 			canvas.enabled = false;
 			return;
 		}
-		//Debug.Log ("current spriteIndex:" + spriteIndex);
+
 		if (Instructions [spriteIndex] == "-1") { // none sprite
-			Time.timeScale = 1;
-			EventManager.instance.resumeEvent.Invoke ();
 			spriteIndex++;
 			ShowInstruction (false);
 			//Debug.Log ("Im gonna return");
@@ -63,24 +66,39 @@ public class Achievement : MonoBehaviour {
 	}
 
 	public void ShowInstruction(bool enabled){
-		if (testEnv) {
+		if (spriteIndex == Instructions.Length - 1 || testEnv) {
+			if(isPaused)
+				ResumeGame ();
 			canvas.enabled = false;
 			return;
 		}
 		if (enabled && !canvas.enabled) {
-			Time.timeScale = 0;
-			EventManager.instance.pauseEvent.Invoke ();
+			PauseGame ();
 			canvas.enabled = true;
 		}else if (!enabled && canvas.enabled) {
+			ResumeGame ();
 			canvas.enabled = false;
 		}
+	}
+
+	public void ResumeGame(){
+		Debug.Log ("resume game");
+		Time.timeScale = 1;
+		EventManager.instance.resumeEvent.Invoke ();
+		isPaused = false;
+	}
+
+	public void PauseGame(){
+		Debug.Log ("pause game");
+		Time.timeScale = 0;
+		EventManager.instance.pauseEvent.Invoke ();
+		isPaused = true;
 	}
 
 	// Use this for initialization
 	void Start () {
 		if (!testEnv) {
-			Time.timeScale = 0;
-			EventManager.instance.pauseEvent.Invoke ();
+			PauseGame();
 		}
 		NextInstruction ();
 		EventManager.instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
@@ -94,6 +112,9 @@ public class Achievement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.F)) {
+			nextButton.onClick.Invoke ();
+		}
 		if (snowBalls < snowBallAchievement) {
 			total = snowBallAchievement;
 			counter = snowBalls;
