@@ -255,11 +255,13 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 	
 	void onSwipeLeft(){
-		MoveLeft ();
+		if(!isJumping)
+			MoveLeft ();
 	}
 
 	void onSwipeRight(){
-		MoveRight ();
+		if(!isJumping)
+			MoveRight ();
 	}
 
 	public void useAccelerometer(bool acc) {

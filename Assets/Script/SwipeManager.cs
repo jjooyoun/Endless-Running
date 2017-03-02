@@ -20,7 +20,6 @@ public class SwipeManager : MonoBehaviour {
 	private Vector3 touchPosition;
 	private float swipeResistanceX = 50.0f;
 	private float swipeResistanceY = 100.0f;
-
 	// Use this for initialization
 	void Start () {
 		instance = this;
@@ -49,7 +48,7 @@ public class SwipeManager : MonoBehaviour {
 
 			if (Mathf.Abs (deltaSwipe.y) > swipeResistanceY) {
 				// Swipe on the Y axis
-				if (deltaSwipe.x < 0) {
+				if (deltaSwipe.y <= 0) {
 					EventManager.instance.swipeUpEvent.Invoke ();
 				}
 			}
