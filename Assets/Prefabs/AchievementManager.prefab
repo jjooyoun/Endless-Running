@@ -64,6 +64,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1352463826977952
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224260523428660090}
+  - component: {fileID: 222361763350544716}
+  - component: {fileID: 114612077830859256}
+  m_Layer: 0
+  m_Name: BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1375298861137696
 GameObject:
   m_ObjectHideFlags: 1
@@ -356,7 +373,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 43
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -438,6 +455,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114612077830859256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352463826977952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.122, b: 0.134, a: 0.141}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 20230a1dc8b2b4837bde0fe4b5ab254c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114709776090081786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,21 +542,22 @@ MonoBehaviour:
   - And bigger
   - -1
   - Try to destoy walker
-  - 'Must be large\n to destroy walker '
-  - 'Otherwise you will \n take damage '
+  - 'Must be large to destroy walker '
+  - 'Otherwise you will take damage '
   - -1
   - Shake phone to shrink
   - You are small now
   - -1
-  - Must be small to \n pass through gate
+  - Must be small to pass through gate
   - Otherwise take damage
   - -1
   - Swipe up to jump
   - -1
   - S.H.I.E.L.D.
-  - Protects you once \n from damage
-  - Lose shield when \n damaged
+  - Protects you once from damage
+  - Lose shield when damaged
   - -1
+  isPaused: 0
 --- !u!114 &114722623726133972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -593,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.036332168, g: 0.8235294, b: 0.7909556, a: 1}
+  m_Color: {r: 1, g: 0.8594321, b: 0.122, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -602,10 +647,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7cb2912222469634ba17a77055919ea8, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 22
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -634,6 +679,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036041715417518}
+--- !u!222 &222361763350544716
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352463826977952}
 --- !u!222 &222673556905313806
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -715,6 +766,24 @@ RectTransform:
   m_AnchoredPosition: {x: 304.15002, y: -57.300003}
   m_SizeDelta: {x: 218.29993, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224260523428660090
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352463826977952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224327367997029648}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224327367997029648
 RectTransform:
   m_ObjectHideFlags: 1
@@ -724,7 +793,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 224260523428660090}
   m_Father: {fileID: 224713645358666220}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -823,10 +893,10 @@ RectTransform:
   m_Father: {fileID: 224877812293079430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -227.02501, y: 15.300003}
-  m_SizeDelta: {x: 456.85, y: 30}
+  m_AnchoredPosition: {x: -5, y: 15.300003}
+  m_SizeDelta: {x: -194.18999, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224778804207439742
 RectTransform:
