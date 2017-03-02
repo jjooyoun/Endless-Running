@@ -105,7 +105,7 @@ public class Achievement : MonoBehaviour {
 		EventManager.instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
 		EventManager.instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
 		EventManager.instance.entObstacleCollisionEvent.AddListener (OnObstacleDestroyed);
-		EventManager.instance.shakeEvent.AddListener (OnShake);
+		EventManager.instance.shakeOutputEvent.AddListener (OnShake);
 		EventManager.instance.swipeUpEvent.AddListener (OnJump);
 
 	}

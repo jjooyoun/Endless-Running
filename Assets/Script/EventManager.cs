@@ -22,6 +22,7 @@ public class EventManager : MonoBehaviour {
 	public UnityEvent level5AchievementEvent;
 	public UnityEvent level7AchievementEvent;
 	public UnityEvent shakeEvent;
+	public UnityEvent shakeOutputEvent;
 	public UnityEvent swipeLeftEvent;
 	public UnityEvent swipeRightEvent;
 	public UnityEvent swipeUpEvent;

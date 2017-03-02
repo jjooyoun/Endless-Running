@@ -39,7 +39,7 @@ public class PlayerMovementController : MonoBehaviour {
 	// The greater the value of LowPassKernelWidthInSeconds, the slower the filtered value will converge towards current input sample (and vice versa).
 	double lowPassKernelWidthInSeconds = 1.0;
 	// This next parameter is initialized to 2.0 per Apple's recommendation, or at least according to Brady! ;)
-	double shakeDetectionThreshold = 2.0;
+	double shakeDetectionThreshold = 1.0;
 
 	//double lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
 	private double lowPassFilterFactor = 1.0/60.0;
@@ -161,6 +161,7 @@ public class PlayerMovementController : MonoBehaviour {
 		Debug.Log("Shake event detected at time "+Time.time);
 		//Handheld.Vibrate();
 		PowerUp.ScaleDown (this.transform);
+		EventManager.instance.shakeOutputEvent.Invoke ();
 	}
 
 	public void MoveLeft() {
