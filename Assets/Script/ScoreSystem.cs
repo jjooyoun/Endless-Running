@@ -67,6 +67,7 @@ public class ScoreSystem : MonoBehaviour {
 		Renderer entRenderer = ent.GetComponent<Renderer>();
 		ent.GetComponent<Collider>().enabled = false;
 		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
+		Handheld.Vibrate();
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
 			distancesystem.distanceIncreasing=false;
