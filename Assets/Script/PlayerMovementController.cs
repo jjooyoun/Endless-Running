@@ -49,9 +49,6 @@ public class PlayerMovementController : MonoBehaviour {
 
 
 
-
-
-
 	// Use this for initialization
 	void Start () {
 		currentLane = Lane.Center;
@@ -66,6 +63,7 @@ public class PlayerMovementController : MonoBehaviour {
 		EventManager.instance.swipeLeftEvent.AddListener (onSwipeLeft);
 		EventManager.instance.swipeRightEvent.AddListener (onSwipeRight);
 		EventManager.instance.swipeUpEvent.AddListener (Jump);
+		EventManager.instance.shakeEvent.AddListener (Shake);
 	}
 	
 	// Update is called once per frame
@@ -143,22 +141,26 @@ public class PlayerMovementController : MonoBehaviour {
 				transform.position = Vector3.Lerp(transform.position, destPos, perc);
 			}
 		}
+			
 
+		if (ShakeDetection()) {
+			Shake ();	
+		}
 
+	}
 
-
+	bool ShakeDetection(){
 		acceleration = Input.acceleration;
 		lowPassValue = Vector3.Lerp(lowPassValue, acceleration, (float)lowPassFilterFactor);
 		deltaAcceleration = acceleration - lowPassValue;
-		if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
-		{
-			// Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
-			Debug.Log("Shake event detected at time "+Time.time);
-			Handheld.Vibrate();
-			EventManager.instance.shakeEvent.Invoke ();
-			PowerUp.ScaleDown (this.transform);
-		}
+		return deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold;
+	}
 
+	void Shake(){
+		// Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
+		Debug.Log("Shake event detected at time "+Time.time);
+		Handheld.Vibrate();
+		PowerUp.ScaleDown (this.transform);
 	}
 
 	public void MoveLeft() {
