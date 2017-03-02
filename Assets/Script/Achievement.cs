@@ -32,6 +32,10 @@ public class Achievement : MonoBehaviour {
 
 	public Canvas canvas;
 	public Text text;
+	public Text count;
+	public int total;
+	public int counter;
+
 	public Text instructionText;
 	public Image instructionImage;
 	public Sprite[] levelInstructionSprites;
@@ -87,6 +91,24 @@ public class Achievement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (snowBalls < snowBallAchievement) {
+			total = snowBallAchievement;
+			counter = snowBalls;
+		} else if (walker < walkerAchievement) {
+			total = walkerAchievement;
+			counter = walker;
+		} else if (shake < shakeAchievement) {
+			total = shakeAchievement;
+			counter = shake;
+		} else if (jump < jumpAchievement) {
+			total = jumpAchievement;
+			counter = jump;
+		} else if (shield < shieldAchievement) {
+			total = shieldAchievement;
+			counter = shield;
+		}
+
+		count.text = total - counter + " remaining before next level";
 	}
 
 
