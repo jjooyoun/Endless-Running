@@ -47,7 +47,7 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void unlockLev7() {
-		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX };
+		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX, BARRIER_INDEX};
 	}
 
     void Update()
@@ -86,7 +86,7 @@ public class SpawnScript : MonoBehaviour {
             //tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
 			//tmp.transform.position = lanes[Random.Range(0, lanes.Length)].position;
 			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate(Spawners[a[spawnerIndex]], spawnerPos);
-			if (spawnerIndex == 8) {
+			if (spawnerIndex == 4) {
 				tmp1.transform.position = lanes [centerLaneIndex].position;
 			} else
 				tmp1.transform.position = lanes[Random.Range(0, lanes.Length)].position;
