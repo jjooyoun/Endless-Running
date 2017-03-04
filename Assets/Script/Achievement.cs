@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Achievement : MonoBehaviour {
 
 	public bool testEnv = false;
-	//level 1
+	//level 1 : LEFT,RIGHT ENABLE, disable jump, shake
 	public int snowBalls = 0;
 	public int snowBallAchievement = 5;
 
@@ -14,7 +14,7 @@ public class Achievement : MonoBehaviour {
 	public int walker = 0;
 	public int walkerAchievement = 10;
 
-	//level 3
+	//level 3 : ENABLE shake
 	public int shake = 0;
 	public int shakeAchievement = 10;
 
@@ -162,6 +162,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 achievement unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
+			InputManager.SetShakeable(true);
 			EventManager.instance.level2AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
@@ -187,6 +188,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
 			text.text = "Level 4 achievement unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
+			InputManager.SetJump(true);
 			EventManager.instance.level4AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);

@@ -119,15 +119,15 @@ public class PlayerMovementController : MonoBehaviour {
 					}
 				}
 			}
-			if(!LERPING) {
-				if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-					MoveLeft();
-				}
-
-				if(Input.GetKeyDown(KeyCode.RightArrow)) {
-					MoveRight();
-				}
-			}
+//			if(!LERPING) {
+//				if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+//					MoveLeft();
+//				}
+//
+//				if(Input.GetKeyDown(KeyCode.RightArrow)) {
+//					MoveRight();
+//				}
+//			}
 
 			if(LERPING && !isJumping) {
 				currentLerpTime += Time.deltaTime;

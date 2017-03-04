@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SwipeDirection {
-	None = 0,
-	Left = 1,
-	Right =2,
-	Up = 4,
-	Down = 8,
-}
-
 
 //attach to the ball for now
-public class SwipeManager : MonoBehaviour {
+public class InputManager : MonoBehaviour {
 
-	private static SwipeManager instance;
-	public static SwipeManager Instance{get {return instance;}}
+//	private static SwipeManager instance;
+//	public static SwipeManager Instance{get {return instance;}}
 
+	private static bool Jumpnable = false;
+	private static bool Shakeable = false;
 	private Vector3 touchPosition;
 	private float swipeResistanceX = 50.0f;
 	private float swipeResistanceY = 100.0f;
-	// Use this for initialization
-	void Start () {
-		instance = this;
+
+	public static void SetShakeable(bool shakeable){
+		Shakeable = shakeable;
 	}
-	
+
+	public static void SetJump(bool jumpable){
+		Jumpnable = jumpable;
+	}
+
 	// Update is called once per frame
 	private void Update () {
 		if (Input.GetMouseButtonDown (0)) {
@@ -55,11 +53,21 @@ public class SwipeManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			EventManager.instance.swipeUpEvent.Invoke ();
+			if(Jumpnable)
+				EventManager.instance.swipeUpEvent.Invoke ();
 		}
 
 		if (Input.GetKeyDown (KeyCode.S)) {
-			EventManager.instance.shakeEvent.Invoke (); //to test shake
+			if(Shakeable)
+				EventManager.instance.shakeEvent.Invoke (); //to test shake
+		}
+
+		if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+			EventManager.instance.swipeLeftEvent.Invoke ();
+		}
+
+		if(Input.GetKeyDown(KeyCode.RightArrow)) {
+			EventManager.instance.swipeRightEvent.Invoke ();
 		}
 		
 	}
