@@ -1637,6 +1637,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1100561878}
     m_Modifications:
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: Instructions.Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: levelInstructionSprites.Array.size
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 4863713747320756, guid: a7b580bd71dffe347a94827d4fcd1377, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1754,6 +1764,27 @@ Prefab:
       propertyPath: m_MatchWidthOrHeight
       value: 0.844
       objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: Instructions.Array.data[20]
+      value: Tutorial Complete
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: Instructions.Array.data[21]
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: shieldAchievement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: levelInstructionSprites.Array.data[20]
+      value: 
+      objectReference: {fileID: 21300000, guid: b05717ad49f0846369d74bcd0d8da8e8,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7b580bd71dffe347a94827d4fcd1377, type: 2}
   m_IsPrefabParent: 0

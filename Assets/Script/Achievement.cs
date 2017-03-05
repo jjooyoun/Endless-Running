@@ -217,8 +217,9 @@ public class Achievement : MonoBehaviour {
 				text.text = "Level 7 achievement unlocked!!!";
 				//Debug.Log ("Level 7 achievement unlocked!!!");
 				EventManager.instance.level7AchievementEvent.Invoke();
-				NextInstruction ();
 				ShowInstruction (true);
+				NextInstruction ();
+				//ShowInstruction (false);
 			}
 			shield++;
 		}
