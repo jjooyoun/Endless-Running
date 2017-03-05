@@ -34,6 +34,9 @@ public class SpawnScript : MonoBehaviour {
 		EventManager.instance.level3AchievementEvent.AddListener (unlockLev4);
 		//EventManager.instance.level4AchievementEvent.AddListener (unlockLev5);
 		EventManager.instance.level5AchievementEvent.AddListener (unlockLev7);
+		Debug.Log ("Spawn Script done!!");
+
+		a = Setting.gameSetting.a;
 		//EventManager.instance.level7AchievementEvent.AddListener(unlockLev8);
 	}
 
@@ -47,6 +50,7 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void unlockLev7() {
+		Debug.Log ("here?");
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX, BARRIER_INDEX};
 	}
 

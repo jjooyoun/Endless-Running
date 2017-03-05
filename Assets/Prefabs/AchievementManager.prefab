@@ -258,12 +258,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.844
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -505,7 +505,7 @@ MonoBehaviour:
   jump: 0
   jumpAchievement: 1
   shield: 0
-  shieldAchievement: 2
+  shieldAchievement: 1
   canvas: {fileID: 223187814225438262}
   text: {fileID: 114742466492276196}
   count: {fileID: 114304491414339282}
@@ -535,6 +535,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e834cf6e38a7d4ff786cdf6289a2857a, type: 3}
   - {fileID: 21300000, guid: 7a3ef4565dff043e29a41665a691b092, type: 3}
   - {fileID: 0}
+  - {fileID: 21300000, guid: b05717ad49f0846369d74bcd0d8da8e8, type: 3}
+  - {fileID: 0}
   spriteIndex: 0
   Instructions:
   - Try to get the snow ball
@@ -556,6 +558,8 @@ MonoBehaviour:
   - S.H.I.E.L.D.
   - Protects you once from damage
   - Lose shield when damaged
+  - -1
+  - Tutorial Complete
   - -1
   isPaused: 0
 --- !u!114 &114722623726133972
@@ -895,7 +899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -5, y: 15.300003}
+  m_AnchoredPosition: {x: -5, y: 15.299988}
   m_SizeDelta: {x: -194.18999, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224778804207439742

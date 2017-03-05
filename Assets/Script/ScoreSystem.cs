@@ -18,7 +18,7 @@ public class ScoreSystem : MonoBehaviour {
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
 	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance
-	private int lives = 1;
+	private int lives = Setting.gameSetting.lives;
 	private int distances = 0;
 	private DistanceSystem distancesystem;
 

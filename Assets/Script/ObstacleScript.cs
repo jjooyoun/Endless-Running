@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ObstacleScript : MonoBehaviour {
 
-    public float objectSpeed = -0.5f;
+    //public float objectSpeed = -0.5f;
+	public float objectSpeed = Setting.gameSetting.objectSpeed;
 
 	private float savedObjectSpeed = 0.0f;
 

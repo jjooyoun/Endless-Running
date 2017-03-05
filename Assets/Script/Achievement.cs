@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Achievement : MonoBehaviour {
 
@@ -97,6 +98,16 @@ public class Achievement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//Debug.Log ("gamesetting:" + Setting.gameSetting.gameMode);
+		if (Setting.gameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
+			//EventManager.instance.level5AchievementEvent.Invoke ();
+			ShowInstruction (false);
+			InputManager.SetJump(Setting.gameSetting.enableJump);
+			InputManager.SetShakeable (Setting.gameSetting.enableShake);
+			count.enabled = false;
+			Debug.Log ("done");
+			return;
+		}
 		if (!testEnv) {
 			PauseGame();
 		}
@@ -219,6 +230,10 @@ public class Achievement : MonoBehaviour {
 				EventManager.instance.level7AchievementEvent.Invoke();
 				ShowInstruction (true);
 				NextInstruction ();
+
+				//reload
+				//Setting.instance.StartGame ();
+				//SceneManager.LoadScene (1);
 				//ShowInstruction (false);
 			}
 			shield++;
