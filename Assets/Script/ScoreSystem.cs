@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreSystem : MonoBehaviour {
 
@@ -17,7 +18,7 @@ public class ScoreSystem : MonoBehaviour {
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
 	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance
-	private int lives = 10;
+	private int lives = 1;
 	private int distances = 0;
 	private DistanceSystem distancesystem;
 
@@ -71,6 +72,7 @@ public class ScoreSystem : MonoBehaviour {
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
 			distancesystem.distanceIncreasing=false;
+			SceneManager.LoadScene (2);
 		}
 		lives--;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
