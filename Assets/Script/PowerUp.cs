@@ -66,6 +66,7 @@ public class PowerUp : Entity {
 			ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
 			hasShield = !hasShield;
 			EventManager.instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
+			EventManager.instance.shield.Invoke();
         }
     }
 

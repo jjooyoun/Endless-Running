@@ -28,6 +28,7 @@ public class EventManager : MonoBehaviour {
 	public UnityEvent swipeUpEvent;
 	public UnityEvent pauseEvent;
 	public UnityEvent resumeEvent;
+	public UnityEvent shield;
 
 	private static EventManager eventManager;
 
