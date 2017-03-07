@@ -99,6 +99,7 @@ public class PowerUp : Entity {
 
 	void Start(){
 		entityType = ENTITY_TYPE.POWER_UP;
+		base.Init ();
     }
 
 	public static void PowerUpHandler(Entity ent, Entity th1s){

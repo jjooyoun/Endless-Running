@@ -12,6 +12,19 @@ MonoBehaviour:
   m_Name: GameSettingEasy
   m_EditorClassIdentifier: 
   gameMode: 0
+  lives: 10
+  spawnCycle: 0.5
+  objectSpeed: -0.5
   enableJump: 1
   enableShake: 1
+  enableSound: 1
+  JUMP_KEY: 32
+  LEFT_KEY: 97
+  RIGHT_KEY: 100
+  SCALE_UP_KEY: 113
+  SCALE_DOWN_KEY: 101
+  SHIELD_UP_KEY: 114
+  SHIELD_DOWN_KEY: 116
+  SHAKE_KEY: 115
+  CONTINUE_KEY: 102
   a: 0000000003000000010000000200000004000000
