@@ -29,15 +29,15 @@ public class SpawnScript : MonoBehaviour {
 	int[]  a = {POWERUP_INDEX, POWERUP_INDEX};
 
 	void Start () {
-		EventManager.instance.level1AchievementEvent.AddListener (unlockLev2);
-		//EventManager.instance.level2AchievementEvent.AddListener (unlockLev3);
-		EventManager.instance.level3AchievementEvent.AddListener (unlockLev4);
-		//EventManager.instance.level4AchievementEvent.AddListener (unlockLev5);
-		EventManager.instance.level5AchievementEvent.AddListener (unlockLev7);
+		EventManager.Instance.level1AchievementEvent.AddListener (unlockLev2);
+		//EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);
+		EventManager.Instance.level3AchievementEvent.AddListener (unlockLev4);
+		//EventManager.Instance.level4AchievementEvent.AddListener (unlockLev5);
+		EventManager.Instance.level5AchievementEvent.AddListener (unlockLev7);
 		Debug.Log ("Spawn Script done!!");
 
-		a = Setting.gameSetting.a;
-		//EventManager.instance.level7AchievementEvent.AddListener(unlockLev8);
+		a = Setting.Instance.gameSetting.a;
+		//EventManager.Instance.level7AchievementEvent.AddListener(unlockLev8);
 	}
 
 	void unlockLev2() {
@@ -56,6 +56,8 @@ public class SpawnScript : MonoBehaviour {
 
     void Update()
     {
+		if (!spawning)
+			return;
         timeElapsed += Time.deltaTime;
         if (timeElapsed > spawnCycle)
         {

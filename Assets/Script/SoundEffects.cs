@@ -12,7 +12,7 @@ public class SoundEffects : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		EventManager.instance.shield.AddListener(shieldSound);
+		EventManager.Instance.shield.AddListener(shieldSound);
 
 		source = GetComponent<AudioSource>();
 	}

@@ -9,7 +9,8 @@ public class GameSetting : ScriptableObject {
 		EASY,
 		MEDIUM,
 		HARD,
-		TUTORIAL
+		TUTORIAL,
+		TEST
 	};
 
 	public GameMode gameMode = GameMode.TUTORIAL;
@@ -18,6 +19,22 @@ public class GameSetting : ScriptableObject {
 	public float objectSpeed = -0.5f;
 	public bool enableJump = false;
 	public bool enableShake = false;
+	public bool enableSound = false; //so you could listen to your favorite music in the bg
+
+
+	//KEY - MAPPING
+	public KeyCode JUMP_KEY = KeyCode.Space;
+	public KeyCode LEFT_KEY = KeyCode.A;
+	public KeyCode RIGHT_KEY = KeyCode.D;
+
+	public KeyCode SCALE_UP_KEY = KeyCode.Q;
+	public KeyCode SCALE_DOWN_KEY = KeyCode.E;
+	public KeyCode SHIELD_UP_KEY = KeyCode.R;
+	public KeyCode SHIELD_DOWN_KEY = KeyCode.T;
+	public KeyCode SHAKE_KEY = KeyCode.S;
+	public KeyCode CONTINUE_KEY = KeyCode.F;
+
+
 
 	public enum SPAWN_TYPE
 	{

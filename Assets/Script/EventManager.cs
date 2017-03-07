@@ -9,7 +9,9 @@ public class EntityEntityCollision : UnityEvent<Entity, Entity>
 
 }
 
-public class EventManager : MonoBehaviour {
+public class EventManager : Singleton<EventManager> {
+	protected EventManager(){}
+
 
 	public EntityEntityCollision entPowerupCollisionEvent;
 	public EntityEntityCollision entObstacleCollisionEvent;
@@ -29,8 +31,11 @@ public class EventManager : MonoBehaviour {
 	public UnityEvent pauseEvent;
 	public UnityEvent resumeEvent;
 	public UnityEvent shield;
+	public UnityEvent shieldDownEvent; // to test shield down
+	public UnityEvent scaleUpEvent;
+	public UnityEvent scaleDownEvent;
 
-	private static EventManager eventManager;
+	/*private static EventManager eventManager;
 
 	public static EventManager instance
 	{
@@ -48,5 +53,5 @@ public class EventManager : MonoBehaviour {
 
 			return eventManager;
 		}
-	}
+	}*/
 }

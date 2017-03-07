@@ -85,25 +85,25 @@ public class Achievement : MonoBehaviour {
 	public void ResumeGame(){
 		Debug.Log ("resume game");
 		Time.timeScale = 1;
-		EventManager.instance.resumeEvent.Invoke ();
+		EventManager.Instance.resumeEvent.Invoke ();
 		isPaused = false;
 	}
 
 	public void PauseGame(){
 		Debug.Log ("pause game");
 		Time.timeScale = 0;
-		EventManager.instance.pauseEvent.Invoke ();
+		EventManager.Instance.pauseEvent.Invoke ();
 		isPaused = true;
 	}
 
 	// Use this for initialization
 	void Start () {
-		//Debug.Log ("gamesetting:" + Setting.gameSetting.gameMode);
-		if (Setting.gameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
-			//EventManager.instance.level5AchievementEvent.Invoke ();
+		Debug.Log ("gamesetting:" + Setting.Instance.gameSetting.gameMode);
+		if (Setting.Instance.gameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
+			//EventManager.Instance.level5AchievementEvent.Invoke ();
 			ShowInstruction (false);
-			InputManager.SetJump(Setting.gameSetting.enableJump);
-			InputManager.SetShakeable (Setting.gameSetting.enableShake);
+			//InputManager.SetJump(Setting.Instance.gameSetting.enableJump);
+			//InputManager.SetShakeable (Setting.Instance.gameSetting.enableShake);
 			count.enabled = false;
 			Debug.Log ("done");
 			return;
@@ -112,18 +112,18 @@ public class Achievement : MonoBehaviour {
 			PauseGame();
 		}
 		NextInstruction ();
-		EventManager.instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
-		EventManager.instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
-		EventManager.instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
-		EventManager.instance.entObstacleCollisionEvent.AddListener (OnObstacleDestroyed);
-		EventManager.instance.shakeOutputEvent.AddListener (OnShake);
-		EventManager.instance.swipeUpEvent.AddListener (OnJump);
+		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
+		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
+		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
+		EventManager.Instance.entObstacleCollisionEvent.AddListener (OnObstacleDestroyed);
+		EventManager.Instance.shakeOutputEvent.AddListener (OnShake);
+		EventManager.Instance.swipeUpEvent.AddListener (OnJump);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.F)) {
+		if (Input.GetKeyDown (Setting.Instance.gameSetting.CONTINUE_KEY)) {
 			nextButton.onClick.Invoke ();
 		}
 		if (snowBalls < snowBallAchievement) {
@@ -152,10 +152,10 @@ public class Achievement : MonoBehaviour {
 		PowerUp pu = (PowerUp)other;
 		if (pu.powerUptype == PowerUp.PowerUpType.SCALE_UP) {
 			if (snowBalls+1 == snowBallAchievement) {
-				EventManager.instance.entPowerupCollisionEvent.RemoveListener (OnSnowAdded);
+				EventManager.Instance.entPowerupCollisionEvent.RemoveListener (OnSnowAdded);
 				text.text = "Level 1 achievement unlocked!!!";
 				//Debug.Log ("Level 1 achievement unlocked!!!");
-				EventManager.instance.level1AchievementEvent.Invoke();
+				EventManager.Instance.level1AchievementEvent.Invoke();
 				NextInstruction ();
 				ShowInstruction (true);
 			}
@@ -170,11 +170,12 @@ public class Achievement : MonoBehaviour {
 		if (other.entityName != "Walker")
 			return;
 		if (walker+1 == walkerAchievement) {
-			EventManager.instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
+			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 achievement unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
-			InputManager.SetShakeable(true);
-			EventManager.instance.level2AchievementEvent.Invoke();
+			//InputManager.SetShakeable(true);
+			Setting.Instance.SetShake(true);
+			EventManager.Instance.level2AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
 		}
@@ -184,10 +185,10 @@ public class Achievement : MonoBehaviour {
 
 	void OnShake(){
 		if (shake + 1 == shakeAchievement) {
-			EventManager.instance.shakeEvent.RemoveListener (OnShake);
+			EventManager.Instance.shakeEvent.RemoveListener (OnShake);
 			text.text = "Level 3 achievement unlocked!!!";
 			//Debug.Log ("Level 3 achievement unlocked!!!");
-			EventManager.instance.level3AchievementEvent.Invoke();
+			EventManager.Instance.level3AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
 		}
@@ -196,11 +197,12 @@ public class Achievement : MonoBehaviour {
 
 	void OnObstacleDestroyed(Entity ent, Entity other){
 		if (obstacle+1 == obstacleAchievement) {
-			EventManager.instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
+			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
 			text.text = "Level 4 achievement unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
-			InputManager.SetJump(true);
-			EventManager.instance.level4AchievementEvent.Invoke();
+			//InputManager.SetJump(true);
+			Setting.Instance.SetJump(true);
+			EventManager.Instance.level4AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
 		}
@@ -210,10 +212,10 @@ public class Achievement : MonoBehaviour {
 
 	void OnJump(){
 		if (jump + 1 == jumpAchievement) {
-			EventManager.instance.swipeUpEvent.RemoveListener (OnJump);
+			EventManager.Instance.swipeUpEvent.RemoveListener (OnJump);
 			text.text = "Level 5 achievement unlocked!!!";
 			//Debug.Log ("Level 5 achievement unlocked!!!");
-			EventManager.instance.level5AchievementEvent.Invoke();
+			EventManager.Instance.level5AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
 		}
@@ -224,10 +226,10 @@ public class Achievement : MonoBehaviour {
 		PowerUp pu = (PowerUp)other;
 		if (pu.powerUptype == PowerUp.PowerUpType.SHIELD) {
 			if (shield+1 == shieldAchievement) {
-				EventManager.instance.entPowerupCollisionEvent.RemoveListener (OnShieldAdded);
+				EventManager.Instance.entPowerupCollisionEvent.RemoveListener (OnShieldAdded);
 				text.text = "Level 7 achievement unlocked!!!";
 				//Debug.Log ("Level 7 achievement unlocked!!!");
-				EventManager.instance.level7AchievementEvent.Invoke();
+				EventManager.Instance.level7AchievementEvent.Invoke();
 				ShowInstruction (true);
 				NextInstruction ();
 

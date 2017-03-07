@@ -18,7 +18,7 @@ public class ScoreSystem : MonoBehaviour {
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
 	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance
-	private int lives = Setting.gameSetting.lives;
+	private int lives = 10;
 	private int distances = 0;
 	private DistanceSystem distancesystem;
 
@@ -26,12 +26,13 @@ public class ScoreSystem : MonoBehaviour {
 	void Start () {
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
+		lives = Setting.Instance.gameSetting.lives;
 		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
 		//listen to event
-		EventManager.instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
-		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
-		EventManager.instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
-		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
+		EventManager.Instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
+		EventManager.Instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
+		EventManager.Instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
+		EventManager.Instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
 		distancesystem = FindObjectOfType<DistanceSystem>();
 	}
 

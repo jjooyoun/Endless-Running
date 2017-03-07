@@ -57,10 +57,10 @@ public class PlayerMovementController : MonoBehaviour {
 		shakeDetectionThreshold *= shakeDetectionThreshold;
 		lowPassValue = Input.acceleration;
 
-		EventManager.instance.swipeLeftEvent.AddListener (onSwipeLeft);
-		EventManager.instance.swipeRightEvent.AddListener (onSwipeRight);
-		EventManager.instance.swipeUpEvent.AddListener (Jump);
-		EventManager.instance.shakeEvent.AddListener (Shake);
+		EventManager.Instance.swipeLeftEvent.AddListener (onSwipeLeft);
+		EventManager.Instance.swipeRightEvent.AddListener (onSwipeRight);
+		EventManager.Instance.swipeUpEvent.AddListener (Jump);
+		EventManager.Instance.shakeEvent.AddListener (Shake);
 	}
 	
 	// Update is called once per frame
@@ -158,7 +158,7 @@ public class PlayerMovementController : MonoBehaviour {
 		Debug.Log("Shake event detected at time "+Time.time);
 		Handheld.Vibrate();
 		PowerUp.ScaleDown (this.transform);
-		EventManager.instance.shakeOutputEvent.Invoke ();
+		EventManager.Instance.shakeOutputEvent.Invoke ();
 	}
 
 	public void MoveLeft() {
@@ -267,7 +267,7 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	public void Jump(){
-		//Debug.Log ("im jumping!!!");
+		Debug.Log ("im jumping!!!");
 		if (!isJumping) {
 			originalY = transform.position.y;
 			topY = transform.position.y + height_Offset;

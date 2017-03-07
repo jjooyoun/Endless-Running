@@ -18,7 +18,48 @@ public class Entity : MonoBehaviour {
 	public ENTITY_TYPE entityType =  ENTITY_TYPE.PLAYER;
 	public string entityName = "Entity";
 
+	void Start(){
+		if (entityType == ENTITY_TYPE.PLAYER) {
+			EventManager.Instance.shield.AddListener (OnShieldUp);
+			EventManager.Instance.shieldDownEvent.AddListener (OnShieldDown);
+			EventManager.Instance.scaleUpEvent.AddListener (OnScaleUp);
+			EventManager.Instance.scaleDownEvent.AddListener (OnScaleDown);
+		}
+	}
+
+	void OnScaleUp(){
+		if (entityType == ENTITY_TYPE.PLAYER) {
+			Debug.Log ("Scale up" + name);
+			PowerUp.ScaleUp (transform);
+		}
+	}
+
+	void OnScaleDown(){
+		if (entityType == ENTITY_TYPE.PLAYER)
+			PowerUp.ScaleDown (transform);
+	}
+
+	void OnShieldUp(){
+		if (entityType == ENTITY_TYPE.PLAYER) {
+			GameObject shield = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/Shield"));
+			PowerUp.PowerUpShieldUp (this, shield.GetComponent<PowerUp>());
+		}
+	}
+
+	void OnShieldDown(){
+		if (entityType == ENTITY_TYPE.PLAYER)
+			PowerUp.PowerUpShieldDown (this);
+	}
+
+
+
+
+	//player v.s other
 	private void OnTriggerEnter(Collider other){
+		//player-first
+		if (entityType != ENTITY_TYPE.PLAYER) {
+			return;
+		}
 		//send colliding event accordingly
 		Entity otherEnt = other.gameObject.GetComponent<Entity>();
 		if (otherEnt) {
@@ -36,16 +77,17 @@ public class Entity : MonoBehaviour {
 				if (PowerUp.hasShield) {
 					Debug.Log ("has Shield");
 					PowerUp.PowerUpShieldDown (this);
+					//OnShieldDown();
 					return;
 				}
 
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
-					EventManager.instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
+					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE && this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x) {
-					EventManager.instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
+					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
 				} else {
 					//flash lose live
-					EventManager.instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
+					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				}
 			}
 		}
