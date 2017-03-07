@@ -19,7 +19,7 @@ public class Entity : MonoBehaviour {
 	public string entityName = "Entity";
 
 	void Start(){
-		if (entityType == ENTITY_TYPE.PLAYER) {
+		if (entityType == ENTITY_TYPE.PLAYER && Setting.Instance.gameSetting.gameMode == GameSetting.GameMode.TEST) {
 			EventManager.Instance.shield.AddListener (OnShieldUp);
 			EventManager.Instance.shieldDownEvent.AddListener (OnShieldDown);
 			EventManager.Instance.scaleUpEvent.AddListener (OnScaleUp);
@@ -28,26 +28,26 @@ public class Entity : MonoBehaviour {
 	}
 
 	void OnScaleUp(){
-		if (entityType == ENTITY_TYPE.PLAYER) {
+		if (entityType == ENTITY_TYPE.PLAYER && Setting.Instance.gameSetting.gameMode == GameSetting.GameMode.TEST) {
 			Debug.Log ("Scale up" + name);
 			PowerUp.ScaleUp (transform);
 		}
 	}
 
 	void OnScaleDown(){
-		if (entityType == ENTITY_TYPE.PLAYER)
+		if (entityType == ENTITY_TYPE.PLAYER && Setting.Instance.gameSetting.gameMode == GameSetting.GameMode.TEST)
 			PowerUp.ScaleDown (transform);
 	}
 
 	void OnShieldUp(){
-		if (entityType == ENTITY_TYPE.PLAYER) {
+		if (entityType == ENTITY_TYPE.PLAYER && Setting.Instance.gameSetting.gameMode == GameSetting.GameMode.TEST) {
 			GameObject shield = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/Shield"));
 			PowerUp.PowerUpShieldUp (this, shield.GetComponent<PowerUp>());
 		}
 	}
 
 	void OnShieldDown(){
-		if (entityType == ENTITY_TYPE.PLAYER)
+		if (entityType == ENTITY_TYPE.PLAYER && Setting.Instance.gameSetting.gameMode == GameSetting.GameMode.TEST)
 			PowerUp.PowerUpShieldDown (this);
 	}
 
