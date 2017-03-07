@@ -112,6 +112,7 @@ public class Achievement : MonoBehaviour {
 			PauseGame();
 		}
 		NextInstruction ();
+		ShowInstruction (true);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
 		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
@@ -153,7 +154,7 @@ public class Achievement : MonoBehaviour {
 		if (pu.powerUptype == PowerUp.PowerUpType.SCALE_UP) {
 			if (snowBalls+1 == snowBallAchievement) {
 				EventManager.Instance.entPowerupCollisionEvent.RemoveListener (OnSnowAdded);
-				text.text = "Level 1 achievement unlocked!!!";
+				text.text = "Level 1 unlocked!!!";
 				//Debug.Log ("Level 1 achievement unlocked!!!");
 				EventManager.Instance.level1AchievementEvent.Invoke();
 				NextInstruction ();

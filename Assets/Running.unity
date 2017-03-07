@@ -274,9 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5136dd4c35c3a4eb2a8002fdbd462574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldEffect: {fileID: 8300000, guid: 6a8bc224bcc434f1c8aedbae3e8f6a27, type: 3}
-  snowEffect: {fileID: 0}
-  loseEffect: {fileID: 0}
 --- !u!1001 &275545969
 Prefab:
   m_ObjectHideFlags: 0
@@ -1497,7 +1494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: []
-  gameSetting: {fileID: 11400000, guid: 57ae992b83e6c498aaad8e227e99e839, type: 2}
+  gameSetting: {fileID: 11400000, guid: 6241d437a0ea3423a9e39c5fc10bcd59, type: 2}
 --- !u!1001 &1372754621
 Prefab:
   m_ObjectHideFlags: 0
