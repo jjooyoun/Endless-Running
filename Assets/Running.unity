@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -162,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 208112000}
   - component: {fileID: 208111999}
-  - component: {fileID: 208112001}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -263,17 +262,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &208112001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 208111998}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5136dd4c35c3a4eb2a8002fdbd462574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &275545969
 Prefab:
   m_ObjectHideFlags: 0
@@ -1724,6 +1712,26 @@ Prefab:
     - target: {fileID: 4863713747320756, guid: a7b580bd71dffe347a94827d4fcd1377, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: spriteIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: snowBalls
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709776090081786, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: snowBallAchievement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114742466492276196, guid: a7b580bd71dffe347a94827d4fcd1377,
+        type: 2}
+      propertyPath: m_Text
+      value: Achievement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7b580bd71dffe347a94827d4fcd1377, type: 2}

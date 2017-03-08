@@ -70,6 +70,7 @@ public class Entity : MonoBehaviour {
 
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
+		Debug.Log (name + "collided with:" + other.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
 			return;

@@ -24,9 +24,9 @@ public class ScoreSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		lives = Setting.Instance.gameSetting.lives;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
-		lives = Setting.Instance.gameSetting.lives;
 		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
 		//listen to event
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);

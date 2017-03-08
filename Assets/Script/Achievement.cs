@@ -111,14 +111,16 @@ public class Achievement : MonoBehaviour {
 		if (!testEnv) {
 			PauseGame();
 		}
-		NextInstruction ();
-		ShowInstruction (true);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
 		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
 		EventManager.Instance.entObstacleCollisionEvent.AddListener (OnObstacleDestroyed);
 		EventManager.Instance.shakeOutputEvent.AddListener (OnShake);
 		EventManager.Instance.swipeUpEvent.AddListener (OnJump);
+
+		NextInstruction ();
+		ShowInstruction (true);
+
 
 	}
 	
@@ -150,6 +152,7 @@ public class Achievement : MonoBehaviour {
 
 
 	void OnSnowAdded(Entity ent, Entity other){
+		Debug.Log ("snow added!!!");
 		PowerUp pu = (PowerUp)other;
 		if (pu.powerUptype == PowerUp.PowerUpType.SCALE_UP) {
 			if (snowBalls+1 == snowBallAchievement) {
@@ -172,7 +175,7 @@ public class Achievement : MonoBehaviour {
 			return;
 		if (walker+1 == walkerAchievement) {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
-			text.text = "Level 2 achievement unlocked!!!";
+			text.text = "Level 2 unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
 			//InputManager.SetShakeable(true);
 			Setting.Instance.SetShake(true);
@@ -187,7 +190,7 @@ public class Achievement : MonoBehaviour {
 	void OnShake(){
 		if (shake + 1 == shakeAchievement) {
 			EventManager.Instance.shakeEvent.RemoveListener (OnShake);
-			text.text = "Level 3 achievement unlocked!!!";
+			text.text = "Level 3 unlocked!!!";
 			//Debug.Log ("Level 3 achievement unlocked!!!");
 			EventManager.Instance.level3AchievementEvent.Invoke();
 			NextInstruction ();
@@ -199,7 +202,7 @@ public class Achievement : MonoBehaviour {
 	void OnObstacleDestroyed(Entity ent, Entity other){
 		if (obstacle+1 == obstacleAchievement) {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
-			text.text = "Level 4 achievement unlocked!!!";
+			text.text = "Level 4 unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
 			//InputManager.SetJump(true);
 			Setting.Instance.SetJump(true);
@@ -214,7 +217,7 @@ public class Achievement : MonoBehaviour {
 	void OnJump(){
 		if (jump + 1 == jumpAchievement) {
 			EventManager.Instance.swipeUpEvent.RemoveListener (OnJump);
-			text.text = "Level 5 achievement unlocked!!!";
+			text.text = "Level 5 unlocked!!!";
 			//Debug.Log ("Level 5 achievement unlocked!!!");
 			EventManager.Instance.level5AchievementEvent.Invoke();
 			NextInstruction ();
@@ -228,7 +231,7 @@ public class Achievement : MonoBehaviour {
 		if (pu.powerUptype == PowerUp.PowerUpType.SHIELD) {
 			if (shield+1 == shieldAchievement) {
 				EventManager.Instance.entPowerupCollisionEvent.RemoveListener (OnShieldAdded);
-				text.text = "Level 7 achievement unlocked!!!";
+				text.text = "Level 7 unlocked!!!";
 				//Debug.Log ("Level 7 achievement unlocked!!!");
 				EventManager.Instance.level7AchievementEvent.Invoke();
 				ShowInstruction (true);
