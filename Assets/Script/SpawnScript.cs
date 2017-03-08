@@ -29,6 +29,7 @@ public class SpawnScript : MonoBehaviour {
 	int[]  a = {POWERUP_INDEX, POWERUP_INDEX};
 
 	void Start () {
+		spawnCycle = Setting.Instance.gameSetting.spawnCycle;
 		EventManager.Instance.level1AchievementEvent.AddListener (unlockLev2);
 		//EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);
 		EventManager.Instance.level3AchievementEvent.AddListener (unlockLev4);

@@ -21,18 +21,12 @@ public class Entity : MonoBehaviour {
 	public string entityName = "Entity";
 
 	public void Init(){
-		//Debug.Log (entityName);
+		Debug.Log (entityName + ":init");
 		audioSource = GetComponent<AudioSource> ();
-		//Debug.Log ("audioSource:" + audioSource);
-//		if (audioSource && audioClip) {
-//			//Debug.Log ("name:" + entityName);
-//			//Debug.Log ("setting audio clip to :" + audioClip.name);
-//			audioSource.clip = audioClip;
-//		}
 	}
 
 	void Start(){
-		
+		Init ();
 		if (entityType == ENTITY_TYPE.PLAYER && Setting.Instance.gameSetting.gameMode == GameSetting.GameMode.TEST) {
 			EventManager.Instance.shield.AddListener (OnShieldUp);
 			EventManager.Instance.shieldDownEvent.AddListener (OnShieldDown);
@@ -81,12 +75,11 @@ public class Entity : MonoBehaviour {
 			if (otherEnt.entityType == ENTITY_TYPE.PLAYER || otherEnt.entityType == entityType) { // what if we have to handle other player ? NOTE to make use of guid later on
 				return;
 			}
-//			Debug.Log (otherEnt.name);
-//			Debug.Log ("audio source?:" + otherEnt.audioSource);
-//			Debug.Log ("clip?:" + otherEnt.audioClip);
+
 			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
-				Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
-				otherEnt.audioSource.Play ();
+				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
+
+				AudioSource.PlayClipAtPoint (otherEnt.audioSource.clip, transform.position);//just play at this position, so technically just audio clip is fine ?
 			}
 
             //player collided with powerup
