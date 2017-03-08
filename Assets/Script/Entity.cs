@@ -85,7 +85,7 @@ public class Entity : MonoBehaviour {
 //			Debug.Log ("audio source?:" + otherEnt.audioSource);
 //			Debug.Log ("clip?:" + otherEnt.audioClip);
 			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
-				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
+				Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
 				otherEnt.audioSource.Play ();
 			}
 
