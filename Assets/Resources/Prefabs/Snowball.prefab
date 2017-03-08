@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 23343322600440818}
   - component: {fileID: 114794455719597514}
   - component: {fileID: 114890642070225290}
-  - component: {fileID: 54970351184815856}
-  - component: {fileID: 114478006639011620}
+  - component: {fileID: 114052716034890552}
+  - component: {fileID: 54083030976587726}
+  - component: {fileID: 114397342992226214}
   m_Layer: 0
   m_Name: Snowball
   m_TagString: Untagged
@@ -41,7 +42,7 @@ Transform:
   m_GameObject: {fileID: 1860218963462410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.20593742, y: 0.73, z: -5.84}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1a37d212766c4e444bd183225d3816c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860218963462410}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54970351184815856
+--- !u!54 &54083030976587726
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114478006639011620
+--- !u!114 &114052716034890552
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,9 +108,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1860218963462410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08800ced16b643eda0290a769bc63a9, type: 3}
+  m_Script: {fileID: 11500000, guid: dcbdf664dec5343f5a9925cfb561d145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitFlash: {r: 0.2445934, g: 0.2739618, b: 0.85294116, a: 0}
+  flashTime: 5
+  distance: 0
+  player: {fileID: 0}
+  countText: {fileID: 0}
+  countLives: {fileID: 0}
+  countDistance: {fileID: 0}
+--- !u!114 &114397342992226214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860218963462410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcbdf664dec5343f5a9925cfb561d145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitFlash: {r: 0.2445934, g: 0.2739618, b: 0.85294116, a: 0}
+  flashTime: 5
+  distance: 0
+  player: {fileID: 0}
+  countText: {fileID: 0}
+  countLives: {fileID: 0}
+  countDistance: {fileID: 0}
 --- !u!114 &114794455719597514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,6 +152,12 @@ MonoBehaviour:
   RightLanePos: {fileID: 0}
   LeftWall: {fileID: 0}
   RightWall: {fileID: 0}
+  useAcc: 0
+  isJumping: 0
+  height_Offset: 2.5
+  reachedTop: 0
+  reachedBottom: 0
+  speed: 8
 --- !u!114 &114890642070225290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,7 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1d417a1ec06eb40acc087b03271f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  child: {fileID: 0}
   entityType: 0
+  entityName: Entity
 --- !u!135 &135160090863969106
 SphereCollider:
   m_ObjectHideFlags: 1
