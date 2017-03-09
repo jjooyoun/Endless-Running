@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.43668923, g: 0.48428386, b: 0.56452703, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -180,13 +180,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0a7c1c184d48c488d9b571b4cb3c017f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.098
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 205
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSettings: []
-  gameSetting: {fileID: 11400000, guid: 57ae992b83e6c498aaad8e227e99e839, type: 2}
+  gameSetting: {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
 --- !u!1001 &1372754621
 Prefab:
   m_ObjectHideFlags: 0
@@ -2216,11 +2216,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: EntityEntityCollision, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  playMusicOnCollision:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: MusicCollision, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   level1AchievementEvent:
     m_PersistentCalls:

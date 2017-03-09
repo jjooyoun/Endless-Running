@@ -121,7 +121,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 436b3752f592645bb8d6a4de362818a1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1b63044b5fbf74258be0a16bac74b92f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
+  audioSource: {fileID: 0}
   entityType: 3
   entityName: PowerUp
   powerUptype: 0

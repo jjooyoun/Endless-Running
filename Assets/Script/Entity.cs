@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent (typeof (Collider))]
 public class Entity : MonoBehaviour {
     public GameObject child;
-	private AudioSource audioSource;
+	public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
 

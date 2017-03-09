@@ -150,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f025762f47e684d0b958666f622b4d40, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ba04ee76a67d74e209b52974a684d2c3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -158,7 +158,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 114
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
+  audioSource: {fileID: 0}
   entityType: 1
   entityName: Walker
 --- !u!114 &114510927158488686
