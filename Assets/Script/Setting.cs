@@ -7,15 +7,18 @@ public class Setting : Singleton<Setting> {
 
 	protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
 
+	public GameSetting defaultGameSetting;
 	public GameSetting[] gameSettings;
 
 	//public GameSetting defaultGameSetting;
 	//[SerializeField]
-	public GameSetting gameSetting;
+	public static GameSetting gameSetting;
 	//public static Setting instance;
 
 	void Awake(){
-		DontDestroyOnLoad(gameObject); //so that it keeps the run from mainmenu
+		if (!gameSetting && defaultGameSetting) {
+			setGameSetting (defaultGameSetting);
+		}
 	}
 
 	void OnEnable(){

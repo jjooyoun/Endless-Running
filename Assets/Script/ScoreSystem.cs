@@ -24,7 +24,7 @@ public class ScoreSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		lives = Setting.Instance.gameSetting.lives;
+		lives = Setting.gameSetting.lives;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
 		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());

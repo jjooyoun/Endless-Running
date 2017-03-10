@@ -20,7 +20,7 @@ public class ObstacleScript : MonoBehaviour {
 	}
 
 	void Start(){
-		objectSpeed = Setting.Instance.gameSetting.objectSpeed;
+		objectSpeed = Setting.gameSetting.objectSpeed;
 		EventManager.Instance.pauseEvent.AddListener (OnPause);
 		EventManager.Instance.resumeEvent.AddListener (OnResume);
 	}

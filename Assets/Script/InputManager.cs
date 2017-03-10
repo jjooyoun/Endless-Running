@@ -50,8 +50,8 @@ public class InputManager : Singleton<InputManager> {
 			}
 		}
 
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.JUMP_KEY)) {
-			if (Setting.Instance.gameSetting.enableJump) {
+		if (Input.GetKeyDown (Setting.gameSetting.JUMP_KEY)) {
+			if (Setting.gameSetting.enableJump) {
 				/*Debug.Log ("listeners:" + EventManager.Instance.swipeUpEvent.GetPersistentEventCount ());
 				for( int i = 0 ; i < EventManager.Instance.swipeUpEvent.GetPersistentEventCount(); i++){
 					Debug.Log(EventManager.Instance.swipeUpEvent.GetPersistentMethodName(i));
@@ -60,32 +60,32 @@ public class InputManager : Singleton<InputManager> {
 			}
 		}
 
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.SHAKE_KEY)) {
-			if(Setting.Instance.gameSetting.enableShake)
+		if (Input.GetKeyDown (Setting.gameSetting.SHAKE_KEY)) {
+			if(Setting.gameSetting.enableShake)
 				EventManager.Instance.shakeEvent.Invoke (); //to test shake
 		}
 
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.SHIELD_UP_KEY)) {
+		if (Input.GetKeyDown (Setting.gameSetting.SHIELD_UP_KEY)) {
 			EventManager.Instance.shield.Invoke ();
 		}
 
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.SHIELD_DOWN_KEY)) {
+		if (Input.GetKeyDown (Setting.gameSetting.SHIELD_DOWN_KEY)) {
 			EventManager.Instance.shieldDownEvent.Invoke ();
 		}
 
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.SCALE_UP_KEY)) {
+		if (Input.GetKeyDown (Setting.gameSetting.SCALE_UP_KEY)) {
 			EventManager.Instance.scaleUpEvent.Invoke ();
 		}
 
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.SCALE_DOWN_KEY)) {
+		if (Input.GetKeyDown (Setting.gameSetting.SCALE_DOWN_KEY)) {
 			EventManager.Instance.scaleDownEvent.Invoke ();
 		}
 
-		if(Input.GetKeyDown(Setting.Instance.gameSetting.LEFT_KEY)) {
+		if(Input.GetKeyDown(Setting.gameSetting.LEFT_KEY)) {
 			EventManager.Instance.swipeLeftEvent.Invoke ();
 		}
 
-		if(Input.GetKeyDown(Setting.Instance.gameSetting.RIGHT_KEY)) {
+		if(Input.GetKeyDown(Setting.gameSetting.RIGHT_KEY)) {
 			EventManager.Instance.swipeRightEvent.Invoke ();
 		}
 		

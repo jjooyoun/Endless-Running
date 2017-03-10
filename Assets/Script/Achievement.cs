@@ -98,8 +98,8 @@ public class Achievement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("gamesetting:" + Setting.Instance.gameSetting.gameMode);
-		if (Setting.Instance.gameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
+		Debug.Log ("gamesetting:" + Setting.gameSetting.gameMode);
+		if (Setting.gameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
 			//EventManager.Instance.level5AchievementEvent.Invoke ();
 			ShowInstruction (false);
 			//InputManager.SetJump(Setting.Instance.gameSetting.enableJump);
@@ -126,7 +126,7 @@ public class Achievement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (Setting.Instance.gameSetting.CONTINUE_KEY)) {
+		if (Input.GetKeyDown (Setting.gameSetting.CONTINUE_KEY)) {
 			nextButton.onClick.Invoke ();
 		}
 		if (snowBalls < snowBallAchievement) {
@@ -238,9 +238,9 @@ public class Achievement : MonoBehaviour {
 				NextInstruction ();
 
 				//reload
-				//Setting.instance.StartGame ();
-				//SceneManager.LoadScene (1);
-				//ShowInstruction (false);
+				Setting.Instance.StartGame ();
+				GameObjectUtil.ClearPool ();
+				SceneManager.LoadScene (1);
 			}
 			shield++;
 		}
