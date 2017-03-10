@@ -20,7 +20,6 @@ public class PlayerMovementController : MonoBehaviour {
 	Vector3 destPos;
 	public bool useAcc = false;
 
-
 	public bool isJumping = false;
 	public float height_Offset = 5.0f;
 	public bool reachedTop = false;
@@ -61,6 +60,7 @@ public class PlayerMovementController : MonoBehaviour {
 		EventManager.Instance.swipeRightEvent.AddListener (onSwipeRight);
 		EventManager.Instance.swipeUpEvent.AddListener (Jump);
 		EventManager.Instance.shakeEvent.AddListener (Shake);
+        useAccelerometer(true);
 	}
 	
 	// Update is called once per frame
@@ -96,25 +96,25 @@ public class PlayerMovementController : MonoBehaviour {
 				// Accelerometer
 
 				if (useAcc == true) {
-					if (Input.acceleration.x > 0) {
-
-
+					if (Input.acceleration.x > 0.1f) {
 						//  Left Wall
-						if (destPos.x < RightWall.position.x - 2.5) {
+						/*if (destPos.x < RightWall.position.x - 2.5) {
 							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
 							LERPING = true;
 							currentLerpTime = 0f;
-						}
-					} else if (Input.acceleration.x < 0) {
+						}*/
+                        MoveRight();
+					} else if (Input.acceleration.x < -0.1f) {
 
 						// Right Wall
-						if (destPos.x > LeftWall.position.x + 2.5) {
+						/*if (destPos.x > LeftWall.position.x + 2.5) {
 							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
 							LERPING = true;
 							currentLerpTime = 0f;
-						}
-					}
-				}
+						}*/                    
+                        MoveLeft();
+                    }
+                }
 			}
 //			if(!LERPING) {
 //				if(Input.GetKeyDown(KeyCode.LeftArrow)) {
@@ -296,5 +296,4 @@ public class PlayerMovementController : MonoBehaviour {
 		transform.position = new Vector3 (transform.position.x, newY, transform.position.z);
 		return false;
 	}
-
 }
