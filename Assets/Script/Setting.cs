@@ -17,6 +17,11 @@ public class Setting : Singleton<Setting> {
 
 	void Awake(){
 		if (!gameSetting && defaultGameSetting) {
+			Debug.Log ("here?");
+			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
+				Debug.Log ("not tut");
+				EventManager.Instance.stage1.Invoke ();
+			}
 			setGameSetting (defaultGameSetting);
 		}
 	}
@@ -44,6 +49,7 @@ public class Setting : Singleton<Setting> {
 
 	public void StartGame(){
 		setGameSetting(gameSettings [1]);	
+		EventManager.Instance.stage1.Invoke ();
 	}
 
 	public void StartTutorial(){

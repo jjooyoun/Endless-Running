@@ -21,7 +21,7 @@ public class Entity : MonoBehaviour {
 	public string entityName = "Entity";
 
 	public void Init(){
-		Debug.Log (entityName + ":init");
+		//Debug.Log (entityName + ":init");
 		audioSource = GetComponent<AudioSource> ();
 	}
 
@@ -64,7 +64,7 @@ public class Entity : MonoBehaviour {
 
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
-		Debug.Log (name + "collided with:" + other.name);
+		//Debug.Log (name + "collided with:" + other.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
 			return;

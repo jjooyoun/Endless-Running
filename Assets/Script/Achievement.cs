@@ -83,14 +83,14 @@ public class Achievement : MonoBehaviour {
 	}
 
 	public void ResumeGame(){
-		Debug.Log ("resume game");
+		//Debug.Log ("resume game");
 		Time.timeScale = 1;
 		EventManager.Instance.resumeEvent.Invoke ();
 		isPaused = false;
 	}
 
 	public void PauseGame(){
-		Debug.Log ("pause game");
+		//Debug.Log ("pause game");
 		Time.timeScale = 0;
 		EventManager.Instance.pauseEvent.Invoke ();
 		isPaused = true;
@@ -105,7 +105,7 @@ public class Achievement : MonoBehaviour {
 			//InputManager.SetJump(Setting.Instance.gameSetting.enableJump);
 			//InputManager.SetShakeable (Setting.Instance.gameSetting.enableShake);
 			count.enabled = false;
-			Debug.Log ("done");
+			//Debug.Log ("done");
 			return;
 		}
 		if (!testEnv) {

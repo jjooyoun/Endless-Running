@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1449,6 +1449,7 @@ MonoBehaviour:
   - {fileID: 1628464872}
   - {fileID: 356967198}
   spawning: 1
+  tutorialMode: 1
 --- !u!4 &1194195444
 Transform:
   m_ObjectHideFlags: 0
@@ -1629,7 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74a39027dfa44172bd3819f6ffbec6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultGameSetting: {fileID: 11400000, guid: 57ae992b83e6c498aaad8e227e99e839, type: 2}
+  defaultGameSetting: {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
   gameSettings:
   - {fileID: 11400000, guid: 6241d437a0ea3423a9e39c5fc10bcd59, type: 2}
   - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
@@ -2300,6 +2301,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   scaleDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  stage1:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,

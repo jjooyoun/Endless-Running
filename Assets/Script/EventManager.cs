@@ -32,4 +32,9 @@ public class EventManager : Singleton<EventManager> {
 	public UnityEvent shieldDownEvent; // to test shield down
 	public UnityEvent scaleUpEvent;
 	public UnityEvent scaleDownEvent;
+	public UnityEvent stage1;
+
+	void OnDestroy(){
+		stage1.RemoveAllListeners ();
+	}
 }
