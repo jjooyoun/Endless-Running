@@ -49,6 +49,10 @@ public class Achievement : MonoBehaviour {
 	public void NextInstruction(){
 		//Debug.Log ("current spriteIndex:" + spriteIndex);
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
+			//done tutorial
+			Setting.Instance.StartGame ();
+			GameObjectUtil.ClearPool ();
+			SceneManager.LoadScene (1);
 			if(isPaused)
 				ResumeGame ();
 			canvas.enabled = false;
@@ -100,12 +104,8 @@ public class Achievement : MonoBehaviour {
 	void Start () {
 		Debug.Log ("gamesetting:" + Setting.gameSetting.gameMode);
 		if (Setting.gameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
-			//EventManager.Instance.level5AchievementEvent.Invoke ();
 			ShowInstruction (false);
-			//InputManager.SetJump(Setting.Instance.gameSetting.enableJump);
-			//InputManager.SetShakeable (Setting.Instance.gameSetting.enableShake);
 			count.enabled = false;
-			//Debug.Log ("done");
 			return;
 		}
 		if (!testEnv) {
@@ -177,7 +177,6 @@ public class Achievement : MonoBehaviour {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
-			//InputManager.SetShakeable(true);
 			Setting.Instance.SetShake(true);
 			EventManager.Instance.level2AchievementEvent.Invoke();
 			NextInstruction ();
@@ -204,7 +203,6 @@ public class Achievement : MonoBehaviour {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
 			text.text = "Level 4 unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
-			//InputManager.SetJump(true);
 			Setting.Instance.SetJump(true);
 			EventManager.Instance.level4AchievementEvent.Invoke();
 			NextInstruction ();
@@ -236,11 +234,6 @@ public class Achievement : MonoBehaviour {
 				EventManager.Instance.level7AchievementEvent.Invoke();
 				ShowInstruction (true);
 				NextInstruction ();
-
-				//reload
-				Setting.Instance.StartGame ();
-				GameObjectUtil.ClearPool ();
-				SceneManager.LoadScene (1);
 			}
 			shield++;
 		}
