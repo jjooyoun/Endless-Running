@@ -77,35 +77,25 @@ public class SpawnScript : MonoBehaviour {
 		int BarrierNum = 20;
 
 		// Populate the stacks
-
-//		while(PowerUpNum > 0 || GateNum > 0 || ShieldNum > 0 || WalkerNum > 0 || BarrierNum > 0) {
-//			int randIndex = Random.Range (0, 4);
-//			if (randIndex == 0 && PowerUpNum > 0) {
-//				objectPool.Push (POWERUP_INDEX);
-//				PowerUpNum--;
-//			} else if (randIndex == 1 && GateNum > 0) {
-//				objectPool.Push (GATE_INDEX);
-//				GateNum--;
-//			} else if (randIndex == 2 && ShieldNum > 0) {
-//				objectPool.Push (SHIELD_INDEX);
-//				ShieldNum--;
-//			} else if (randIndex == 3 && WalkerNum > 0) {
-//				objectPool.Push (WALKER_INDEX);
-//				WalkerNum--;
-//			} else if (randIndex == 4 && BarrierNum > 0) {
-//				objectPool.Push (BARRIER_INDEX);
-//				BarrierNum--;
-//			}
-//		}
-		while (PowerUpNum > 0 || GateNum > 0) {
-			int randIndex = Random.Range (0, 2);
+			
+		while (PowerUpNum > 0 || GateNum > 0 || ShieldNum > 0 || WalkerNum > 0 || BarrierNum > 0) {
+			int randIndex = Random.Range (0, 5);
 			if (randIndex == 0 && PowerUpNum > 0) {
 				objectPool.Push (POWERUP_INDEX);
 				PowerUpNum--;
 			} else if (randIndex == 1 && GateNum > 0) {
 				objectPool.Push (GATE_INDEX);
 				GateNum--;
-			} 
+			} else if (randIndex == 2 && ShieldNum > 0) {
+				objectPool.Push (SHIELD_INDEX);
+				ShieldNum--;
+			} else if (randIndex == 3 && WalkerNum > 0) {
+				objectPool.Push (WALKER_INDEX);
+				WalkerNum--;
+			} else if (randIndex == 4 && BarrierNum > 0) {
+				objectPool.Push (BARRIER_INDEX);
+				BarrierNum--;
+			}
 
 		}
 
