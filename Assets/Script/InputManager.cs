@@ -41,8 +41,8 @@ public class InputManager : Singleton<InputManager> {
 
 
 			}
-
-			if (Mathf.Abs (deltaSwipe.y) > swipeResistanceY) {
+			//force to pick one or the other
+			else if (Mathf.Abs (deltaSwipe.y) > swipeResistanceY) {
 				// Swipe on the Y axis
 				if (deltaSwipe.y <= 0) {
 					EventManager.Instance.swipeUpEvent.Invoke ();
