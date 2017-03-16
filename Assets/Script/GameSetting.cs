@@ -15,6 +15,8 @@ public class GameSetting : ScriptableObject {
 
 	public GameMode gameMode = GameMode.TUTORIAL;
 	public int lives = 10;
+	public int powerupScorePoint = 1;
+	public int enemyScorePoint = 10;
 	public float spawnCycle = 0.5f;
 	public float objectSpeed = -0.5f;
 	public bool enableJump = false;
