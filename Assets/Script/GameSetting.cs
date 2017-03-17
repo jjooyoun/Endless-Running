@@ -52,6 +52,14 @@ public class GameSetting : ScriptableObject {
 	private static int WALKER_INDEX = 3;
 	private static int BARRIER_INDEX = 4;
 
+
+	//so i remember the number
+	public string PowerUpIndex = "0";
+	public string ObstacleIndex = "1";
+	public string ShieldIndex = "2";
+	public string EnemyIndex = "3";
+	public string BarrierIndex = "4";
+
 	// 0 Power Up
 	// 1 Obstacle
 	// 2 Shield
