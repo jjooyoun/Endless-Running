@@ -63,9 +63,14 @@ public class Entity : MonoBehaviour {
 
 
 
+	void playSoundAtPos(AudioClip clip, Vector3 position){
+		if (Setting.gameSetting.enableSound && clip) {
+			AudioSource.PlayClipAtPoint (clip, position);
+		}
+	}
+
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
-		
 		//Debug.Log (name + "collided with:" + other.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
@@ -80,8 +85,8 @@ public class Entity : MonoBehaviour {
 
 			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
 				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
-
-				AudioSource.PlayClipAtPoint (otherEnt.audioSource.clip, transform.position);//just play at this position, so technically just audio clip is fine ?
+				playSoundAtPos(otherEnt.audioSource.clip, transform.position);
+					//AudioSource.PlayClipAtPoint (otherEnt.audioSource.clip, transform.position);//just play at this position, so technically just audio clip is fine ?
 			}
 
             //player collided with powerup
@@ -101,6 +106,10 @@ public class Entity : MonoBehaviour {
 				SetRenderQueue srq = otherEnt.GetComponentInChildren<SetRenderQueue> ();
 				if (srq) {
 					srq.startHiding = true;
+					GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/InvisibleSphere"));
+					invisibleSphere.transform.position = new Vector3(transform.position.x,other.transform.position.y, other.transform.position.z); // take the ball x
+					invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
+
 				}
 
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
@@ -114,4 +123,5 @@ public class Entity : MonoBehaviour {
 			}
 		}
 	}
+
 }

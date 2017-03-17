@@ -14,9 +14,9 @@ public class SetRenderQueue : MonoBehaviour {
 	public int renderQueue = 2002;
 
 	public void SetOriginalShader(Renderer[] renderers){
-		originShader = new Shader[rs.Length];
-		for (int i = 0; i < rs.Length; i++) {
-			originShader [i] = rs [i].material.shader;
+		originShader = new Shader[renderers.Length];
+		for (int i = 0; i < renderers.Length; i++) {
+			originShader [i] = renderers [i].material.shader;
 		}
 	}
 
@@ -27,16 +27,14 @@ public class SetRenderQueue : MonoBehaviour {
 	}
 
 	void Restore(){
-		rs = GetComponentsInChildren<Renderer> ();
-		SetOriginalShader (rs);
-		if (startHiding) 
-			Hides (renderQueue);
+		for (int i = 0; i < rs.Length; i++) {
+			rs [i].material.shader = originShader [i];
+		}
 	}
 
 	void Start(){
-		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
-			r.material.renderQueue = renderQueue;
-		}
+		rs = GetComponentsInChildren<Renderer> ();
+		SetOriginalShader (rs);
 	}
 
 	void Update(){
