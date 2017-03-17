@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent (typeof (Collider))]
 public class Entity : MonoBehaviour {
     public GameObject child;
-	public GameObject deform;
+	//public GameObject deform;
 	public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
@@ -65,6 +65,7 @@ public class Entity : MonoBehaviour {
 
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
+		
 		//Debug.Log (name + "collided with:" + other.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
@@ -100,12 +101,6 @@ public class Entity : MonoBehaviour {
 				SetRenderQueue srq = otherEnt.GetComponentInChildren<SetRenderQueue> ();
 				if (srq) {
 					srq.startHiding = true;
-					Debug.Log ("srq:" + srq.name);
-					GameObject sphere = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/InvisibleSphere"));
-					//sphere.GetComponent<ObstacleScript> ().objectSpeed = srq.GetComponent<ObstacleScript> ().objectSpeed;
-					sphere.transform.position = transform.position;
-					sphere.transform.localScale = transform.localScale;
-					sphere.transform.parent = srq.gameObject.transform;
 				}
 
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
