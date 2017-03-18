@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent (typeof (Collider))]
 public class Entity : MonoBehaviour {
     public GameObject child;
-	//public GameObject deform;
 	public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
@@ -69,6 +68,28 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+    
+    //support for the ball only
+    IEnumerator playParticleEffectEvery(Material beginMat, Material endMat, ParticleSystem ps, float every, float total)
+    {
+        Renderer r = GetComponent<Renderer>();
+        r.material = beginMat;
+        float lerp = 0.0f;
+        float start = 0.0f;
+        while(start < total)
+        {
+            lerp = Mathf.Lerp(0, total, start);
+            r.material.Lerp(beginMat, endMat, lerp);
+            yield return new WaitForSeconds(every);
+            ps.Play();
+            PowerUp.ScaleDown(transform);
+            start++;
+        }
+        ps.Stop();
+        Destroy(ps.gameObject);
+        r.material = endMat;
+    }
+
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
 		//Debug.Log (name + "collided with:" + other.name);
@@ -86,7 +107,6 @@ public class Entity : MonoBehaviour {
 			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
 				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
 				playSoundAtPos(otherEnt.audioSource.clip, transform.position);
-					//AudioSource.PlayClipAtPoint (otherEnt.audioSource.clip, transform.position);//just play at this position, so technically just audio clip is fine ?
 			}
 
             //player collided with powerup
@@ -109,11 +129,21 @@ public class Entity : MonoBehaviour {
 					GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/InvisibleSphere"));
 					invisibleSphere.transform.position = new Vector3(transform.position.x,other.transform.position.y, other.transform.position.z); // take the ball x
 					invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
-
 				}
 
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
+                    //fire
+                    if(otherEnt.entityName == "Volcano")
+                    {
+                        GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load("Prefabs/OilSpashHighRoot") as GameObject);
+                        OilSplashHighRoot.transform.position = transform.position;
+                        OilSplashHighRoot.transform.parent = transform;                    
+                        ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
+                        Material lavaBallMat = Resources.Load("Materials/LavaBall") as Material;
+                        Material curBallMat = GetComponent<Renderer>().material;
+                        StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.duration, 5.0f));
+                    }
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE && this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
 				} else {

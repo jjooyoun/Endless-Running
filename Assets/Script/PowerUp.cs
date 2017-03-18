@@ -81,7 +81,6 @@ public class PowerUp : Entity {
 			hasShield = !hasShield;
         }
     }
-
    
 	private static bool Scale(Transform entTransform, float scalingFactor){
 		entTransform.localScale += new Vector3 (scalingFactor, scalingFactor, scalingFactor);

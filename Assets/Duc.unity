@@ -162,7 +162,7 @@ Transform:
   - {fileID: 1226258535}
   - {fileID: 1213442487}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &179720086
 GameObject:
@@ -280,7 +280,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377680880
 GameObject:
@@ -367,7 +367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391819776
 GameObject:
@@ -432,6 +432,26 @@ Transform:
   m_Father: {fileID: 2137315386}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &502955089 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1388089128811724, guid: 24c21c3a3929f2b4b969734b54be3df8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1574911218}
+--- !u!114 &502955090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502955089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1d417a1ec06eb40acc087b03271f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 0}
+  audioSource: {fileID: 0}
+  entityType: 1
+  entityName: Volcano
 --- !u!1001 &655104739
 Prefab:
   m_ObjectHideFlags: 0
@@ -993,6 +1013,54 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1ec9d5f05a00e441955b11ae6040497, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1574911218
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -41.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 34.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872379301488458, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114804842163161340, guid: 24c21c3a3929f2b4b969734b54be3df8,
+        type: 2}
+      propertyPath: entityName
+      value: Volcano
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114804842163161340, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 24c21c3a3929f2b4b969734b54be3df8, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1673877671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,7 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74a39027dfa44172bd3819f6ffbec6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultGameSetting: {fileID: 11400000, guid: b7364aa329dd31540a135fe9d2e0b805, type: 2}
+  defaultGameSetting: {fileID: 11400000, guid: 57ae992b83e6c498aaad8e227e99e839, type: 2}
   gameSettings:
   - {fileID: 11400000, guid: 6241d437a0ea3423a9e39c5fc10bcd59, type: 2}
   - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
@@ -1477,7 +1545,7 @@ Transform:
   m_LocalScale: {x: 10, y: 0.5, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1968396253
 GameObject:
@@ -1635,7 +1703,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 130.648, y: -30, z: 0}
 --- !u!1 &2049528180
 GameObject:
@@ -1699,7 +1767,7 @@ Transform:
   - {fileID: 2049528181}
   - {fileID: 1083485694}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137315385
 GameObject:
@@ -1730,5 +1798,5 @@ Transform:
   - {fileID: 433801449}
   - {fileID: 204009208}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

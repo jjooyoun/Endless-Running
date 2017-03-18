@@ -19,7 +19,7 @@ MonoBehaviour:
   objectSpeed: -0.15
   enableJump: 0
   enableShake: 0
-  enableSound: 0
+  enableSound: 1
   JUMP_KEY: 32
   LEFT_KEY: 97
   RIGHT_KEY: 100
