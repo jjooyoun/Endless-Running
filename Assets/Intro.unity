@@ -202,12 +202,13 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393762902}
-  m_Text: "Revenge of the Republicans\n\n\n\"There is unrest in Winterland.  \nThe
-    evil emperor Trump has \nannounced a ban on all \nsnowballs entering Winterland.\n\nHoping
-    to further block illegal\nsnowballs from entering, \nEmperor Trump and his \nRepublican
-    allies have ordered \nthe construction of a great wall.\n\nPrincess Hillary, Leader
-    of the \nUnited Snowball Federation has\nsent her most daring snowball \non a
-    secret mission to deal with \nthe ongoing crisis\u2026.\""
+  m_Text: "REVENGE OF THE REPUBLICANS\n\n\n   \"There is unrest in Winterland.  \n
+    \  The evil emperor Trump has \n   announced a ban on all \n   snowballs entering
+    Winterland.\n\n   Hoping to further block illegal\n   snowballs from entering,
+    \n   Emperor Trump and his \n   Republican allies have ordered \n   the construction
+    of a great wall.\n\n   Princess Hillary, Leader of the \n   United Snowball Federation
+    has\n   sent her most daring snowball \n   on a secret mission to deal with \n
+    \  the ongoing crisis\u2026.\""
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -220,7 +221,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278255601
 --- !u!23 &393762904
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -259,7 +260,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393762902}
   m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -162.4, y: -245, z: -3.17}
+  m_LocalPosition: {x: -163.1, y: -245, z: -3.17}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 796531007}
