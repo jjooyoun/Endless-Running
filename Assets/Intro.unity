@@ -202,11 +202,11 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 393762902}
-  m_Text: "Revenge of the Republicans\n\n\n\"There is unrest is Winterland.  \nThe
+  m_Text: "Revenge of the Republicans\n\n\n\"There is unrest in Winterland.  \nThe
     evil emperor Trump has \nannounced a ban on all \nsnowballs entering Winterland.\n\nHoping
     to further block illegal\nsnowballs from entering, \nEmperor Trump and his \nRepublican
     allies have ordered \nthe construction of a great wall.\n\nPrincess Hillary, Leader
-    of the \nUnited Snowball Federation has\n sent her most daring snowball \non a
+    of the \nUnited Snowball Federation has\nsent her most daring snowball \non a
     secret mission to deal with \nthe ongoing turmoil\u2026.\""
   m_OffsetZ: 0
   m_CharacterSize: 1
