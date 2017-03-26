@@ -31,6 +31,7 @@ public class IntroScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		summary.transform.Translate(0, 0.005f, 0);
 		
 	}
