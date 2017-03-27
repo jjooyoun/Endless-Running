@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossLevelPlayerMovement : MonoBehaviour {
 
+	public float speed;
+
 	private Rigidbody rb;
 
 	void Start()
@@ -14,10 +16,10 @@ public class BossLevelPlayerMovement : MonoBehaviour {
 	void FixedUpdate () 
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("vertical");
+		float moveVertical = Input.GetAxis ("Vertical");
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
-		rb.AddForce (movement);
+		rb.AddForce (movement * speed);
 	}
 }
