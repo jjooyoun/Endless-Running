@@ -131,8 +131,13 @@ public class Entity : MonoBehaviour {
 					invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
 				}
 
-				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
+					if (otherEnt.entityName == "Walker" && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+						return;
+					}
+
+
                     //fire
                     if(otherEnt.entityName == "Volcano")
                     {
@@ -144,9 +149,12 @@ public class Entity : MonoBehaviour {
                         Material curBallMat = GetComponent<Renderer>().material;
                         StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.duration, 5.0f));
                     }
-				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE && this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x) {
+				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
+					PowerUp.ScaleDown (this.transform);
+					PowerUp.ScaleDown (this.transform);
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
+
 				} else {
 					//flash lose live
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);

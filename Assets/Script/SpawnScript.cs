@@ -10,7 +10,7 @@ public class SpawnScript : MonoBehaviour {
     public Transform[] lanes;
 	public bool spawning = false;
     float timeElapsed = 0;
-    float spawnCycle = 0.5f;
+    float spawnCycle = 20f;
 
 	private int centerLaneIndex = 2;
 
