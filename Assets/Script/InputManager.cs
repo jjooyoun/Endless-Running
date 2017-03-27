@@ -25,6 +25,7 @@ public class InputManager : Singleton<InputManager> {
 	private void Update () {
 		if (Input.GetMouseButtonDown (0)) {
 			touchPosition = Input.mousePosition;
+			EventManager.Instance.swipeUpEvent.Invoke ();
 		}
 
 		if (Input.GetMouseButtonUp (0)) {
