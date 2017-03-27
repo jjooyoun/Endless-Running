@@ -52,13 +52,13 @@ public class ScoreSystem : MonoBehaviour {
 	//	}
 
 	void EntPowerUpCollisionHandler(Entity ent, Entity other){
-		count++;
+		count += Setting.gameSetting.powerupScorePoint;
 		SetText(countText, SCORE_TEXT, count.ToString());
 	}
 
 	void EntCrushEntHandler(Entity ent, Entity other){
 		other.gameObject.SetActive (false);
-		count = count + 10;
+		count += Setting.gameSetting.enemyScorePoint;
 		SetText(countText, SCORE_TEXT, count.ToString());
 	}
 

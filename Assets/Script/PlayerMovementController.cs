@@ -97,22 +97,27 @@ public class PlayerMovementController : MonoBehaviour {
 
 				if (useAcc == true) {
 					if (Input.acceleration.x > 0.1f) {
-						//  Left Wall
-						/*if (destPos.x < RightWall.position.x - 2.5) {
-							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-							LERPING = true;
-							currentLerpTime = 0f;
-						}*/
-                        MoveRight();
+                        if (transform.position.x < RightWall.position.x - 3)
+                        {
+                            transform.Translate(Input.acceleration.x, 0, 0);
+                        }
+//						if (destPos.x < RightWall.position.x - 2.5) {
+//							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+//							LERPING = true;
+//							currentLerpTime = 0f;
+//						}
+//                        MoveRight();
 					} else if (Input.acceleration.x < -0.1f) {
-
-						// Right Wall
-						/*if (destPos.x > LeftWall.position.x + 2.5) {
-							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-							LERPING = true;
-							currentLerpTime = 0f;
-						}*/                    
-                        MoveLeft();
+                        if (transform.position.x > LeftWall.position.x + 3)
+                        {
+                            transform.Translate(Input.acceleration.x, 0, 0); 
+                        }
+//						if (destPos.x > LeftWall.position.x + 2.5) {
+//							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+//							LERPING = true;
+//							currentLerpTime = 0f;
+//						}                    
+//                        MoveLeft();
                     }
                 }
 			}
@@ -139,12 +144,12 @@ public class PlayerMovementController : MonoBehaviour {
 			}
 		}
 			
-
 		if (ShakeDetection()) {
-			Shake ();	
-		}
-
-	}
+            useAccelerometer(false);
+            Shake();
+            useAccelerometer(true);
+        }
+    }
 
 	bool ShakeDetection(){
 		acceleration = Input.acceleration;
@@ -208,7 +213,6 @@ public class PlayerMovementController : MonoBehaviour {
 		LERPING = true;
 		currentLane = Lane.Left;
 		currentLerpTime = 0f;
-
 	}
 
 	void GoLaneCenter() {
@@ -217,7 +221,6 @@ public class PlayerMovementController : MonoBehaviour {
 		LERPING = true;
 		currentLane = Lane.Center;
 		currentLerpTime = 0f;
-			
 	}
 
 	void GoLaneRight() {
@@ -225,8 +228,7 @@ public class PlayerMovementController : MonoBehaviour {
 		destPos = RightLanePos.position;
 		LERPING = true;
 		currentLane = Lane.Right;
-		currentLerpTime = 0f;
-			
+		currentLerpTime = 0f;			
 	}
 
 	void GoLane(Vector3 lane, Lane laneEnum){

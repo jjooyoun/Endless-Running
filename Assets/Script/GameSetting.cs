@@ -15,6 +15,8 @@ public class GameSetting : ScriptableObject {
 
 	public GameMode gameMode = GameMode.TUTORIAL;
 	public int lives = 10;
+	public int powerupScorePoint = 1;
+	public int enemyScorePoint = 10;
 	public float spawnCycle = 0.5f;
 	public float objectSpeed = -0.5f;
 	public bool enableJump = false;
@@ -49,6 +51,14 @@ public class GameSetting : ScriptableObject {
 	private static int SHIELD_INDEX = 2;
 	private static int WALKER_INDEX = 3;
 	private static int BARRIER_INDEX = 4;
+
+
+	//so i remember the number
+	public string PowerUpIndex = "0";
+	public string ObstacleIndex = "1";
+	public string ShieldIndex = "2";
+	public string EnemyIndex = "3";
+	public string BarrierIndex = "4";
 
 	// 0 Power Up
 	// 1 Obstacle
