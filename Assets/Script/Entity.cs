@@ -99,6 +99,7 @@ public class Entity : MonoBehaviour {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE && this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
+					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				} else {
 					//flash lose live
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
