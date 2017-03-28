@@ -86,16 +86,21 @@ public class Achievement : MonoBehaviour {
 		}
 	}
 
+	//here means the instruction panel is dismissed
 	public void ResumeGame(){
 		//Debug.Log ("resume game");
 		Time.timeScale = 1;
+		Setting.Instance.SetJump(true);
 		EventManager.Instance.resumeEvent.Invoke ();
 		isPaused = false;
 	}
 
+	//instruction panel shows up
 	public void PauseGame(){
 		//Debug.Log ("pause game");
 		Time.timeScale = 0;
+		//disable jump for tap
+		Setting.Instance.SetJump(false);
 		EventManager.Instance.pauseEvent.Invoke ();
 		isPaused = true;
 	}
