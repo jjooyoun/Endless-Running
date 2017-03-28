@@ -111,6 +111,8 @@ public class Achievement : MonoBehaviour {
 		if (!testEnv) {
 			PauseGame();
 		}
+		//add onClick
+		//nextButton.onClick.AddListener(NextInstruction);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
 		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);

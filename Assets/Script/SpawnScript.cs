@@ -114,7 +114,7 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void unlockLev7() {
-		Debug.Log ("here?");
+		//Debug.Log ("here?");
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX, BARRIER_INDEX};
 	}
 

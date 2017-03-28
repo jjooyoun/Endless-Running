@@ -13,9 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 3
   lives: 1000
+  powerupScorePoint: 1
+  enemyScorePoint: 10
   spawnCycle: 0.5
   objectSpeed: -0.5
-  enableJump: 1
+  enableJump: 0
   enableShake: 1
   enableSound: 1
   JUMP_KEY: 32
@@ -27,4 +29,9 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
+  PowerUpIndex: 0
+  ObstacleIndex: 1
+  ShieldIndex: 2
+  EnemyIndex: 3
+  BarrierIndex: 4
   a: 0000000000000000

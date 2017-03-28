@@ -269,7 +269,7 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	public void Jump(){
-		Debug.Log ("im jumping!!!");
+		//Debug.Log ("im jumping!!!");
 		if (!isJumping) {
 			originalY = transform.position.y;
 			topY = transform.position.y + height_Offset;
