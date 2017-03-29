@@ -4,9 +4,10 @@ using UnityEngine;
 
 //nothing
 [RequireComponent (typeof (Collider))]
+[RequireComponent (typeof (AudioSource))]
 public class Entity : MonoBehaviour {
     public GameObject child;
-	public AudioSource audioSource;
+	//public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
 
@@ -22,7 +23,7 @@ public class Entity : MonoBehaviour {
 
 	public void Init(){
 		//Debug.Log (entityName + ":init");
-		audioSource = GetComponent<AudioSource> ();
+		//audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Start(){
@@ -68,10 +69,15 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
-	void playEntSound(Entity ent){
-		AudioSource audio = ent.GetComponent<AudioSource>();//won't be null
-		if (Setting.gameSetting.enableSound && !audio.isPlaying) {
-			audio.Play();
+	void playEntSound(AudioSource sourceAudio, AudioSource transferAudio){
+		AudioClip audioClip = transferAudio.clip;
+		float volume = transferAudio.volume;
+		//AudioSource audio = ent.GetComponent<AudioSource>();//won't be null
+		if (Setting.gameSetting.enableSound && audioClip && !sourceAudio.isPlaying) {
+			Debug.Log("play:" + audioClip.name);
+			sourceAudio.clip = audioClip;
+			sourceAudio.volume = volume;
+			sourceAudio.Play();
 		}
 		
 	}
@@ -112,11 +118,12 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 
-			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
-				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
-				//playSoundAtPos(otherEnt.audioSource.clip, transform.position); // KNOCK IT OFF
-				playEntSound(otherEnt);
-			}
+			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>());
+			// if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
+			// 	//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
+			// 	//playSoundAtPos(otherEnt.audioSource.clip, transform.position); // KNOCK IT OFF
+			// 	playEntSound(otherEnt);
+			// }
 
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {

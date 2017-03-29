@@ -22,8 +22,8 @@ MonoBehaviour:
   enableShake: 1
   enableSound: 1
   JUMP_KEY: 32
-  LEFT_KEY: 276
-  RIGHT_KEY: 275
+  LEFT_KEY: 97
+  RIGHT_KEY: 100
   SCALE_UP_KEY: 113
   SCALE_DOWN_KEY: 101
   SHIELD_UP_KEY: 114
@@ -35,4 +35,4 @@ MonoBehaviour:
   ShieldIndex: 2
   EnemyIndex: 3
   BarrierIndex: 4
-  a: 04000000
+  a: 00000000
