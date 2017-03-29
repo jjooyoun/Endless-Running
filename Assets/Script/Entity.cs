@@ -68,6 +68,14 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+	void playEntSound(Entity ent){
+		AudioSource audio = ent.GetComponent<AudioSource>();//won't be null
+		if (Setting.gameSetting.enableSound && !audio.isPlaying) {
+			audio.Play();
+		}
+		
+	}
+
     
     //support for the ball only
     IEnumerator playParticleEffectEvery(Material beginMat, Material endMat, ParticleSystem ps, float every, float total)
@@ -106,7 +114,8 @@ public class Entity : MonoBehaviour {
 
 			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
 				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
-				playSoundAtPos(otherEnt.audioSource.clip, transform.position);
+				//playSoundAtPos(otherEnt.audioSource.clip, transform.position); // KNOCK IT OFF
+				playEntSound(otherEnt);
 			}
 
             //player collided with powerup

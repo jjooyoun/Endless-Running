@@ -118,6 +118,19 @@ public class SpawnScript : MonoBehaviour {
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX, BARRIER_INDEX};
 	}
 
+	//ducho
+	//e.g: 0.8f is the new default
+	//default value(from prefabs) is 0.8f
+	//->new value should be : 0.64f --> 0.8f*0.8f
+	//RIGHT? is my math right ?
+	void SetEntAudioVolume(GameObject go, float vol){
+		Entity ent = go.GetComponent<Entity>();
+		if(ent){
+			float newVol = ent.GetComponent<AudioSource>().volume;
+			newVol *= vol;
+			ent.GetComponent<AudioSource>().volume = newVol;
+		}
+	}
     void Update()
     {
 		if (!spawning)
@@ -138,8 +151,11 @@ public class SpawnScript : MonoBehaviour {
 				tmp1.transform.position = lanes [centerLaneIndex].position;
 			} else
 				tmp1.transform.position = lanes [Random.Range (0, lanes.Length)].position;
+			
 			//GameObject tmp2 = (GameObject)GameObjectUtil.Instantiate(Spawners[1], new Vector3(0, 1, 1));
 			//tmp2.transform.position = lanes[2].position;
+			
+			SetEntAudioVolume(tmp1, Setting.gameSetting.soundLevel); //1.0f is the default
 			timeElapsed -= spawnCycle;
 
 
@@ -159,6 +175,7 @@ public class SpawnScript : MonoBehaviour {
 					tmp1.transform.position = lanes [centerLaneIndex].position;
 				} else
 					tmp1.transform.position = lanes [Random.Range (0, lanes.Length)].position;
+				SetEntAudioVolume(tmp1, Setting.gameSetting.soundLevel);
 				if (objectPool.Count == 0) {
 					Debug.Log ("end game");
 				}

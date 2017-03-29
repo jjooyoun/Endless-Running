@@ -73,17 +73,21 @@ public class Setting : Singleton<Setting> {
 	/* USE IN MAIN MENU CLICK */
 
 	//clone instead of referencing directly
+	//should not pass in gSetting null
 	void setGameSetting(GameSetting gSetting){
 		//copy transferrable values
-		float soundLevel = 1.0f;
+		float soundLevel = gSetting.soundLevel;
 		//copy sound level
-		if(gameSetting){
+		if(gameSetting){ //not null means it is set from main menu
 			soundLevel = gameSetting.soundLevel;
 			//Debug.Log("copy soundLevel:" + soundLevel);
 		}
+		//Debug.Log("gsetting.soundLevel:" + gSetting.soundLevel);
 		gameSetting = Object.Instantiate(gSetting) as GameSetting;
-		gameSetting.soundLevel = soundLevel;
-		//Debug.Log("game mode:" + gameSetting.gameMode);
+		gameSetting.soundLevel = soundLevel;//abide by the value set by mainmenu if needed
+		//Debug.Log("setGameSetting::game mode:" + gameSetting.gameMode);
+		//Debug.Log("final sound level:" + gameSetting.soundLevel);
+		
 	}
 
 	//run time edit

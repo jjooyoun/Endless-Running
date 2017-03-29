@@ -17,6 +17,7 @@ MonoBehaviour:
   enemyScorePoint: 10
   spawnCycle: 5
   objectSpeed: -0.5
+  soundLevel: 0.8
   enableJump: 1
   enableShake: 1
   enableSound: 1
