@@ -40,8 +40,14 @@ public class Setting : Singleton<Setting> {
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode){
 		Debug.Log ("finished loading scene:" + scene.name);
 		if (gameSetting) {
+			//Debug.Log("music level:" + gameSetting.soundLevel);
 			foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>()) {
 				audio.enabled = gameSetting.enableSound;
+				if(audio.enabled){
+					//Debug.Log("audio:" + audio.name);
+					//Debug.Log("volume:" + audio.volume);
+					audio.volume = gameSetting.soundLevel;
+				}
 			}
 		}
 	}
@@ -68,8 +74,16 @@ public class Setting : Singleton<Setting> {
 
 	//clone instead of referencing directly
 	void setGameSetting(GameSetting gSetting){
+		//copy transferrable values
+		float soundLevel = 1.0f;
+		//copy sound level
+		if(gameSetting){
+			soundLevel = gameSetting.soundLevel;
+			//Debug.Log("copy soundLevel:" + soundLevel);
+		}
 		gameSetting = Object.Instantiate(gSetting) as GameSetting;
-		Debug.Log("game mode:" + gameSetting.gameMode);
+		gameSetting.soundLevel = soundLevel;
+		//Debug.Log("game mode:" + gameSetting.gameMode);
 	}
 
 	//run time edit

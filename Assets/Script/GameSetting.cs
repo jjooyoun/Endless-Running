@@ -19,6 +19,8 @@ public class GameSetting : ScriptableObject {
 	public int enemyScorePoint = 10;
 	public float spawnCycle = 0.5f;
 	public float objectSpeed = -0.5f;
+
+	public float soundLevel = 1.0f;
 	public bool enableJump = false;
 	public bool enableShake = false;
 	public bool enableSound = false; //so you could listen to your favorite music in the bg
