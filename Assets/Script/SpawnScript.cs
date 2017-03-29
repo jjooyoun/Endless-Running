@@ -54,7 +54,7 @@ public class SpawnScript : MonoBehaviour {
 //	}
 
 	void Start () {
-		Debug.Log ("SpawnScript start()");
+		//Debug.Log ("SpawnScript start()");
 		spawnCycle = Setting.gameSetting.spawnCycle;
 		EventManager.Instance.level1AchievementEvent.AddListener (unlockLev2);
 		//EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);

@@ -153,8 +153,9 @@ public class Entity : MonoBehaviour {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);
-					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
-
+					if(otherEnt.entityName == "Barrier"){
+						EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
+					}
 				} else {
 					//flash lose live
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);

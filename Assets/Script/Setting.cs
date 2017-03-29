@@ -10,6 +10,9 @@ public class Setting : Singleton<Setting> {
 	public GameSetting defaultGameSetting;
 	public GameSetting[] gameSettings;
 
+	public bool isJumpEnable = false;
+	public bool isShakeEnable = false;
+
 	//public GameSetting defaultGameSetting;
 	//[SerializeField]
 	public static GameSetting gameSetting;
@@ -17,9 +20,9 @@ public class Setting : Singleton<Setting> {
 
 	void Awake(){
 		if (!gameSetting && defaultGameSetting) {
-			Debug.Log ("here?");
+			//Debug.Log ("here?");
 			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
-				Debug.Log ("not tut");
+				//Debug.Log ("not tut");
 				EventManager.Instance.stage1.Invoke ();
 			}
 			setGameSetting (defaultGameSetting);
@@ -43,15 +46,16 @@ public class Setting : Singleton<Setting> {
 		}
 	}
 
-//	public void Update(){
-//		Debug.Log ("game Mode:" + gameSetting.gameMode);
-//	}
+	public void Update(){
+		isJumpEnable = gameSetting.enableJump;
+		isShakeEnable = gameSetting.enableShake;
+	}
 
 	public void StartGame(){
 		setGameSetting(gameSettings [1]);	
 		EventManager.Instance.stage1.Invoke ();
 	}
-
+	/* USE IN MAIN MENU CLICK */
 	public void StartTutorial(){
 		setGameSetting (gameSettings [0]);
 	}
@@ -60,19 +64,22 @@ public class Setting : Singleton<Setting> {
 		if (!gameSetting)
 			setGameSetting(gameSettings [0]);
 	}
+	/* USE IN MAIN MENU CLICK */
 
+	//clone instead of referencing directly
 	void setGameSetting(GameSetting gSetting){
-		gameSetting = gSetting;
+		gameSetting = Object.Instantiate(gSetting) as GameSetting;
+		Debug.Log("game mode:" + gameSetting.gameMode);
 	}
 
 	//run time edit
-	public bool SetShake(bool flag){
+	public static bool SetShake(bool flag){
 		bool oldflag = flag;
 		gameSetting.enableShake = flag;
 		return oldflag;
 	}
 
-	public bool SetJump(bool flag){
+	public static bool SetJump(bool flag){
 		bool oldFlag = flag;
 		gameSetting.enableJump = flag;
 		return oldFlag;

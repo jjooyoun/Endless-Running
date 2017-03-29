@@ -19,8 +19,6 @@ public class InputManager : Singleton<InputManager> {
 			
 			if (Setting.gameSetting.enableJump) {
 				EventManager.Instance.swipeUpEvent.Invoke ();
-			}else{
-				Debug.Log("does not enable jump");
 			}
 		}
 

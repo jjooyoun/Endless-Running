@@ -144,7 +144,7 @@ public class PlayerMovementController : MonoBehaviour {
 			}
 		}
 			
-		if (ShakeDetection()) {
+		if (Setting.gameSetting.enableJump && ShakeDetection()) {
             useAccelerometer(false);
             Shake();
             useAccelerometer(true);
@@ -160,7 +160,7 @@ public class PlayerMovementController : MonoBehaviour {
 
 	void Shake(){
 		// Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
-		Debug.Log("Shake event detected at time "+Time.time);
+		//Debug.Log("Shake event detected at time "+Time.time);
 		Handheld.Vibrate();
 		PowerUp.ScaleDown (this.transform);
 		EventManager.Instance.shakeOutputEvent.Invoke ();

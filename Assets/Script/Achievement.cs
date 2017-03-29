@@ -31,7 +31,7 @@ public class Achievement : MonoBehaviour {
 	public int shield = 0;
 	public int shieldAchievement = 2;
 
-	public Canvas canvas;
+	public GameObject instructionPanel;
 	public Text text;
 	public Text count;
 	public int total;
@@ -46,6 +46,8 @@ public class Achievement : MonoBehaviour {
 
 	public bool isPaused = false;
 
+	private bool jumpState = false;
+
 	public void NextInstruction(){
 		//Debug.Log ("current spriteIndex:" + spriteIndex);
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
@@ -55,7 +57,7 @@ public class Achievement : MonoBehaviour {
 			SceneManager.LoadScene (1);
 			if(isPaused)
 				ResumeGame ();
-			canvas.enabled = false;
+			instructionPanel.SetActive(false);
 			return;
 		}
 
@@ -74,15 +76,15 @@ public class Achievement : MonoBehaviour {
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
 			if(isPaused)
 				ResumeGame ();
-			canvas.enabled = false;
+			instructionPanel.SetActive(false);
 			return;
 		}
-		if (enabled && !canvas.enabled) {
+		if (enabled && !instructionPanel.active) {
 			PauseGame ();
-			canvas.enabled = true;
-		}else if (!enabled && canvas.enabled) {
+			instructionPanel.SetActive(true);
+		}else if (!enabled && instructionPanel.active) {
 			ResumeGame ();
-			canvas.enabled = false;
+			instructionPanel.SetActive(false);
 		}
 	}
 
@@ -90,7 +92,10 @@ public class Achievement : MonoBehaviour {
 	public void ResumeGame(){
 		//Debug.Log ("resume game");
 		Time.timeScale = 1;
-		Setting.Instance.SetJump(true);
+		//make sure setting allow it
+		if(jumpState){
+			Setting.SetJump(true);
+		}
 		EventManager.Instance.resumeEvent.Invoke ();
 		isPaused = false;
 	}
@@ -99,8 +104,9 @@ public class Achievement : MonoBehaviour {
 	public void PauseGame(){
 		//Debug.Log ("pause game");
 		Time.timeScale = 0;
-		//disable jump for tap
-		Setting.Instance.SetJump(false);
+		if(jumpState){//disable jump for tap
+			Setting.SetJump(false);
+		}
 		EventManager.Instance.pauseEvent.Invoke ();
 		isPaused = true;
 	}
@@ -116,8 +122,6 @@ public class Achievement : MonoBehaviour {
 		if (!testEnv) {
 			PauseGame();
 		}
-		//add onClick
-		//nextButton.onClick.AddListener(NextInstruction);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
 		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
@@ -133,6 +137,7 @@ public class Achievement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log("jump:" + Setting.gameSetting.enableJump);
 		if (Input.GetKeyDown (Setting.gameSetting.CONTINUE_KEY)) {
 			nextButton.onClick.Invoke ();
 		}
@@ -145,7 +150,11 @@ public class Achievement : MonoBehaviour {
 		} else if (shake < shakeAchievement) {
 			total = shakeAchievement;
 			counter = shake;
-		} else if (jump < jumpAchievement) {
+		} else if (obstacle < obstacleAchievement){
+			total = obstacleAchievement;
+			counter = obstacle;
+		} 
+		else if (jump < jumpAchievement) {
 			total = jumpAchievement;
 			counter = jump;
 		} else if (shield < shieldAchievement) {
@@ -184,7 +193,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
-			Setting.Instance.SetShake(true);
+			Setting.SetShake(true);
 			EventManager.Instance.level2AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
@@ -206,11 +215,18 @@ public class Achievement : MonoBehaviour {
 	}
 
 	void OnObstacleDestroyed(Entity ent, Entity other){
+		Debug.Log("obstacle!!");
+		if(other.entityName != "Gate"){
+			Debug.Log("not obstacle gate");
+			return;
+		}
 		if (obstacle+1 == obstacleAchievement) {
-			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
+			EventManager.Instance.entObstacleCollisionEvent.RemoveListener (OnObstacleDestroyed);
 			text.text = "Level 4 unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
-			Setting.Instance.SetJump(true);
+			Setting.SetJump(true);
+			jumpState = true;
+			Debug.Log("jump:" + Setting.gameSetting.enableJump);
 			EventManager.Instance.level4AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);

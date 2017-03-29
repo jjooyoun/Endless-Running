@@ -5,7 +5,7 @@ using UnityEngine;
 public class Despawner : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) {
-		Debug.Log ("hello:" + other.name);
+		//Debug.Log ("hello:" + other.name);
 		//temporary . hopefully will move it later
 		Entity ent = (other.gameObject.GetComponent<Entity>() == null) ? other.gameObject.GetComponentInParent<Entity>() : null;
 		if (ent && ent.GetComponent<SetRenderQueue>()) {

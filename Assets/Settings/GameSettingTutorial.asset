@@ -18,7 +18,7 @@ MonoBehaviour:
   spawnCycle: 0.5
   objectSpeed: -0.5
   enableJump: 0
-  enableShake: 1
+  enableShake: 0
   enableSound: 1
   JUMP_KEY: 32
   LEFT_KEY: 97
