@@ -70,8 +70,8 @@ public class SpawnScript : MonoBehaviour {
 			laneIndex = 2;
 			spawnType = Convert.ToInt32 (rows [rowIndex].rightLane);
 		}
-
-		GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [a [spawnType]], Vector3.zero);
+		Debug.Log ("spawnType:" + spawnType);
+		GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnType], Vector3.zero);
 		tmp1.transform.position = lanes [laneIndex].position;
 		return tmp1;
 	}
