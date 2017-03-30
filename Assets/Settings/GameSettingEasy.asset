@@ -15,8 +15,9 @@ MonoBehaviour:
   lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
-  spawnCycle: 1
+  spawnCycle: 5
   objectSpeed: -0.5
+  soundLevel: 1
   enableJump: 1
   enableShake: 0
   enableSound: 1
