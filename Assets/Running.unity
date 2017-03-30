@@ -2316,9 +2316,9 @@ MonoBehaviour:
   - {fileID: 1944993490182120, guid: ba76ed135690d4880a99318846615fec, type: 2}
   - {fileID: 1893052851063200, guid: d4e2970e159ec3e478b0f55e6001f03f, type: 2}
   lanes:
-  - {fileID: 2079191904}
   - {fileID: 1628464872}
   - {fileID: 356967198}
+  - {fileID: 2079191904}
   spawning: 1
   tutorialMode: 1
 --- !u!4 &1194195444
@@ -3808,7 +3808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f139645256bd467ea4b9f43db2611a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  file: {fileID: 4900000, guid: b06bf80cb364c48358341e6332946523, type: 3}
+  file: {fileID: 0}
   isLoaded: 0
 --- !u!4 &1930601805
 Transform:

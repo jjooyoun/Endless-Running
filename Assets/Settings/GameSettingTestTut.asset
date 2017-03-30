@@ -17,6 +17,7 @@ MonoBehaviour:
   enemyScorePoint: 10
   spawnCycle: 2
   objectSpeed: -0.15
+  soundLevel: 1
   enableJump: 0
   enableShake: 0
   enableSound: 1
@@ -35,3 +36,4 @@ MonoBehaviour:
   EnemyIndex: 3
   BarrierIndex: 4
   a: 0100000001000000
+  spawnCsvFile: {fileID: 4900000, guid: 226222162e01f4ceb876a38f5752683f, type: 3}

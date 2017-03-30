@@ -9,6 +9,7 @@ public class CSVParse : MonoBehaviour
 	public TextAsset file;
 
 	void Start() {
+		file = Setting.gameSetting.spawnCsvFile;
 		Load (file);
 	}
 
@@ -38,7 +39,7 @@ public class CSVParse : MonoBehaviour
 		rowList.Clear();
 		string[][] grid = CsvParser2.Parse(csv.text);
 		Debug.Log ("grid.length:" + grid.Length);
-		for(int i = 1 ; i < grid.Length - 1; i++)
+		for(int i = 1 ; i < grid.Length; i++)
 		{
 			Debug.Log ("row index:" + i);
 			Row row = new Row();

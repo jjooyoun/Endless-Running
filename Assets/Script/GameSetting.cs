@@ -70,4 +70,6 @@ public class GameSetting : ScriptableObject {
 	//int[] a = {0, 0, 0, 0, 1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
 	public int[]  a = {(int)SPAWN_TYPE.POWERUP, (int)SPAWN_TYPE.POWERUP};
 	//spawn
+	//Csv files
+	public TextAsset spawnCsvFile;
 }

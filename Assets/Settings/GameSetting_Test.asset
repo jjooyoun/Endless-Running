@@ -36,3 +36,4 @@ MonoBehaviour:
   EnemyIndex: 3
   BarrierIndex: 4
   a: 00000000
+  spawnCsvFile: {fileID: 4900000, guid: 226222162e01f4ceb876a38f5752683f, type: 3}
