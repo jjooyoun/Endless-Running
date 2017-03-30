@@ -79,6 +79,7 @@ public class SpawnScript : MonoBehaviour {
 	void Start () {
 		//Debug.Log ("SpawnScript start()");
 		spawnCycle = Setting.gameSetting.spawnCycle;
+		Debug.Log ("spawnCycle:" + spawnCycle);
 		EventManager.Instance.level1AchievementEvent.AddListener (unlockLev2);
 		//EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);
 		EventManager.Instance.level3AchievementEvent.AddListener (unlockLev4);
@@ -208,7 +209,7 @@ public class SpawnScript : MonoBehaviour {
 			timeElapsed -= spawnCycle;
 		}*/
 
-		if (timeElapsed > spawnCycle && tutorialMode == false) {
+		if (timeElapsed > spawnCycle * currentRow && tutorialMode == false) {
 			Debug.Log("numRows:" + csvParser.NumRows());
 			if (currentRow == csvParser.NumRows()) {
 				return;
