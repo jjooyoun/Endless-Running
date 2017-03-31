@@ -57,23 +57,15 @@ public class SpawnScript : MonoBehaviour {
 
 	int currentRow = 0;
 
-	GameObject getNextSpawner(List<CSVParse.Row> rows, int rowIndex){
+	void SpawnNext(List<CSVParse.Row> rows, int rowIndex){
 		CSVParse.Row row = rows [rowIndex];
-		int laneIndex, spawnType;
-		if (rows [rowIndex].leftLane != "-1") {
-			laneIndex = 0;
-			spawnType = Convert.ToInt32 (rows [rowIndex].leftLane);
-		} else if (rows [rowIndex].centerLane != "-1") {
-			laneIndex = 1;
-			spawnType = Convert.ToInt32 (rows [rowIndex].centerLane);
-		} else {
-			laneIndex = 2;
-			spawnType = Convert.ToInt32 (rows [rowIndex].rightLane);
+		for(int i = 0; i < row.lanes.Length;i++){
+			int laneIndex = i;
+			int spawnType = row.lanes [i];
+			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnType], Vector3.zero);
+			tmp1.transform.position = lanes [laneIndex].position;
+			SetEntAudioVolume (tmp1, Setting.gameSetting.soundLevel);
 		}
-		Debug.Log ("spawnType:" + spawnType);
-		GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnType], Vector3.zero);
-		tmp1.transform.position = lanes [laneIndex].position;
-		return tmp1;
 	}
 
 	void Start () {
@@ -214,9 +206,9 @@ public class SpawnScript : MonoBehaviour {
 			if (currentRow == csvParser.NumRows()) {
 				return;
 			}
-			GameObject spawner = getNextSpawner (csvParser.rowList, currentRow);
+			SpawnNext (csvParser.rowList, currentRow);
 			currentRow++;
-			SetEntAudioVolume (spawner, Setting.gameSetting.soundLevel);
+
 			Debug.Log ("currentRow:" + currentRow);
 
 		}
