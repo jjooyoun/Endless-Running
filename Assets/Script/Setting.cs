@@ -102,4 +102,9 @@ public class Setting : Singleton<Setting> {
 		gameSetting.enableJump = flag;
 		return oldFlag;
 	}
+
+	//call by level selector
+	public void StartGame(int index){
+		setGameSetting(gameSettings[index]);
+	}
 }
