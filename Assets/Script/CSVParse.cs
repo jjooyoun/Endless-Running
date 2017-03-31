@@ -38,20 +38,20 @@ public class CSVParse : MonoBehaviour
 	{
 		rowList.Clear();
 		string[][] grid = CsvParser2.Parse(csv.text);
-		Debug.Log ("grid.length:" + grid.Length);
+		// Debug.Log ("grid.length:" + grid.Length);
 		for(int i = 1 ; i < grid.Length; i++)
 		{
-			Debug.Log ("row index:" + i);
+			// Debug.Log ("row index:" + i);
 			Row row = new Row();
 			row.leftLane = grid[i][0];
 			row.centerLane = grid[i][1];
 			row.rightLane = grid[i][2];
-			Debug.Log ("row left:" + row.leftLane);
-			Debug.Log ("row center:" + row.centerLane);
-			Debug.Log ("row right:" + row.rightLane);
+			// Debug.Log ("row left:" + row.leftLane);
+			// Debug.Log ("row center:" + row.centerLane);
+			// Debug.Log ("row right:" + row.rightLane);
 			rowList.Add(row);
 		}
-		Debug.Log ("row length:" + rowList.Count);
+		// Debug.Log ("row length:" + rowList.Count);
 		isLoaded = true;
 	}
 

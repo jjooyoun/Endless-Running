@@ -45,7 +45,7 @@ public class Achievement : MonoBehaviour {
 	public string[] Instructions = {}; // correspond to leveinstructionsprites
 
 	public bool isPaused = false;
-
+	public bool isInstructionShownAtPause = false;
 	private bool jumpState = false;
 
 	public void NextInstruction(){
@@ -88,27 +88,43 @@ public class Achievement : MonoBehaviour {
 		}
 	}
 
+	public void MenuPauseGame(){
+		isInstructionShownAtPause = instructionPanel.active;
+		PauseGame();
+		instructionPanel.SetActive(false);// i manage my own state
+	}
+
+	public void MenuResumeGame(){
+		instructionPanel.SetActive(isInstructionShownAtPause);
+		if(!isInstructionShownAtPause)
+			ResumeGame();
+	}
+
 	//here means the instruction panel is dismissed
-	public void ResumeGame(){
+	public bool ResumeGame(){
 		//Debug.Log ("resume game");
 		Time.timeScale = 1;
 		//make sure setting allow it
-		if(jumpState){
+		if(Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL &&  jumpState){
 			Setting.SetJump(true);
 		}
 		EventManager.Instance.resumeEvent.Invoke ();
+		bool prevPauseState = isPaused;
 		isPaused = false;
+		return prevPauseState;
 	}
 
 	//instruction panel shows up
-	public void PauseGame(){
+	public bool PauseGame(){
 		//Debug.Log ("pause game");
 		Time.timeScale = 0;
-		if(jumpState){//disable jump for tap
+		if(Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL &&  jumpState){//disable jump for tap
 			Setting.SetJump(false);
 		}
 		EventManager.Instance.pauseEvent.Invoke ();
+		bool prevPauseState = isPaused;
 		isPaused = true;
+		return prevPauseState;
 	}
 
 	// Use this for initialization
@@ -163,6 +179,7 @@ public class Achievement : MonoBehaviour {
 		}
 
 		count.text = total - counter + " remaining before next level";
+
 	}
 
 
