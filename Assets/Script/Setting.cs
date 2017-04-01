@@ -12,6 +12,7 @@ public class Setting : Singleton<Setting> {
 
 	public bool isJumpEnable = false;
 	public bool isShakeEnable = false;
+	public int currentLevel = 1;
 
 	//public GameSetting defaultGameSetting;
 	//[SerializeField]
@@ -20,6 +21,7 @@ public class Setting : Singleton<Setting> {
 
 	void Awake(){
 		if (!gameSetting && defaultGameSetting) {
+			//PlayerPrefs.DeleteAll(); // use this to test unlock level
 			//Debug.Log ("here?");
 			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
 				//Debug.Log ("not tut");
@@ -101,6 +103,15 @@ public class Setting : Singleton<Setting> {
 		bool oldFlag = flag;
 		gameSetting.enableJump = flag;
 		return oldFlag;
+	}
+
+	public void GoNextLevel(){
+		GameObjectUtil.ClearPool ();
+		currentLevel++;
+		PlayerPrefs.SetInt("levelReached", currentLevel);
+		Debug.Log("currentLevel:" + currentLevel);
+		//go back to the level selector
+		SceneManager.LoadScene (1);
 	}
 
 	//call by level selector

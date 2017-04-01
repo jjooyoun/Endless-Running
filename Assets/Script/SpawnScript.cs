@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnScript : MonoBehaviour {
 	public CSVParse csvParser;
@@ -204,6 +205,8 @@ public class SpawnScript : MonoBehaviour {
 		if (timeElapsed > spawnCycle * currentRow && tutorialMode == false) {
 			Debug.Log("numRows:" + csvParser.NumRows());
 			if (currentRow == csvParser.NumRows()) {
+				//go to next level
+				Setting.Instance.GoNextLevel();
 				return;
 			}
 			SpawnNext (csvParser.rowList, currentRow);
