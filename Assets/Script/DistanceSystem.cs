@@ -17,6 +17,8 @@ public class DistanceSystem : MonoBehaviour {
 
 	public bool distanceIncreasing;
 
+	public float measurementSysDiv = 100.00f;
+
 	public bool gamePaused = false;
 
 	void Start(){
@@ -39,7 +41,7 @@ public class DistanceSystem : MonoBehaviour {
 		ellapsed = Time.time-t;
 		rellapsed = Mathf.Round (ellapsed);
 		Totaltime.text = "Timer: " + rellapsed.ToString ()+"  sec";
-		countDistance.text= "Distance: "+ distance.ToString ();
+		countDistance.text= "Dist: "+ (distance/measurementSysDiv).ToString ("0.00");//2 decimal places
 	}
 	void score(){
 		distance += Vector3.Distance (player.position, transform.position);
