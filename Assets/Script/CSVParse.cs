@@ -37,6 +37,7 @@ public class CSVParse : MonoBehaviour
 		rowList.Clear();
 		string[][] grid = CsvParser2.Parse(csv.text);
 		// Debug.Log ("grid.length:" + grid.Length);
+		
 		for(int i = 1 ; i < grid.Length; i++)
 		{
 			// Debug.Log ("row index:" + i);
@@ -50,6 +51,7 @@ public class CSVParse : MonoBehaviour
 		}
 		// Debug.Log ("row length:" + rowList.Count);
 		isLoaded = true;
+		EventManager.Instance.spawningNumEvent.Invoke(NumRows());
 	}
 
 	public int NumRows()

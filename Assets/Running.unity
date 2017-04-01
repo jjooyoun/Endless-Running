@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c0a19192ea946bb85e3645c345bbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnerTotal: -1
+  spawnerDestroyed: 0
 --- !u!1 &170397837
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,6 +3414,7 @@ MonoBehaviour:
   - {fileID: 356967198}
   - {fileID: 2079191904}
   spawning: 1
+  initSpawnNum: 0
   tutorialMode: 1
 --- !u!4 &1194195444
 Transform:
@@ -3599,6 +3602,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
   isJumpEnable: 0
   isShakeEnable: 0
+  currentLevel: 1
 --- !u!1 &1356249030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,6 +4026,7 @@ MonoBehaviour:
   ellapsed: 0
   rellapsed: 0
   distanceIncreasing: 1
+  gamePaused: 0
 --- !u!222 &1560995898
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4671,6 +4676,16 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   stage1:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  spawningNumEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: SpawningNumEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  levelFinishedEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,

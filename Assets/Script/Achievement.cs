@@ -55,7 +55,7 @@ public class Achievement : MonoBehaviour {
 			// Setting.Instance.StartGame ();
 			// GameObjectUtil.ClearPool ();
 			// SceneManager.LoadScene (1);
-			Setting.Instance.GoNextLevel();
+			//Setting.Instance.GoNextLevel();
 			if(isPaused)
 				ResumeGame ();
 			instructionPanel.SetActive(false);

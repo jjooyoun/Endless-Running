@@ -20,7 +20,10 @@ public class Setting : Singleton<Setting> {
 	//public static Setting instance;
 
 	void Awake(){
+		//Debug.Log("register go next level!!!");
+		EventManager.Instance.levelFinishedEvent.AddListener(GoNextLevel);
 		if (!gameSetting && defaultGameSetting) {
+			
 			//PlayerPrefs.DeleteAll(); // use this to test unlock level
 			//Debug.Log ("here?");
 			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {

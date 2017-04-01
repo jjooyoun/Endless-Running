@@ -70,9 +70,9 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void Start () {
-		//Debug.Log ("SpawnScript start()");
+		Debug.Log ("SpawnScript start()");
 		spawnCycle = Setting.gameSetting.spawnCycle;
-		Debug.Log ("spawnCycle:" + spawnCycle);
+		//Debug.Log ("spawnCycle:" + spawnCycle);
 		EventManager.Instance.level1AchievementEvent.AddListener (unlockLev2);
 		//EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);
 		EventManager.Instance.level3AchievementEvent.AddListener (unlockLev4);
@@ -86,7 +86,7 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void goStage1(){
-		Debug.Log ("Go Stage 1");
+		//Debug.Log ("Go Stage 1");
 		int PowerUpNum = 30;
 		int GateNum = 10;
 		int ShieldNum = 5;
@@ -116,7 +116,7 @@ public class SpawnScript : MonoBehaviour {
 
 		}
 
-		Debug.Log ("pre-install:" + objectPool.Count);
+		//Debug.Log ("pre-install:" + objectPool.Count);
 		tutorialMode = false; 
 
 	}
@@ -152,7 +152,6 @@ public class SpawnScript : MonoBehaviour {
     {
 		if (!spawning || !csvParser.isLoaded)
 			return;
-
         timeElapsed += Time.deltaTime;
 
 		// Tutorial Mode
@@ -203,10 +202,8 @@ public class SpawnScript : MonoBehaviour {
 		}*/
 
 		if (timeElapsed > spawnCycle * currentRow && tutorialMode == false) {
-			Debug.Log("numRows:" + csvParser.NumRows());
-			if (currentRow == csvParser.NumRows()) {
-				//go to next level
-				Setting.Instance.GoNextLevel();
+			//Debug.Log("numRows:" + csvParser.NumRows());
+			if (currentRow == csvParser.NumRows()) { // finished spawning
 				return;
 			}
 			SpawnNext (csvParser.rowList, currentRow);

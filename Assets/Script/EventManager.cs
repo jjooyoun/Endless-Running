@@ -9,6 +9,13 @@ public class EntityEntityCollision : UnityEvent<Entity, Entity>
 
 }
 
+[System.Serializable]
+public class SpawningNumEvent : UnityEvent<int>
+{
+
+}
+
+
 public class EventManager : Singleton<EventManager> {
 	protected EventManager(){}
 	public EntityEntityCollision entPowerupCollisionEvent;
@@ -33,6 +40,8 @@ public class EventManager : Singleton<EventManager> {
 	public UnityEvent scaleUpEvent;
 	public UnityEvent scaleDownEvent;
 	public UnityEvent stage1;
+	public SpawningNumEvent spawningNumEvent;
+	public UnityEvent levelFinishedEvent;
 
 	void OnDestroy(){
 		stage1.RemoveAllListeners ();
