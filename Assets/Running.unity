@@ -3598,6 +3598,8 @@ MonoBehaviour:
   gameSettings:
   - {fileID: 11400000, guid: 6241d437a0ea3423a9e39c5fc10bcd59, type: 2}
   - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
+  - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
+  - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
   isJumpEnable: 0
   isShakeEnable: 0
   currentLevel: 1
