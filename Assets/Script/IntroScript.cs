@@ -19,20 +19,20 @@ public class IntroScript : MonoBehaviour {
 	IEnumerator Start () {
 		
 		title.enabled = false;
-		summary.SetActive(false);
+		//summary.SetActive(false);
 		yield return new WaitForSeconds(3);
 		intro.enabled = false;
 		title.enabled = true;
 		yield return new WaitForSeconds(3);
 		title.enabled = false;
 		yield return new WaitForSeconds(time);
-		summary.SetActive(true);
+		//summary.SetActive(true);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		summary.transform.Translate(0, 0.005f, 0);
+		summary.transform.Translate(0, 0.3f, 0);
 		
 	}
 }
