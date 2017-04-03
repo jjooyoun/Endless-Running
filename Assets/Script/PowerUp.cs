@@ -41,17 +41,17 @@ public class PowerUp : Entity {
 		th1s.gameObject.SetActive (false);
 		//scale entity
 		ScaleUp (ent.gameObject.transform);
-		EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
+		EventManager.Instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
 	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
 		ScaleDown (ent.gameObject.transform);
-		EventManager.instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
+		EventManager.Instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
-    private static void PowerUpShieldUp(Entity ent, Entity powerUp)
+    public static void PowerUpShieldUp(Entity ent, Entity powerUp)
     {
         //already have shield?
         if (!hasShield)
@@ -60,12 +60,13 @@ public class PowerUp : Entity {
             ent.child = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             ent.child.GetComponent<SphereCollider>().enabled = false;
             ent.child.transform.position = ent.transform.position;
+			ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
             ent.child.transform.parent = ent.transform;//inherit rotation
-            ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
-            ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
+            //ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
 			ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
 			hasShield = !hasShield;
-			EventManager.instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
+			EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
+			EventManager.Instance.shield.Invoke();
         }
     }
 
@@ -76,10 +77,10 @@ public class PowerUp : Entity {
             //Debug.Log("destroying sphere");
             //GameObjectUtil.Destroy(ent.child);
 			Destroy(ent.child); 
+			//ent.transform.position -= new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // back to the ground
 			hasShield = !hasShield;
         }
     }
-
    
 	private static bool Scale(Transform entTransform, float scalingFactor){
 		entTransform.localScale += new Vector3 (scalingFactor, scalingFactor, scalingFactor);
@@ -97,6 +98,7 @@ public class PowerUp : Entity {
 
 	void Start(){
 		entityType = ENTITY_TYPE.POWER_UP;
+		base.Init ();
     }
 
 	public static void PowerUpHandler(Entity ent, Entity th1s){

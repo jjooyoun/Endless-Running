@@ -30,6 +30,10 @@ public class GameObjectUtil {
 		}
 	}
 
+	public static void ClearPool(){
+		pools.Clear ();
+	}
+
 	private static ObjectPool GetObjectPool(RecycleGameObject reference){
 		ObjectPool pool = null;
 

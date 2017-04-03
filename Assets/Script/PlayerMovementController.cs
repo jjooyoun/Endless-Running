@@ -20,7 +20,6 @@ public class PlayerMovementController : MonoBehaviour {
 	Vector3 destPos;
 	public bool useAcc = false;
 
-
 	public bool isJumping = false;
 	public float height_Offset = 5.0f;
 	public bool reachedTop = false;
@@ -28,9 +27,6 @@ public class PlayerMovementController : MonoBehaviour {
 	public float speed = 5.0f;
 	private float originalY = 0.0f;
 	private float topY = 0.0f;
-
-
-
 
 
 	// Shake variables
@@ -60,10 +56,11 @@ public class PlayerMovementController : MonoBehaviour {
 		shakeDetectionThreshold *= shakeDetectionThreshold;
 		lowPassValue = Input.acceleration;
 
-		EventManager.instance.swipeLeftEvent.AddListener (onSwipeLeft);
-		EventManager.instance.swipeRightEvent.AddListener (onSwipeRight);
-		EventManager.instance.swipeUpEvent.AddListener (Jump);
-		EventManager.instance.shakeEvent.AddListener (Shake);
+		EventManager.Instance.swipeLeftEvent.AddListener (onSwipeLeft);
+		EventManager.Instance.swipeRightEvent.AddListener (onSwipeRight);
+		EventManager.Instance.swipeUpEvent.AddListener (Jump);
+		EventManager.Instance.shakeEvent.AddListener (Shake);
+        useAccelerometer(true);
 	}
 	
 	// Update is called once per frame
@@ -99,25 +96,30 @@ public class PlayerMovementController : MonoBehaviour {
 				// Accelerometer
 
 				if (useAcc == true) {
-					if (Input.acceleration.x > 0) {
-
-
-						//  Left Wall
-						if (destPos.x < RightWall.position.x - 2.5) {
-							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-							LERPING = true;
-							currentLerpTime = 0f;
-						}
-					} else if (Input.acceleration.x < 0) {
-
-						// Right Wall
-						if (destPos.x > LeftWall.position.x + 2.5) {
-							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
-							LERPING = true;
-							currentLerpTime = 0f;
-						}
-					}
-				}
+					if (Input.acceleration.x > 0.1f) {
+                        if (transform.position.x < RightWall.position.x - 3)
+                        {
+                            transform.Translate(Input.acceleration.x, 0, 0);
+                        }
+//						if (destPos.x < RightWall.position.x - 2.5) {
+//							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+//							LERPING = true;
+//							currentLerpTime = 0f;
+//						}
+//                        MoveRight();
+					} else if (Input.acceleration.x < -0.1f) {
+                        if (transform.position.x > LeftWall.position.x + 3)
+                        {
+                            transform.Translate(Input.acceleration.x, 0, 0); 
+                        }
+//						if (destPos.x > LeftWall.position.x + 2.5) {
+//							destPos = new Vector3 (transform.position.x + Input.acceleration.x, transform.position.y, transform.position.z);
+//							LERPING = true;
+//							currentLerpTime = 0f;
+//						}                    
+//                        MoveLeft();
+                    }
+                }
 			}
 //			if(!LERPING) {
 //				if(Input.GetKeyDown(KeyCode.LeftArrow)) {
@@ -142,12 +144,12 @@ public class PlayerMovementController : MonoBehaviour {
 			}
 		}
 			
-
 		if (ShakeDetection()) {
-			Shake ();	
-		}
-
-	}
+            useAccelerometer(false);
+            Shake();
+            useAccelerometer(true);
+        }
+    }
 
 	bool ShakeDetection(){
 		acceleration = Input.acceleration;
@@ -159,9 +161,9 @@ public class PlayerMovementController : MonoBehaviour {
 	void Shake(){
 		// Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
 		Debug.Log("Shake event detected at time "+Time.time);
-		//Handheld.Vibrate();
+		Handheld.Vibrate();
 		PowerUp.ScaleDown (this.transform);
-		EventManager.instance.shakeOutputEvent.Invoke ();
+		EventManager.Instance.shakeOutputEvent.Invoke ();
 	}
 
 	public void MoveLeft() {
@@ -211,7 +213,6 @@ public class PlayerMovementController : MonoBehaviour {
 		LERPING = true;
 		currentLane = Lane.Left;
 		currentLerpTime = 0f;
-
 	}
 
 	void GoLaneCenter() {
@@ -220,7 +221,6 @@ public class PlayerMovementController : MonoBehaviour {
 		LERPING = true;
 		currentLane = Lane.Center;
 		currentLerpTime = 0f;
-			
 	}
 
 	void GoLaneRight() {
@@ -228,8 +228,7 @@ public class PlayerMovementController : MonoBehaviour {
 		destPos = RightLanePos.position;
 		LERPING = true;
 		currentLane = Lane.Right;
-		currentLerpTime = 0f;
-			
+		currentLerpTime = 0f;			
 	}
 
 	void GoLane(Vector3 lane, Lane laneEnum){
@@ -270,7 +269,7 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	public void Jump(){
-		//Debug.Log ("im jumping!!!");
+		Debug.Log ("im jumping!!!");
 		if (!isJumping) {
 			originalY = transform.position.y;
 			topY = transform.position.y + height_Offset;
@@ -299,5 +298,4 @@ public class PlayerMovementController : MonoBehaviour {
 		transform.position = new Vector3 (transform.position.x, newY, transform.position.z);
 		return false;
 	}
-
 }

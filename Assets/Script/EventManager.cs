@@ -9,8 +9,8 @@ public class EntityEntityCollision : UnityEvent<Entity, Entity>
 
 }
 
-public class EventManager : MonoBehaviour {
-
+public class EventManager : Singleton<EventManager> {
+	protected EventManager(){}
 	public EntityEntityCollision entPowerupCollisionEvent;
 	public EntityEntityCollision entObstacleCollisionEvent;
 	public EntityEntityCollision entEnemyCollisionEvent;
@@ -28,24 +28,13 @@ public class EventManager : MonoBehaviour {
 	public UnityEvent swipeUpEvent;
 	public UnityEvent pauseEvent;
 	public UnityEvent resumeEvent;
+	public UnityEvent shield;
+	public UnityEvent shieldDownEvent; // to test shield down
+	public UnityEvent scaleUpEvent;
+	public UnityEvent scaleDownEvent;
+	public UnityEvent stage1;
 
-	private static EventManager eventManager;
-
-	public static EventManager instance
-	{
-		get
-		{
-			if (!eventManager)
-			{
-				eventManager = FindObjectOfType (typeof (EventManager)) as EventManager;
-
-				if (!eventManager)
-				{
-					Debug.LogError ("There needs to be one active EventManger script on a GameObject in your scene.");
-				}
-			}
-
-			return eventManager;
-		}
+	void OnDestroy(){
+		stage1.RemoveAllListeners ();
 	}
 }

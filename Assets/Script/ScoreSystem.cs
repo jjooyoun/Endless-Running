@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreSystem : MonoBehaviour {
 
@@ -17,20 +18,21 @@ public class ScoreSystem : MonoBehaviour {
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
 	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance
-	private int lives = 10;
+	private int lives = 5;
 	private int distances = 0;
 	private DistanceSystem distancesystem;
 
 	// Use this for initialization
 	void Start () {
+		lives = Setting.gameSetting.lives;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
 		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
 		//listen to event
-		EventManager.instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
-		EventManager.instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
-		EventManager.instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
-		EventManager.instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
+		EventManager.Instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
+		EventManager.Instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
+		EventManager.Instance.entEnemyCollisionEvent.AddListener (EntCrushEntHandler);
+		EventManager.Instance.FlashAndLoseLiveEvent.AddListener (FlashAndLoseLive);
 		distancesystem = FindObjectOfType<DistanceSystem>();
 	}
 
@@ -50,19 +52,19 @@ public class ScoreSystem : MonoBehaviour {
 	//	}
 
 	void EntPowerUpCollisionHandler(Entity ent, Entity other){
-		count++;
+		count += Setting.gameSetting.powerupScorePoint;
 		SetText(countText, SCORE_TEXT, count.ToString());
 	}
 
 	void EntCrushEntHandler(Entity ent, Entity other){
 		other.gameObject.SetActive (false);
-		count = count + 10;
+		count += Setting.gameSetting.enemyScorePoint;
 		SetText(countText, SCORE_TEXT, count.ToString());
 	}
 
 	void FlashAndLoseLive(Entity ent, Entity other){
-		Debug.Log ("ent:" + ent.name);
-		Debug.Log ("other:" + other.name);
+		//Debug.Log ("ent:" + ent.name);
+		//Debug.Log ("other:" + other.name);
 		//flashing the entity
 		Renderer entRenderer = ent.GetComponent<Renderer>();
 		ent.GetComponent<Collider>().enabled = false;
@@ -71,6 +73,7 @@ public class ScoreSystem : MonoBehaviour {
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
 			distancesystem.distanceIncreasing=false;
+			SceneManager.LoadScene (2);
 		}
 		lives--;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());

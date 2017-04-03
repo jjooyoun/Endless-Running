@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
+  m_Name: GameSetting_Test
+  m_EditorClassIdentifier: 
+  gameMode: 4
+  lives: 10
+  powerupScorePoint: 1
+  enemyScorePoint: 10
+  spawnCycle: 5
+  objectSpeed: -0.5
+  enableJump: 1
+  enableShake: 1
+  enableSound: 1
+  JUMP_KEY: 32
+  LEFT_KEY: 276
+  RIGHT_KEY: 275
+  SCALE_UP_KEY: 113
+  SCALE_DOWN_KEY: 101
+  SHIELD_UP_KEY: 114
+  SHIELD_DOWN_KEY: 116
+  SHAKE_KEY: 115
+  CONTINUE_KEY: 102
+  PowerUpIndex: 0
+  ObstacleIndex: 1
+  ShieldIndex: 2
+  EnemyIndex: 3
+  BarrierIndex: 4
+  a: 04000000
