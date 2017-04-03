@@ -13,10 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 0
   lives: 10
-  spawnCycle: 0.5
+  powerupScorePoint: 1
+  enemyScorePoint: 10
+  spawnCycle: 1
   objectSpeed: -0.5
+  soundLevel: 1
   enableJump: 1
-  enableShake: 1
+  enableShake: 0
   enableSound: 1
   JUMP_KEY: 32
   LEFT_KEY: 97
@@ -27,4 +30,10 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
+  PowerUpIndex: 0
+  ObstacleIndex: 1
+  ShieldIndex: 2
+  EnemyIndex: 3
+  BarrierIndex: 4
   a: 0000000003000000010000000200000004000000
+  spawnCsvFile: {fileID: 4900000, guid: 2a4f7774ed6ed46fdbd93d32514d6262, type: 3}

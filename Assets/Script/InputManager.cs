@@ -7,24 +7,19 @@ using UnityEngine;
 public class InputManager : Singleton<InputManager> {
 	protected InputManager(){}
 
-	//private static bool Jumpnable = false;
-	//private static bool Shakeable = false;
 	private Vector3 touchPosition;
 	private float swipeResistanceX = 50.0f;
 	private float swipeResistanceY = 100.0f;
 
-//	public static void SetShakeable(bool shakeable){
-//		Shakeable = shakeable;
-//	}
-//
-//	public static void SetJump(bool jumpable){
-//		Jumpnable = jumpable;
-//	}
-
 	// Update is called once per frame
 	private void Update () {
+		//JUMP1
 		if (Input.GetMouseButtonDown (0)) {
 			touchPosition = Input.mousePosition;
+			
+			if (Setting.gameSetting.enableJump) {
+				EventManager.Instance.swipeUpEvent.Invoke ();
+			}
 		}
 
 		if (Input.GetMouseButtonUp (0)) {
@@ -49,13 +44,9 @@ public class InputManager : Singleton<InputManager> {
 				}
 			}
 		}
-
+		//JUMP2
 		if (Input.GetKeyDown (Setting.gameSetting.JUMP_KEY)) {
 			if (Setting.gameSetting.enableJump) {
-				/*Debug.Log ("listeners:" + EventManager.Instance.swipeUpEvent.GetPersistentEventCount ());
-				for( int i = 0 ; i < EventManager.Instance.swipeUpEvent.GetPersistentEventCount(); i++){
-					Debug.Log(EventManager.Instance.swipeUpEvent.GetPersistentMethodName(i));
-				}*/
 				EventManager.Instance.swipeUpEvent.Invoke ();
 			}
 		}

@@ -8,7 +8,7 @@ public class BossLevel : MonoBehaviour {
 
 	public Transform startMarker;
 	public Transform endMarker;
-	public float speed = 1.0F;
+	public float speed = 10.0F;
 	private float startTime;
 	private float journeyLength;
 
@@ -22,10 +22,10 @@ public class BossLevel : MonoBehaviour {
 	void Update () {
 		int randIndex = Random.Range (0, 2);
 		if (randIndex == 0) {
-			trump.transform.Translate (0.005f, 0, 0);
+			//trump.transform.Translate (0.005f, 0, 0);
 		}
 		else if (randIndex == 1) {
-			trump.transform.Translate (0.005f, 0, 0.005f);
+			//trump.transform.Translate (0.005f, 0, 0.005f);
 		}
 
 		float distCovered = (Time.time - startTime) * speed;

@@ -31,7 +31,7 @@ public class Achievement : MonoBehaviour {
 	public int shield = 0;
 	public int shieldAchievement = 2;
 
-	public Canvas canvas;
+	public GameObject instructionPanel;
 	public Text text;
 	public Text count;
 	public int total;
@@ -45,17 +45,20 @@ public class Achievement : MonoBehaviour {
 	public string[] Instructions = {}; // correspond to leveinstructionsprites
 
 	public bool isPaused = false;
+	public bool isInstructionShownAtPause = false;
+	private bool jumpState = false;
 
 	public void NextInstruction(){
 		//Debug.Log ("current spriteIndex:" + spriteIndex);
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
 			//done tutorial
-			Setting.Instance.StartGame ();
-			GameObjectUtil.ClearPool ();
-			SceneManager.LoadScene (1);
+			// Setting.Instance.StartGame ();
+			// GameObjectUtil.ClearPool ();
+			// SceneManager.LoadScene (1);
+			//Setting.Instance.GoNextLevel();
 			if(isPaused)
 				ResumeGame ();
-			canvas.enabled = false;
+			instructionPanel.SetActive(false);
 			return;
 		}
 
@@ -74,30 +77,55 @@ public class Achievement : MonoBehaviour {
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
 			if(isPaused)
 				ResumeGame ();
-			canvas.enabled = false;
+			instructionPanel.SetActive(false);
 			return;
 		}
-		if (enabled && !canvas.enabled) {
+		if (enabled && !instructionPanel.active) {
 			PauseGame ();
-			canvas.enabled = true;
-		}else if (!enabled && canvas.enabled) {
+			instructionPanel.SetActive(true);
+		}else if (!enabled && instructionPanel.active) {
 			ResumeGame ();
-			canvas.enabled = false;
+			instructionPanel.SetActive(false);
 		}
 	}
 
-	public void ResumeGame(){
-		//Debug.Log ("resume game");
-		Time.timeScale = 1;
-		EventManager.Instance.resumeEvent.Invoke ();
-		isPaused = false;
+	public void MenuPauseGame(){
+		isInstructionShownAtPause = instructionPanel.active;
+		PauseGame();
+		instructionPanel.SetActive(false);// i manage my own state
 	}
 
-	public void PauseGame(){
+	public void MenuResumeGame(){
+		instructionPanel.SetActive(isInstructionShownAtPause);
+		if(!isInstructionShownAtPause)
+			ResumeGame();
+	}
+
+	//here means the instruction panel is dismissed
+	public bool ResumeGame(){
+		//Debug.Log ("resume game");
+		Time.timeScale = 1;
+		//make sure setting allow it
+		if(Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL &&  jumpState){
+			Setting.SetJump(true);
+		}
+		EventManager.Instance.resumeEvent.Invoke ();
+		bool prevPauseState = isPaused;
+		isPaused = false;
+		return prevPauseState;
+	}
+
+	//instruction panel shows up
+	public bool PauseGame(){
 		//Debug.Log ("pause game");
 		Time.timeScale = 0;
+		if(Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL &&  jumpState){//disable jump for tap
+			Setting.SetJump(false);
+		}
 		EventManager.Instance.pauseEvent.Invoke ();
+		bool prevPauseState = isPaused;
 		isPaused = true;
+		return prevPauseState;
 	}
 
 	// Use this for initialization
@@ -126,6 +154,7 @@ public class Achievement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log("jump:" + Setting.gameSetting.enableJump);
 		if (Input.GetKeyDown (Setting.gameSetting.CONTINUE_KEY)) {
 			nextButton.onClick.Invoke ();
 		}
@@ -138,7 +167,11 @@ public class Achievement : MonoBehaviour {
 		} else if (shake < shakeAchievement) {
 			total = shakeAchievement;
 			counter = shake;
-		} else if (jump < jumpAchievement) {
+		} else if (obstacle < obstacleAchievement){
+			total = obstacleAchievement;
+			counter = obstacle;
+		} 
+		else if (jump < jumpAchievement) {
 			total = jumpAchievement;
 			counter = jump;
 		} else if (shield < shieldAchievement) {
@@ -147,6 +180,7 @@ public class Achievement : MonoBehaviour {
 		}
 
 		count.text = total - counter + " remaining before next level";
+
 	}
 
 
@@ -177,7 +211,7 @@ public class Achievement : MonoBehaviour {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
-			Setting.Instance.SetShake(true);
+			Setting.SetShake(true);
 			EventManager.Instance.level2AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
@@ -199,11 +233,18 @@ public class Achievement : MonoBehaviour {
 	}
 
 	void OnObstacleDestroyed(Entity ent, Entity other){
+		Debug.Log("obstacle!!");
+		if(other.entityName != "Gate"){
+			Debug.Log("not obstacle gate");
+			return;
+		}
 		if (obstacle+1 == obstacleAchievement) {
-			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnObstacleDestroyed);
+			EventManager.Instance.entObstacleCollisionEvent.RemoveListener (OnObstacleDestroyed);
 			text.text = "Level 4 unlocked!!!";
 			//Debug.Log ("Level 4 achievement unlocked!!!");
-			Setting.Instance.SetJump(true);
+			Setting.SetJump(true);
+			jumpState = true;
+			Debug.Log("jump:" + Setting.gameSetting.enableJump);
 			EventManager.Instance.level4AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);

@@ -4,9 +4,10 @@ using UnityEngine;
 
 //nothing
 [RequireComponent (typeof (Collider))]
+[RequireComponent (typeof (AudioSource))]
 public class Entity : MonoBehaviour {
     public GameObject child;
-	public AudioSource audioSource;
+	//public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
 
@@ -22,7 +23,7 @@ public class Entity : MonoBehaviour {
 
 	public void Init(){
 		//Debug.Log (entityName + ":init");
-		audioSource = GetComponent<AudioSource> ();
+		//audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Start(){
@@ -68,6 +69,19 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+	void playEntSound(AudioSource sourceAudio, AudioSource transferAudio){
+		AudioClip audioClip = transferAudio.clip;
+		float volume = transferAudio.volume;
+		//AudioSource audio = ent.GetComponent<AudioSource>();//won't be null
+		if (Setting.gameSetting.enableSound && audioClip /*&& !sourceAudio.isPlaying*/) {
+			Debug.Log("play:" + audioClip.name);
+			sourceAudio.clip = audioClip;
+			sourceAudio.volume = volume;
+			sourceAudio.Play();
+		}
+		
+	}
+
     
     //support for the ball only
     IEnumerator playParticleEffectEvery(Material beginMat, Material endMat, ParticleSystem ps, float every, float total)
@@ -104,10 +118,12 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 
-			if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
-				//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
-				playSoundAtPos(otherEnt.audioSource.clip, transform.position);
-			}
+			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>());
+			// if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
+			// 	//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
+			// 	//playSoundAtPos(otherEnt.audioSource.clip, transform.position); // KNOCK IT OFF
+			// 	playEntSound(otherEnt);
+			// }
 
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
@@ -131,8 +147,13 @@ public class Entity : MonoBehaviour {
 					invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
 				}
 
-				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
+					if (otherEnt.entityName == "Walker" && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+						return;
+					}
+
+
                     //fire
                     if(otherEnt.entityName == "Volcano")
                     {
@@ -144,8 +165,13 @@ public class Entity : MonoBehaviour {
                         Material curBallMat = GetComponent<Renderer>().material;
                         StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.duration, 5.0f));
                     }
-				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE && this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x) {
+				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
+					PowerUp.ScaleDown (this.transform);
+					PowerUp.ScaleDown (this.transform);
+					if(otherEnt.entityName == "Barrier"){
+						EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
+					}
 				} else {
 					//flash lose live
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);

@@ -86,7 +86,7 @@ public class ScoreSystem : MonoBehaviour {
 			entRenderer.material.color = originalColor;
 			yield return new WaitForSeconds (.3f);
 		}
-		ent.GetComponent<Collider> ().enabled = true;
+		ent.GetComponent<Collider> ().enabled = true;//
 		Debug.Log ("finished flashing!!!");
 	}
 
