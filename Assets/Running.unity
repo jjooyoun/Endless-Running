@@ -3413,7 +3413,7 @@ MonoBehaviour:
   - {fileID: 356967198}
   - {fileID: 2079191904}
   spawning: 1
-  tutorialMode: 1
+  tutorialMode: 0
 --- !u!4 &1194195444
 Transform:
   m_ObjectHideFlags: 0

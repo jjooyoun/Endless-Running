@@ -44,7 +44,7 @@ public class SpawnScript : MonoBehaviour {
 	//make sure it receive the event
 	void OnEnable(){
 		//Debug.Log ("SpawnScript onENable()");
-		EventManager.Instance.stage1.AddListener (goStage1);
+		//EventManager.Instance.stage1.AddListener (goStage1);
 	}
 
 //	void OnDisable(){
@@ -63,9 +63,14 @@ public class SpawnScript : MonoBehaviour {
 		for(int i = 0; i < row.lanes.Length;i++){
 			int laneIndex = i;
 			int spawnType = row.lanes [i];
-			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnType], Vector3.zero);
-			tmp1.transform.position = lanes [laneIndex].position;
-			SetEntAudioVolume (tmp1, Setting.gameSetting.soundLevel);
+			Debug.Log ("laneIndex:" + laneIndex);
+			Debug.Log ("spawnType:" + spawnType);
+			if (spawnType != -1) {
+				GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnType], Vector3.zero);
+				tmp1.transform.position = lanes [laneIndex].position;
+				SetEntAudioVolume (tmp1, Setting.gameSetting.soundLevel);
+			}
+
 		}
 	}
 
@@ -78,6 +83,7 @@ public class SpawnScript : MonoBehaviour {
 		EventManager.Instance.level3AchievementEvent.AddListener (unlockLev4);
 		//EventManager.Instance.level4AchievementEvent.AddListener (unlockLev5);
 		EventManager.Instance.level5AchievementEvent.AddListener (unlockLev7);
+		tutorialMode = Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL;
 		//Debug.Log ("Spawn Script done!!");
 		//a = csvParser.Load();
 		//a = Setting.gameSetting.a;
@@ -86,7 +92,7 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void goStage1(){
-		//Debug.Log ("Go Stage 1");
+		Debug.Log ("Go Stage 1");
 		int PowerUpNum = 30;
 		int GateNum = 10;
 		int ShieldNum = 5;

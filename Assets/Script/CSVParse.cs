@@ -44,6 +44,7 @@ public class CSVParse : MonoBehaviour
 			Row row = new Row();
 			row.lanes = new int[grid [i].Length];
 			for(int j = 0; j < row.lanes.Length; j++){
+				//Debug.Log ("grid[" + i + "][" + j + "]:" + grid[i][j]   );
 				//Debug.Log ("j:" + j + ":" + );
 				row.lanes [j] = Convert.ToInt32 (grid [i] [j]);
 			}
