@@ -17,7 +17,7 @@ public class InputManager : Singleton<InputManager> {
 		if (Input.GetMouseButtonDown (0)) {
 			touchPosition = Input.mousePosition;
 			
-			if (Setting.gameSetting.enableJump) {
+			if (Setting.gameSetting.enableJump && touchPosition.y <= Screen.height/2.0f) {
 				EventManager.Instance.swipeUpEvent.Invoke ();
 			}
 		}

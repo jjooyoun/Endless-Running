@@ -3594,7 +3594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74a39027dfa44172bd3819f6ffbec6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultGameSetting: {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
+  defaultGameSetting: {fileID: 11400000, guid: 57ae992b83e6c498aaad8e227e99e839, type: 2}
   gameSettings:
   - {fileID: 11400000, guid: 6241d437a0ea3423a9e39c5fc10bcd59, type: 2}
   - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
