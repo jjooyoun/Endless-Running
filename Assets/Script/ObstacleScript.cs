@@ -11,6 +11,7 @@ public class ObstacleScript : MonoBehaviour {
 	private float savedObjectSpeed = 0.0f;
 
 	void OnPause(){
+		Debug.Log(name + ":onPause:");
 		savedObjectSpeed = objectSpeed;
 		objectSpeed = 0.0f;
 	}

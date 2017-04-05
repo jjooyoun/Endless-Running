@@ -16,6 +16,9 @@ public class Achievement : MonoBehaviour {
 	public int walkerAchievement = 10;
 
 	//level 3 : ENABLE shake
+
+	public int volcano = 0;
+	public int volcanoAchievement = 10;
 	public int shake = 0;
 	public int shakeAchievement = 10;
 
@@ -52,12 +55,9 @@ public class Achievement : MonoBehaviour {
 		//Debug.Log ("current spriteIndex:" + spriteIndex);
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
 			//done tutorial
-			// Setting.Instance.StartGame ();
-			// GameObjectUtil.ClearPool ();
-			// SceneManager.LoadScene (1);
-			//Setting.Instance.GoNextLevel();
-			if(isPaused)
-				ResumeGame ();
+			Setting.Instance.GoNextLevel();
+			if(Setting.gameSetting.isPaused)
+				Setting.ResumeGame ();
 			instructionPanel.SetActive(false);
 			return;
 		}
@@ -75,57 +75,30 @@ public class Achievement : MonoBehaviour {
 
 	public void ShowInstruction(bool enabled){
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
-			if(isPaused)
-				ResumeGame ();
+			if(Setting.gameSetting.isPaused)
+				Setting.ResumeGame ();
 			instructionPanel.SetActive(false);
 			return;
 		}
-		if (enabled && !instructionPanel.active) {
-			PauseGame ();
+		if (enabled && !instructionPanel.activeSelf) {
+			Setting.PauseGame ();
 			instructionPanel.SetActive(true);
-		}else if (!enabled && instructionPanel.active) {
-			ResumeGame ();
+		}else if (!enabled && instructionPanel.activeSelf) {
+			Setting.ResumeGame ();
 			instructionPanel.SetActive(false);
 		}
 	}
 
 	public void MenuPauseGame(){
-		isInstructionShownAtPause = instructionPanel.active;
-		PauseGame();
+		isInstructionShownAtPause = instructionPanel.activeSelf;
+		Setting.PauseGame();
 		instructionPanel.SetActive(false);// i manage my own state
 	}
 
 	public void MenuResumeGame(){
 		instructionPanel.SetActive(isInstructionShownAtPause);
 		if(!isInstructionShownAtPause)
-			ResumeGame();
-	}
-
-	//here means the instruction panel is dismissed
-	public bool ResumeGame(){
-		//Debug.Log ("resume game");
-		Time.timeScale = 1;
-		//make sure setting allow it
-		if(Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL &&  jumpState){
-			Setting.SetJump(true);
-		}
-		EventManager.Instance.resumeEvent.Invoke ();
-		bool prevPauseState = isPaused;
-		isPaused = false;
-		return prevPauseState;
-	}
-
-	//instruction panel shows up
-	public bool PauseGame(){
-		//Debug.Log ("pause game");
-		Time.timeScale = 0;
-		if(Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL &&  jumpState){//disable jump for tap
-			Setting.SetJump(false);
-		}
-		EventManager.Instance.pauseEvent.Invoke ();
-		bool prevPauseState = isPaused;
-		isPaused = true;
-		return prevPauseState;
+			Setting.ResumeGame();
 	}
 
 	// Use this for initialization
@@ -137,11 +110,12 @@ public class Achievement : MonoBehaviour {
 			return;
 		}
 		if (!testEnv) {
-			PauseGame();
+			Setting.PauseGame();
 		}
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnShieldAdded);
 		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnWalkerDestroyed);
+		EventManager.Instance.entEnemyCollisionEvent.AddListener (OnVolcanoCollision);
 		EventManager.Instance.entObstacleCollisionEvent.AddListener (OnObstacleDestroyed);
 		EventManager.Instance.shakeOutputEvent.AddListener (OnShake);
 		EventManager.Instance.swipeUpEvent.AddListener (OnJump);
@@ -167,6 +141,9 @@ public class Achievement : MonoBehaviour {
 		} else if (shake < shakeAchievement) {
 			total = shakeAchievement;
 			counter = shake;
+		}else if (volcano < volcanoAchievement){
+			total = volcanoAchievement;
+			counter = volcano;
 		} else if (obstacle < obstacleAchievement){
 			total = obstacleAchievement;
 			counter = obstacle;
@@ -211,13 +188,29 @@ public class Achievement : MonoBehaviour {
 			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnWalkerDestroyed);
 			text.text = "Level 2 unlocked!!!";
 			//Debug.Log ("Level 2 achievement unlocked!!!");
-			Setting.SetShake(true);
+			//Setting.SetShake(true);
 			EventManager.Instance.level2AchievementEvent.Invoke();
 			NextInstruction ();
 			ShowInstruction (true);
 		}
 		walker++;
 		
+	}
+
+	void OnVolcanoCollision(Entity ent, Entity other){
+		//Debug.Log ("hello:" + other.name);
+		if (other.entityName != "Volcano")
+			return;
+		if (volcano+1 == volcanoAchievement) {
+			EventManager.Instance.entEnemyCollisionEvent.RemoveListener (OnVolcanoCollision);
+			text.text = "Level 3 unlocked!!!";
+			//Debug.Log ("Level 2 achievement unlocked!!!");
+			//Setting.SetShake(true);
+			EventManager.Instance.level3AchievementEvent.Invoke();
+			NextInstruction ();
+			ShowInstruction (true);
+		}
+		volcano++;
 	}
 
 	void OnShake(){
@@ -250,7 +243,6 @@ public class Achievement : MonoBehaviour {
 			ShowInstruction (true);
 		}
 		obstacle++;
-
 	}
 
 	void OnJump(){

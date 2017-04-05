@@ -23,7 +23,6 @@ public class Setting : Singleton<Setting> {
 		//Debug.Log("register go next level!!!");
 		EventManager.Instance.levelFinishedEvent.AddListener(GoNextLevel);
 		if (!gameSetting && defaultGameSetting) {
-			
 			//PlayerPrefs.DeleteAll(); // use this to test unlock level
 			//Debug.Log ("here?");
 			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
@@ -92,6 +91,10 @@ public class Setting : Singleton<Setting> {
 		gameSetting.soundLevel = soundLevel;//abide by the value set by mainmenu if needed
 		//Debug.Log("setGameSetting::game mode:" + gameSetting.gameMode);
 		//Debug.Log("final sound level:" + gameSetting.soundLevel);
+		//is game pause?
+		if(gameSetting.isPaused){
+			PauseGame();
+		}
 		
 	}
 
@@ -120,5 +123,17 @@ public class Setting : Singleton<Setting> {
 	//call by level selector
 	public void StartGame(int index){
 		setGameSetting(gameSettings[index]);
+	}
+
+	public static void PauseGame(){
+		gameSetting.isPaused = true;
+		Time.timeScale = 0.0f;
+		EventManager.Instance.pauseEvent.Invoke(); //obstacle pause
+	}
+
+	public static void ResumeGame(){
+		gameSetting.isPaused = false;
+		Time.timeScale = 1.0f;
+		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
 	}
 }

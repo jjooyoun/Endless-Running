@@ -6,15 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SpawnScript : MonoBehaviour {
 	public CSVParse csvParser;
-    //public GameObject powerup;
-    //public GameObject obstacle;
     public GameObject[] Spawners;
     public Transform[] lanes;
 	public bool spawning = false;
     float timeElapsed = 0;
     float spawnCycle = 20f;
-	//public bool isPopDone = false;
-
 	private int centerLaneIndex = 2;
 
 	private static int POWERUP_INDEX = 0;
@@ -22,21 +18,11 @@ public class SpawnScript : MonoBehaviour {
 	private static int SHIELD_INDEX = 2;
 	private static int WALKER_INDEX = 3;
 	private static int BARRIER_INDEX = 4;
+	private static int VOLCANO_INDEX = 5;
 
-	// 0 Power Up
-	// 1 Gate
-	// 2 Shield
-	// 3 Enemy
-	// 4 Barrier
 	//int[] a = {0, 0, 0, 0, 1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
 	int[]  a = {POWERUP_INDEX, POWERUP_INDEX};
 
-
-	public static Stack<int> PowerUpSt = new Stack<int> ();
-	public static Stack<int> GateSt = new Stack<int> ();
-	public static Stack<int> ShieldSt = new Stack<int>();
-	public static Stack<int> WalkerSt = new Stack<int>();
-	public static Stack<int> BarrierSt = new Stack<int>();
 	public static Stack<int> objectPool = new Stack<int> ();
 
 	public bool tutorialMode = true;
@@ -58,35 +44,18 @@ public class SpawnScript : MonoBehaviour {
 
 	int currentRow = 0;
 
-	void SpawnNext(List<CSVParse.Row> rows, int rowIndex){
-		CSVParse.Row row = rows [rowIndex];
-		for(int i = 0; i < row.lanes.Length;i++){
-			int laneIndex = i;
-			int spawnType = row.lanes [i];
-			Debug.Log ("laneIndex:" + laneIndex);
-			Debug.Log ("spawnType:" + spawnType);
-			if (spawnType != -1) {
-				GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnType], Vector3.zero);
-				tmp1.transform.position = lanes [laneIndex].position;
-				SetEntAudioVolume (tmp1, Setting.gameSetting.soundLevel);
-			}
-
-		}
-	}
+	
 
 	void Start () {
 		Debug.Log ("SpawnScript start()");
 		spawnCycle = Setting.gameSetting.spawnCycle;
 		//Debug.Log ("spawnCycle:" + spawnCycle);
 		EventManager.Instance.level1AchievementEvent.AddListener (unlockLev2);
-		//EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);
+		EventManager.Instance.level2AchievementEvent.AddListener (unlockLev3);
 		EventManager.Instance.level3AchievementEvent.AddListener (unlockLev4);
 		//EventManager.Instance.level4AchievementEvent.AddListener (unlockLev5);
 		EventManager.Instance.level5AchievementEvent.AddListener (unlockLev7);
 		tutorialMode = Setting.gameSetting.gameMode == GameSetting.GameMode.TUTORIAL;
-		//Debug.Log ("Spawn Script done!!");
-		//a = csvParser.Load();
-		//a = Setting.gameSetting.a;
 		//EventManager.Instance.level7AchievementEvent.AddListener(unlockLev8);
 		//EventManager.Instance.stage1.AddListener (goStage1);
 	}
@@ -98,6 +67,7 @@ public class SpawnScript : MonoBehaviour {
 		int ShieldNum = 5;
 		int WalkerNum = 20;
 		int BarrierNum = 20;
+		int VolcanoNum = 10;
 
 		// Populate the stacks
 			
@@ -118,6 +88,9 @@ public class SpawnScript : MonoBehaviour {
 			} else if (randIndex == 4 && BarrierNum > 0) {
 				objectPool.Push (BARRIER_INDEX);
 				BarrierNum--;
+			} else if (randIndex == 5 && VolcanoNum > 0){
+				objectPool.Push (VOLCANO_INDEX);
+				VolcanoNum--;
 			}
 
 		}
@@ -128,7 +101,11 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void unlockLev2() {
-		a = new int[] {POWERUP_INDEX, WALKER_INDEX};
+		a = new int[] {WALKER_INDEX, POWERUP_INDEX};
+	}
+
+	void unlockLev3(){
+		a = new int[]{WALKER_INDEX, POWERUP_INDEX, VOLCANO_INDEX};
 	}
 
 	void unlockLev4()
@@ -137,7 +114,6 @@ public class SpawnScript : MonoBehaviour {
 	}
 
 	void unlockLev7() {
-		//Debug.Log ("here?");
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX, BARRIER_INDEX};
 	}
 
@@ -154,58 +130,47 @@ public class SpawnScript : MonoBehaviour {
 			ent.GetComponent<AudioSource>().volume = newVol;
 		}
 	}
+
+	void Spawn(int laneIndex, int spawnerIndex){
+		if(laneIndex == BARRIER_INDEX){
+			laneIndex = centerLaneIndex;
+		}
+		GameObject tmp1 = Spawners[spawnerIndex];
+		float y = tmp1.transform.position.y; //keep the y position
+		Vector3 spawnPos = lanes [laneIndex].position;
+		spawnPos = new Vector3(spawnPos.x, y, spawnPos.z);
+		tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnerIndex], spawnPos); //Spawners[a[spawnIndex]]
+		SetEntAudioVolume (tmp1, Setting.gameSetting.soundLevel);
+	}
+
+	void SpawnNext(List<CSVParse.Row> rows, int rowIndex){
+		CSVParse.Row row = rows [rowIndex];
+		for(int i = 0; i < row.lanes.Length;i++){
+			int laneIndex = i;
+			int spawnType = row.lanes [i];
+			Debug.Log ("laneIndex:" + laneIndex);
+			Debug.Log ("spawnType:" + spawnType);
+			if (spawnType != -1) {
+				Spawn(laneIndex, spawnType);
+			}
+
+		}
+	}
+
     void Update()
     {
-		if (!spawning || !csvParser.isLoaded)
+		if (!spawning || ( !tutorialMode && !csvParser.isLoaded))
 			return;
         timeElapsed += Time.deltaTime;
 
 		// Tutorial Mode
 		if (timeElapsed > spawnCycle && tutorialMode == true) {
-
-			int spawnerIndex = UnityEngine.Random.Range (0, a.Length);
+			int spawnerIndex = a[UnityEngine.Random.Range (0, a.Length)];
 			int randomZ = UnityEngine.Random.Range (2, 36);
-			Vector3 spawnerPos = new Vector3 (0, 1, randomZ);//Spawners[a[spawnerIndex]].transform.position;//new Vector3 (0, 1, randomZ);
-			//Debug.Log("pos  = :" + spawnerPos);
-			Vector3 lanePos = lanes [UnityEngine.Random.Range (0, lanes.Length)].position;
-
-			GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [a [spawnerIndex]], spawnerPos);
-			if (spawnerIndex == 4) {
-				tmp1.transform.position = lanes [centerLaneIndex].position;
-			} else
-				tmp1.transform.position = lanes [UnityEngine.Random.Range (0, lanes.Length)].position;
-			
-			//GameObject tmp2 = (GameObject)GameObjectUtil.Instantiate(Spawners[1], new Vector3(0, 1, 1));
-			//tmp2.transform.position = lanes[2].position;
-			
-			SetEntAudioVolume(tmp1, Setting.gameSetting.soundLevel); //1.0f is the default
+			int laneIndex = UnityEngine.Random.Range (0, lanes.Length);
+			Spawn(laneIndex, spawnerIndex);
 			timeElapsed -= spawnCycle;
-
-
 		}
-		// Game Mode
-		/*else if (timeElapsed > spawnCycle && tutorialMode == false) {
-			//Debug.Log ("game mode");
-			if (objectPool.Count > 0) {
-				Debug.Log ("spawning sth:");
-				int spawnIndex = objectPool.Pop ();
-
-				int randomZ = Random.Range (2, 36);
-				Vector3 spawnerPos = new Vector3 (0, 1, randomZ);
-
-				GameObject tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnIndex], spawnerPos);
-				if (spawnIndex == 4) {
-					tmp1.transform.position = lanes [centerLaneIndex].position;
-				} else
-					tmp1.transform.position = lanes [Random.Range (0, lanes.Length)].position;
-				SetEntAudioVolume(tmp1, Setting.gameSetting.soundLevel);
-				if (objectPool.Count == 0) {
-					Debug.Log ("end game");
-				}
-			}
-
-			timeElapsed -= spawnCycle;
-		}*/
 
 		if (timeElapsed > spawnCycle * currentRow && tutorialMode == false) {
 			//Debug.Log("numRows:" + csvParser.NumRows());
@@ -214,8 +179,7 @@ public class SpawnScript : MonoBehaviour {
 			}
 			SpawnNext (csvParser.rowList, currentRow);
 			currentRow++;
-
-			Debug.Log ("currentRow:" + currentRow);
+			//Debug.Log ("currentRow:" + currentRow);
 
 		}
     }

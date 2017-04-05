@@ -21,6 +21,8 @@ public class Entity : MonoBehaviour {
 	public ENTITY_TYPE entityType =  ENTITY_TYPE.PLAYER;
 	public string entityName = "Entity";
 
+	public bool isOnFire = false;
+
 	public void Init(){
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
@@ -102,6 +104,7 @@ public class Entity : MonoBehaviour {
         ps.Stop();
         Destroy(ps.gameObject);
         r.material = endMat;
+		isOnFire = false;
     }
 
 	//player v.s other
@@ -126,7 +129,7 @@ public class Entity : MonoBehaviour {
 			// }
 
             //player collided with powerup
-			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
+			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {
 				//Debug.Log ("powerup!!!");
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
@@ -149,13 +152,13 @@ public class Entity : MonoBehaviour {
 
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
-					if (otherEnt.entityName == "Walker" && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+					if (!isOnFire && otherEnt.entityName == "Walker" && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
 						return;
 					}
 
 
                     //fire
-                    if(otherEnt.entityName == "Volcano")
+                    if(otherEnt.entityName == "Volcano" && !isOnFire)
                     {
                         GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load("Prefabs/OilSpashHighRoot") as GameObject);
                         OilSplashHighRoot.transform.position = transform.position;
@@ -164,9 +167,13 @@ public class Entity : MonoBehaviour {
                         Material lavaBallMat = Resources.Load("Materials/LavaBall") as Material;
                         Material curBallMat = GetComponent<Renderer>().material;
                         StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.duration, 5.0f));
+						isOnFire = true;
                     }
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
+					if(isOnFire){ //CRUSH EVERYTHING
+						return;
+					}
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);
 					if(otherEnt.entityName == "Barrier"){

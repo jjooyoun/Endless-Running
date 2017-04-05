@@ -17,6 +17,9 @@ public class GameSetting : ScriptableObject {
 	public int lives = 10;
 	public int powerupScorePoint = 1;
 	public int enemyScorePoint = 10;
+
+	public int fireReduxPoint = 5;
+	
 	public float spawnCycle = 0.5f;
 	public float objectSpeed = -0.5f;
 
@@ -25,6 +28,7 @@ public class GameSetting : ScriptableObject {
 	public bool enableShake = false;
 	public bool enableSound = false; //so you could listen to your favorite music in the bg
 
+	public bool isPaused = false;
 
 	//KEY - MAPPING
 	public KeyCode JUMP_KEY = KeyCode.Space;
@@ -40,35 +44,35 @@ public class GameSetting : ScriptableObject {
 
 
 
-	public enum SPAWN_TYPE
-	{
-		POWERUP = 0,
-		GATE,
-		SHIELD,
-		WALKER,
-		BARRIER
-	};
-	private static int POWERUP_INDEX = 0;
-	private static int GATE_INDEX = 1;
-	private static int SHIELD_INDEX = 2;
-	private static int WALKER_INDEX = 3;
-	private static int BARRIER_INDEX = 4;
+	// public enum SPAWN_TYPE
+	// {
+	// 	POWERUP = 0,
+	// 	GATE,
+	// 	SHIELD,
+	// 	WALKER,
+	// 	BARRIER
+	// };
+	// private static int POWERUP_INDEX = 0;
+	// private static int GATE_INDEX = 1;
+	// private static int SHIELD_INDEX = 2;
+	// private static int WALKER_INDEX = 3;
+	// private static int BARRIER_INDEX = 4;
 
 
 	//so i remember the number
-	public string PowerUpIndex = "0";
-	public string ObstacleIndex = "1";
-	public string ShieldIndex = "2";
-	public string EnemyIndex = "3";
-	public string BarrierIndex = "4";
+	// public string PowerUpIndex = "0";
+	// public string ObstacleIndex = "1";
+	// public string ShieldIndex = "2";
+	// public string EnemyIndex = "3";
+	// public string BarrierIndex = "4";
 
-	// 0 Power Up
-	// 1 Obstacle
-	// 2 Shield
-	// 3 Enemy
-	// 4 Barrier
-	//int[] a = {0, 0, 0, 0, 1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
-	public int[]  a = {(int)SPAWN_TYPE.POWERUP, (int)SPAWN_TYPE.POWERUP};
+	// // 0 Power Up
+	// // 1 Obstacle
+	// // 2 Shield
+	// // 3 Enemy
+	// // 4 Barrier
+	// //int[] a = {0, 0, 0, 0, 1, 1 ,1, 1, 4, 3, 3, 3, 3, 2};
+	// public int[]  a = {(int)SPAWN_TYPE.POWERUP, (int)SPAWN_TYPE.POWERUP};
 	//spawn
 	//Csv files
 	public TextAsset spawnCsvFile;

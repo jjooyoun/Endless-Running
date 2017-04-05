@@ -19,13 +19,6 @@ public class DistanceSystem : MonoBehaviour {
 
 	public float measurementSysDiv = 100.00f;
 
-	public bool gamePaused = false;
-
-	void Start(){
-		EventManager.Instance.pauseEvent.AddListener(OnGamePause);
-		EventManager.Instance.resumeEvent.AddListener(OnGameResume);
-	}
-
 	void Awake(){
 		distance = Vector3.Distance (player.position, transform.position);
 		distance = 0;
@@ -33,7 +26,8 @@ public class DistanceSystem : MonoBehaviour {
 	}
 
 	void Update(){
-		if(gamePaused)
+		//Debug.Log("is paused?" + Setting.gameSetting.isPaused);
+		if(Setting.gameSetting.isPaused)
 			return;
 		if (distanceIncreasing) {
 			score ();
@@ -45,16 +39,6 @@ public class DistanceSystem : MonoBehaviour {
 	}
 	void score(){
 		distance += Vector3.Distance (player.position, transform.position);
-	}
-
-	void OnGamePause(){
-		Debug.Log("distance pause!");
-		gamePaused = true;
-	}
-
-	void OnGameResume(){
-		Debug.Log("distance resume!");
-		gamePaused = false;
 	}
 //	void OnGUI(){
 //		GUI.Label (new Rect (10, 10, 100, 20), distance.ToString ());

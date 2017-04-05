@@ -34,6 +34,8 @@ public class CSVParse : MonoBehaviour
 
 	public void Load(TextAsset csv)
 	{
+		if(!csv)
+			return;
 		rowList.Clear();
 		string[][] grid = CsvParser2.Parse(csv.text);
 		// Debug.Log ("grid.length:" + grid.Length);

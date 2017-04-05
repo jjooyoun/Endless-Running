@@ -17,7 +17,7 @@ public class InputManager : Singleton<InputManager> {
 		if (Input.GetMouseButtonDown (0)) {
 			touchPosition = Input.mousePosition;
 			
-			if (Setting.gameSetting.enableJump && touchPosition.y <= Screen.height/2.0f) {
+			if (!Setting.gameSetting.isPaused && Setting.gameSetting.enableJump && touchPosition.y <= Screen.height/2.0f) {
 				EventManager.Instance.swipeUpEvent.Invoke ();
 			}
 		}
@@ -72,11 +72,11 @@ public class InputManager : Singleton<InputManager> {
 			EventManager.Instance.scaleDownEvent.Invoke ();
 		}
 
-		if(Input.GetKeyDown(Setting.gameSetting.LEFT_KEY)) {
+		if(Input.GetKeyDown(Setting.gameSetting.LEFT_KEY) && !Setting.gameSetting.isPaused) {
 			EventManager.Instance.swipeLeftEvent.Invoke ();
 		}
 
-		if(Input.GetKeyDown(Setting.gameSetting.RIGHT_KEY)) {
+		if(Input.GetKeyDown(Setting.gameSetting.RIGHT_KEY) && !Setting.gameSetting.isPaused) {
 			EventManager.Instance.swipeRightEvent.Invoke ();
 		}
 		
