@@ -133,8 +133,8 @@ public class SpawnScript : MonoBehaviour {
 		for(int i = 0; i < row.lanes.Length;i++){
 			int laneIndex = i;
 			int spawnType = row.lanes [i];
-			Debug.Log ("laneIndex:" + laneIndex);
-			Debug.Log ("spawnType:" + spawnType);
+			//Debug.Log ("laneIndex:" + laneIndex);
+			//Debug.Log ("spawnType:" + spawnType);
 			if (spawnType != -1) {
 				Spawn(laneIndex, spawnType);
 			}

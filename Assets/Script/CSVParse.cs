@@ -39,7 +39,7 @@ public class CSVParse : MonoBehaviour
 		rowList.Clear();
 		string[][] grid = CsvParser2.Parse(csv.text);
 		// Debug.Log ("grid.length:" + grid.Length);
-		
+		int spawnerNum = 0;
 		for(int i = 1 ; i < grid.Length; i++)
 		{
 			// Debug.Log ("row index:" + i);
@@ -49,12 +49,15 @@ public class CSVParse : MonoBehaviour
 				//Debug.Log ("grid[" + i + "][" + j + "]:" + grid[i][j]   );
 				//Debug.Log ("j:" + j + ":" + );
 				row.lanes [j] = Convert.ToInt32 (grid [i] [j]);
+				if (row.lanes[j] != -1) {
+					spawnerNum += 1;
+				}
 			}
 			rowList.Add(row);
 		}
 		// Debug.Log ("row length:" + rowList.Count);
 		isLoaded = true;
-		EventManager.Instance.spawningNumEvent.Invoke(NumRows());
+		EventManager.Instance.spawningNumEvent.Invoke(spawnerNum);
 	}
 
 	public int NumRows()

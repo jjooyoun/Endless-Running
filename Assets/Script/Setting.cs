@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
+public class Setting : Singleton<Setting> {
 
 	//protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
 
@@ -15,7 +15,7 @@ public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
 	public bool isShakeEnable = false;
 	public string SettingName = "";
 	public GameSetting.GameMode gameMode;
-	
+	public int currentLevel = -1;
 	//[END] Runtime value
 
 	public static GameSetting gameSetting; //modify over the course of the game
@@ -28,7 +28,6 @@ public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
 		//Debug.Log("register go next level!!!");
 		EventManager.Instance.levelFinishedEvent.AddListener(GoNextLevel);
 		if (!gameSetting && defaultGameSetting) {
-			//PlayerPrefs.DeleteAll(); // use this to test unlock level
 			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
 				EventManager.Instance.stage1.Invoke ();
 			}
@@ -56,11 +55,12 @@ public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
 		}
 	}
 
-	public void Update(){
+	void Update(){
 		isJumpEnable = gameSetting.enableJump;
 		isShakeEnable = gameSetting.enableShake;
 		gameMode = gameSetting.gameMode;
 		SettingName = gameSetting.name;
+		currentLevel = gameSetting.currentLevel;
 
 		if(Input.GetKeyDown(KeyCode.U)){//test
 			if(Setting.gameSetting.isPaused)
@@ -95,12 +95,6 @@ public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
 		}
 		gameSetting = Object.Instantiate(gSetting) as GameSetting;
 		gameSetting.soundLevel = soundLevel;//abide by the value set by mainmenu if needed
-		Debug.Log("gamePausedStart?:" + gameSetting.isPaused);
-		//is game pause?
-		if(gameSetting.isPaused){
-			PauseGame();
-		}
-		
 	}
 
 	//run time edit
@@ -119,12 +113,14 @@ public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
 	public void GoNextLevel(){
 		GameObjectUtil.ClearPool ();
 		int currentLevelPlayerPref = PlayerPrefs.GetInt("levelReached");
-		if(currentLevelPlayerPref < gameSetting.currentLevel)
-			PlayerPrefs.SetInt("levelReached", gameSetting.currentLevel);
-		Debug.Log("currentLevel:" + gameSetting.currentLevel);
-		StartGame(gameSetting.currentLevel); //-1
+		Debug.Log ("currentLevelPlayerPref:" + currentLevelPlayerPref);
+		Debug.Log ("currentLevelSetting:" + gameSetting.currentLevel);
+		if(gameSetting.currentLevel <= gameSetting.currentLevel)
+			PlayerPrefs.SetInt("levelReached", gameSetting.currentLevel + 1);
+		//Debug.Log("currentLevel:" + gameSetting.currentLevel);
+		//StartGame(gameSetting.currentLevel); //-1
 		//go back to the level selector
-		SceneManager.LoadScene (1);
+		SceneManager.LoadScene (1); //let level selector decide
 	}
 
 	//call by level selector

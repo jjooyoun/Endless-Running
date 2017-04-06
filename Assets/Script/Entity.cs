@@ -76,7 +76,7 @@ public class Entity : MonoBehaviour {
 		float volume = transferAudio.volume;
 		//AudioSource audio = ent.GetComponent<AudioSource>();//won't be null
 		if (Setting.gameSetting.enableSound && audioClip /*&& !sourceAudio.isPlaying*/) {
-			Debug.Log("play:" + audioClip.name);
+			//Debug.Log("play:" + audioClip.name);
 			sourceAudio.clip = audioClip;
 			sourceAudio.volume = volume;
 			sourceAudio.Play();

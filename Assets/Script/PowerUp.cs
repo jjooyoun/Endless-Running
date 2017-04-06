@@ -38,7 +38,7 @@ public class PowerUp : Entity {
 	private static void PowerUpScaleUp(Entity ent, Entity powerUp){
 		//hide power up
 		PowerUp th1s = (PowerUp)powerUp;
-		th1s.gameObject.SetActive (false);
+		//th1s.gameObject.SetActive (false);
 		//scale entity
 		ScaleUp (ent.gameObject.transform);
 		EventManager.Instance.entPowerupCollisionEvent.Invoke(ent, powerUp);

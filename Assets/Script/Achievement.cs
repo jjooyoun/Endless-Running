@@ -109,7 +109,7 @@ public class Achievement : MonoBehaviour {
 			count.enabled = false;
 			return;
 		}
-		if (!testEnv) {
+		if (!testEnv && Setting.gameSetting.isPaused) {
 			Setting.PauseGame();
 		}
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (OnSnowAdded);
