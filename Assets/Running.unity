@@ -649,6 +649,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114397342992226214, guid: c00bbe054875f4766a0fa406d3325667,
+        type: 2}
+      propertyPath: flashVar1
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114397342992226214, guid: c00bbe054875f4766a0fa406d3325667,
+        type: 2}
+      propertyPath: flashVar2
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114052716034890552, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
@@ -3520,7 +3530,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

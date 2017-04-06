@@ -14,6 +14,9 @@ public class ScoreSystem : MonoBehaviour {
 	public Text countText;
 	public Text countLives;
 	public Text countDistance;
+
+	public float flashVar1;
+	public float flashVar2;
 	private const string LIVE_TEXT = "Lives: ";
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
@@ -85,9 +88,9 @@ public class ScoreSystem : MonoBehaviour {
 	IEnumerator Flash(Entity ent, Renderer entRenderer, Color originalColor, Color flashColor){
 		for (int i = 0; i < flashTime; i++) {
 			entRenderer.material.color = flashColor;
-			yield return new WaitForSeconds (.3f);
+			yield return new WaitForSeconds (flashVar1);
 			entRenderer.material.color = originalColor;
-			yield return new WaitForSeconds (.3f);
+			yield return new WaitForSeconds (flashVar2);
 		}
 		ent.GetComponent<Collider> ().enabled = true;//
 		Debug.Log ("finished flashing!!!");
