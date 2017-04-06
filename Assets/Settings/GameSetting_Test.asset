@@ -15,12 +15,14 @@ MonoBehaviour:
   lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
+  fireReduxPoint: 5
   spawnCycle: 5
   objectSpeed: -0.5
   soundLevel: 0.8
   enableJump: 1
-  enableShake: 1
-  enableSound: 1
+  enableShake: 0
+  enableSound: 0
+  isPaused: 0
   JUMP_KEY: 32
   LEFT_KEY: 97
   RIGHT_KEY: 100
@@ -30,10 +32,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  PowerUpIndex: 0
-  ObstacleIndex: 1
-  ShieldIndex: 2
-  EnemyIndex: 3
-  BarrierIndex: 4
-  a: 00000000
-  spawnCsvFile: {fileID: 4900000, guid: 226222162e01f4ceb876a38f5752683f, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: 06b285004f99e4739bb5636907490e1e, type: 3}

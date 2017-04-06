@@ -149,7 +149,7 @@ public class Entity : MonoBehaviour {
 					invisibleSphere.transform.position = new Vector3(transform.position.x,other.transform.position.y, other.transform.position.z); // take the ball x
 					invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
 				}
-
+				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 					if (!isOnFire && otherEnt.entityName == "Walker" && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {

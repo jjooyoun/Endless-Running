@@ -57,7 +57,7 @@ public class ScoreSystem : MonoBehaviour {
 	}
 
 	void EntCrushEntHandler(Entity ent, Entity other){
-		other.gameObject.SetActive (false);
+		//other.gameObject.SetActive (false);
 		count += Setting.gameSetting.enemyScorePoint;
 		if(ent.isOnFire){
 			count -= Setting.gameSetting.fireReduxPoint;
