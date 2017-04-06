@@ -5,6 +5,7 @@ using UnityEngine;
 //nothing
 [RequireComponent (typeof (Collider))]
 [RequireComponent (typeof (AudioSource))]
+[RequireComponent (typeof (Rigidbody))]
 public class Entity : MonoBehaviour {
     public GameObject child;
 	//public AudioSource audioSource;

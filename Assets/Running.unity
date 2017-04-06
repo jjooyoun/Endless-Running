@@ -3434,7 +3434,7 @@ MonoBehaviour:
   csvParser: {fileID: 1930601804}
   Spawners:
   - {fileID: 1282680247372788, guid: 63e3df5b7624b314db43abe874eec87d, type: 2}
-  - {fileID: 1992066850200616, guid: 6634dc7666cbb411c954762f033cb833, type: 2}
+  - {fileID: 1236058350930990, guid: 13a8fca00f41640ee81770b33a78d44f, type: 2}
   - {fileID: 1126375629436402, guid: 94ed5f8ab13415a43ae68581029b66f3, type: 2}
   - {fileID: 1944993490182120, guid: ba76ed135690d4880a99318846615fec, type: 2}
   - {fileID: 1893052851063200, guid: d4e2970e159ec3e478b0f55e6001f03f, type: 2}
@@ -5608,6 +5608,12 @@ Prefab:
       propertyPath: m_Name
       value: Setting
       objectReference: {fileID: 0}
+    - target: {fileID: 114882226317598950, guid: b8bf54dac108b447a9dcb63ae90531dd,
+        type: 2}
+      propertyPath: defaultGameSetting
+      value: 
+      objectReference: {fileID: 11400000, guid: cca5ad949a40146468be99c13037b3b5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8bf54dac108b447a9dcb63ae90531dd, type: 2}
   m_IsPrefabParent: 0

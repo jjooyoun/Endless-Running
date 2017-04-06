@@ -221,7 +221,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -248,6 +248,7 @@ MonoBehaviour:
   child: {fileID: 0}
   entityType: 2
   entityName: Gate
+  isOnFire: 0
 --- !u!114 &114145937452800336
 MonoBehaviour:
   m_ObjectHideFlags: 1
