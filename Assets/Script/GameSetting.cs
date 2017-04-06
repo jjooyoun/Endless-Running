@@ -27,7 +27,7 @@ public class GameSetting : ScriptableObject {
 	public bool enableJump = false;
 	public bool enableShake = false;
 	public bool enableSound = false; //so you could listen to your favorite music in the bg
-
+	public int currentLevel = 1;
 	public bool isPaused = false;
 
 	//KEY - MAPPING

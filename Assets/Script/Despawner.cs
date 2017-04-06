@@ -22,7 +22,7 @@ public class Despawner : MonoBehaviour {
 				EventManager.Instance.levelFinishedEvent.Invoke();
 			}
 			if(ent.GetComponent<SetRenderQueue>()){
-				Debug.Log ("restore!");
+				//Debug.Log ("restore!");
 				ent.GetComponent<SetRenderQueue> ().startHiding = false;
 			}
 		}

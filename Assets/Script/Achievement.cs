@@ -55,10 +55,10 @@ public class Achievement : MonoBehaviour {
 		//Debug.Log ("current spriteIndex:" + spriteIndex);
 		if (spriteIndex == Instructions.Length - 1 || testEnv) {
 			//done tutorial
-			Setting.Instance.GoNextLevel();
 			if(Setting.gameSetting.isPaused)
-				Setting.ResumeGame ();
+				Setting.ResumeGame (); //resume and go next
 			instructionPanel.SetActive(false);
+			EventManager.Instance.levelFinishedEvent.Invoke();
 			return;
 		}
 

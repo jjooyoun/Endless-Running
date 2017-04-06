@@ -27,21 +27,6 @@ public class SpawnScript : MonoBehaviour {
 
 	public bool tutorialMode = true;
 
-	//make sure it receive the event
-	void OnEnable(){
-		//Debug.Log ("SpawnScript onENable()");
-		//EventManager.Instance.stage1.AddListener (goStage1);
-	}
-
-//	void OnDisable(){
-//		EventManager.Instance.stage1.RemoveListener (goStage1);
-//	}
-
-//	void Awake(){
-//		Debug.Log ("SpawnScript wake()");
-//		//EventManager.Instance.stage1.AddListener (goStage1);
-//	}
-
 	int currentRow = 0;
 
 	

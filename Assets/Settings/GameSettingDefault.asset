@@ -9,19 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
-  m_Name: GameSettingTutorial
+  m_Name: GameSettingDefault
   m_EditorClassIdentifier: 
-  gameMode: 3
-  lives: 1000
+  gameMode: 0
+  lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
-  spawnCycle: 0.5
+  fireReduxPoint: 5
+  spawnCycle: 20
   objectSpeed: -0.5
   soundLevel: 1
-  enableJump: 0
+  enableJump: 1
   enableShake: 0
-  enableSound: 0
-  isPaused: 1
+  enableSound: 1
+  isPaused: 0
   JUMP_KEY: 32
   LEFT_KEY: 97
   RIGHT_KEY: 100

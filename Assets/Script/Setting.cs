@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Setting : Singleton<Setting> {
+public class Setting : /*Singleton<Setting>*/ MonoBehaviour {
 
-	protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
+	//protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
 
 	public GameSetting defaultGameSetting;
 	public GameSetting[] gameSettings;
 
+	//Runtime value
 	public bool isJumpEnable = false;
 	public bool isShakeEnable = false;
-	public int currentLevel = 1;
+	public string SettingName = "";
+	public GameSetting.GameMode gameMode;
+	
+	//[END] Runtime value
 
-	//public GameSetting defaultGameSetting;
-	//[SerializeField]
-	public static GameSetting gameSetting;
-	//public static Setting instance;
+	public static GameSetting gameSetting; //modify over the course of the game
+
+	void Start(){
+		EventManager.Instance.levelFinishedEvent.AddListener(GoNextLevel);
+	}
 
 	void Awake(){
 		//Debug.Log("register go next level!!!");
 		EventManager.Instance.levelFinishedEvent.AddListener(GoNextLevel);
 		if (!gameSetting && defaultGameSetting) {
 			//PlayerPrefs.DeleteAll(); // use this to test unlock level
-			//Debug.Log ("here?");
 			if (defaultGameSetting.gameMode != GameSetting.GameMode.TUTORIAL) {
-				//Debug.Log ("not tut");
 				EventManager.Instance.stage1.Invoke ();
 			}
 			setGameSetting (defaultGameSetting);
@@ -44,12 +47,9 @@ public class Setting : Singleton<Setting> {
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode){
 		Debug.Log ("finished loading scene:" + scene.name);
 		if (gameSetting) {
-			//Debug.Log("music level:" + gameSetting.soundLevel);
 			foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>()) {
 				audio.enabled = gameSetting.enableSound;
 				if(audio.enabled){
-					//Debug.Log("audio:" + audio.name);
-					//Debug.Log("volume:" + audio.volume);
 					audio.volume = gameSetting.soundLevel;
 				}
 			}
@@ -59,6 +59,14 @@ public class Setting : Singleton<Setting> {
 	public void Update(){
 		isJumpEnable = gameSetting.enableJump;
 		isShakeEnable = gameSetting.enableShake;
+		gameMode = gameSetting.gameMode;
+		SettingName = gameSetting.name;
+
+		if(Input.GetKeyDown(KeyCode.U)){//test
+			if(Setting.gameSetting.isPaused)
+				Setting.ResumeGame ();
+			EventManager.Instance.levelFinishedEvent.Invoke();
+		}
 	}
 
 	public void StartGame(){
@@ -78,19 +86,16 @@ public class Setting : Singleton<Setting> {
 
 	//clone instead of referencing directly
 	//should not pass in gSetting null
-	void setGameSetting(GameSetting gSetting){
+	static void setGameSetting(GameSetting gSetting){
 		//copy transferrable values
 		float soundLevel = gSetting.soundLevel;
 		//copy sound level
 		if(gameSetting){ //not null means it is set from main menu
 			soundLevel = gameSetting.soundLevel;
-			//Debug.Log("copy soundLevel:" + soundLevel);
 		}
-		//Debug.Log("gsetting.soundLevel:" + gSetting.soundLevel);
 		gameSetting = Object.Instantiate(gSetting) as GameSetting;
 		gameSetting.soundLevel = soundLevel;//abide by the value set by mainmenu if needed
-		//Debug.Log("setGameSetting::game mode:" + gameSetting.gameMode);
-		//Debug.Log("final sound level:" + gameSetting.soundLevel);
+		Debug.Log("gamePausedStart?:" + gameSetting.isPaused);
 		//is game pause?
 		if(gameSetting.isPaused){
 			PauseGame();
@@ -113,9 +118,11 @@ public class Setting : Singleton<Setting> {
 
 	public void GoNextLevel(){
 		GameObjectUtil.ClearPool ();
-		currentLevel++;
-		PlayerPrefs.SetInt("levelReached", currentLevel);
-		Debug.Log("currentLevel:" + currentLevel);
+		int currentLevelPlayerPref = PlayerPrefs.GetInt("levelReached");
+		if(currentLevelPlayerPref < gameSetting.currentLevel)
+			PlayerPrefs.SetInt("levelReached", gameSetting.currentLevel);
+		Debug.Log("currentLevel:" + gameSetting.currentLevel);
+		StartGame(gameSetting.currentLevel); //-1
 		//go back to the level selector
 		SceneManager.LoadScene (1);
 	}
