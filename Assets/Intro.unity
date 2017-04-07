@@ -1086,7 +1086,6 @@ GameObject:
   - component: {fileID: 2132074480}
   - component: {fileID: 2132074479}
   - component: {fileID: 2132074478}
-  - component: {fileID: 2132074481}
   m_Layer: 5
   m_Name: Intro
   m_TagString: Untagged
@@ -1128,6 +1127,8 @@ MonoBehaviour:
   title: {fileID: 1917240558}
   summary: {fileID: 315288863}
   speedUp: 0.5
+  timeTilButtonDisappear: 1
+  backButton: {fileID: 1898624115}
 --- !u!114 &2132074479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,16 +1170,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2132074476}
---- !u!114 &2132074481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2132074476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712443d6b528e48a483f23967a7ed68c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 1
-  backButton: {fileID: 1898624115}

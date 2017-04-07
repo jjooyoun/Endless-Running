@@ -62,6 +62,7 @@ public class IntroScript : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0) && !isOnFade) {
 			//Debug.Log ("mouse click");
+			//speedUp*=2.0f;
 
 			StartCoroutine( DisappearButtonAfter (timeTilButtonDisappear));
 		}
