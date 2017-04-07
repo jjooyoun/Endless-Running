@@ -16,6 +16,29 @@ public class IntroScript : MonoBehaviour {
 	private float screenY;
 	private float extentY;
 	public float speedUp = 0.3f;
+	private bool startSummary = false;
+
+
+	/// <summary>
+	/// BACK BUTTON VARIABLE AREA
+	/// </summary>
+	public float timeTilButtonDisappear = 1.0f;
+	private bool isOnFade = false;
+	public GameObject backButton;
+
+	IEnumerator DisappearButtonAfter(float sec){
+		Debug.Log ("here?");
+		isOnFade = true;
+		backButton.SetActive(true);
+		yield return new WaitForSeconds (sec);
+		Debug.Log ("after wait");
+		isOnFade = false;
+		backButton.SetActive (false);
+	}
+	/// <summary>
+	/// BACK BUTTON VARIABLE AREA
+	/// </summary>
+
 	// Use this for initialization
 	IEnumerator Start () {
 		screenY = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f)).y;
@@ -28,11 +51,20 @@ public class IntroScript : MonoBehaviour {
 		title.enabled = false;
 		yield return new WaitForSeconds(time);
 		//summary.SetActive(true);
+		startSummary = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		summary.transform.Translate(0, speedUp, 0);
+		if (startSummary == true) {
+			summary.transform.Translate (0, speedUp, 0);
+		}
+
+		if (Input.GetMouseButtonDown (0) && !isOnFade) {
+			//Debug.Log ("mouse click");
+
+			StartCoroutine( DisappearButtonAfter (timeTilButtonDisappear));
+		}
 	}
 
 
