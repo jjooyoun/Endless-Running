@@ -5991,6 +5991,7 @@ MonoBehaviour:
   child: {fileID: 0}
   entityType: 1
   entityName: Volcano
+  isOnFire: 0
 --- !u!82 &346096026
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21171,6 +21172,7 @@ MonoBehaviour:
   child: {fileID: 0}
   entityType: 1
   entityName: Volcano
+  isOnFire: 0
 --- !u!82 &1143560173
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24445,6 +24447,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1335028333}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1370901971
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.20593742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -5.529999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778640512575344, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5ddc09408b4f94a68b36ccb8da1a629b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1374846237
 GameObject:
   m_ObjectHideFlags: 0
@@ -30341,9 +30385,11 @@ MonoBehaviour:
   defaultGameSetting: {fileID: 11400000, guid: 57ae992b83e6c498aaad8e227e99e839, type: 2}
   gameSettings:
   - {fileID: 11400000, guid: 6241d437a0ea3423a9e39c5fc10bcd59, type: 2}
-  - {fileID: 11400000, guid: e95d98c00ed2a484faa7519b76b8faa0, type: 2}
+  - {fileID: 0}
   isJumpEnable: 0
   isShakeEnable: 0
+  SettingName: 
+  gameMode: 0
   currentLevel: 1
 --- !u!1 &1674786775
 GameObject:
