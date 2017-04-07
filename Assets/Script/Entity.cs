@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //nothing
-[RequireComponent (typeof (Collider))]
+[RequireComponent (typeof (BoxCollider))]
 [RequireComponent (typeof (AudioSource))]
 [RequireComponent (typeof (Rigidbody))]
 public class Entity : MonoBehaviour {
