@@ -217,6 +217,8 @@ MonoBehaviour:
   child: {fileID: 0}
   entityType: 3
   entityName: PowerUp
+  isOnFire: 0
+  invisibleMaterial: {fileID: 2100000, guid: 186c5a50edde54f8db5057a24417ab54, type: 2}
   powerUptype: 0
 --- !u!114 &114950185051449154
 MonoBehaviour:

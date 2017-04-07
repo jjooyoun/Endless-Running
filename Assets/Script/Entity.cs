@@ -112,6 +112,22 @@ public class Entity : MonoBehaviour {
 		isOnFire = false;
     }
 
+	public static void EnableMeshCutOut(Transform transform, Entity ent){
+		SetRenderQueue srq = ent.GetComponentInChildren<SetRenderQueue> ();
+		if (srq) {
+			srq.startHiding = true;
+			GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/InvisibleSphere"));
+			invisibleSphere.transform.position = new Vector3(transform.position.x,ent.transform.position.y, ent.transform.position.z); // take the ball x
+			invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = ent.GetComponent<ObstacleScript>().objectSpeed;
+		}
+	}
+
+	public static void DisableMeshCutOut(Entity ent){
+		if(ent.GetComponent<SetRenderQueue>()){
+			ent.GetComponent<SetRenderQueue> ().startHiding = false;
+		}
+	}
+
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
 		//Debug.Log (name + "collided with:" + other.name);
@@ -126,13 +142,7 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 
-			
 			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>());
-			// if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
-			// 	//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
-			// 	//playSoundAtPos(otherEnt.audioSource.clip, transform.position); // KNOCK IT OFF
-			// 	playEntSound(otherEnt);
-			// }
 
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {
@@ -151,13 +161,7 @@ public class Entity : MonoBehaviour {
 					ps.Play();
 				}
 				//changing shader
-				SetRenderQueue srq = otherEnt.GetComponentInChildren<SetRenderQueue> ();
-				if (srq) {
-					srq.startHiding = true;
-					GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/InvisibleSphere"));
-					invisibleSphere.transform.position = new Vector3(transform.position.x,other.transform.position.y, other.transform.position.z); // take the ball x
-					invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
-				}
+				EnableMeshCutOut(transform, otherEnt);
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);

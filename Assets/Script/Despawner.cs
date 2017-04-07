@@ -21,9 +21,11 @@ public class Despawner : MonoBehaviour {
 				Debug.Log("level finished!!!");
 				EventManager.Instance.levelFinishedEvent.Invoke();
 			}
-			if(ent.GetComponent<SetRenderQueue>()){
-				//Debug.Log ("restore!");
-				ent.GetComponent<SetRenderQueue> ().startHiding = false;
+			
+			Entity.DisableMeshCutOut(ent);
+			PowerUp pu = ent.GetComponent<PowerUp>();
+			if(pu){
+				pu.Invisiblify(false);
 			}
 		}
 

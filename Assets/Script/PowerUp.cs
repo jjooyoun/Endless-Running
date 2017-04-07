@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 
 public class PowerUp : Entity {
+
 	private static float SCALING_FACTOR = 0.15f;
 	private static int LEVEL = 5;
 	private static float MAX_SCALE = 1.0f + LEVEL*SCALING_FACTOR;
@@ -21,6 +22,9 @@ public class PowerUp : Entity {
 		JAPANESE_GAME
 	};
 
+	public Material invisibleMaterial;
+	private Material oldMaterial;
+
     public static bool ScaleUp(Transform entTransform)
     {
         if (entTransform.localScale.x > MAX_SCALE)
@@ -35,9 +39,11 @@ public class PowerUp : Entity {
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
 
+
 	private static void PowerUpScaleUp(Entity ent, Entity powerUp){
 		//hide power up
 		PowerUp th1s = (PowerUp)powerUp;
+		th1s.Invisiblify(true);
 		//th1s.gameObject.SetActive (false);
 		//scale entity
 		ScaleUp (ent.gameObject.transform);
@@ -64,6 +70,8 @@ public class PowerUp : Entity {
             ent.child.transform.parent = ent.transform;//inherit rotation
             //ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
 			ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
+			PowerUp th1s = (PowerUp)powerUp;
+			th1s.Invisiblify(true);
 			hasShield = !hasShield;
 			EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 			EventManager.Instance.shield.Invoke();
@@ -96,9 +104,19 @@ public class PowerUp : Entity {
 
 	public PowerUpType powerUptype = PowerUpType.SCALE_UP;
 
+	public void Invisiblify(bool hide){
+		if(hide && invisibleMaterial){
+			GetComponent<Renderer>().material = invisibleMaterial;
+		}else{
+			GetComponent<Renderer>().material = oldMaterial;
+		}
+		
+	}
+
 	void Start(){
 		entityType = ENTITY_TYPE.POWER_UP;
 		base.Init ();
+		oldMaterial = GetComponent<Renderer>().material;
     }
 
 	public static void PowerUpHandler(Entity ent, Entity th1s){
