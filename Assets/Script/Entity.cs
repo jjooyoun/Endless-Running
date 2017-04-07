@@ -8,6 +8,9 @@ using UnityEngine;
 [RequireComponent (typeof (Rigidbody))]
 public class Entity : MonoBehaviour {
     public GameObject child;
+	//public GameObject HitFX;
+
+	private ParticleSystem ps;
 	//public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
@@ -27,6 +30,7 @@ public class Entity : MonoBehaviour {
 	public void Init(){
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
+		ps = GetComponentInChildren<ParticleSystem>();
 	}
 
 	void Start(){
@@ -122,6 +126,7 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 
+			
 			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>());
 			// if (otherEnt.audioSource && otherEnt.audioSource.clip && !otherEnt.audioSource.isPlaying) {
 			// 	//Debug.Log ("Play clip:" + otherEnt.audioSource.clip.name);
@@ -142,6 +147,9 @@ public class Entity : MonoBehaviour {
 					return;
 				}
 
+				if(ps){
+					ps.Play();
+				}
 				//changing shader
 				SetRenderQueue srq = otherEnt.GetComponentInChildren<SetRenderQueue> ();
 				if (srq) {
