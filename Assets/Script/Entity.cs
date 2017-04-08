@@ -31,6 +31,18 @@ public class Entity : MonoBehaviour {
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
 		ps = GetComponentInChildren<ParticleSystem>();
+		Debug.Log("entityName:" + entityName);
+		if(entityName == "TIE_Fighter"){ //quick and dirty solution
+			Debug.Log("spawn laser beam!!!");
+			GameObject laserBeamGo = GameObject.Instantiate(Resources.Load("Prefabs/LaserBeam") as GameObject);
+			LaserBeam lb = laserBeamGo.GetComponent<LaserBeam>();
+			if(lb){
+				lb.parent = transform;
+				lb.transform.position = transform.position;
+				lb.target = new Vector3(transform.position.x, transform.position.y - 5.0f, transform.position.z);
+				lb.rest = false;
+			}
+		}
 	}
 
 	void Start(){
@@ -157,6 +169,11 @@ public class Entity : MonoBehaviour {
 					return;
 				}
 
+				if(otherEnt.GetComponent<LaserBeam>()){
+					Debug.Log("hello");
+					//StartCoroutine(otherEnt.GetComponent<LaserBeam>().Reset(otherEnt.transform.position));
+					otherEnt.GetComponent<LaserBeam>().ResetLaser();
+				}
 				if(ps){
 					ps.Play();
 				}
