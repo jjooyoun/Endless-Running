@@ -41,8 +41,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1699127822055622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.66, y: 4.51, z: 5.5287833}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.7697916, y: 2.69, z: 6.2132626}
+  m_LocalScale: {x: 0.33400407, y: 0.5239279, z: 0.5239279}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +53,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1699127822055622}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1699127822055622}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54151986743209522
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -224,10 +224,10 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.75
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 3.65
+    widthMultiplier: 3.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -244,8 +244,8 @@ TrailRenderer:
         outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.96774197
-        value: 1
+        time: 0.85663086
+        value: 0.20731705
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -278,7 +278,7 @@ TrailRenderer:
         serializedVersion: 2
         rgba: 0
       ctime0: 20
-      ctime1: 48380
+      ctime1: 65535
       ctime2: 0
       ctime3: 0
       ctime4: 0
@@ -286,7 +286,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 47802
+      atime1: 52621
       atime2: 0
       atime3: 0
       atime4: 0
@@ -297,10 +297,10 @@ TrailRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 10
     alignment: 0
     textureMode: 0
-  m_MinVertexDistance: 0.01
+  m_MinVertexDistance: 0.1
   m_Autodestruct: 0
 --- !u!114 &114157831614727890
 MonoBehaviour:
@@ -313,9 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe05c52c57eca49c49bed4c7ae5593ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
   speed: -0.25
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   rest: 1
 --- !u!114 &114985245680760120
 MonoBehaviour:

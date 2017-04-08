@@ -27,21 +27,25 @@ public class Entity : MonoBehaviour {
 
 	public bool isOnFire = false;
 
+	private static readonly string LASER_BEAM_PATH = "Prefabs/LaserBeam";
+	private static readonly string INVISIBLE_SPHERE_PATH = "Prefabs/InvisibleSphere";
+
+	private static readonly string FIRE_PATH = "Prefabs/OilSpashHighRoot";
+
+	private static readonly string FIRE_MAT_PATH = "Materials/LavaBall";
+
+
+
 	public void Init(){
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
 		ps = GetComponentInChildren<ParticleSystem>();
-		Debug.Log("entityName:" + entityName);
+		//Debug.Log("entityName:" + entityName);
 		if(entityName == "TIE_Fighter"){ //quick and dirty solution
 			Debug.Log("spawn laser beam!!!");
-			GameObject laserBeamGo = GameObject.Instantiate(Resources.Load("Prefabs/LaserBeam") as GameObject);
+			GameObject laserBeamGo = GameObject.Instantiate(Resources.Load(LASER_BEAM_PATH) as GameObject);
 			LaserBeam lb = laserBeamGo.GetComponent<LaserBeam>();
-			if(lb){
-				lb.parent = transform;
-				lb.transform.position = transform.position;
-				lb.target = new Vector3(transform.position.x, transform.position.y - 5.0f, transform.position.z);
-				lb.rest = false;
-			}
+			lb.Init(transform);
 		}
 	}
 
@@ -128,7 +132,7 @@ public class Entity : MonoBehaviour {
 		SetRenderQueue srq = ent.GetComponentInChildren<SetRenderQueue> ();
 		if (srq) {
 			srq.startHiding = true;
-			GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/InvisibleSphere"));
+			GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load (INVISIBLE_SPHERE_PATH));
 			invisibleSphere.transform.position = new Vector3(transform.position.x,ent.transform.position.y, ent.transform.position.z); // take the ball x
 			invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = ent.GetComponent<ObstacleScript>().objectSpeed;
 		}
@@ -154,7 +158,7 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 
-			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>());
+			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>()); // hit sound
 
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {
@@ -170,7 +174,7 @@ public class Entity : MonoBehaviour {
 				}
 
 				if(otherEnt.GetComponent<LaserBeam>()){
-					Debug.Log("hello");
+					//Debug.Log("hello");
 					//StartCoroutine(otherEnt.GetComponent<LaserBeam>().Reset(otherEnt.transform.position));
 					otherEnt.GetComponent<LaserBeam>().ResetLaser();
 				}
@@ -190,13 +194,13 @@ public class Entity : MonoBehaviour {
                     //fire
                     if(otherEnt.entityName == "Volcano" && !isOnFire)
                     {
-                        GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load("Prefabs/OilSpashHighRoot") as GameObject);
+                        GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
                         OilSplashHighRoot.transform.position = transform.position;
                         OilSplashHighRoot.transform.parent = transform;                    
                         ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
-                        Material lavaBallMat = Resources.Load("Materials/LavaBall") as Material;
+                        Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
                         Material curBallMat = GetComponent<Renderer>().material;
-                        StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.duration, 5.0f));
+                        StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f));
 						isOnFire = true;
                     }
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
