@@ -24,7 +24,7 @@ public class LaserBeam : MonoBehaviour {
 	void Update () {
 		//Debug.Log("parent:" + parent);
 		if(rest){
-			Debug.Log("no!!");
+			//Debug.Log("no!!");
 			return;
 		}
 		if(timeElapsed > dropSec){

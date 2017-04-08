@@ -8,6 +8,10 @@ public class AudioOnSlider : MonoBehaviour {
 	public AudioSource music;
 
 	public void OnVaueChanged(){
+		//check if the object is enabled?
+		if(!gameObject.activeSelf){
+			return;
+		}
 		Debug.Log ("value changed to whatever" + slider.value);
 
 		music.volume = slider.value;
