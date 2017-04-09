@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d3d102f2bcf7c481da4d6a9f9d915470
+timeCreated: 1490602993
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: invader
+  fontNames:
+  - invader
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

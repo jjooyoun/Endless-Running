@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //nothing
 [RequireComponent (typeof (BoxCollider))]
@@ -29,20 +30,21 @@ public class Entity : MonoBehaviour {
 
 	private static readonly string LASER_BEAM_PATH = "Prefabs/LaserBeam";
 	private static readonly string INVISIBLE_SPHERE_PATH = "Prefabs/InvisibleSphere";
-
 	private static readonly string FIRE_PATH = "Prefabs/OilSpashHighRoot";
-
 	private static readonly string FIRE_MAT_PATH = "Materials/LavaBall";
-
-
+	private static readonly string WALKER_NAME = "Walker";
+	private static readonly string GATE_NAME = "Gate";
+	private static readonly string BARRIER_NAME = "Barrier";
+	private static readonly string VOLCANO_NAME = "Volcano";
+	private static readonly string TIE_FIGHTER_NAME = "TIE_Fighter";
 
 	public void Init(){
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
 		ps = GetComponentInChildren<ParticleSystem>();
 		//Debug.Log("entityName:" + entityName);
-		if(entityName == "TIE_Fighter"){ //quick and dirty solution
-			Debug.Log("spawn laser beam!!!");
+		if(entityName == TIE_FIGHTER_NAME){ //quick and dirty solution
+			//ebug.Log("spawn laser beam!!!");
 			GameObject laserBeamGo = GameObject.Instantiate(Resources.Load(LASER_BEAM_PATH) as GameObject);
 			LaserBeam lb = laserBeamGo.GetComponent<LaserBeam>();
 			lb.Init(transform);
@@ -61,7 +63,7 @@ public class Entity : MonoBehaviour {
 
 	void OnScaleUp(){
 		if (entityType == ENTITY_TYPE.PLAYER && Setting.gameSetting.gameMode == GameSetting.GameMode.TEST) {
-			Debug.Log ("Scale up" + name);
+			//Debug.Log ("Scale up" + name);
 			PowerUp.ScaleUp (transform);
 		}
 	}
@@ -186,13 +188,13 @@ public class Entity : MonoBehaviour {
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
-					if (!isOnFire && otherEnt.entityName == "Walker" && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+					if (!isOnFire && otherEnt.entityName == WALKER_NAME && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
 						return;
 					}
 
 
                     //fire
-                    if(otherEnt.entityName == "Volcano" && !isOnFire)
+                    if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
                     {
                         GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
                         OilSplashHighRoot.transform.position = transform.position;
@@ -205,12 +207,23 @@ public class Entity : MonoBehaviour {
                     }
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
-					if(isOnFire){ //CRUSH EVERYTHING
+					//transition to a different scene
+					if(isOnFire){ //CRUSH EVERYTHING, Not even GATE
 						return;
 					}
+
+					if(otherEnt.entityName == GATE_NAME){ // no scale
+						//pause game
+						Setting.PauseGame();
+						Scene spaceInvaderScene = SceneManager.GetSceneAt(4);
+						SceneManager.LoadScene(4, LoadSceneMode.Additive);
+						//SceneManager.SetActiveScene(spaceInvaderScene);
+						return;
+					}
+
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);
-					if(otherEnt.entityName == "Barrier"){
+					if(otherEnt.entityName == BARRIER_NAME){
 						EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 					}
 				} else {
