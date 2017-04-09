@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour {
 	public GameObject spawner;
 	public Player player;
+	public bool shootable = false;
 
 	public void OnSpawn(){
 		float spawnX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2.0f, 0.0f, 0.0f)).x;
@@ -13,6 +14,7 @@ public class PlayerSpawner : MonoBehaviour {
         go.name = "player";
         player = go.GetComponent<Player> ();
         player.Init ();
+		player.shootable = shootable;
 	}
 
 	public void OnGameOver(){

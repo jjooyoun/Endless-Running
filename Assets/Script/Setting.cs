@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Setting : Singleton<Setting> {
 
 	//protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
+	private static readonly string RUNNING_CANVAS_TAG = "RunningCanvas";
+	private static readonly int SPACE_INVADER_SCENE_INDEX = 5;
 
 	public GameSetting defaultGameSetting;
 	public GameSetting[] gameSettings;
@@ -19,6 +21,8 @@ public class Setting : Singleton<Setting> {
 	//[END] Runtime value
 
 	public static GameSetting gameSetting; //modify over the course of the game
+
+	
 
 	void Start(){
 		EventManager.Instance.levelFinishedEvent.AddListener(GoNextLevel);
@@ -117,7 +121,7 @@ public class Setting : Singleton<Setting> {
 		int currentLevelPlayerPref = PlayerPrefs.GetInt("levelReached");
 		Debug.Log ("currentLevelPlayerPref:" + currentLevelPlayerPref);
 		Debug.Log ("currentLevelSetting:" + gameSetting.currentLevel);
-		if(gameSetting.currentLevel <= gameSetting.currentLevel)
+		if(gameSetting.currentLevel > currentLevelPlayerPref)
 			PlayerPrefs.SetInt("levelReached", gameSetting.currentLevel + 1);
 		//Debug.Log("currentLevel:" + gameSetting.currentLevel);
 		//StartGame(gameSetting.currentLevel); //-1
@@ -140,5 +144,13 @@ public class Setting : Singleton<Setting> {
 		gameSetting.isPaused = false;
 		//Time.timeScale = 1.0f;
 		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
+	}
+
+	public static void LoadSpaceInvaderScene(){
+		Setting.PauseGame();
+		GameObject runningCanvas = GameObject.FindGameObjectWithTag(RUNNING_CANVAS_TAG);
+		runningCanvas.SetActive(false);
+		Camera.main.enabled = false; // so space invader uses the right value
+		SceneManager.LoadScene(5, LoadSceneMode.Additive);
 	}
 }

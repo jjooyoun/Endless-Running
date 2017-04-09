@@ -18,7 +18,8 @@ public class Stat : MonoBehaviour {
 		float y = transform.position.y;
 		liveSprites = new GameObject[lives];
 		for (int i = 0; i < lives; i++) {
-			liveSprites[i] = GameObject.Instantiate(liveSprite, new Vector3(x - (float)(i*liveSpriteRenderer.bounds.size.x), y, 0.0f), Quaternion.identity);
+			//liveSprites[i] = GameObject.Instantiate(liveSprite, new Vector3(x - (float)(i*liveSpriteRenderer.bounds.size.x), y, 0.0f), Quaternion.identity);
+			liveSprites[i] = Ent2D.Create2DGameObject(liveSprite, x - (float)(i*liveSpriteRenderer.bounds.size.x), y);
 		}
 	}
 

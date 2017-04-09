@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43668923, g: 0.48428386, b: 0.56452703, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 170397840}
   - component: {fileID: 170397839}
   - component: {fileID: 170397842}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &208111999
 AudioSource:
   m_ObjectHideFlags: 0
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 232093945}
   - component: {fileID: 232093947}
   - component: {fileID: 232093946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InstructionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 245207524}
   - component: {fileID: 245207526}
   - component: {fileID: 245207525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InstructionTextBulk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 280012188}
   - component: {fileID: 280012187}
   - component: {fileID: 280012186}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Timer_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1029,7 +1029,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 521547589}
   - component: {fileID: 521547591}
   - component: {fileID: 521547590}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 545724550}
   - component: {fileID: 545724552}
   - component: {fileID: 545724551}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 562662957}
   - component: {fileID: 562662959}
   - component: {fileID: 562662958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ GameObject:
   - component: {fileID: 568089374}
   - component: {fileID: 568089376}
   - component: {fileID: 568089375}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1455,7 +1455,7 @@ GameObject:
   - component: {fileID: 611628525}
   - component: {fileID: 611628524}
   - component: {fileID: 611628523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AchievementButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,9 +1570,9 @@ GameObject:
   - component: {fileID: 679976255}
   - component: {fileID: 679976254}
   - component: {fileID: 679976253}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: RunningCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1940,6 +1940,82 @@ Prefab:
         type: 2}
       propertyPath: m_UpdateMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399101771067042, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398450891589182, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030785726386728, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101268404754334, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472702579750882, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974468997496834, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772641070164950, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074987213174768, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513267996316522, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677043968129124, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073753767763376, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222801871132350, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400208658846300, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119282203696698, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041925069023744, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708782639720048, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824261514985792, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490039006052948, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595571503575880, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
@@ -2349,7 +2425,7 @@ GameObject:
   - component: {fileID: 879555932}
   - component: {fileID: 879555934}
   - component: {fileID: 879555933}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2488,7 +2564,7 @@ GameObject:
   - component: {fileID: 910139529}
   - component: {fileID: 910139528}
   - component: {fileID: 910139532}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2637,7 +2713,7 @@ GameObject:
   - component: {fileID: 947330331}
   - component: {fileID: 947330333}
   - component: {fileID: 947330332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InstructionImgBulk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2865,7 +2941,7 @@ GameObject:
   - component: {fileID: 1006734315}
   - component: {fileID: 1006734314}
   - component: {fileID: 1006734313}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Distance_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3097,7 +3173,7 @@ GameObject:
   - component: {fileID: 1093932011}
   - component: {fileID: 1093932013}
   - component: {fileID: 1093932012}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Distnace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3173,7 +3249,7 @@ GameObject:
   - component: {fileID: 1099599753}
   - component: {fileID: 1099599756}
   - component: {fileID: 1099599755}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3409,7 +3485,7 @@ GameObject:
   - component: {fileID: 1161764739}
   - component: {fileID: 1161764738}
   - component: {fileID: 1161764737}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3568,7 +3644,7 @@ GameObject:
   - component: {fileID: 1185717510}
   - component: {fileID: 1185717509}
   - component: {fileID: 1185717512}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: AudioButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3932,7 +4008,7 @@ GameObject:
   - component: {fileID: 1356249031}
   - component: {fileID: 1356249033}
   - component: {fileID: 1356249032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InstructionImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4117,7 +4193,7 @@ GameObject:
   - component: {fileID: 1485404356}
   - component: {fileID: 1485404358}
   - component: {fileID: 1485404357}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4192,7 +4268,7 @@ GameObject:
   - component: {fileID: 1527648385}
   - component: {fileID: 1527648387}
   - component: {fileID: 1527648386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InstructionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4475,7 +4551,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 426012273}
+      objectReference: {fileID: 0}
     - target: {fileID: 1699127822055622, guid: bc4bed4f2dc96490db66f7f8d3f6e68b, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -4522,7 +4598,7 @@ GameObject:
   - component: {fileID: 1644663365}
   - component: {fileID: 1644663367}
   - component: {fileID: 1644663366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Footer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4684,7 +4760,7 @@ GameObject:
   - component: {fileID: 1679177585}
   - component: {fileID: 1679177587}
   - component: {fileID: 1679177586}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: InfoOverviewPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4753,7 +4829,7 @@ GameObject:
   - component: {fileID: 1692375227}
   - component: {fileID: 1692375229}
   - component: {fileID: 1692375228}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ScoreSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4828,7 +4904,7 @@ GameObject:
   - component: {fileID: 1693585314}
   - component: {fileID: 1693585313}
   - component: {fileID: 1693585312}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5199,7 +5275,7 @@ GameObject:
   - component: {fileID: 1759021733}
   - component: {fileID: 1759021732}
   - component: {fileID: 1759021731}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AchievementText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5281,7 +5357,7 @@ GameObject:
   - component: {fileID: 1780427113}
   - component: {fileID: 1780427112}
   - component: {fileID: 1780427111}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5393,7 +5469,7 @@ GameObject:
   - component: {fileID: 1812607867}
   - component: {fileID: 1812607866}
   - component: {fileID: 1812607865}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5576,7 +5652,7 @@ GameObject:
   - component: {fileID: 1892171113}
   - component: {fileID: 1892171112}
   - component: {fileID: 1892171111}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Live_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5840,7 +5916,7 @@ GameObject:
   - component: {fileID: 1975925035}
   - component: {fileID: 1975925037}
   - component: {fileID: 1975925036}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: InfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5942,7 +6018,7 @@ GameObject:
   - component: {fileID: 2095502050}
   - component: {fileID: 2095502052}
   - component: {fileID: 2095502051}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Lives
   m_TagString: Untagged
   m_Icon: {fileID: 0}

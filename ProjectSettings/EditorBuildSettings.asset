@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/GameOverScreen.unity
   - enabled: 1
     path: Assets/Intro.unity
+  - enabled: 1
+    path: Assets/Scenes/SpaceInvader/Main.unity

@@ -38,6 +38,8 @@ public class Entity : MonoBehaviour {
 	private static readonly string VOLCANO_NAME = "Volcano";
 	private static readonly string TIE_FIGHTER_NAME = "TIE_Fighter";
 
+	
+
 	public void Init(){
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
@@ -146,6 +148,11 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.O)){
+			Setting.LoadSpaceInvaderScene();
+		}
+	}
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
 		//Debug.Log (name + "collided with:" + other.name);
@@ -213,11 +220,7 @@ public class Entity : MonoBehaviour {
 					}
 
 					if(otherEnt.entityName == GATE_NAME){ // no scale
-						//pause game
-						Setting.PauseGame();
-						Scene spaceInvaderScene = SceneManager.GetSceneAt(4);
-						SceneManager.LoadScene(4, LoadSceneMode.Additive);
-						//SceneManager.SetActiveScene(spaceInvaderScene);
+						Setting.LoadSpaceInvaderScene();
 						return;
 					}
 

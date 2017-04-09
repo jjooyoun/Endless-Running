@@ -15,7 +15,8 @@ public class BossSpawner : MonoBehaviour {
 
 	private Boss bossRef;
 	void Spawn(Vector3 Location){
-		GameObject bossGo = Instantiate (spawner,Location,Quaternion.identity);
+		//GameObject bossGo = Instantiate (spawner,Location,Quaternion.identity);
+		GameObject bossGo = Ent2D.Create2DGameObject (spawner,Location.x, Location.y);
 		Boss boss = bossGo.GetComponent<Boss> ();
 		boss.Init(Location.x, Location.x + diameterX, Location.y + diameterY/2.0f, Location.y - diameterY/2.0f);
 		boss.shootable = true;

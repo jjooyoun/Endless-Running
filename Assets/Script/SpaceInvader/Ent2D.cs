@@ -126,8 +126,10 @@ public class Ent2D : MonoBehaviour {
 
 	}
 
-	public static GameObject Create2DGameObject(GameObject go, float x, float y){
-		return GameObject.Instantiate (go,new Vector3(x,y,0.0f),Quaternion.identity) as GameObject;
+	public static GameObject Create2DGameObject(GameObject go, float x, float y, string layer = "SpaceInvader"){
+		GameObject goRet = GameObject.Instantiate (go,new Vector3(x,y,0.0f),Quaternion.identity) as GameObject;
+		goRet.layer = LayerMask.NameToLayer(layer);
+		return goRet;
 	}
 
     public static Bomb CreateBomb(GameObject bomb, Ent2D owner, float dropY, float upBoundY, float downBoundY, bool bomFlip = true)

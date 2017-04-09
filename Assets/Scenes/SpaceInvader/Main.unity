@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 52085341}
   - component: {fileID: 52085342}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 1273628935080960, guid: 82072bc340ccb474cb586737b9d65c23, type: 2}
   player: {fileID: 0}
+  shootable: 0
 --- !u!1 &220951450
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ GameObject:
   - component: {fileID: 220951453}
   - component: {fileID: 220951452}
   - component: {fileID: 220951451}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +277,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -287,11 +288,11 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.118131
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1536
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -324,7 +325,7 @@ GameObject:
   - component: {fileID: 438862399}
   - component: {fileID: 438862401}
   - component: {fileID: 438862400}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 441609619}
   - component: {fileID: 441609620}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien1Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +434,7 @@ MonoBehaviour:
   insetY: 0.75
   spawner: {fileID: 1191777368236370, guid: f64cf79a0e2234df285503aa87f3481b, type: 2}
   DistDivider: 6
-  shootable: 1
+  shootable: 0
   rowShootable: 0
   numShootable: 1
   startMoving: 1
@@ -449,7 +450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477655741}
   - component: {fileID: 477655742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien3Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,6 +547,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1273628935080960, guid: 82072bc340ccb474cb586737b9d65c23, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82072bc340ccb474cb586737b9d65c23, type: 2}
   m_IsPrefabParent: 0
@@ -558,7 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531020239}
   - component: {fileID: 531020240}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BossSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,6 +645,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1191777368236370, guid: f64cf79a0e2234df285503aa87f3481b, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f64cf79a0e2234df285503aa87f3481b, type: 2}
   m_IsPrefabParent: 0
@@ -651,7 +660,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 714401062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Top_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,6 +725,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1215006049452076, guid: db41e50deb213a64dbb9d1d66846df4d, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db41e50deb213a64dbb9d1d66846df4d, type: 2}
   m_IsPrefabParent: 0
@@ -733,7 +746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881480637}
   - component: {fileID: 881480636}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BackdropBlackLittleSparkBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +811,7 @@ GameObject:
   - component: {fileID: 933422447}
   - component: {fileID: 933422449}
   - component: {fileID: 933422448}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: WinOrLose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,6 +930,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1336583712252192, guid: 7a633c98764e24f688f9cab7b62cc031, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a633c98764e24f688f9cab7b62cc031, type: 2}
   m_IsPrefabParent: 0
@@ -935,7 +952,7 @@ GameObject:
   - component: {fileID: 1101376252}
   - component: {fileID: 1101376253}
   - component: {fileID: 1101376254}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LevelScripter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1083,7 @@ GameObject:
   - component: {fileID: 1105744221}
   - component: {fileID: 1105744223}
   - component: {fileID: 1105744222}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1139,7 +1156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1155468083}
   - component: {fileID: 1155468082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EventDispatcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1511,7 +1528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1223375968}
   - component: {fileID: 1223375967}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alien2Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1562,7 +1579,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1231930471}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1598,7 +1615,7 @@ GameObject:
   - component: {fileID: 1362004905}
   - component: {fileID: 1362004904}
   - component: {fileID: 1362004903}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1734,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1419968536}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Disable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1750,7 +1767,7 @@ GameObject:
   - component: {fileID: 1643069539}
   - component: {fileID: 1643069541}
   - component: {fileID: 1643069540}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1819,7 +1836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1660972441}
   - component: {fileID: 1660972442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1896,6 +1913,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1418322886755428, guid: a9ba46b6a36fd1246a11699e35c28c79, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9ba46b6a36fd1246a11699e35c28c79, type: 2}
   m_IsPrefabParent: 0
@@ -1914,7 +1935,7 @@ GameObject:
   - component: {fileID: 2027177711}
   - component: {fileID: 2027177710}
   - component: {fileID: 2027177709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1977,7 +1998,7 @@ GameObject:
   - component: {fileID: 2043156592}
   - component: {fileID: 2043156591}
   - component: {fileID: 2043156590}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}

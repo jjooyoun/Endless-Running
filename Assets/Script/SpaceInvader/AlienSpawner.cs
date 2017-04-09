@@ -23,7 +23,8 @@ public class AlienSpawner : MonoBehaviour {
     
 
     Alien CreateAlien(GameObject spawner, float spawnX, float spawnY, float lbx, float rbx, float distDivider, string alienName, bool startMoving = false){
-        GameObject go = Instantiate (spawner,new Vector3(spawnX,spawnY,0.0f),Quaternion.identity);
+        //GameObject go = Instantiate (spawner,new Vector3(spawnX,spawnY,0.0f),Quaternion.identity);
+        GameObject go = Ent2D.Create2DGameObject(spawner, spawnX, spawnY);
         go.name = alienName;
         Alien goAlien = go.GetComponent<Alien> ();
         goAlien.Init ();
