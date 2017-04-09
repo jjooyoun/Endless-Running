@@ -29,7 +29,7 @@ public class ObstacleScript : MonoBehaviour {
 
     void Update()
     {
-		if(startMoving)
+		if(startMoving && !Setting.gameSetting.isPaused)
         	transform.Translate(0, 0, objectSpeed);
     }
 }

@@ -44,6 +44,8 @@ public class Setting : Singleton<Setting> {
 	}
 
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode){
+		//make the scene active
+		//SceneManager.SetActiveScene(scene);
 		Debug.Log ("finished loading scene:" + scene.name);
 		if (gameSetting) {
 			foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>()) {
@@ -130,13 +132,13 @@ public class Setting : Singleton<Setting> {
 
 	public static void PauseGame(){
 		gameSetting.isPaused = true;
-		Time.timeScale = 0.0f;
+		//Time.timeScale = 0.0f;
 		EventManager.Instance.pauseEvent.Invoke(); //obstacle pause
 	}
 
 	public static void ResumeGame(){
 		gameSetting.isPaused = false;
-		Time.timeScale = 1.0f;
+		//Time.timeScale = 1.0f;
 		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
 	}
 }

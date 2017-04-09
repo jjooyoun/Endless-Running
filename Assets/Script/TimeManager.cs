@@ -22,6 +22,8 @@ public class TimeManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if(Setting.gameSetting.isPaused)
+			return;
 		if (sun.position.y < lookAt.y) {
 			//Debug.Log ("star pulsing");
 			StarEnable (true);

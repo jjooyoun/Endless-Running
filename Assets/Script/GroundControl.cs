@@ -15,7 +15,8 @@ public class GroundControl : MonoBehaviour {
     //Offset the material texture at a constant rate
     void Update()
     {
-
+		if(Setting.gameSetting.isPaused)
+			return;
 		if (distancesystem.rellapsed > 20) {
 			speed = 0.7f;
 		} else if (distancesystem.rellapsed > 60) {
@@ -24,7 +25,7 @@ public class GroundControl : MonoBehaviour {
 		  else if (distancesystem.rellapsed > 90) {
 			speed = 1f;
 		}
-			
+		
 		float offset = Time.time * speed;
         GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, -offset);
 
