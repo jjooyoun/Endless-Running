@@ -89,14 +89,22 @@ public class IntroScript : MonoBehaviour {
 			}
 			if (deltaSwipe.y < swipeResistanceY) 
 			{
-				Debug.Log("Test intro swipe");
+				if (speedUp > 0){
 				speedUp*=1.1f;
+				}
+				else {
+				speedUp*=-1.1f;
+				}
 			}
 
 			if (deltaSwipe.y > swipeResistanceY) 
 			{
-				Debug.Log("Test intro swipe");
+				if (speedUp > 0) {
 				speedUp*=-1.1f;
+				}
+				else {
+					speedUp*=1.1f;
+				}
 			}
 		}
 	}
