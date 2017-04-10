@@ -12,6 +12,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Running.unity
   - enabled: 1
+    path: Assets/Level1.unity
+  - enabled: 1
+    path: Assets/Level2.unity
+  - enabled: 1
+    path: Assets/Level3.unity
+  - enabled: 1
+    path: Assets/Level4.unity
+  - enabled: 1
     path: Assets/GameOverScreen.unity
   - enabled: 1
     path: Assets/Intro.unity
