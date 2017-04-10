@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour {
 	public Vector3 lookAt = Vector3.zero;
 
 	private ParticleSystem pSys;
+
 	// Use this for initialization
 	void Start () {
 		pSys = GetComponent<ParticleSystem> ();
@@ -22,8 +23,10 @@ public class TimeManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Setting.gameSetting.isPaused)
+		if(Setting.gameSetting.isPaused){
+			pSys.Pause ();
 			return;
+		}
 		if (sun.position.y < lookAt.y) {
 			//Debug.Log ("star pulsing");
 			StarEnable (true);
