@@ -16,7 +16,13 @@ public class IntroScript : MonoBehaviour {
 	private float screenY;
 	private float extentY;
 	public float speedUp = 0.3f;
+	//public float normalSpeed = 0.3f;
 	private bool startSummary = false;
+
+
+	private Vector3 touchPosition;
+	private float swipeResistanceX = 50.0f;
+	private float swipeResistanceY = 50.0f;
 
 
 	/// <summary>
@@ -58,6 +64,7 @@ public class IntroScript : MonoBehaviour {
 	void Update () {
 		if (startSummary == true) {
 			summary.transform.Translate (0, speedUp, 0);
+
 		}
 
 		if (Input.GetMouseButtonDown (0) && !isOnFade) {
@@ -65,6 +72,32 @@ public class IntroScript : MonoBehaviour {
 			//speedUp*=2.0f;
 
 			StartCoroutine( DisappearButtonAfter (timeTilButtonDisappear));
+		}
+
+		if (Input.GetMouseButtonDown(0))
+		{
+			touchPosition = Input.mousePosition;
+		}
+
+		if (Input.GetMouseButtonUp(0))
+		{
+			Vector2 deltaSwipe = touchPosition - Input.mousePosition;
+
+			if (Mathf.Abs(deltaSwipe.x) > swipeResistanceX) 
+			{
+				// Swipe on Xaxis
+			}
+			if (deltaSwipe.y < swipeResistanceY) 
+			{
+				Debug.Log("Test intro swipe");
+				speedUp*=1.1f;
+			}
+
+			if (deltaSwipe.y > swipeResistanceY) 
+			{
+				Debug.Log("Test intro swipe");
+				speedUp*=-1.1f;
+			}
 		}
 	}
 
