@@ -9,6 +9,10 @@ public class Setting : Singleton<Setting> {
 	//protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
 	private static readonly string RUNNING_CANVAS_TAG = "RunningCanvas";
 	private static readonly int SPACE_INVADER_SCENE_INDEX = 5;
+	private static readonly int LEVEL_COMPLETE_SCENE_INDEX = 6;
+
+	public static readonly string LATEST_SCORE = "LastScore";
+
 
 	public GameSetting defaultGameSetting;
 	public GameSetting[] gameSettings;
@@ -127,7 +131,8 @@ public class Setting : Singleton<Setting> {
 		//Debug.Log("currentLevel:" + gameSetting.currentLevel);
 		//StartGame(gameSetting.currentLevel); //-1
 		//go back to the level selector
-		SceneManager.LoadScene (1); //let level selector decide
+		//Debug.Log("load completelevel");
+		LoadLevelCompletescene();
 	}
 
 	//call by level selector
@@ -163,6 +168,11 @@ public class Setting : Singleton<Setting> {
 		GameObject runningCanvas = GameObject.FindGameObjectWithTag(RUNNING_CANVAS_TAG);
 		runningCanvas.SetActive(false);
 		Camera.main.enabled = false; // so space invader uses the right value
-		SceneManager.LoadScene(5, LoadSceneMode.Additive);
+		SceneManager.LoadScene(SPACE_INVADER_SCENE_INDEX, LoadSceneMode.Additive);
+	}
+
+	public static void LoadLevelCompletescene(){
+		PlayerPrefs.SetInt("LastScore", ScoreSystem.count);
+		SceneManager.LoadScene(LEVEL_COMPLETE_SCENE_INDEX);
 	}
 }

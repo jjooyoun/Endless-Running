@@ -10,7 +10,7 @@ public class level1: MonoBehaviour {
 
 	void Start()
 	{
-		playerScore = ScoreSystem.count;  //  Update our score
+		playerScore = PlayerPrefs.GetInt("LastScore", 0); //  Update our score
 		scoreText.text = "Your score: " + playerScore.ToString ();
 	}
 }
