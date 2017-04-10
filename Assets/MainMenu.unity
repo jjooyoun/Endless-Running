@@ -174,7 +174,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1528,6 +1528,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  masterVolumeChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Float1Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &1021215064
 Transform:
   m_ObjectHideFlags: 0
@@ -1958,9 +1962,46 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 180241507}
-    m_RemovedComponents: []
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 471992045}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMasterVolumeChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Slider, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1297478475}
+    m_RemovedComponents:
+    - {fileID: 114730466788339126, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1297478475 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1297478474}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1452428173
 GameObject:
   m_ObjectHideFlags: 0

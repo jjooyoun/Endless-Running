@@ -11,9 +11,7 @@ public class EntityEntityCollision : UnityEvent<Entity, Entity>
 
 [System.Serializable]
 public class SpawningNumEvent : UnityEvent<int>
-{
-
-}
+{}
 
 
 public class EventManager : Singleton<EventManager> {

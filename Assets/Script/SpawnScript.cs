@@ -102,19 +102,7 @@ public class SpawnScript : MonoBehaviour {
 		a = new int[] { POWERUP_INDEX, WALKER_INDEX, GATE_INDEX, SHIELD_INDEX, BARRIER_INDEX};
 	}
 
-	//ducho
-	//e.g: 0.8f is the new default
-	//default value(from prefabs) is 0.8f
-	//->new value should be : 0.64f --> 0.8f*0.8f
-	//RIGHT? is my math right ?
-	void SetEntAudioVolume(GameObject go, float vol){
-		Entity ent = go.GetComponent<Entity>();
-		if(ent){
-			float newVol = ent.GetComponent<AudioSource>().volume;
-			newVol *= vol;
-			ent.GetComponent<AudioSource>().volume = newVol;
-		}
-	}
+	
 
 	void Spawn(int laneIndex, int spawnerIndex){
 		if(laneIndex == BARRIER_INDEX){
@@ -125,7 +113,9 @@ public class SpawnScript : MonoBehaviour {
 		Vector3 spawnPos = lanes [laneIndex].position;
 		spawnPos = new Vector3(spawnPos.x, y, spawnPos.z);
 		tmp1 = (GameObject)GameObjectUtil.Instantiate (Spawners [spawnerIndex], spawnPos); //Spawners[a[spawnIndex]]
-		SetEntAudioVolume (tmp1, Setting.gameSetting.soundLevel);
+		Entity ent = tmp1.GetComponent<Entity>();
+		//Debug.Log("[" + ent.name +"] - vol at spawn:" + ent.GetComponent<AudioSource>().volume);
+		ent.SetEntAudioVolume (Setting.gameSetting.soundLevel);
 	}
 
 	void SpawnNext(List<CSVParse.Row> rows, int rowIndex){

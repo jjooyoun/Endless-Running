@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &208111999
 AudioSource:
   m_ObjectHideFlags: 0
@@ -937,6 +937,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &301803859 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+    type: 2}
+  m_PrefabInternal: {fileID: 690716423}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &356967197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1669,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 679976256}
     m_Modifications:
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224618945294718214, guid: a7e79db9e7d0544318084e3ee4c4316c,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -2017,7 +2028,48 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2020607306}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMasterVolumeChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.UI.Slider, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230149636343712, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 301803859}
+    m_RemovedComponents:
+    - {fileID: 114730466788339126, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &690716424 stripped
@@ -5980,6 +6032,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1975925034}
+--- !u!114 &2020607306 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114882226317598950, guid: b8bf54dac108b447a9dcb63ae90531dd,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135812483}
+  m_Script: {fileID: 11500000, guid: f74a39027dfa44172bd3819f6ffbec6c, type: 3}
 --- !u!1 &2079191903
 GameObject:
   m_ObjectHideFlags: 0

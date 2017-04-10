@@ -96,10 +96,33 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
-	void playEntSound(AudioSource sourceAudio, AudioSource transferAudio){
+	//ducho
+	//e.g: 0.8f is the new default
+	//default value(from prefabs) is 0.8f
+	//->new value should be : 0.64f --> 0.8f*0.8f
+	//RIGHT? is my math right ?
+	public void SetEntAudioVolume(float vol){
+		//Debug.Log("passed in vol:" + vol);
+		float newVol = GetComponent<AudioSource>().volume;
+		//Debug.Log("vol at audioSource:" + newVol);
+		if(newVol == vol){
+			return;
+		}
+		newVol *= vol;
+		GetComponent<AudioSource>().volume = newVol;
+		//Debug.Log(name + "-vol:" + newVol);
+	}
+
+	//only change the clip if sound level are different
+	//what about the object having the sound on its own ?
+	void playEntSoundOnCollided(Entity ent, Entity otherEnt){
+		AudioSource sourceAudio = GetComponent<AudioSource>();
+		AudioSource transferAudio = otherEnt.GetComponent<AudioSource>();
 		AudioClip audioClip = transferAudio.clip;
 		float volume = transferAudio.volume;
-		//AudioSource audio = ent.GetComponent<AudioSource>();//won't be null
+		if(volume != Setting.gameSetting.soundLevel){//different level
+			otherEnt.SetEntAudioVolume(volume);
+		}
 		if (Setting.gameSetting.enableSound && audioClip /*&& !sourceAudio.isPlaying*/) {
 			//Debug.Log("play:" + audioClip.name);
 			sourceAudio.clip = audioClip;
@@ -167,7 +190,7 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 
-			playEntSound(GetComponent<AudioSource>(), otherEnt.GetComponent<AudioSource>()); // hit sound
+			playEntSoundOnCollided(this, otherEnt); // hit sound
 
             //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {

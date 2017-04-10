@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Setting : Singleton<Setting> {
 
@@ -132,6 +133,17 @@ public class Setting : Singleton<Setting> {
 	//call by level selector
 	public void StartGame(int index){
 		setGameSetting(gameSettings[index]);
+	}
+
+	//PASS IN SLIDER SO WE HAVE ACCESS TO THE CHANGED VOLUME
+	public void OnMasterVolumeChange(Slider slider){
+		Setting.gameSetting.soundLevel = slider.value;
+		foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>()) {
+			//float b4Vol = audio.volume;
+			audio.volume = gameSetting.soundLevel;
+			//float a3Vol = audio.volume;
+			//Debug.Log("audio[" + audio.name + "] : " + b4Vol + "~>" + a3Vol);
+		}
 	}
 
 	public static void PauseGame(){
