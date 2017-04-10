@@ -981,7 +981,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e3f3a35c9b2ca4e12b7b206990f31b7d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1067,6 +1067,7 @@ MonoBehaviour:
   bossClip: {fileID: 8300000, guid: a44077d6e601b45fe934781a18e1126b, type: 3}
   WinClip: {fileID: 8300000, guid: 028f27a1b72cd406093ef81b5f54c4d9, type: 3}
   DieClip: {fileID: 8300000, guid: fecc354333bc842dba6c6a856898c322, type: 3}
+  FunClip: {fileID: 8300000, guid: e3f3a35c9b2ca4e12b7b206990f31b7d, type: 3}
   RandomGameLevels:
   - {fileID: 8300000, guid: 4a453c6d0e37b4087bda7c85ddd572d6, type: 3}
   - {fileID: 8300000, guid: 881966e71bbf2452a893a16da1a4eea3, type: 3}

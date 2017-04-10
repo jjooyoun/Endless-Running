@@ -10,6 +10,8 @@ public class LevelScripter : MonoBehaviour {
 	public AudioClip WinClip;
 	public AudioClip DieClip;
 
+	public AudioClip FunClip;
+
 	public AudioClip[] RandomGameLevels;
 
 	private AudioSource audioSource;
@@ -36,7 +38,8 @@ public class LevelScripter : MonoBehaviour {
 	}
 
 	public void PlayGameClip(){
-		PlayClip(audioSource, RandomGameLevels[Random.Range(0,RandomGameLevels.Length - 1)],true);
+		//PlayClip(audioSource, RandomGameLevels[Random.Range(0,RandomGameLevels.Length - 1)],true);
+		PlayClip(audioSource, FunClip, true);
 	}
 
 	
