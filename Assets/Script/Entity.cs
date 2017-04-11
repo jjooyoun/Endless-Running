@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class Entity : MonoBehaviour {
     public GameObject child;
 	//public GameObject HitFX;
-
+	public GameObject onCollidedFX;
 	private ParticleSystem ps;
 	//public AudioSource audioSource;
 
@@ -217,13 +217,20 @@ public class Entity : MonoBehaviour {
 					//StartCoroutine(otherEnt.GetComponent<LaserBeam>().Reset(otherEnt.transform.position));
 					otherEnt.GetComponent<LaserBeam>().ResetLaser();
 				}
-				if(ps){
-					ps.Play();
-				}
+				// if(ps){
+				// 	ps.Play();
+				// }
+				//Debug.Log("particle:" + otherEnt.onCollidedFX);
+				
 				//changing shader
 				EnableMeshCutOut(transform, otherEnt);
 				
-				if (otherEnt.entityType == ENTITY_TYPE.ENEMY /*&& this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x*/) {
+				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+					if(otherEnt.onCollidedFX){
+						GameObject collidedFX = (GameObject)Instantiate(otherEnt.onCollidedFX) as GameObject;
+						collidedFX.transform.position = transform.position;
+						collidedFX.GetComponent<ParticleSystem>().Play();
+					}
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 					if (!isOnFire && otherEnt.entityName == WALKER_NAME && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
 						return;
@@ -259,7 +266,7 @@ public class Entity : MonoBehaviour {
 					if(otherEnt.entityName == BARRIER_NAME){
 						EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 					}
-				} else {
+				} else { //smaller flash
 					//flash lose live
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				}
