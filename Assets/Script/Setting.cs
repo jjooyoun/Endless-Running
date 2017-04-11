@@ -8,8 +8,7 @@ public class Setting : Singleton<Setting> {
 
 	//protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
 	private static readonly string RUNNING_CANVAS_TAG = "RunningCanvas";
-	private static readonly int SPACE_INVADER_SCENE_INDEX = 5;
-	private static readonly int LEVEL_COMPLETE_SCENE_INDEX = 6;
+	private static readonly int LEVEL_COMPLETE_SCENE_INDEX = 5;
 
 	public static readonly string LATEST_SCORE = "LastScore";
 
@@ -161,14 +160,6 @@ public class Setting : Singleton<Setting> {
 		gameSetting.isPaused = false;
 		//Time.timeScale = 1.0f;
 		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
-	}
-
-	public static void LoadSpaceInvaderScene(){
-		Setting.PauseGame();
-		GameObject runningCanvas = GameObject.FindGameObjectWithTag(RUNNING_CANVAS_TAG);
-		runningCanvas.SetActive(false);
-		Camera.main.enabled = false; // so space invader uses the right value
-		SceneManager.LoadScene(SPACE_INVADER_SCENE_INDEX, LoadSceneMode.Additive);
 	}
 
 	public static void LoadLevelCompletescene(){

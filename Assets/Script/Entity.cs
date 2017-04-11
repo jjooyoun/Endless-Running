@@ -172,12 +172,6 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
-	void Update(){
-		if(Input.GetKeyDown(KeyCode.O)){
-			Setting.LoadSpaceInvaderScene();
-		}
-	}
-
 	//get schedule from PowerUp.ShieldDw
 	public void ShieldDownWrapper(){
 		PowerUp.PowerUpShieldDown(this);
@@ -253,11 +247,6 @@ public class Entity : MonoBehaviour {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
 					//transition to a different scene
 					if(isOnFire){ //CRUSH EVERYTHING, Not even GATE
-						return;
-					}
-
-					if(otherEnt.entityName == GATE_NAME){ // no scale
-						Setting.LoadSpaceInvaderScene();
 						return;
 					}
 
