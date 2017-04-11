@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour {
 
 	public bool isOnFire = false;
 
+
 	private static readonly string LASER_BEAM_PATH = "Prefabs/LaserBeam";
 	private static readonly string INVISIBLE_SPHERE_PATH = "Prefabs/InvisibleSphere";
 	private static readonly string FIRE_PATH = "Prefabs/OilSpashHighRoot";
@@ -176,6 +177,12 @@ public class Entity : MonoBehaviour {
 			Setting.LoadSpaceInvaderScene();
 		}
 	}
+
+	//get schedule from PowerUp.ShieldDw
+	public void ShieldDownWrapper(){
+		PowerUp.PowerUpShieldDown(this);
+	}
+
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
 		//Debug.Log (name + "collided with:" + other.name);
@@ -198,12 +205,12 @@ public class Entity : MonoBehaviour {
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				//has shield just destroying shield without broadcast event
-				if (PowerUp.hasShield) {
-					Debug.Log ("has Shield");
-					PowerUp.PowerUpShieldDown (this);
-					//OnShieldDown();
-					return;
-				}
+				// if (PowerUp.hasShield) {
+				// 	Debug.Log ("has Shield");
+				// 	PowerUp.PowerUpShieldDown (this);
+				// 	//OnShieldDown();
+				// 	return;
+				// }
 
 				if(otherEnt.GetComponent<LaserBeam>()){
 					//Debug.Log("hello");

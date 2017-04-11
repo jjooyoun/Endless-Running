@@ -12,7 +12,10 @@ public class PowerUp : Entity {
 	private static float MAX_SCALE = 1.0f + LEVEL*SCALING_FACTOR;
     public static bool hasShield = false;
     private static float OFFSET_SHIELD = 0.15f;
+
+	private static float shieldDownSec = 5.0f;
 	//private static int level = 0; for debug purpose
+
 
 	public enum PowerUpType{
 		SCALE_UP = 0,
@@ -73,6 +76,7 @@ public class PowerUp : Entity {
 			PowerUp th1s = (PowerUp)powerUp;
 			th1s.Invisiblify(true);
 			hasShield = !hasShield;
+			ent.Invoke("ShieldDownWrapper", shieldDownSec);
 			EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 			EventManager.Instance.shield.Invoke();
         }
