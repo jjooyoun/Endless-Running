@@ -15,7 +15,7 @@ public class IntroScript : MonoBehaviour {
 	private Bounds summaryTextBound;
 	private float screenY;
 	private float extentY;
-	public float speedUp = 0.3f;
+	public float speedUp = 0.5f;
 	//public float normalSpeed = 0.3f;
 	private bool startSummary = false;
 
@@ -89,22 +89,17 @@ public class IntroScript : MonoBehaviour {
 			}
 			if (deltaSwipe.y < swipeResistanceY) 
 			{
-				if (speedUp > 0){
-				speedUp*=1.1f;
-				}
-				else {
-				speedUp*=-1.1f;
-				}
+				
+				speedUp+=0.5f;
+				
+
 			}
 
 			if (deltaSwipe.y > swipeResistanceY) 
 			{
-				if (speedUp > 0) {
-				speedUp*=-1.1f;
-				}
-				else {
-					speedUp*=1.1f;
-				}
+				
+				speedUp-=0.5f;
+
 			}
 		}
 	}
