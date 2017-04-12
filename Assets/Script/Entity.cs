@@ -28,7 +28,9 @@ public class Entity : MonoBehaviour {
 
 	public bool isOnFire = false;
 
+	public static int MaxScaleFXIndex = 0;
 
+	public ParticleSystem[] InternalFX;
 	private static readonly string LASER_BEAM_PATH = "Prefabs/LaserBeam";
 	private static readonly string INVISIBLE_SPHERE_PATH = "Prefabs/InvisibleSphere";
 	private static readonly string FIRE_PATH = "Prefabs/OilSpashHighRoot";
@@ -44,7 +46,7 @@ public class Entity : MonoBehaviour {
 	public void Init(){
 		//Debug.Log (entityName + ":init");
 		//audioSource = GetComponent<AudioSource> ();
-		ps = GetComponentInChildren<ParticleSystem>();
+		//ps = GetComponentInChildren<ParticleSystem>();
 		//Debug.Log("entityName:" + entityName);
 		if(entityName == TIE_FIGHTER_NAME){ //quick and dirty solution
 			//ebug.Log("spawn laser beam!!!");
@@ -156,6 +158,35 @@ public class Entity : MonoBehaviour {
 		isOnFire = false;
     }
 
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.P) && entityType == ENTITY_TYPE.PLAYER){
+			Debug.Log("press P!!!");
+			PlayInternalFX(MaxScaleFXIndex);
+		}
+		if(Input.GetKeyDown(KeyCode.I) && entityType == ENTITY_TYPE.PLAYER){
+			Debug.Log("press I!!!");
+			//PlayInternalFX(MaxScaleFXIndex);
+			StopInternalFX();
+		}
+	}
+
+
+	ParticleSystem InstantiateFX(int index){
+		return GameObject.Instantiate(InternalFX[index], transform.position, Quaternion.identity) as ParticleSystem;
+	}
+
+	public void PlayInternalFX(int index){
+		ps = InstantiateFX(index);
+		ps.transform.parent = transform;
+		ps.Play();
+	}
+
+	public void StopInternalFX(){
+		//if(ps.isPlaying){
+			//Debug.Log("Stopping!");
+			ps.Stop();
+		//}
+	}
 	public static void EnableMeshCutOut(Transform transform, Entity ent){
 		SetRenderQueue srq = ent.GetComponentInChildren<SetRenderQueue> ();
 		if (srq) {

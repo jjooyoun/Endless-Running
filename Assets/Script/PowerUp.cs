@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 public class PowerUp : Entity {
-
+	public ParticleSystem PowerupFX;
 	private static float SCALING_FACTOR = 0.15f;
 	private static int LEVEL = 5;
 	private static float MAX_SCALE = 1.0f + LEVEL*SCALING_FACTOR;
@@ -49,14 +49,18 @@ public class PowerUp : Entity {
 		th1s.Invisiblify(true);
 		//th1s.gameObject.SetActive (false);
 		//scale entity
-		ScaleUp (ent.gameObject.transform);
+		if(!ScaleUp (ent.gameObject.transform)){
+			ent.PlayInternalFX(Entity.MaxScaleFXIndex);
+		}
 		EventManager.Instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
 	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.gameObject.SetActive (false);
-		ScaleDown (ent.gameObject.transform);
+		if(ScaleDown (ent.gameObject.transform)){
+			ent.StopInternalFX();
+		}
 		EventManager.Instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
