@@ -261,6 +261,19 @@ public class Entity : MonoBehaviour {
 				
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
+				//fire
+				if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
+				{
+					Debug.Log("Volcano!!!");
+					GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
+					OilSplashHighRoot.transform.position = transform.position;
+					OilSplashHighRoot.transform.parent = transform;                    
+					ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
+					Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
+					Material curBallMat = GetComponent<Renderer>().material;
+					StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f));
+					isOnFire = true;
+				}
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x >= PowerUp.MAX_SCALE/*otherEnt.gameObject.transform.localScale.x*/) {
 					if(otherEnt.onCollidedFX){
@@ -274,18 +287,7 @@ public class Entity : MonoBehaviour {
 					}
 
 
-                    //fire
-                    if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
-                    {
-                        GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
-                        OilSplashHighRoot.transform.position = transform.position;
-                        OilSplashHighRoot.transform.parent = transform;                    
-                        ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
-                        Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
-                        Material curBallMat = GetComponent<Renderer>().material;
-                        StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f));
-						isOnFire = true;
-                    }
+                    
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
 					//transition to a different scene
