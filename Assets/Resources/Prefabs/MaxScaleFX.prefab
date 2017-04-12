@@ -268,8 +268,8 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 1, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.9254902, g: 0.74509805, b: 0, a: 1}
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.30588236, g: 0.28235295, b: 0.9764706, a: 1}
       minMaxState: 2
     startSize:
       scalar: 1
@@ -551,8 +551,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 3
     enabled: 1
-    type: 0
-    radius: 0.25
+    type: 1
+    radius: 0.01
     angle: 25
     length: 5
     boxX: 1
@@ -2692,7 +2692,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70fb468e69a91c74cb0687779d6f1e05, type: 2}
+  - {fileID: 2100000, guid: 3de40d84439cf4a52afcdedbe7d8ea8c, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
