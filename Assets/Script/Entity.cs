@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour {
     public GameObject child;
 	//public GameObject HitFX;
 	public GameObject onCollidedFX;
-	private ParticleSystem ps;
+	private ParticleSystem ps = null;
 	//public AudioSource audioSource;
 
     System.Guid id = System.Guid.NewGuid();
@@ -159,41 +159,53 @@ public class Entity : MonoBehaviour {
     }
 
 	void Update(){
+
+		if(ps){
+			ps.transform.position = transform.position;
+		}
 		if(Input.GetKeyDown(KeyCode.P) && entityType == ENTITY_TYPE.PLAYER){
-			Debug.Log("press P!!!");
+			//Debug.Log("press P!!!");
 			PlayInternalFX(MaxScaleFXIndex);
 		}
 		if(Input.GetKeyDown(KeyCode.I) && entityType == ENTITY_TYPE.PLAYER){
-			Debug.Log("press I!!!");
+			//Debug.Log("press I!!!");
 			//PlayInternalFX(MaxScaleFXIndex);
 			StopInternalFX();
 		}
 	}
 
 
-	ParticleSystem InstantiateFX(int index){
-		return GameObject.Instantiate(InternalFX[index], transform.position, Quaternion.identity) as ParticleSystem;
+	ParticleSystem InstantiateFX(int index, Vector3 position){
+		//Debug.Log("instantiate:" + InternalFX[index].name);
+		ParticleSystem ps = GameObject.Instantiate(InternalFX[index], position, Quaternion.identity) as ParticleSystem;
+		ps.name = InternalFX[index].name;
+		return ps;
 	}
 
 	public void PlayInternalFX(int index){
-		ps = InstantiateFX(index);
-		ps.transform.parent = transform;
+		//new one: not init || diff from the one ordered
+		if(!ps || ps && ps.name != InternalFX[index].name){
+			ps = InstantiateFX(index, transform.position);
+		}
 		ps.Play();
 	}
 
 	public void StopInternalFX(){
-		//if(ps.isPlaying){
-			//Debug.Log("Stopping!");
-			ps.Stop();
-		//}
+		Debug.Log("stop");
+		if(ps)
+			Destroy(ps.gameObject);
 	}
-	public static void EnableMeshCutOut(Transform transform, Entity ent){
-		SetRenderQueue srq = ent.GetComponentInChildren<SetRenderQueue> ();
+
+	public static void EnableMeshCutOut(Entity ent, Entity otherEnt){
+		Debug.Log("ent:" + ent.name);
+		Debug.Log("otherEnt:" + otherEnt.name);
+		SetRenderQueue srq = otherEnt.GetComponentInChildren<SetRenderQueue> ();
 		if (srq) {
+			//Debug.Log("Start hiding");
 			srq.startHiding = true;
 			GameObject invisibleSphere = (GameObject)GameObject.Instantiate (Resources.Load (INVISIBLE_SPHERE_PATH));
-			invisibleSphere.transform.position = new Vector3(transform.position.x,ent.transform.position.y, ent.transform.position.z); // take the ball x
-			invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = ent.GetComponent<ObstacleScript>().objectSpeed;
+			invisibleSphere.transform.position = new Vector3(ent.transform.position.x,otherEnt.transform.position.y, otherEnt.transform.position.z); // take the ball x
+			invisibleSphere.GetComponent<ObstacleScript> ().objectSpeed = otherEnt.GetComponent<ObstacleScript>().objectSpeed;
 		}
 	}
 
@@ -248,7 +260,7 @@ public class Entity : MonoBehaviour {
 				//Debug.Log("particle:" + otherEnt.onCollidedFX);
 				
 				//changing shader
-				EnableMeshCutOut(transform, otherEnt);
+				EnableMeshCutOut(this, otherEnt);
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
 					if(otherEnt.onCollidedFX){
@@ -281,7 +293,9 @@ public class Entity : MonoBehaviour {
 						return;
 					}
 
-					PowerUp.ScaleDown (this.transform);
+					if(PowerUp.ScaleDown (this.transform)){
+						StopInternalFX();
+					}
 					PowerUp.ScaleDown (this.transform);
 					if(otherEnt.entityName == BARRIER_NAME){
 						EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
