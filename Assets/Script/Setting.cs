@@ -8,6 +8,8 @@ public class Setting : Singleton<Setting> {
 
 	//protected Setting () {} // guarantee this will be always a singleton only - can't use the constructor!
 	private static readonly string RUNNING_CANVAS_TAG = "RunningCanvas";
+
+	private static readonly int GAME_OVER_SCENE_INDEX = 3;
 	private static readonly int LEVEL_COMPLETE_SCENE_INDEX = 5;
 
 	public static readonly string LATEST_SCORE = "LastScore";
@@ -165,5 +167,10 @@ public class Setting : Singleton<Setting> {
 	public static void LoadLevelCompletescene(){
 		PlayerPrefs.SetInt("LastScore", ScoreSystem.count);
 		SceneManager.LoadScene(LEVEL_COMPLETE_SCENE_INDEX);
+	}
+
+	public static void LoadGameOverScene(){
+		PlayerPrefs.SetInt("LastScore", ScoreSystem.count);
+		SceneManager.LoadScene(GAME_OVER_SCENE_INDEX);
 	}
 }

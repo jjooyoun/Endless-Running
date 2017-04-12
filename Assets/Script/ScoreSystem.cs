@@ -79,7 +79,8 @@ public class ScoreSystem : MonoBehaviour {
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
 			distancesystem.distanceIncreasing=false;
-			SceneManager.LoadScene (2);
+			//SceneManager.LoadScene (3);
+			Setting.LoadGameOverScene();
 		}
 		lives--;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
