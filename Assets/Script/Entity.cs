@@ -262,7 +262,7 @@ public class Entity : MonoBehaviour {
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
 				
-				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
+				if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x >= PowerUp.MAX_SCALE/*otherEnt.gameObject.transform.localScale.x*/) {
 					if(otherEnt.onCollidedFX){
 						GameObject collidedFX = (GameObject)Instantiate(otherEnt.onCollidedFX) as GameObject;
 						collidedFX.transform.position = transform.position;
