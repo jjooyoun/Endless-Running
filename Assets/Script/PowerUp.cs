@@ -57,7 +57,7 @@ public class PowerUp : Entity {
 
 	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
 		PowerUp th1s = (PowerUp)powerUp;
-		th1s.gameObject.SetActive (false);
+		//th1s.gameObject.SetActive (false);
 		if(ScaleDown (ent.gameObject.transform)){
 			ent.StopInternalFX();
 		}
