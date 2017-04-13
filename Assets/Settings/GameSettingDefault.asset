@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameSettingDefault
   m_EditorClassIdentifier: 
   gameMode: 0
-  lives: 1
+  lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
   fireReduxPoint: 5

@@ -150,6 +150,7 @@ public class SpawnScript : MonoBehaviour {
 		if (timeElapsed > spawnCycle * currentRow && tutorialMode == false) {
 			//Debug.Log("numRows:" + csvParser.NumRows());
 			if (currentRow == csvParser.NumRows()) { // finished spawning
+				EventManager.Instance.finishedSpawningEvent.Invoke();
 				return;
 			}
 			SpawnNext (csvParser.rowList, currentRow);

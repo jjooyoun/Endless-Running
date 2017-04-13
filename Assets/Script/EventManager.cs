@@ -41,6 +41,8 @@ public class EventManager : Singleton<EventManager> {
 	public SpawningNumEvent spawningNumEvent;
 	public UnityEvent levelFinishedEvent;
 
+	public UnityEvent finishedSpawningEvent;
+
 	void OnDestroy(){
 		stage1.RemoveAllListeners ();
 	}

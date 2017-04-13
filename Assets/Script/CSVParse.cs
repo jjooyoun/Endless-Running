@@ -45,6 +45,7 @@ public class CSVParse : MonoBehaviour
 			// Debug.Log ("row index:" + i);
 			Row row = new Row();
 			row.lanes = new int[grid [i].Length];
+			//read a row
 			for(int j = 0; j < row.lanes.Length; j++){
 				//Debug.Log ("grid[" + i + "][" + j + "]:" + grid[i][j]   );
 				//Debug.Log ("j:" + j + ":" + );
