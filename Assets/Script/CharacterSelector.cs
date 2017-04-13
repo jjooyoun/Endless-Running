@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelector : MonoBehaviour {
 
     public List<GameObject> characterList;
     public int index = 0;
+    public Text charName;
+    public string[] charNameList = { "SnowBall", "SnowBall2" };
 
     void Start () {
         GameObject[] character = Resources.LoadAll<GameObject>("Prefabs/Character");
@@ -17,8 +20,8 @@ public class CharacterSelector : MonoBehaviour {
             characterList[index].SetActive(true);
         }
     }
-	
-	public void Next() {
+
+    public void Next() {
         characterList[index].SetActive(false);
         if (index == characterList.Count - 1) {
             index = 0;
@@ -26,6 +29,7 @@ public class CharacterSelector : MonoBehaviour {
             index++;
         }
         characterList[index].SetActive(true);
+        setCharInfo();
     }
 
     public void Previous() {
@@ -36,5 +40,10 @@ public class CharacterSelector : MonoBehaviour {
             index--;
         }
         characterList[index].SetActive(true);
+        setCharInfo();
+    }
+
+    private void setCharInfo() {
+        charName.GetComponent<Text>().text = charNameList[index];
     }
 }
