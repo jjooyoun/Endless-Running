@@ -15,9 +15,11 @@ public class LaserBeam : MonoBehaviour {
 		Entity otherEnt = other.GetComponent<Entity>();
 		if(otherEnt.entityType == Entity.ENTITY_TYPE.PLAYER){
 			if(ent.onCollidedFX){
-				GameObject collidedFX = (GameObject)Instantiate(ent.onCollidedFX) as GameObject;
-				collidedFX.transform.position = otherEnt.transform.position;
-				collidedFX.GetComponent<ParticleSystem>().Play();
+				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (otherEnt, ent);
+//				GameObject collidedFX = (GameObject)Instantiate(ent.onCollidedFX) as GameObject;
+//				collidedFX.transform.position = otherEnt.transform.position;
+//				collidedFX.GetComponent<ParticleSystem>().Play();
+
 			}
 		}
 	}

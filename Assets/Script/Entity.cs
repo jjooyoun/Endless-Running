@@ -307,6 +307,7 @@ public class Entity : MonoBehaviour {
 					}
 				} else { //smaller flash
 					//flash lose live
+					Debug.Log("hello");
 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				}
 			}

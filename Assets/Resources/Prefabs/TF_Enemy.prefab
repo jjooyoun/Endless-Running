@@ -1492,7 +1492,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1736617771997934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 3.38, z: -6.15}
+  m_LocalPosition: {x: -0.05, y: 3.38, z: -3.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4159218022664382}
@@ -3524,7 +3524,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -3566,7 +3566,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
-  onCollidedFX: {fileID: 0}
+  onCollidedFX: {fileID: 1568030154736012, guid: 5ddc09408b4f94a68b36ccb8da1a629b,
+    type: 2}
   entityType: 1
   entityName: TIE_Fighter
   isOnFire: 0
@@ -3638,7 +3639,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224367513582092}
   serializedVersion: 5
-  lengthInSec: 0.5
+  lengthInSec: 0.1
   simulationSpeed: 1
   looping: 1
   prewarm: 1
@@ -3686,12 +3687,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -824696184
+  randomSeed: 64795278
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 1.15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5888,7 +5889,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
@@ -5897,7 +5898,7 @@ ParticleSystem:
     collisionShape5: {fileID: 0}
     inside: 1
     outside: 0
-    enter: 2
+    enter: 1
     exit: 1
     radiusScale: 1
   SubModule:
@@ -6275,7 +6276,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020418487711264}
   serializedVersion: 5
-  lengthInSec: 0.5
+  lengthInSec: 0.15
   simulationSpeed: 1
   looping: 1
   prewarm: 1
@@ -6323,12 +6324,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1828315532
+  randomSeed: -1395480615
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 0.05
+      scalar: 0.15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6734,7 +6735,7 @@ ParticleSystem:
       minMaxState: 0
     randomizeRotationDirection: 0
     maxNumParticles: 200
-    size3D: 1
+    size3D: 0
     rotation3D: 0
     gravityModifier:
       scalar: 0

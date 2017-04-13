@@ -182,7 +182,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4715232621576730, guid: fb6586270a294984e9f542ef3022db62, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6.15
+      value: -3.19
       objectReference: {fileID: 0}
     - target: {fileID: 4715232621576730, guid: fb6586270a294984e9f542ef3022db62, type: 2}
       propertyPath: m_LocalRotation.x
@@ -209,61 +209,9 @@ Prefab:
       propertyPath: TriggerModule.collisionShape0
       value: 
       objectReference: {fileID: 1222852284}
-    - target: {fileID: 114265823948824688, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: onCollidedFX
-      value: 
-      objectReference: {fileID: 1568030154736012, guid: 5ddc09408b4f94a68b36ccb8da1a629b,
-        type: 2}
-    - target: {fileID: 198581523197704984, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 198581523197704984, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: randomSeed
-      value: -1527171324
-      objectReference: {fileID: 0}
-    - target: {fileID: 198439122947893422, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198439122947893422, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: randomSeed
-      value: 1472203181
-      objectReference: {fileID: 0}
-    - target: {fileID: 198581523197704984, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 198581523197704984, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: InitialModule.size3D
+    - target: {fileID: 1736617771997934, guid: fb6586270a294984e9f542ef3022db62, type: 2}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198439122947893422, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198439122947893422, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: CollisionModule.collisionMessages
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198439122947893422, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: TriggerModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198439122947893422, guid: fb6586270a294984e9f542ef3022db62,
-        type: 2}
-      propertyPath: TriggerModule.enter
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb6586270a294984e9f542ef3022db62, type: 2}
