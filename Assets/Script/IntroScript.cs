@@ -16,6 +16,7 @@ public class IntroScript : MonoBehaviour {
 	private float screenY;
 	private float extentY;
 	public float speedUp = 0.5f;
+	public float deltaSpeed = 0.5f;
 	//public float normalSpeed = 0.3f;
 	private bool startSummary = false;
 
@@ -90,7 +91,7 @@ public class IntroScript : MonoBehaviour {
 			if (deltaSwipe.y < swipeResistanceY) 
 			{
 				
-				speedUp+=0.5f;
+				speedUp+=deltaSpeed;
 				
 
 			}
@@ -98,7 +99,7 @@ public class IntroScript : MonoBehaviour {
 			if (deltaSwipe.y > swipeResistanceY) 
 			{
 				
-				speedUp-=0.5f;
+				speedUp-=deltaSpeed;
 
 			}
 		}
