@@ -1126,7 +1126,8 @@ MonoBehaviour:
   intro: {fileID: 2132074479}
   title: {fileID: 1917240558}
   summary: {fileID: 315288863}
-  speedUp: 0.5
+  speedUp: 1
+  deltaSpeed: 1
   timeTilButtonDisappear: 1
   backButton: {fileID: 1898624115}
 --- !u!114 &2132074479
