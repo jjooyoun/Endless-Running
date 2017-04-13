@@ -48,12 +48,12 @@ public class Entity : MonoBehaviour {
 		//audioSource = GetComponent<AudioSource> ();
 		//ps = GetComponentInChildren<ParticleSystem>();
 		//Debug.Log("entityName:" + entityName);
-		if(entityName == TIE_FIGHTER_NAME){ //quick and dirty solution
-			//ebug.Log("spawn laser beam!!!");
-			GameObject laserBeamGo = GameObject.Instantiate(Resources.Load(LASER_BEAM_PATH) as GameObject);
-			LaserBeam lb = laserBeamGo.GetComponent<LaserBeam>();
-			lb.Init(transform);
-		}
+		// if(entityName == TIE_FIGHTER_NAME){ //quick and dirty solution
+		// 	//ebug.Log("spawn laser beam!!!");
+		// 	GameObject laserBeamGo = GameObject.Instantiate(Resources.Load(LASER_BEAM_PATH) as GameObject);
+		// 	LaserBeam lb = laserBeamGo.GetComponent<LaserBeam>();
+		// 	lb.Init(transform);
+		// }
 	}
 
 	void Start(){
@@ -197,8 +197,8 @@ public class Entity : MonoBehaviour {
 	}
 
 	public static void EnableMeshCutOut(Entity ent, Entity otherEnt){
-		Debug.Log("ent:" + ent.name);
-		Debug.Log("otherEnt:" + otherEnt.name);
+		//Debug.Log("ent:" + ent.name);
+		//Debug.Log("otherEnt:" + otherEnt.name);
 		SetRenderQueue srq = otherEnt.GetComponentInChildren<SetRenderQueue> ();
 		if (srq) {
 			//Debug.Log("Start hiding");
@@ -222,7 +222,7 @@ public class Entity : MonoBehaviour {
 
 	//player v.s other
 	private void OnTriggerEnter(Collider other){
-		//Debug.Log (name + "collided with:" + other.name);
+		Debug.Log (name + "collided with:" + other.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
 			return;
@@ -249,11 +249,14 @@ public class Entity : MonoBehaviour {
 				// 	return;
 				// }
 
-				if(otherEnt.GetComponent<LaserBeam>()){
-					//Debug.Log("hello");
-					//StartCoroutine(otherEnt.GetComponent<LaserBeam>().Reset(otherEnt.transform.position));
-					otherEnt.GetComponent<LaserBeam>().ResetLaser();
-				}
+				//v2
+				// if(otherEnt.GetComponent<LaserBeam>()){
+				// 	//Debug.Log("hello");
+				// 	//StartCoroutine(otherEnt.GetComponent<LaserBeam>().Reset(otherEnt.transform.position));
+				// 	otherEnt.GetComponent<LaserBeam>().ResetLaser();
+				// }
+
+
 				// if(ps){
 				// 	ps.Play();
 				// }
@@ -264,7 +267,7 @@ public class Entity : MonoBehaviour {
 				//fire
 				if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
 				{
-					Debug.Log("Volcano!!!");
+					//Debug.Log("Volcano!!!");
 					GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
 					OilSplashHighRoot.transform.position = transform.position;
 					OilSplashHighRoot.transform.parent = transform;                    
@@ -309,5 +312,4 @@ public class Entity : MonoBehaviour {
 			}
 		}
 	}
-
 }
