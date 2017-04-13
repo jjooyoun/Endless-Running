@@ -12,6 +12,7 @@ public class Despawner : MonoBehaviour {
 	void Start(){
 		EventManager.Instance.finishedSpawningEvent.AddListener(FinishedSpawning);
 		EventManager.Instance.spawningNumEvent.AddListener(SetSpawnerNum);
+		EventManager.Instance.spawnerDestroyedEvent.AddListener (OnSpawnerDestroyed);
 	}
 
 	void OnTriggerEnter (Collider other) {
@@ -34,7 +35,7 @@ public class Despawner : MonoBehaviour {
 
 			CheckNextLevel();
 		}
-
+		other.gameObject.GetComponent<Collider> ().isTrigger = false;
         GameObjectUtil.Destroy(other.gameObject);
 	}
 
@@ -47,6 +48,17 @@ public class Despawner : MonoBehaviour {
 	public void SetSpawnerNum(int spawnerNum){
 		spawnerTotal = spawnerNum;
 		Debug.Log("spawnerTotal:" + spawnerTotal);
+		CheckNextLevel();
+	}
+
+	public void OnSpawnerDestroyed(Entity ent){
+		spawnerDestroyed++;
+		Entity.DisableMeshCutOut(ent);
+		PowerUp pu = ent.GetComponent<PowerUp>();
+		if(pu){
+			pu.Invisiblify(false);
+		}
+		GameObjectUtil.Destroy(ent.gameObject);
 		CheckNextLevel();
 	}
 

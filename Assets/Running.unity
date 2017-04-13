@@ -5880,6 +5880,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  spawnerDestroyedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: EntityDestroyedEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!4 &1699898883
 Transform:
   m_ObjectHideFlags: 0
@@ -6445,7 +6450,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4100885917900320, guid: 5c30c50fe258cbd46b402c3165fd2636, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.5854697
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 4100885917900320, guid: 5c30c50fe258cbd46b402c3165fd2636, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6471,8 +6476,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 38
       objectReference: {fileID: 0}
-    - target: {fileID: 1433758122483906, guid: 5c30c50fe258cbd46b402c3165fd2636, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 198941270604421072, guid: 5c30c50fe258cbd46b402c3165fd2636,
+        type: 2}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

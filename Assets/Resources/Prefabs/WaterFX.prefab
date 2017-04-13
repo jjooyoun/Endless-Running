@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4100885917900320}
   - component: {fileID: 199687085026255904}
   - component: {fileID: 198941270604421072}
+  - component: {fileID: 114158132847704586}
   m_Layer: 0
   m_Name: WaterFX
   m_TagString: Untagged
@@ -35,12 +36,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433758122483906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0720243, y: 0.5854697, z: 5.9893074}
+  m_LocalPosition: {x: 0.8, y: 2.81, z: 5.9893074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114158132847704586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433758122483906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936f86337d5a02848844aeef7ea9a216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198941270604421072
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -52,7 +64,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -96,7 +108,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1762219571
+  randomSeed: 1828319790
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2158,9 +2170,9 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
@@ -2294,7 +2306,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
@@ -2307,7 +2319,7 @@ ParticleSystem:
     collisionShape5: {fileID: 0}
     inside: 1
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     radiusScale: 1
   SubModule:
