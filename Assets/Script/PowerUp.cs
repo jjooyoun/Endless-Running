@@ -130,7 +130,7 @@ public class PowerUp : Entity {
             //ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
 			ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
 		   //play
-		   ent.PlayPEAtPosition( Resources.Load(WATER_FX_PATH) as GameObject, ent.transform.position, false, ent.transform);
+		   ent.PlayPEAtPosition( Resources.Load(WATER_FX_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);
 		   PowerUp th1s = (PowerUp)powerUp;
 		   th1s.Invisiblify(true);
 		   hasWater = !hasWater;

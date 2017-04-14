@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 199687085026255904}
   - component: {fileID: 198941270604421072}
   - component: {fileID: 114158132847704586}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WaterFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433758122483906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 2.81, z: 5.9893074}
+  m_LocalPosition: {x: 2.0720243, y: 1.02, z: 5.9893074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,10 +60,10 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433758122483906}
   serializedVersion: 5
-  lengthInSec: 0.75
+  lengthInSec: 1
   simulationSpeed: 1
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
@@ -108,12 +108,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1828319790
+  randomSeed: 1512321745
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 2
+      scalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:

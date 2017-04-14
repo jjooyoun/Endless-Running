@@ -9,6 +9,13 @@ public class WaterDestruction : MonoBehaviour {
 	private ParticleSystem ps;
 	// public bool start = false;
 
+	/// <summary>
+	/// This function is called when the object becomes enabled and active.
+	/// </summary>
+	// void OnEnable()
+	// {
+	// 	//Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Player"));
+	// }
 	// void Start(){
 	// 	ps = GetComponent<ParticleSystem>();
 	// }

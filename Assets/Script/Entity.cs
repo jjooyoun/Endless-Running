@@ -331,13 +331,13 @@ public class Entity : MonoBehaviour {
 	// }
 
 
-	public GameObject PlayPEAtPosition(GameObject PEGameObject, Vector3 position, bool autoDestroy = true, Transform followTarget = null){ // one off
+	public GameObject PlayPEAtPosition(GameObject PEGameObject, Vector3 position, bool autoDestroy = true, Transform followTarget = null, float yOffset = 0.0f){ // one off
 		if(PEGameObject){
 			GameObject PEFX = (GameObject)Instantiate(PEGameObject) as GameObject;
 			PEFX.transform.position = position;
 			if(followTarget){
 				FollowTarget ft = PEFX.AddComponent<FollowTarget>();
-				ft.offset = Vector3.zero;
+				ft.offset = new Vector3(0.0f, yOffset, 0.0f);
 				ft.target = followTarget;
 			}
 			ParticleSystem ps = PEFX.GetComponent<ParticleSystem>();
