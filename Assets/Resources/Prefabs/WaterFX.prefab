@@ -60,7 +60,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433758122483906}
   serializedVersion: 5
-  lengthInSec: 1
+  lengthInSec: 0.75
   simulationSpeed: 1
   looping: 1
   prewarm: 0
@@ -280,8 +280,8 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.30588236, g: 0.28235295, b: 0.9764706, a: 1}
+      minColor: {r: 0.15686275, g: 0, b: 0.6117647, a: 1}
+      maxColor: {r: 0, g: 0.41960785, b: 1, a: 1}
       minMaxState: 2
     startSize:
       scalar: 1
