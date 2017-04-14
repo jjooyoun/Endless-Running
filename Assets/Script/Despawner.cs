@@ -16,7 +16,7 @@ public class Despawner : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider other) {
-		//Debug.Log ("hello:" + other.name);
+		Debug.Log ("hello:" + other.name);
 		Entity ent = other.GetComponent<Entity>();
 		//Debug.Log("ent:" + ent);
 		if (ent) {

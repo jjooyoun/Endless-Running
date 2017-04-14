@@ -251,7 +251,7 @@ MonoBehaviour:
     type: 2}
   entityType: 1
   entityName: Walker
-  isOnFire: 0
+  InternalFX: []
 --- !u!114 &114510927158488686
 MonoBehaviour:
   m_ObjectHideFlags: 1
