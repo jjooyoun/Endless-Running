@@ -9,19 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
-  m_Name: GameSettingDefault
+  m_Name: test1
   m_EditorClassIdentifier: 
-  gameMode: 0
+  gameMode: 3
   lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
   fireReduxPoint: 5
-  spawnCycle: 2
-  objectSpeed: -0.09
+  spawnCycle: 0.5
+  objectSpeed: -0.5
   soundLevel: 1
-  enableJump: 1
+  enableJump: 0
   enableShake: 0
-  enableSound: 1
+  enableSound: 0
   currentLevel: 1
   isPaused: 0
   JUMP_KEY: 32
@@ -33,4 +33,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 4900000, guid: 41ab4910d1f274f739beea13e51c1eac, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: 3bf349f3a73b94193b12650ccc8a7a92, type: 3}
