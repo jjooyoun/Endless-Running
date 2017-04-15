@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour {
 	public static readonly string WALKER_NAME = "Walker";
 	public static readonly string GATE_NAME = "Gate";
 	public static readonly string BARRIER_NAME = "Barrier";
-	public static readonly string VOLCANO_NAME = "Volcano";
+	public static readonly string VOLCANO_NAME = "FirePowerUp";
 	public static readonly string TIE_FIGHTER_NAME = "TIE_Fighter";
 
 	public static readonly string MAX_SCALE_FX_PATH = "Prefabs/MaxScaleFX";
@@ -404,6 +404,7 @@ public class Entity : MonoBehaviour {
 				//fire
 				if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
 				{
+					Debug.Log ("FirePowerUp test");
 					GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
 					OilSplashHighRoot.transform.position = transform.position;
 					OilSplashHighRoot.transform.parent = transform;                    
