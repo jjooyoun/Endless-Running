@@ -55,6 +55,8 @@ public class Entity : MonoBehaviour {
 	public static readonly string MAX_SCALE_FX_PATH = "Prefabs/MaxScaleFX";
 	public static readonly string WATER_FX_PATH = "Prefabs/WaterFX";
 
+	public static readonly string WATER_FX_COLLIDER = "Water_AOE";
+
 
 	public void Init(){
 		//Debug.Log (entityName + ":init");
@@ -356,13 +358,20 @@ public class Entity : MonoBehaviour {
 		//return otherEnt.entityType != ENTITY_TYPE.POWER_UP && transform.localScale.x < PowerUp.MAX_SCALE;
 		return (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) && transform.localScale.x < PowerUp.MAX_SCALE;
 	}
+
 	
 	//player v.s other
-	void OnCollisionEnter(Collision other){
+	void OnTriggerEnter(Collider other){
+		Debug.Log(name + ":collided with - " + other.gameObject.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
+			//Debug.Log("entity_type:" + entityType);
+			if(entityType == ENTITY_TYPE.ENEMY && other.name == WATER_FX_COLLIDER){
+				Debug.Log("water destroyed:" + name);
+				EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
+			}
 			//set trigger
-			gameObject.GetComponent<Collider>().isTrigger = true;//go through and hit despawner later
+			//gameObject.GetComponent<Collider>().isTrigger = true;//go through and hit despawner later
 			//Debug.Log("return????");
 			return;
 		}
