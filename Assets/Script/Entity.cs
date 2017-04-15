@@ -315,11 +315,12 @@ public class Entity : MonoBehaviour {
 				//Debug.Log("powerup???");
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
-				if(isOnFire)
-					return;
+				
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
 				//fire
+				if(isOnFire)
+					return;
 				
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY) {
