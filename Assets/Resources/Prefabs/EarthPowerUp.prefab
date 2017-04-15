@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 54878015787413802}
   - component: {fileID: 82691209713067038}
   m_Layer: 0
-  m_Name: Shield
+  m_Name: EarthPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,9 +192,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
+  onCollidedFX: {fileID: 0}
   entityType: 3
-  entityName: Shield
-  isOnFire: 0
+  entityName: EarthPowerUp
+  InternalFX: []
+  PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 2100000, guid: 186c5a50edde54f8db5057a24417ab54, type: 2}
   powerUptype: 2
 --- !u!114 &114925304604171680

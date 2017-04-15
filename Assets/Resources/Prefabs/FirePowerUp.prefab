@@ -26,9 +26,9 @@ GameObject:
   - component: {fileID: 54670370517331134}
   - component: {fileID: 82942550171710036}
   - component: {fileID: 65676337864840832}
-  - component: {fileID: 114983091157937922}
+  - component: {fileID: 114233614237708716}
   m_Layer: 0
-  m_Name: FirePower
+  m_Name: FirePowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,6 +409,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114233614237708716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1113448211396274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d89a9a31837f71419d1111067959ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 0}
+  onCollidedFX: {fileID: 0}
+  entityType: 3
+  entityName: FirePowerUp
+  InternalFX: []
+  PowerupFX: {fileID: 0}
+  invisibleMaterial: {fileID: 0}
+  powerUptype: 1
 --- !u!114 &114367163201667932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,23 +452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSpeed: -0.5
   startMoving: 1
---- !u!114 &114983091157937922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1113448211396274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b1d417a1ec06eb40acc087b03271f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  child: {fileID: 0}
-  onCollidedFX: {fileID: 0}
-  entityType: 1
-  entityName: Volcano
-  isOnFire: 0
-  InternalFX: []
 --- !u!198 &198185845979490598
 ParticleSystem:
   m_ObjectHideFlags: 1

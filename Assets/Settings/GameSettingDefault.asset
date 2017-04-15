@@ -17,7 +17,7 @@ MonoBehaviour:
   enemyScorePoint: 10
   fireReduxPoint: 5
   spawnCycle: 2
-  objectSpeed: -0.09
+  objectSpeed: -0.5
   soundLevel: 1
   enableJump: 1
   enableShake: 0
@@ -33,4 +33,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 4900000, guid: 287600e8bffe1cb40ae787b57c72ba40, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: acc36481237b94d5e9e15d5ceeab535a, type: 3}
