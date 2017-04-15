@@ -235,107 +235,11 @@ public class Entity : MonoBehaviour {
 		PowerUp.PowerUpWaterDown(this);
 	}
 
-	// private void OnCollisionEnter(Collision other){
-	// 	//Debug.Log (name + "collided with:" + other.gameObject.name);
-	// 	//Debug.Log (name + "collided with:" + other.name);
-	// 	//player-first
-	// 	if (entityType != ENTITY_TYPE.PLAYER) {
-	// 		return;
-	// 	}
-	// 	//send colliding event accordingly
-	// 	Entity otherEnt = other.gameObject.GetComponent<Entity>();
-	// 	if (otherEnt) {
-	// 		if (otherEnt.entityType == ENTITY_TYPE.PLAYER || otherEnt.entityType == entityType) { // what if we have to handle other player ? NOTE to make use of guid later on
-	// 			return;
-	// 		}
-
-	// 		playEntSoundOnCollided(this, otherEnt); // hit sound
-	// 		if(otherEnt.onCollidedFX){
-	// 			Debug.Log ("collidedFX:" + otherEnt.onCollidedFX.name);
-	// 			GameObject collidedFX = (GameObject)Instantiate(otherEnt.onCollidedFX) as GameObject;
-	// 			collidedFX.transform.position = transform.position;
-	// 			collidedFX.GetComponent<ParticleSystem>().Play();
-	// 		}
-	// 		//player collided with powerup
-	// 		if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {
-	// 			//Debug.Log ("powerup!!!");
-	// 			PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
-	// 		} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
-	// 			//has shield just destroying shield without broadcast event
-	// 			// if (PowerUp.hasShield) {
-	// 			// 	Debug.Log ("has Shield");
-	// 			// 	PowerUp.PowerUpShieldDown (this);
-	// 			// 	//OnShieldDown();
-	// 			// 	return;
-	// 			// }
-
-	// 			//v2
-	// 			// if(otherEnt.GetComponent<LaserBeam>()){
-	// 			// 	//Debug.Log("hello");
-	// 			// 	//StartCoroutine(otherEnt.GetComponent<LaserBeam>().Reset(otherEnt.transform.position));
-	// 			// 	otherEnt.GetComponent<LaserBeam>().ResetLaser();
-	// 			// }
-
-
-	// 			// if(ps){
-	// 			// 	ps.Play();
-	// 			// }
-	// 			//Debug.Log("particle:" + otherEnt.onCollidedFX);
-
-	// 			//changing shader
-	// 			EnableMeshCutOut(this, otherEnt);
-	// 			//fire
-	// 			if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
-	// 			{
-	// 				//Debug.Log("Volcano!!!");
-	// 				GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
-	// 				OilSplashHighRoot.transform.position = transform.position;
-	// 				OilSplashHighRoot.transform.parent = transform;                    
-	// 				ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
-	// 				Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
-	// 				Material curBallMat = GetComponent<Renderer>().material;
-	// 				StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f));
-	// 				isOnFire = true;
-	// 			}
-
-	// 			if (otherEnt.entityType == ENTITY_TYPE.ENEMY && this.gameObject.transform.localScale.x >= PowerUp.MAX_SCALE/*otherEnt.gameObject.transform.localScale.x*/) {
-
-	// 				EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
-	// 				if (!isOnFire && otherEnt.entityName == WALKER_NAME && this.gameObject.transform.localScale.x > otherEnt.gameObject.transform.localScale.x) {
-	// 					return;
-	// 				}
-
-
-
-	// 			} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE /*&& this.gameObject.transform.localScale.x < otherEnt.gameObject.transform.localScale.x*/) {
-	// 				EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
-	// 				//transition to a different scene
-	// 				if(isOnFire){ //CRUSH EVERYTHING, Not even GATE
-	// 					return;
-	// 				}
-
-	// 				if(PowerUp.ScaleDown (this.transform)){
-	// 					StopInternalFX();
-	// 				}
-	// 				PowerUp.ScaleDown (this.transform);
-	// 				if(otherEnt.entityName == BARRIER_NAME){
-	// 					EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
-	// 				}
-	// 			} else { //smaller flash
-	// 				//flash lose live
-	// 				//Debug.Log("hello");
-	// 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
-	// 			}
-	// 		}
-	// 	}
-
-	// 	other.gameObject.GetComponent<Collider>().isTrigger = true;
-	// }
-
 
 	public GameObject PlayPEAtPosition(GameObject PEGameObject, Vector3 position, bool autoDestroy = true, Transform followTarget = null, float yOffset = 0.0f){ // one off
 		if(PEGameObject){
 			GameObject PEFX = (GameObject)Instantiate(PEGameObject) as GameObject;
+			Debug.Log("FX:" + PEFX.name);
 			PEFX.transform.position = position;
 			if(followTarget){
 				FollowTarget ft = PEFX.AddComponent<FollowTarget>();
@@ -385,7 +289,7 @@ public class Entity : MonoBehaviour {
 
 			playEntSoundOnCollided(this, otherEnt); // hit sound
 
-			if(FlashAble(otherEnt)){//snow ball small
+			if(!isOnFire && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;
@@ -405,7 +309,7 @@ public class Entity : MonoBehaviour {
 				StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f));
 				isOnFire = true;
 			}
-			
+
            //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {
 				//Debug.Log("powerup???");

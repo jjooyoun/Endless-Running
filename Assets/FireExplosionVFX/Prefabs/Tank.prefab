@@ -208,7 +208,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
-  onCollidedFX: {fileID: 0}
+  onCollidedFX: {fileID: 1568030154736012, guid: 5ddc09408b4f94a68b36ccb8da1a629b,
+    type: 2}
   entityType: 1
   entityName: Tank
-  isOnFire: 0
   InternalFX: []
