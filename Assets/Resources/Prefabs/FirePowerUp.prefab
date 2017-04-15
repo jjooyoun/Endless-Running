@@ -174,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1113448211396274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22773027, y: 3, z: -0.31656075}
+  m_LocalPosition: {x: -0.22773027, y: 0.73, z: -0.31656075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4343173151270330}
@@ -423,7 +423,7 @@ MonoBehaviour:
   child: {fileID: 0}
   onCollidedFX: {fileID: 0}
   entityType: 3
-  entityName: FirePowerUpFloating
+  entityName: FirePowerUp
   InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 0}
