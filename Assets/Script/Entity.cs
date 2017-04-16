@@ -63,6 +63,8 @@ public class Entity : MonoBehaviour {
 	private ParticleSystem[] fxChildren;
 	//public bool Invisible = false;
 	//MATERIAL
+	private Material originalMaterial;
+	private IEnumerator isOnFireCoRoutine;
 
 	public void Init(){
 		meshes = GetComponents<MeshRenderer>();
@@ -71,6 +73,8 @@ public class Entity : MonoBehaviour {
 		}
 		fxChildren = GetComponentsInChildren<ParticleSystem>();
 		//Debug.Log(name + " meshes:" + meshes.Length);
+		if(entityType == ENTITY_TYPE.PLAYER)
+			originalMaterial = GetComponent<Renderer>().material; //for player
 	}
 
 	void Start(){
@@ -277,6 +281,23 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
+	bool PlayFireFX(Entity otherEnt){
+		if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
+		{
+				Debug.Log ("FirePowerUp test");
+				GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
+				OilSplashHighRoot.transform.position = transform.position;
+				OilSplashHighRoot.transform.parent = transform;                    
+				ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
+				Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
+				Material curBallMat = GetComponent<Renderer>().material;
+				isOnFireCoRoutine = playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f);
+				StartCoroutine(isOnFireCoRoutine);
+				isOnFire = true;
+		}
+
+		return isOnFire;
+	}
 	//player v.s other
 	void OnTriggerEnter(Collider other){
 		//Debug.Log(name + ":collided with - " + other.gameObject.name);
@@ -310,22 +331,20 @@ public class Entity : MonoBehaviour {
 			
 
 			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
-			if(otherEnt.entityName == VOLCANO_NAME && !isOnFire)
-			{
-				Debug.Log ("FirePowerUp test");
-				GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
-				OilSplashHighRoot.transform.position = transform.position;
-				OilSplashHighRoot.transform.parent = transform;                    
-				ParticleSystem OilSplashHighRootParticleSystem = OilSplashHighRoot.GetComponent<ParticleSystem>();
-				Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
-				Material curBallMat = GetComponent<Renderer>().material;
-				StartCoroutine(playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f));
-				isOnFire = true;
-			}
+			PlayFireFX(otherEnt);
 
            //player collided with powerup
-			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP && !isOnFire) {
+			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP /*&& !isOnFire*/) {
 				//Debug.Log("powerup???");
+				if(isOnFire){
+					 StopCoroutine(isOnFireCoRoutine);
+					 GetComponent<Renderer>().material = originalMaterial;
+					 isOnFire = false;
+				}
+
+				if(PlayFireFX(otherEnt)){
+					return;
+				}
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				
