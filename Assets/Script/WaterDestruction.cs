@@ -33,7 +33,7 @@ public class WaterDestruction : MonoBehaviour {
 	void OnParticleCollision(GameObject other) {
 		//Debug.Log ("water collided w/ :" + other.name);
 		Entity otherEnt = other.GetComponent<Entity> ();
-		if (otherEnt && otherEnt.entityType == Entity.ENTITY_TYPE.ENEMY) {
+		if (otherEnt && (otherEnt.entityType == Entity.ENTITY_TYPE.ENEMY || otherEnt.entityType == Entity.ENTITY_TYPE.OBSTACLE)) {
 			Debug.Log ("water collided w/ :" + otherEnt.name);
 			EventManager.Instance.spawnerDestroyedEvent.Invoke (otherEnt);
 		}

@@ -357,7 +357,7 @@ public class Entity : MonoBehaviour {
 			
 			
 
-			if(!PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
+			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;
@@ -389,7 +389,7 @@ public class Entity : MonoBehaviour {
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
 				//fire
-				if(PowerUp.hasFire){
+				if(PowerUp.hasFire || PowerUp.hasWater){
 					otherEnt.Invisiblify(true);
 					return;
 				}
