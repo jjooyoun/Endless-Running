@@ -57,6 +57,7 @@ public class PowerUp : Entity {
 		//hide power up
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.Invisiblify(true);
+		//Invisiblify(true);
 		//th1s.gameObject.SetActive (false);
 		//scale entity
 		if(!ScaleUp (ent.gameObject.transform)){
@@ -161,14 +162,14 @@ public class PowerUp : Entity {
 
 	public PowerUpType powerUptype = PowerUpType.SCALE_UP;
 
-	public void Invisiblify(bool hide){
-		if(hide && invisibleMaterial){
-			GetComponent<Renderer>().material = invisibleMaterial;
-		}else{
-			GetComponent<Renderer>().material = oldMaterial;
-		}
+	// public void Invisiblify(bool hide){
+	// 	if(hide && invisibleMaterial){
+	// 		GetComponent<Renderer>().material = invisibleMaterial;
+	// 	}else{
+	// 		GetComponent<Renderer>().material = oldMaterial;
+	// 	}
 		
-	}
+	// }
 
 	void Start(){
 		entityType = ENTITY_TYPE.POWER_UP;

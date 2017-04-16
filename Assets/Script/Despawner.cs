@@ -28,10 +28,11 @@ public class Despawner : MonoBehaviour {
 
 			
 			Entity.DisableMeshCutOut(ent);
-			PowerUp pu = ent.GetComponent<PowerUp>();
-			if(pu){
-				pu.Invisiblify(false);
-			}
+			ent.Invisiblify(false);
+			// PowerUp pu = ent.GetComponent<PowerUp>();
+			// if(pu){
+			// 	pu.Invisiblify(false);
+			// }
 
 			CheckNextLevel();
 		}

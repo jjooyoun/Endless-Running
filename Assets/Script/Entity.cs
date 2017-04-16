@@ -58,17 +58,18 @@ public class Entity : MonoBehaviour {
 	public static readonly string WATER_FX_COLLIDER = "Water_AOE";
 
 
+	//HIDE
+	private MeshRenderer[] meshes;
+	private ParticleSystem[] fxChildren;
+	//public bool Invisible = false;
+	//MATERIAL
+
 	public void Init(){
-		//Debug.Log (entityName + ":init");
-		//audioSource = GetComponent<AudioSource> ();
-		//ps = GetComponentInChildren<ParticleSystem>();
-		//Debug.Log("entityName:" + entityName);
-		// if(entityName == TIE_FIGHTER_NAME){ //quick and dirty solution
-		// 	//ebug.Log("spawn laser beam!!!");
-		// 	GameObject laserBeamGo = GameObject.Instantiate(Resources.Load(LASER_BEAM_PATH) as GameObject);
-		// 	LaserBeam lb = laserBeamGo.GetComponent<LaserBeam>();
-		// 	lb.Init(transform);
-		// }
+		meshes = GetComponents<MeshRenderer>();
+		if(meshes.Length == 0){
+			meshes = GetComponentsInChildren<MeshRenderer>();
+		}
+		fxChildren = GetComponentsInChildren<ParticleSystem>();
 	}
 
 	void Start(){
@@ -263,6 +264,20 @@ public class Entity : MonoBehaviour {
 		return (otherEnt.entityType == ENTITY_TYPE.ENEMY && transform.localScale.x < PowerUp.MAX_SCALE || otherEnt.entityType == ENTITY_TYPE.OBSTACLE && transform.localScale.x < PowerUp.MAX_SCALE ) ;
 	}
 
+	//TO DO : Performance tuning
+	public void Invisiblify(bool hide){
+		//Debug.Log("hide:" + hide);
+
+		if(meshes.Length == 0 || fxChildren.Length == 0)
+			return;
+		foreach(MeshRenderer mr in meshes){
+				mr.enabled = !hide;
+			}
+
+		foreach(ParticleSystem ps in fxChildren){
+			ps.gameObject.SetActive(!hide);
+		}
+	}
 	
 	//player v.s other
 	void OnTriggerEnter(Collider other){

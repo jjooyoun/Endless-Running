@@ -180,7 +180,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -221,6 +221,7 @@ MonoBehaviour:
   onCollidedFX: {fileID: 0}
   entityType: 3
   entityName: WaterPowerUpFloating
+  Invisible: 0
   InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 0}
