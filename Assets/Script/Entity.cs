@@ -332,8 +332,10 @@ public class Entity : MonoBehaviour {
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
 				//fire
-				if(isOnFire)
+				if(isOnFire){
+					otherEnt.Invisiblify(true);
 					return;
+				}
 				
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY) {
