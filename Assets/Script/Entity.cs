@@ -70,6 +70,7 @@ public class Entity : MonoBehaviour {
 			meshes = GetComponentsInChildren<MeshRenderer>();
 		}
 		fxChildren = GetComponentsInChildren<ParticleSystem>();
+		//Debug.Log(name + " meshes:" + meshes.Length);
 	}
 
 	void Start(){
@@ -265,23 +266,20 @@ public class Entity : MonoBehaviour {
 	}
 
 	//TO DO : Performance tuning
-	public void Invisiblify(bool hide){
-		//Debug.Log("hide:" + hide);
-
-		if(meshes.Length == 0 || fxChildren.Length == 0)
-			return;
+	public virtual void Invisiblify(bool hide){
+		Debug.Log(name + "/hide:" + hide);
 		foreach(MeshRenderer mr in meshes){
 				mr.enabled = !hide;
-			}
+		}
 
 		foreach(ParticleSystem ps in fxChildren){
 			ps.gameObject.SetActive(!hide);
 		}
 	}
-	
+
 	//player v.s other
 	void OnTriggerEnter(Collider other){
-		Debug.Log(name + ":collided with - " + other.gameObject.name);
+		//Debug.Log(name + ":collided with - " + other.gameObject.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
 			//Debug.Log("entity_type:" + entityType);

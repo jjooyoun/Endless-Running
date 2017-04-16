@@ -174,7 +174,7 @@ public class PowerUp : Entity {
 	void Start(){
 		entityType = ENTITY_TYPE.POWER_UP;
 		base.Init ();
-		oldMaterial = GetComponent<Renderer>().material;
+		//oldMaterial = GetComponent<Renderer>().material;
     }
 
 	public static void PowerUpHandler(Entity ent, Entity th1s){
