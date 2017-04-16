@@ -33,4 +33,8 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
+<<<<<<< Updated upstream
   spawnCsvFile: {fileID: 4900000, guid: bf84abf826a2043739560b1d346ee0db, type: 3}
+=======
+  spawnCsvFile: {fileID: 4900000, guid: 4df2e44a914da4c71ab75ef3f0af8c54, type: 3}
+>>>>>>> Stashed changes
