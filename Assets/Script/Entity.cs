@@ -322,6 +322,12 @@ public class Entity : MonoBehaviour {
 			}
 
 			playEntSoundOnCollided(this, otherEnt); // hit sound
+			//shield
+			if(PowerUp.hasShield){
+				//PowerUp.PowerUpShieldDown(this);
+				return;
+			}
+			
 
 			if(!isOnFire && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
@@ -332,6 +338,7 @@ public class Entity : MonoBehaviour {
 
 			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
 			PlayFireFX(otherEnt);
+			
 
            //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP /*&& !isOnFire*/) {
@@ -347,6 +354,7 @@ public class Entity : MonoBehaviour {
 				}
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
+				
 				
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
