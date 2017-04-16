@@ -50,7 +50,10 @@ public class Entity : MonoBehaviour {
 	public static readonly string MAX_SCALE_FX_PATH = "Prefabs/MaxScaleFX";
 	public static readonly string WATER_FX_PATH = "Prefabs/WaterFX";
 
+	public static readonly string IMPACT_FX_PATH = "Prefabs/ImpactFX";
+
 	public static readonly string WATER_FX_COLLIDER = "Water_AOE";
+
 
 	
 
@@ -351,24 +354,16 @@ public class Entity : MonoBehaviour {
 
 			playEntSoundOnCollided(this, otherEnt); // hit sound
 			//shield
-			// if(PowerUp.hasShield){
-			// 	if(currentPowerupType >= FXRangeBegin && currentPowerupType <= FXRangeEnd){ //within range of down call
-			// 		Debug.Log("invoking down call");
-			// 		DownCalls[currentPowerupType].Invoke(this);
-			// 	}else{
-			// 		currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
-			// 		Debug.Log("hello!!!");
-			// 	}
-			// 	return;
-			// }
+			
 			
 
-			if(!PowerUp.hasFire && FlashAble(otherEnt)){//snow ball small
+			if(!PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;
 			}
 			
+			//NOT FLASHABLE
 			//play collided FX
 			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
 			
@@ -387,7 +382,10 @@ public class Entity : MonoBehaviour {
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				
-				
+				if(PowerUp.hasShield){
+					return;
+				}
+
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
 				//fire
