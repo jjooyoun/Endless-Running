@@ -221,11 +221,10 @@ MonoBehaviour:
   onCollidedFX: {fileID: 0}
   entityType: 3
   entityName: WaterPowerUpFloating
-  Invisible: 0
   InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 0}
-  powerUptype: 3
+  powerUptype: 4
 --- !u!114 &114474406924700764
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,12 +16,13 @@ MonoBehaviour:
   powerupScorePoint: 1
   enemyScorePoint: 10
   fireReduxPoint: 5
-  spawnCycle: 5
+  spawnCycle: 1
   objectSpeed: -0.5
   soundLevel: 0.8
   enableJump: 1
   enableShake: 0
   enableSound: 0
+  currentLevel: 1
   isPaused: 0
   JUMP_KEY: 32
   LEFT_KEY: 97

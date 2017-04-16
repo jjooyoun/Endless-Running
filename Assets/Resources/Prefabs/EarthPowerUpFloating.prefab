@@ -198,7 +198,7 @@ MonoBehaviour:
   InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 2100000, guid: 186c5a50edde54f8db5057a24417ab54, type: 2}
-  powerUptype: 2
+  powerUptype: 3
 --- !u!114 &114515530910673336
 MonoBehaviour:
   m_ObjectHideFlags: 1

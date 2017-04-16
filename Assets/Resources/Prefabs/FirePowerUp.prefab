@@ -427,7 +427,7 @@ MonoBehaviour:
   InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 0}
-  powerUptype: 1
+  powerUptype: 2
 --- !u!114 &114367163201667932
 MonoBehaviour:
   m_ObjectHideFlags: 1

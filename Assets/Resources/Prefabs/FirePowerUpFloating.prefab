@@ -440,7 +440,7 @@ MonoBehaviour:
   InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 0}
-  powerUptype: 1
+  powerUptype: 2
 --- !u!114 &114860406789046098
 MonoBehaviour:
   m_ObjectHideFlags: 1
