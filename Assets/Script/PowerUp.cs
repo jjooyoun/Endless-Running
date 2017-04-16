@@ -9,7 +9,9 @@ public class PowerUp : Entity {
 	public ParticleSystem PowerupFX;
 	private static float SCALING_FACTOR = 0.15f;
 	private static int LEVEL = 5;
-	public static float MAX_SCALE = 1.15f + LEVEL*SCALING_FACTOR;
+
+	private static float BASE_SCALE = 1.15f;
+	public static float MAX_SCALE = BASE_SCALE + LEVEL*SCALING_FACTOR;
     public static bool hasShield = false;
 
 	public static bool hasWater = false;
@@ -51,7 +53,7 @@ public class PowerUp : Entity {
 
     public static bool ScaleDown(Transform entTransform)
     {
-        if (entTransform.localScale.x <= 1)
+        if (entTransform.localScale.x <= BASE_SCALE)
             return false;
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
