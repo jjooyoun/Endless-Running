@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
   m_Name: GameSettingLv5
   m_EditorClassIdentifier: 
-  gameMode: 0
+  gameMode: 1
   lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
   fireReduxPoint: 5
-  spawnCycle: 1
-  objectSpeed: -0.5
+  spawnCycle: 1.5
+  objectSpeed: -0.15
   soundLevel: 1
   enableJump: 1
   enableShake: 0

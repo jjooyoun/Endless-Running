@@ -11,17 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
   m_Name: GameSettingTestTut
   m_EditorClassIdentifier: 
-  gameMode: 3
+  gameMode: 2
   lives: 10
   powerupScorePoint: 1
   enemyScorePoint: 10
   fireReduxPoint: 5
-  spawnCycle: 2
-  objectSpeed: -0.15
+  spawnCycle: 1
+  objectSpeed: -0.2
   soundLevel: 1
   enableJump: 0
   enableShake: 0
   enableSound: 1
+  currentLevel: 1
   isPaused: 0
   JUMP_KEY: 32
   LEFT_KEY: 97
@@ -32,4 +33,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 4900000, guid: 226222162e01f4ceb876a38f5752683f, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: 9af664fde9f9f3a42831a16a0bb8eb80, type: 3}
