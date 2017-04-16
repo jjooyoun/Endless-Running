@@ -26,7 +26,7 @@ public class Entity : MonoBehaviour {
 
 	public ENTITY_TYPE entityType =  ENTITY_TYPE.PLAYER;
 	public string entityName = "Entity";
-	
+
 	private bool isAtMaxScale = false;
 	public bool IsAtMaxScale{
 		get{return isAtMaxScale;}
@@ -220,7 +220,6 @@ public class Entity : MonoBehaviour {
         ps.Stop();
         Destroy(ps.gameObject);
         r.material = endMat;
-		isOnFire = false;
     }
 
 	void Update(){
