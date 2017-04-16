@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -57,6 +58,7 @@ public class Entity : MonoBehaviour {
 
 	public static readonly string WATER_FX_COLLIDER = "Water_AOE";
 
+	
 
 	//HIDE
 	private MeshRenderer[] meshes;
@@ -65,6 +67,53 @@ public class Entity : MonoBehaviour {
 	//MATERIAL
 	private Material originalMaterial;
 	private IEnumerator isOnFireCoRoutine;
+
+	private static readonly int FXRangeBegin = 1;
+	private static readonly int FXRangeEnd = 3;
+
+	private int currentPowerupType = -1;
+	//the FX that is spawned
+	protected GameObject currentSpawnFX;
+	public GameObject SpawnFX{
+		get{return currentSpawnFX;}
+		set{currentSpawnFX = value;}
+	}
+
+	public static void ShieldDown(Entity ent){
+		Debug.Log("ent:" + ent.name);
+		PowerUp.PowerUpShieldDown(ent);
+		//Destroy(ent.SpawnFX.gameObject);
+	}
+
+	public void StopFireFX(){
+		StopCoroutine(isOnFireCoRoutine);
+		GetComponent<Renderer>().material = originalMaterial;
+		isOnFire = false;
+		if(SpawnFX)
+			Destroy(SpawnFX);
+	}
+
+	static void FireDown(Entity ent){
+		//PowerUp.FireDown(ent);
+		ent.StopFireFX();
+	}
+
+	static void WaterDown(Entity ent){
+		PowerUp.PowerUpWaterDown(ent);
+		if(ent.SpawnFX)
+			Destroy(ent.SpawnFX);
+	}
+	//
+	private static Action<Entity>[] DownCalls = {
+		FireDown,
+        ShieldDown,
+		WaterDown
+		
+    };
+
+	private static Action<Entity, Entity>[] UpCalls = {
+
+	};
 
 	public void Init(){
 		meshes = GetComponents<MeshRenderer>();
@@ -234,11 +283,14 @@ public class Entity : MonoBehaviour {
 
 	//get schedule from PowerUp.ShieldDw
 	public void ShieldDownWrapper(){
-		PowerUp.PowerUpShieldDown(this);
+		//PowerUp.PowerUpShieldDown(this);
+		Debug.Log("shield down wrapper:" + name);
+		Entity.ShieldDown(this);
 	}
 
 	public void WaterDownWrapper(){
-		PowerUp.PowerUpWaterDown(this);
+		//PowerUp.PowerUpWaterDown(this);
+		Entity.WaterDown(this);
 	}
 
 
@@ -271,7 +323,7 @@ public class Entity : MonoBehaviour {
 
 	//TO DO : Performance tuning
 	public virtual void Invisiblify(bool hide){
-		Debug.Log(name + "/hide:" + hide);
+		//Debug.Log(name + "/hide:" + hide);
 		foreach(MeshRenderer mr in meshes){
 				mr.enabled = !hide;
 		}
@@ -313,7 +365,7 @@ public class Entity : MonoBehaviour {
 			//Debug.Log("return????");
 			return;
 		}
-		Debug.Log (name + "collided with:" + other.gameObject.name);
+		//Debug.Log (name + "collided with:" + other.gameObject.name);
 		//send colliding event accordingly
 		Entity otherEnt = other.gameObject.GetComponent<Entity>();
 		if (otherEnt) {
@@ -323,10 +375,16 @@ public class Entity : MonoBehaviour {
 
 			playEntSoundOnCollided(this, otherEnt); // hit sound
 			//shield
-			if(PowerUp.hasShield){
-				//PowerUp.PowerUpShieldDown(this);
-				return;
-			}
+			// if(PowerUp.hasShield){
+			// 	if(currentPowerupType >= FXRangeBegin && currentPowerupType <= FXRangeEnd){ //within range of down call
+			// 		Debug.Log("invoking down call");
+			// 		DownCalls[currentPowerupType].Invoke(this);
+			// 	}else{
+			// 		currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
+			// 		Debug.Log("hello!!!");
+			// 	}
+			// 	return;
+			// }
 			
 
 			if(!isOnFire && FlashAble(otherEnt)){//snow ball small
@@ -335,15 +393,27 @@ public class Entity : MonoBehaviour {
 				return;
 			}
 			
-
+			//play collided FX
 			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
 			PlayFireFX(otherEnt);
 			
 
            //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP /*&& !isOnFire*/) {
+				Debug.Log("currentpowerupType:" + currentPowerupType);
+				//down the current powerup
+				if(currentPowerupType >= FXRangeBegin && currentPowerupType <= FXRangeEnd){ //within range of down call
+					Debug.Log("invoking down call");
+					DownCalls[currentPowerupType-1].Invoke(this);
+				}else{
+					currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
+					Debug.Log("hello!!!");
+				}
+				//prevPowerupType = currentPowerupType;
+				//currentPowerupType = otherEnt.GetComponent<PowerUp>().powerUptype;
 				//Debug.Log("powerup???");
-				if(isOnFire){
+
+				/*if(isOnFire){
 					 StopCoroutine(isOnFireCoRoutine);
 					 GetComponent<Renderer>().material = originalMaterial;
 					 isOnFire = false;
@@ -351,7 +421,8 @@ public class Entity : MonoBehaviour {
 
 				if(PlayFireFX(otherEnt)){
 					return;
-				}
+				}*/
+				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				
