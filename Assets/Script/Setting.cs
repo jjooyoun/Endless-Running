@@ -139,6 +139,10 @@ public class Setting : Singleton<Setting> {
 
 	//call by level selector
 	public void StartGame(int index){
+		//reset default effect
+		PowerUp.hasFire = false;
+		PowerUp.hasWater = false;
+		PowerUp.hasShield = false;
 		setGameSetting(gameSettings[index]);
 	}
 
