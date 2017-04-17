@@ -8,7 +8,7 @@ public class CharacterSelector : MonoBehaviour {
     public List<GameObject> characterList;
     public int index = 0;
     public Text charName;
-    public string[] charNameList = { "SnowBall", "SnowBall2" };
+    public string[] charNameList = { "SnowBall", "FireBall" };
 
     void Start () {
         GameObject[] character = Resources.LoadAll<GameObject>("Prefabs/Character");
