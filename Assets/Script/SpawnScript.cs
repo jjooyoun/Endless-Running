@@ -137,7 +137,7 @@ public class SpawnScript : MonoBehaviour {
 		if (!spawning || ( !tutorialMode && !csvParser.isLoaded))
 			return;
         timeElapsed += Time.deltaTime;
-
+		
 		// Tutorial Mode
 		if (timeElapsed > spawnCycle && tutorialMode == true) {
 			int spawnerIndex = a[UnityEngine.Random.Range (0, a.Length)];
@@ -148,6 +148,7 @@ public class SpawnScript : MonoBehaviour {
 		}
 
 		if (timeElapsed > spawnCycle * currentRow && tutorialMode == false) {
+			//Debug.Log("spawn at time:" + timeElapsed);
 			//Debug.Log("numRows:" + csvParser.NumRows());
 			if (currentRow == csvParser.NumRows()) { // finished spawning
 				EventManager.Instance.finishedSpawningEvent.Invoke();

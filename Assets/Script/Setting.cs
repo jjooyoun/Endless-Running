@@ -133,6 +133,7 @@ public class Setting : Singleton<Setting> {
 		//StartGame(gameSetting.currentLevel); //-1
 		//go back to the level selector
 		//Debug.Log("load completelevel");
+		//GameObjectUtil.ClearPool();
 		LoadLevelCompletescene();
 	}
 
@@ -162,6 +163,10 @@ public class Setting : Singleton<Setting> {
 		gameSetting.isPaused = false;
 		//Time.timeScale = 1.0f;
 		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
+	}
+
+	public void QuitGame(){
+		GameObjectUtil.ClearPool ();
 	}
 
 	public static void LoadLevelCompletescene(){
