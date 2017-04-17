@@ -16,8 +16,8 @@ MonoBehaviour:
   powerupScorePoint: 1
   enemyScorePoint: 10
   fireReduxPoint: 5
-  spawnCycle: 1.05
-  objectSpeed: -0.19
+  spawnCycle: 1.09375
+  objectSpeed: -1.1875
   soundLevel: 1
   enableJump: 0
   enableShake: 0
