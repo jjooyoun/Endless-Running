@@ -43,6 +43,12 @@ public class CharacterSelector : MonoBehaviour {
         setCharInfo();
     }
 
+    public void Select(){
+        string ball_mat_path = "Prefabs/Character" + "/" + charNameList[index];
+        PlayerPrefs.SetString("BALL_MAT_PATH", ball_mat_path);
+        Debug.Log("mat_path:" + ball_mat_path);
+    }
+
     private void setCharInfo() {
         charName.GetComponent<Text>().text = charNameList[index];
     }

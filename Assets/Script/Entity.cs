@@ -37,6 +37,8 @@ public class Entity : MonoBehaviour {
 	public static int MaxScaleFXIndex = 0;
 
 	public ParticleSystem[] InternalFX;
+
+	public static readonly string BALL_MAT_PATH = "BALL_MAT_PATH";
 	public static readonly string LASER_BEAM_PATH = "Prefabs/LaserBeam";
 	public static readonly string INVISIBLE_SPHERE_PATH = "Prefabs/InvisibleSphere";
 	public static readonly string FIRE_PATH = "Prefabs/OilSpashHighRoot";
@@ -57,10 +59,11 @@ public class Entity : MonoBehaviour {
 	public static readonly string BRICK_DESTROY_FX_PATH = "Prefabs/DestroyBrick";
 
 
-
 	public static readonly string FIRE_DOWN_WRAPPER = "FireDownWrapper";
 	public static readonly string WATER_DOWN_WRAPPER = "WaterDownWrapper";
 	public static readonly string SHIELD_DOWN_WRAPPER = "ShieldDownWrapper";
+
+	
 
 	//HIDE
 	private MeshRenderer[] meshes;
@@ -72,6 +75,7 @@ public class Entity : MonoBehaviour {
 		get{return originalMaterial;}
 		set{originalMaterial = value;}
 	}
+	private Renderer rend;
 
 	private IEnumerator isOnFireCoRoutine;
 
@@ -126,7 +130,7 @@ public class Entity : MonoBehaviour {
 	public void FireDownWrapper(){
 		Entity.FireDown(this);
 	}
-	
+
 	//
 	private static Action<Entity>[] DownCalls = {
 		FireDown,
@@ -142,8 +146,20 @@ public class Entity : MonoBehaviour {
 		}
 		fxChildren = GetComponentsInChildren<ParticleSystem>();
 		//Debug.Log(name + " meshes:" + meshes.Length);
-		if(entityType == ENTITY_TYPE.PLAYER)
-			originalMaterial = GetComponent<Renderer>().material; //for player
+		if(entityType == ENTITY_TYPE.PLAYER){
+			rend = GetComponent<Renderer>();
+			originalMaterial = rend.material; //for player
+			string ball_mat = PlayerPrefs.GetString(BALL_MAT_PATH, "");
+			//Debug.Log("BALL_MAT_PATH:" + ball_mat);
+			if(ball_mat != ""){
+				//Debug.Log("loading material!!! from:" + ball_mat);
+				//rend.material = Resources.Load(ball_mat, typeof(Material)) as Material;
+				GameObject ball = GameObject.Instantiate(Resources.Load(ball_mat) as GameObject);
+				rend.material = ball.GetComponent<Renderer>().material;
+				Destroy(ball);
+				originalMaterial = 	rend.material;
+			}
+		}
 	}
 
 	void Start(){
