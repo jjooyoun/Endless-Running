@@ -21,15 +21,28 @@ public class ScoreSystem : MonoBehaviour {
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
 	public static int count = 0; //  Static keyword makes this variable a Member of the class, not of any particular instance
+	private Dictionary<string, int> ScoreLUT = new Dictionary<string, int>();
 	private int lives = 10;
 	private int distances = 0;
 	private DistanceSystem distancesystem;
+
+	void SetUpScoreLUT(){
+		int[] scoreLUT = Setting.gameSetting.ScoresLUT;
+		string[] entNameLUT = Setting.gameSetting.EntityNameLUT;
+		int length = scoreLUT.Length;
+		for(int i = 0 ; i < length; i++){
+			ScoreLUT.Add(entNameLUT[i], scoreLUT[i]);
+		}
+		
+	}
+	
 
 	// Use this for initialization
 	void Start () {
 		lives = Setting.gameSetting.lives;
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 		SetText(countText, SCORE_TEXT, count.ToString());
+		SetUpScoreLUT();
 		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
 		//listen to event
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
@@ -54,18 +67,26 @@ public class ScoreSystem : MonoBehaviour {
 	//		countDistance.text= distance.ToString ();
 	//	}
 
-	void EntPowerUpCollisionHandler(Entity ent, Entity other){
-		count += Setting.gameSetting.powerupScorePoint;
+	void UpdateScore(Entity ent){
+		//count += Setting.gameSetting.ScoresLUT[ent.entityName];
+		count += ScoreLUT[ent.entityName];
 		SetText(countText, SCORE_TEXT, count.ToString());
+	}
+
+	void EntPowerUpCollisionHandler(Entity ent, Entity other){
+		//count += Setting.gameSetting.powerupScorePoint;
+		//SetText(countText, SCORE_TEXT, count.ToString());
+		UpdateScore(other);
 	}
 
 	void EntCrushEntHandler(Entity ent, Entity other){
 		//other.gameObject.SetActive (false);
-		count += Setting.gameSetting.enemyScorePoint;
+		//count += Setting.gameSetting.enemyScorePoint;
 		// if(ent.IsOnFire){
 		// 	count -= Setting.gameSetting.fireReduxPoint;
 		// }
-		SetText(countText, SCORE_TEXT, count.ToString());
+		//SetText(countText, SCORE_TEXT, count.ToString());
+		UpdateScore(other);
 	}
 
 	void FlashAndLoseLive(Entity ent, Entity other){

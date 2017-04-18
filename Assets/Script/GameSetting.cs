@@ -15,10 +15,42 @@ public class GameSetting : ScriptableObject {
 
 	public GameMode gameMode = GameMode.TUTORIAL;
 	public int lives = 10;
-	public int powerupScorePoint = 1;
-	public int enemyScorePoint = 10;
+	//public int powerupScorePoint = 1;
+	//public int enemyScorePoint = 10;
 
-	public int fireReduxPoint = 5;
+	public int[] ScoresLUT = {
+		1,
+		1,
+		1,
+		1,
+		2,
+		2,
+		2,
+		1,
+		1,
+		1,
+		2,
+		2,
+		3
+	};
+
+	public string[] EntityNameLUT = {
+		"PowerUp",
+		"EarthPowerUp",
+		"FirePowerUp",
+		"WaterPowerUp",
+		"EarthPowerUpFloating",
+		"FirePowerUpFloating",
+		"WaterPowerUpFloating",
+		"Barrier",
+		"Walker",
+		"Tank",
+		"RepGunship",
+		"TIE_Fighter",
+		"Trump"
+	};
+
+	//public int fireReduxPoint = 5;
 	
 	public float spawnCycle = 0.5f;
 	public float objectSpeed = -0.5f;
