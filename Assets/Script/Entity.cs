@@ -54,6 +54,8 @@ public class Entity : MonoBehaviour {
 
 	public static readonly string WATER_FX_COLLIDER = "Water_AOE";
 
+	public static readonly string BRICK_DESTROY_FX_PATH = "Prefabs/DestroyBrick";
+
 
 	
 
@@ -391,6 +393,8 @@ public class Entity : MonoBehaviour {
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
 					otherEnt.Invisiblify(true);
+					SpawnFX = PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+
 					return;
 				}
 				
