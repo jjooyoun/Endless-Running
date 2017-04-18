@@ -21,6 +21,9 @@ public class PowerUp : Entity {
     private static float OFFSET_SHIELD = 0.15f;
 
 	private static float shieldDownSec = 5.0f;
+	private static float fireDownSec = 5.0f;
+	private static float waterDownSec = 5.0f;
+
 	//private static int level = 0; for debug purpose
 
 
@@ -110,7 +113,7 @@ public class PowerUp : Entity {
 			PowerUp th1s = (PowerUp)powerUp;
 			th1s.Invisiblify(true);
 			hasShield = !hasShield;
-			ent.Invoke("ShieldDownWrapper", shieldDownSec);
+			ent.Invoke(SHIELD_DOWN_WRAPPER, shieldDownSec);
 			EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 			EventManager.Instance.shield.Invoke();
         }
@@ -146,14 +149,14 @@ public class PowerUp : Entity {
 		   PowerUp th1s = (PowerUp)powerUp;
 		   th1s.Invisiblify(true);
 		   hasWater = !hasWater;
-		   ent.Invoke("WaterDownWrapper", shieldDownSec);
+		   ent.Invoke(WATER_DOWN_WRAPPER, waterDownSec);
 		   EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 	   }
    }
 
    public static void PowerUpWaterDown(Entity ent)
     {
-		Debug.Log("FireDown!!!");
+		Debug.Log("WaterDown!!!");
         if (hasWater)
         {
             //Debug.Log("destroying sphere");
@@ -169,20 +172,19 @@ public class PowerUp : Entity {
 	public static void PowerUpFireUp(Entity ent, Entity powerUp){
 		Debug.Log("FireUp!!!");
 		if(!hasFire){
-			//GameObject OilSplashHighRoot = (GameObject)Instantiate(Resources.Load(FIRE_PATH) as GameObject);
-			//OilSplashHighRoot.transform.position = transform.position;
-			//OilSplashHighRoot.transform.parent = transform;
 			ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(FIRE_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);                    
 			ParticleSystem OilSplashHighRootParticleSystem = ent.SpawnFX.GetComponent<ParticleSystem>();
 			Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
 			Material curBallMat = ent.GetComponent<Renderer>().material;
-			ent.FireCoRoutine = ent.playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, 5.0f);
+			ent.FireCoRoutine = ent.playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, fireDownSec);
 			ent.StartCoroutine(ent.FireCoRoutine);
+			ent.Invoke(FIRE_DOWN_WRAPPER, fireDownSec);
 			hasFire = !hasFire;
 		}
 	}
 
 	public static void PowerUpFireDown(Entity ent){
+		Debug.Log("FireDown");
 		if(hasFire){
 			ent.StopCoroutine(ent.FireCoRoutine);
 			ent.GetComponent<Renderer>().material = ent.OriginalMat;

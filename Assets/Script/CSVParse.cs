@@ -34,9 +34,9 @@ public class CSVParse : MonoBehaviour
 
 	public void Load(TextAsset csv)
 	{
-		Debug.Log("loading :" + csv.name);
+		//Debug.Log("loading :" + csv.name);
 		if(!csv){
-			Debug.Log("empty!!!");
+			Debug.Log("csv:empty!!!");
 			return;
 		}
 		

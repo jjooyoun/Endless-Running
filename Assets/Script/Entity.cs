@@ -57,7 +57,10 @@ public class Entity : MonoBehaviour {
 	public static readonly string BRICK_DESTROY_FX_PATH = "Prefabs/DestroyBrick";
 
 
-	
+
+	public static readonly string FIRE_DOWN_WRAPPER = "FireDownWrapper";
+	public static readonly string WATER_DOWN_WRAPPER = "WaterDownWrapper";
+	public static readonly string SHIELD_DOWN_WRAPPER = "ShieldDownWrapper";
 
 	//HIDE
 	private MeshRenderer[] meshes;
@@ -107,6 +110,23 @@ public class Entity : MonoBehaviour {
 		Debug.Log("Down-call::WaterDown!!!");
 		PowerUp.PowerUpWaterDown(ent);
 	}
+
+	//get schedule from PowerUp.ShieldDw
+	public void ShieldDownWrapper(){
+		//PowerUp.PowerUpShieldDown(this);
+		//Debug.Log("shield down wrapper:" + name);
+		Entity.ShieldDown(this);
+	}
+
+	public void WaterDownWrapper(){
+		//PowerUp.PowerUpWaterDown(this);
+		Entity.WaterDown(this);
+	}
+
+	public void FireDownWrapper(){
+		Entity.FireDown(this);
+	}
+	
 	//
 	private static Action<Entity>[] DownCalls = {
 		FireDown,
@@ -280,23 +300,13 @@ public class Entity : MonoBehaviour {
 		}
 	}
 
-	//get schedule from PowerUp.ShieldDw
-	public void ShieldDownWrapper(){
-		//PowerUp.PowerUpShieldDown(this);
-		//Debug.Log("shield down wrapper:" + name);
-		Entity.ShieldDown(this);
-	}
-
-	public void WaterDownWrapper(){
-		//PowerUp.PowerUpWaterDown(this);
-		Entity.WaterDown(this);
-	}
+	
 
 
 	public GameObject PlayPEAtPosition(GameObject PEGameObject, Vector3 position, bool autoDestroy = true, Transform followTarget = null, float yOffset = 0.0f){ // one off
 		if(PEGameObject){
 			GameObject PEFX = (GameObject)Instantiate(PEGameObject) as GameObject;
-			Debug.Log("FX:" + PEFX.name);
+			//Debug.Log("FX:" + PEFX.name);
 			PEFX.transform.position = position;
 			if(followTarget){
 				FollowTarget ft = PEFX.AddComponent<FollowTarget>();
@@ -346,7 +356,7 @@ public class Entity : MonoBehaviour {
 			//Debug.Log("return????");
 			return;
 		}
-		Debug.Log (name + "collided with:" + other.gameObject.name);
+		//Debug.Log (name + "collided with:" + other.gameObject.name);
 		//send colliding event accordingly
 		Entity otherEnt = other.gameObject.GetComponent<Entity>();
 		if (otherEnt) {
@@ -393,7 +403,7 @@ public class Entity : MonoBehaviour {
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
 					otherEnt.Invisiblify(true);
-					SpawnFX = PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+					PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
 
 					return;
 				}
@@ -403,7 +413,8 @@ public class Entity : MonoBehaviour {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
-
+					//Debug.Log("here?");
+					IsAtMaxScale = false;
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);
 					//Debug.Log("Scale down:" + name);
