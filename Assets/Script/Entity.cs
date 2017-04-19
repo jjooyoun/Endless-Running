@@ -99,6 +99,11 @@ public class Entity : MonoBehaviour {
 		set{currentSpawnFX = value;}
 	}
 
+
+	public static bool FloatDiff(float a, float b, float Epsilon = 0.00001f){
+		return Mathf.Abs( a - b ) < Epsilon;
+	}
+
 	
 
 	public static void ShieldDown(Entity ent){
@@ -269,8 +274,8 @@ public class Entity : MonoBehaviour {
     }
 
 	void Update(){
-		if(isAtMaxScale && !PEGameObject){
-			Debug.Log(name + ":do a max scale");
+		if(IsAtMaxScale && !PEGameObject){
+			//Debug.Log(name + ":do a max scale");
 			PEGameObject = PlayPEAtPosition((GameObject)Resources.Load(MAX_SCALE_FX_PATH), transform.position, false, transform);
 		}else{
 			if(PEGameObject){
@@ -307,7 +312,7 @@ public class Entity : MonoBehaviour {
 	public GameObject PlayPEAtPosition(GameObject PEGameObject, Vector3 position, bool autoDestroy = true, Transform followTarget = null, float yOffset = 0.0f){ // one off
 		if(PEGameObject){
 			GameObject PEFX = (GameObject)Instantiate(PEGameObject) as GameObject;
-			Debug.Log("FX:" + PEFX.name);
+			//Debug.Log("FX:" + PEFX.name);
 			PEFX.transform.position = position;
 			if(followTarget){
 				FollowTarget ft = PEFX.AddComponent<FollowTarget>();
@@ -328,7 +333,7 @@ public class Entity : MonoBehaviour {
 	bool FlashAble(Entity otherEnt){
 		//Debug.Log("max_scale:" + PowerUp.MAX_SCALE);
 		//return otherEnt.entityType != ENTITY_TYPE.POWER_UP && transform.localScale.x < PowerUp.MAX_SCALE;
-		return (otherEnt.entityType == ENTITY_TYPE.ENEMY && transform.localScale.x < PowerUp.MAX_SCALE || otherEnt.entityType == ENTITY_TYPE.OBSTACLE && transform.localScale.x < PowerUp.MAX_SCALE ) ;
+		return (otherEnt.entityType == ENTITY_TYPE.ENEMY && !IsAtMaxScale || otherEnt.entityType == ENTITY_TYPE.OBSTACLE && !IsAtMaxScale ) ;
 	}
 
 	bool isFXPowerUpType(int powerUpType){
@@ -392,14 +397,14 @@ public class Entity : MonoBehaviour {
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP /*&& !isOnFire*/) {
 				prevPowerUpType = currentPowerupType;
 				currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
-				Debug.Log("currentpowerupType:" + currentPowerupType);
+				//Debug.Log("currentpowerupType:" + currentPowerupType);
 				//down the current powerup
 				if(isFXPowerUpType(currentPowerupType) && isFXPowerUpType(prevPowerUpType)){ //within range of down call
-					Debug.Log("invoking down call");
+					//Debug.Log("invoking down call");
 					DownCalls[currentPowerupType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
 				}
 				
-				Debug.Log(">>currentpowerupType:" + currentPowerupType);
+				//Debug.Log(">>currentpowerupType:" + currentPowerupType);
 				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
@@ -427,10 +432,11 @@ public class Entity : MonoBehaviour {
 				
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY) {
+					otherEnt.Invisiblify(true);
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
-					//Debug.Log("here?");
+					Debug.Log("here?");
 					IsAtMaxScale = false;
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);

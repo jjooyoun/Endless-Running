@@ -40,7 +40,7 @@ MonoBehaviour:
     score: 2
   - entName: Trump
     score: 3
-  spawnCycle: 1.85
+  spawnCycle: 0.5
   objectSpeed: -20
   soundLevel: 1
   enableJump: 1

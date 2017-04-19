@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PowerUp : Entity {
 	public ParticleSystem PowerupFX;
 	private static float SCALING_FACTOR = 0.15f;
-	private static int LEVEL = 5;
+	private static int LEVEL = 2;
 
 	private static float BASE_SCALE = 1.15f;
 	public static float MAX_SCALE = BASE_SCALE + LEVEL*SCALING_FACTOR;
@@ -25,8 +25,6 @@ public class PowerUp : Entity {
 	private static float waterDownSec = 5.0f;
 
 	//private static int level = 0; for debug purpose
-
-
 	public enum PowerUpType{
 		SCALE_UP = 0,
 		SCALE_DOWN,
@@ -47,16 +45,17 @@ public class PowerUp : Entity {
 		return true;
 	}
 
+	
     public static bool ScaleUp(Transform entTransform)
     {
-        if (entTransform.localScale.x > MAX_SCALE)
+        if (FloatDiff(entTransform.localScale.x,MAX_SCALE))
             return false;
         return Scale(entTransform, PowerUp.SCALING_FACTOR);
     }
 
     public static bool ScaleDown(Transform entTransform)
     {
-        if (entTransform.localScale.x <= BASE_SCALE)
+        if (FloatDiff(entTransform.localScale.x,BASE_SCALE))
             return false;
         return Scale(entTransform, -PowerUp.SCALING_FACTOR);
     }
