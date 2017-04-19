@@ -171,6 +171,7 @@ public class Setting : Singleton<Setting> {
 
 	public void QuitGame(){
 		GameObjectUtil.ClearPool ();
+		ResumeGame();
 	}
 
 	public static void LoadLevelCompletescene(){
