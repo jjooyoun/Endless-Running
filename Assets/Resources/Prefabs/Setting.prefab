@@ -58,7 +58,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bd2575ce62f0424298e3d49e109569b, type: 2}
   - {fileID: 11400000, guid: e2844aeadeb494eb98acbba7f967dba7, type: 2}
   - {fileID: 11400000, guid: 5ded2960ea2114104b4060ce0114bb35, type: 2}
+  - {fileID: 11400000, guid: bdc6a95caf828204e91d5911e59d77c5, type: 2}
+  - {fileID: 11400000, guid: def7131786da90a4b8ec1e9c81bd5d83, type: 2}
+  - {fileID: 11400000, guid: aa632d9b5d352bf4eb7a8277bafacfa4, type: 2}
+  - {fileID: 11400000, guid: 68db6114220550c45875568c31dd792b, type: 2}
+  - {fileID: 11400000, guid: 1390ce811ce4734479be3d4f84e0cb27, type: 2}
   isJumpEnable: 0
   isShakeEnable: 0
   SettingName: 
   gameMode: 0
+  currentLevel: -1

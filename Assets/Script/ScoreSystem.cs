@@ -73,19 +73,12 @@ public class ScoreSystem : MonoBehaviour {
 		SetText(countText, SCORE_TEXT, count.ToString());
 	}
 
+	//SHOULD CONSIDER REPLACING THESE NEXT TWO FNS WITH ONE?
 	void EntPowerUpCollisionHandler(Entity ent, Entity other){
-		//count += Setting.gameSetting.powerupScorePoint;
-		//SetText(countText, SCORE_TEXT, count.ToString());
 		UpdateScore(other);
 	}
 
 	void EntCrushEntHandler(Entity ent, Entity other){
-		//other.gameObject.SetActive (false);
-		//count += Setting.gameSetting.enemyScorePoint;
-		// if(ent.IsOnFire){
-		// 	count -= Setting.gameSetting.fireReduxPoint;
-		// }
-		//SetText(countText, SCORE_TEXT, count.ToString());
 		UpdateScore(other);
 	}
 
@@ -110,11 +103,23 @@ public class ScoreSystem : MonoBehaviour {
 	IEnumerator Flash(Entity ent, Renderer entRenderer, Color originalColor, Color flashColor){
 		for (int i = 0; i < flashTime; i++) {
 			entRenderer.material.color = flashColor;
+			while(Setting.gameSetting.isPaused){
+				yield return null;
+			}
 			yield return new WaitForSeconds (flashVar1);
+			while(Setting.gameSetting.isPaused){
+				yield return null;
+			}
 			entRenderer.material.color = originalColor;
+			while(Setting.gameSetting.isPaused){
+				yield return null;
+			}
 			yield return new WaitForSeconds (flashVar2);
+			while(Setting.gameSetting.isPaused){
+				yield return null;
+			}
 		}
-		ent.GetComponent<Collider> ().enabled = true;//
+		ent.GetComponent<Collider> ().enabled = true;
 		Debug.Log ("finished flashing!!!");
 	}
 
