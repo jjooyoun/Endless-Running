@@ -359,6 +359,8 @@ public class Entity : MonoBehaviour {
 	}
 	//player v.s other
 	void OnTriggerEnter(Collider other){
+		if(Setting.gameSetting.isPaused)
+			return;
 		//Debug.Log(name + ":collided with - " + other.gameObject.name);
 		//player-first
 		if (entityType != ENTITY_TYPE.PLAYER) {
