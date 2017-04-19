@@ -30,6 +30,6 @@ public class ObstacleScript : MonoBehaviour {
     void Update()
     {
 		if(startMoving && !Setting.gameSetting.isPaused)
-        	transform.Translate(0, 0, objectSpeed);
+        	transform.Translate(0, 0, objectSpeed * Time.deltaTime);
     }
 }
