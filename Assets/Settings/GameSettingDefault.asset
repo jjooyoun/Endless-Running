@@ -13,18 +13,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 0
   lives: 10
-  powerupScorePoint: 1
-  enemyScorePoint: 10
-  fireReduxPoint: 5
+  ScoreLUT:
+  - entName: PowerUp
+    score: 1
+  - entName: EarthPowerUp
+    score: 1
+  - entName: FirePowerUp
+    score: 1
+  - entName: WaterPowerUp
+    score: 1
+  - entName: EarthPowerUpFloating
+    score: 2
+  - entName: FirePowerUpFloating
+    score: 2
+  - entName: WaterPowerUpFloating
+    score: 2
+  - entName: Barrier
+    score: 1
+  - entName: Walker
+    score: 1
+  - entName: Tank
+    score: 1
+  - entName: RepGunship
+    score: 2
+  - entName: TIE_Fighter
+    score: 2
+  - entName: Trump
+    score: 3
   spawnCycle: 1.85
-  objectSpeed: -20
-  texSpeed: -20
+  objectSpeed: -0.09
   soundLevel: 0
   enableJump: 1
-  enableShake: 0
+  enableShake: 1
   enableSound: 1
   currentLevel: 1
-  isPaused: 0
+  isPaused: 1
   JUMP_KEY: 32
   LEFT_KEY: 97
   RIGHT_KEY: 100
@@ -34,4 +57,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 4900000, guid: 3bf349f3a73b94193b12650ccc8a7a92, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: 287600e8bffe1cb40ae787b57c72ba40, type: 3}

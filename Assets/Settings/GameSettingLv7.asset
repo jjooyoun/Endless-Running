@@ -11,11 +11,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
   m_Name: GameSettingLv7
   m_EditorClassIdentifier: 
-  gameMode: 1
+  gameMode: 0
   lives: 10
-  powerupScorePoint: 1
-  enemyScorePoint: 10
-  fireReduxPoint: 5
+  ScoreLUT:
+  - entName: PowerUp
+    score: 1
+  - entName: EarthPowerUp
+    score: 1
+  - entName: FirePowerUp
+    score: 1
+  - entName: WaterPowerUp
+    score: 1
+  - entName: EarthPowerUpFloating
+    score: 2
+  - entName: FirePowerUpFloating
+    score: 2
+  - entName: WaterPowerUpFloating
+    score: 2
+  - entName: Barrier
+    score: 1
+  - entName: Walker
+    score: 1
+  - entName: Tank
+    score: 1
+  - entName: RepGunship
+    score: 2
+  - entName: TIE_Fighter
+    score: 2
+  - entName: Trump
+    score: 3
   spawnCycle: 1.09375
   objectSpeed: -1.1875
   soundLevel: 1

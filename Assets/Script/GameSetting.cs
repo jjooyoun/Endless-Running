@@ -6,51 +6,37 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "GameSetting", order = 1)]
 public class GameSetting : ScriptableObject {
 	public enum GameMode{
-		EASY,
-		MEDIUM,
-		HARD,
+		GAME,
 		TUTORIAL,
 		TEST
 	};
 
 	public GameMode gameMode = GameMode.TUTORIAL;
 	public int lives = 10;
-	//public int powerupScorePoint = 1;
-	//public int enemyScorePoint = 10;
 
-	public int[] ScoresLUT = {
-		1,
-		1,
-		1,
-		1,
-		2,
-		2,
-		2,
-		1,
-		1,
-		1,
-		2,
-		2,
-		3
+	[System.Serializable]
+	public class ScoreEntry{
+		
+		public string entName;
+		public int score;
+		public ScoreEntry(string entName, int score){ this.score = score; this.entName = entName;}
 	};
 
-	public string[] EntityNameLUT = {
-		"PowerUp",
-		"EarthPowerUp",
-		"FirePowerUp",
-		"WaterPowerUp",
-		"EarthPowerUpFloating",
-		"FirePowerUpFloating",
-		"WaterPowerUpFloating",
-		"Barrier",
-		"Walker",
-		"Tank",
-		"RepGunship",
-		"TIE_Fighter",
-		"Trump"
+	public ScoreEntry[] ScoreLUT = {
+		new ScoreEntry("PowerUp",1),
+		new ScoreEntry("EarthPowerUp",1),
+		new ScoreEntry("FirePowerUp", 1),
+		new ScoreEntry("WaterPowerUp", 1),
+		new ScoreEntry("EarthPowerUpFloating", 2),
+		new ScoreEntry("FirePowerUpFloating", 2),
+		new ScoreEntry("WaterPowerUpFloating", 2),
+		new ScoreEntry("Barrier", 1),
+		new ScoreEntry("Walker", 1),
+		new ScoreEntry("Tank", 1),
+		new ScoreEntry("RepGunship", 2),
+		new ScoreEntry("TIE_Fighter", 2),
+		new ScoreEntry("Trump", 3),
 	};
-
-	//public int fireReduxPoint = 5;
 	
 	public float spawnCycle = 0.5f;
 	public float objectSpeed = -0.5f;

@@ -27,11 +27,11 @@ public class ScoreSystem : MonoBehaviour {
 	private DistanceSystem distancesystem;
 
 	void SetUpScoreLUT(){
-		int[] scoreLUT = Setting.gameSetting.ScoresLUT;
-		string[] entNameLUT = Setting.gameSetting.EntityNameLUT;
-		int length = scoreLUT.Length;
-		for(int i = 0 ; i < length; i++){
-			ScoreLUT.Add(entNameLUT[i], scoreLUT[i]);
+		//int[] scoreLUT = Setting.gameSetting.ScoresLUT;
+		//string[] entNameLUT = Setting.gameSetting.EntityNameLUT;
+		//int length = scoreLUT.Length;
+		foreach(GameSetting.ScoreEntry se in Setting.gameSetting.ScoreLUT){
+			ScoreLUT.Add(se.entName, se.score);
 		}
 		
 	}
