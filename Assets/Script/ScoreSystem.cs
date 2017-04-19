@@ -103,21 +103,9 @@ public class ScoreSystem : MonoBehaviour {
 	IEnumerator Flash(Entity ent, Renderer entRenderer, Color originalColor, Color flashColor){
 		for (int i = 0; i < flashTime; i++) {
 			entRenderer.material.color = flashColor;
-			while(Setting.gameSetting.isPaused){
-				yield return null;
-			}
 			yield return new WaitForSeconds (flashVar1);
-			while(Setting.gameSetting.isPaused){
-				yield return null;
-			}
 			entRenderer.material.color = originalColor;
-			while(Setting.gameSetting.isPaused){
-				yield return null;
-			}
 			yield return new WaitForSeconds (flashVar2);
-			while(Setting.gameSetting.isPaused){
-				yield return null;
-			}
 		}
 		ent.GetComponent<Collider> ().enabled = true;
 		Debug.Log ("finished flashing!!!");

@@ -159,13 +159,13 @@ public class Setting : Singleton<Setting> {
 
 	public static void PauseGame(){
 		gameSetting.isPaused = true;
-		//Time.timeScale = 0.0f;
+		Time.timeScale = 0.0f;
 		EventManager.Instance.pauseEvent.Invoke(); //obstacle pause
 	}
 
 	public static void ResumeGame(){
 		gameSetting.isPaused = false;
-		//Time.timeScale = 1.0f;
+		Time.timeScale = 1.0f;
 		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
 	}
 

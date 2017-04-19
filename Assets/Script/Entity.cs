@@ -226,6 +226,7 @@ public class Entity : MonoBehaviour {
 
 	//only change the clip if sound level are different
 	//what about the object having the sound on its own ?
+	//Not Pause hit sound YET.
 	void playEntSoundOnCollided(Entity ent, Entity otherEnt){
 		AudioSource sourceAudio = GetComponent<AudioSource>();
 		AudioSource transferAudio = otherEnt.GetComponent<AudioSource>();
@@ -348,6 +349,12 @@ public class Entity : MonoBehaviour {
 		return (otherEnt.entityType == ENTITY_TYPE.ENEMY && transform.localScale.x < PowerUp.MAX_SCALE || otherEnt.entityType == ENTITY_TYPE.OBSTACLE && transform.localScale.x < PowerUp.MAX_SCALE ) ;
 	}
 
+	IEnumerator ResumeAfterPause(float sec){
+		Setting.PauseGame();
+		yield return new WaitForSeconds(sec);
+		Setting.ResumeGame();
+	}
+
 	//TO DO : Performance tuning
 	public virtual void Invisiblify(bool hide){
 		//Debug.Log(name + "/hide:" + hide);
@@ -387,7 +394,7 @@ public class Entity : MonoBehaviour {
 
 			playEntSoundOnCollided(this, otherEnt); // hit sound
 			//shield
-			
+			//StartCoroutine(ResumeAfterPause(3.0f));
 			
 
 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
@@ -395,7 +402,6 @@ public class Entity : MonoBehaviour {
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;
 			}
-			
 			//NOT FLASHABLE
 			//play collided FX
 			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
