@@ -58,6 +58,8 @@ public class Entity : MonoBehaviour {
 
 	public static readonly string BRICK_DESTROY_FX_PATH = "Prefabs/DestroyBrick";
 
+	public static readonly string WATER_DESTORY_FX_PATH = "Prefabs/WaterDestoyFX";
+
 
 	public static readonly string FIRE_DOWN_WRAPPER = "FireDownWrapper";
 	public static readonly string WATER_DOWN_WRAPPER = "WaterDownWrapper";
@@ -367,6 +369,7 @@ public class Entity : MonoBehaviour {
 			//Debug.Log("entity_type:" + entityType);
 			if(entityType == ENTITY_TYPE.ENEMY && other.name == WATER_FX_COLLIDER){
 				Debug.Log("water destroyed:" + name);
+				PlayPEAtPosition( Resources.Load(WATER_DESTORY_FX_PATH) as GameObject,transform.position);
 				EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
 			}
 			//set trigger
@@ -421,7 +424,13 @@ public class Entity : MonoBehaviour {
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
 					otherEnt.Invisiblify(true);
-					PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+					if(otherEnt.entityName == BARRIER_NAME) {
+						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+					}
+					else if (PowerUp.hasWater) {
+						PlayPEAtPosition( Resources.Load(WATER_DESTORY_FX_PATH) as GameObject,transform.position);
+						Debug.Log("WATER_DESTORY_FX_PATH");
+					}
 
 					return;
 				}
