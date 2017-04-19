@@ -90,6 +90,8 @@ public class Entity : MonoBehaviour {
 	private static readonly int FXRangeEnd = 4;
 
 	private int currentPowerupType = -1;
+	private int prevPowerUpType = -1;
+
 	//the FX that is spawned
 	protected GameObject currentSpawnFX;
 	public GameObject SpawnFX{
@@ -279,26 +281,6 @@ public class Entity : MonoBehaviour {
 	}
 
 
-	ParticleSystem InstantiateFX(int index, Vector3 position){
-		//Debug.Log("instantiate:" + InternalFX[index].name);
-		ParticleSystem ps = GameObject.Instantiate(InternalFX[index], position, Quaternion.identity) as ParticleSystem;
-		ps.name = InternalFX[index].name;
-		return ps;
-	}
-
-	public void PlayInternalFX(int index){
-		//new one: not init || diff from the one ordered
-		if(!ps || ps && ps.name != InternalFX[index].name){
-			ps = InstantiateFX(index, transform.position);
-		}
-		ps.Play();
-	}
-
-	public void StopInternalFX(){
-		Debug.Log("stop");
-		if(ps)
-			Destroy(ps.gameObject);
-	}
 
 	public static void EnableMeshCutOut(Entity ent, Entity otherEnt){
 		//Debug.Log("ent:" + ent.name);
@@ -349,10 +331,8 @@ public class Entity : MonoBehaviour {
 		return (otherEnt.entityType == ENTITY_TYPE.ENEMY && transform.localScale.x < PowerUp.MAX_SCALE || otherEnt.entityType == ENTITY_TYPE.OBSTACLE && transform.localScale.x < PowerUp.MAX_SCALE ) ;
 	}
 
-	IEnumerator ResumeAfterPause(float sec){
-		Setting.PauseGame();
-		yield return new WaitForSeconds(sec);
-		Setting.ResumeGame();
+	bool isFXPowerUpType(int powerUpType){
+		return powerUpType >= FXRangeBegin && powerUpType <= FXRangeEnd;
 	}
 
 	//TO DO : Performance tuning
@@ -410,13 +390,15 @@ public class Entity : MonoBehaviour {
 
            //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP /*&& !isOnFire*/) {
+				prevPowerUpType = currentPowerupType;
+				currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
 				Debug.Log("currentpowerupType:" + currentPowerupType);
 				//down the current powerup
-				if(currentPowerupType >= FXRangeBegin && currentPowerupType <= FXRangeEnd){ //within range of down call
+				if(isFXPowerUpType(currentPowerupType) && isFXPowerUpType(prevPowerUpType)){ //within range of down call
 					Debug.Log("invoking down call");
 					DownCalls[currentPowerupType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
 				}
-				currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
+				
 				Debug.Log(">>currentpowerupType:" + currentPowerupType);
 				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
