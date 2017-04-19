@@ -58,7 +58,7 @@ public class Entity : MonoBehaviour {
 
 	public static readonly string BRICK_DESTROY_FX_PATH = "Prefabs/DestroyBrick";
 
-	public static readonly string WATER_DESTORY_FX_PATH = "Prefabs/WaterDestoyFX";
+	public static readonly string WATER_DESTORY_FX_PATH = "Prefabs/WaterDestroyFX";
 
 
 	public static readonly string FIRE_DOWN_WRAPPER = "FireDownWrapper";
@@ -377,8 +377,8 @@ public class Entity : MonoBehaviour {
 			if(entityType == ENTITY_TYPE.ENEMY && other.name == WATER_FX_COLLIDER){
 				Debug.Log("water destroyed:" + name);
 				PlayPEAtPosition (Resources.Load (WATER_DESTORY_FX_PATH) as GameObject, transform.position);
-				//Setting.PauseGame ();
-				//EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
+
+				EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
 			}
 			//set trigger
 			//gameObject.GetComponent<Collider>().isTrigger = true;//go through and hit despawner later
