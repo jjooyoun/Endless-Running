@@ -42,7 +42,7 @@ MonoBehaviour:
     score: 3
   spawnCycle: 1.85
   objectSpeed: -20
-  soundLevel: 0
+  soundLevel: 1
   enableJump: 1
   enableShake: 1
   enableSound: 1

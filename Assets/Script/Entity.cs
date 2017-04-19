@@ -325,7 +325,7 @@ public class Entity : MonoBehaviour {
 	public GameObject PlayPEAtPosition(GameObject PEGameObject, Vector3 position, bool autoDestroy = true, Transform followTarget = null, float yOffset = 0.0f){ // one off
 		if(PEGameObject){
 			GameObject PEFX = (GameObject)Instantiate(PEGameObject) as GameObject;
-			//Debug.Log("FX:" + PEFX.name);
+			Debug.Log("FX:" + PEFX.name);
 			PEFX.transform.position = position;
 			if(followTarget){
 				FollowTarget ft = PEFX.AddComponent<FollowTarget>();
@@ -376,8 +376,9 @@ public class Entity : MonoBehaviour {
 			//Debug.Log("entity_type:" + entityType);
 			if(entityType == ENTITY_TYPE.ENEMY && other.name == WATER_FX_COLLIDER){
 				Debug.Log("water destroyed:" + name);
-				PlayPEAtPosition( Resources.Load(WATER_DESTORY_FX_PATH) as GameObject,transform.position);
-				EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
+				PlayPEAtPosition (Resources.Load (WATER_DESTORY_FX_PATH) as GameObject, transform.position);
+				//Setting.PauseGame ();
+				//EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
 			}
 			//set trigger
 			//gameObject.GetComponent<Collider>().isTrigger = true;//go through and hit despawner later
@@ -429,13 +430,14 @@ public class Entity : MonoBehaviour {
 				EnableMeshCutOut(this, otherEnt);
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
-					otherEnt.Invisiblify(true);
+					//otherEnt.Invisiblify(true);
 					if(otherEnt.entityName == BARRIER_NAME) {
 						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
 					}
 					else if (PowerUp.hasWater) {
-						PlayPEAtPosition( Resources.Load(WATER_DESTORY_FX_PATH) as GameObject,transform.position);
-						Debug.Log("WATER_DESTORY_FX_PATH");
+						Debug.Log ("Dretoy Water FX");
+
+						//Setting.PauseGame ();
 					}
 
 					return;
