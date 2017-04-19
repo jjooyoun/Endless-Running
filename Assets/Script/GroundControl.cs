@@ -15,7 +15,7 @@ public class GroundControl : MonoBehaviour {
 		distancesystem = FindObjectOfType<DistanceSystem> ();
 		rend = GetComponent<Renderer>();
 		mesh = GetComponent<MeshFilter>().mesh;
-		speed = Mathf.Abs(Setting.gameSetting.objectSpeed/100.0f);
+		speed = Mathf.Abs(Setting.gameSetting.objectSpeed/50.0f);
 
 	}
     //Material texture offset rate
