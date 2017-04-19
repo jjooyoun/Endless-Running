@@ -430,7 +430,7 @@ public class Entity : MonoBehaviour {
 				EnableMeshCutOut(this, otherEnt);
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
-					//otherEnt.Invisiblify(true);
+					otherEnt.Invisiblify(true);
 					if(otherEnt.entityName == BARRIER_NAME) {
 						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
 					}
