@@ -39,7 +39,7 @@ public class GameSetting : ScriptableObject {
 	};
 	
 	public float spawnCycle = 0.5f;
-	public float objectSpeed = -0.5f;
+	public float objectSpeed = -20.0f;
 
 	public float soundLevel = 1.0f;
 	public bool enableJump = false;
