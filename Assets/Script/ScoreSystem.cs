@@ -85,9 +85,10 @@ public class ScoreSystem : MonoBehaviour {
 		StartFlashWrapper(ent);
 		Handheld.Vibrate();
 		if (lives - 1 == 0) { 
-			Time.timeScale = 0;//POTENTIAL BUG HERE. NOTORIOUS BLACK SCREEN ? LEAVE NOTES AND WILL TEST
+			//Time.timeScale = 0;//POTENTIAL BUG HERE. NOTORIOUS BLACK SCREEN ? LEAVE NOTES AND WILL TEST
 			distancesystem.distanceIncreasing=false;
 			//SceneManager.LoadScene (3);
+			Setting.StaticQuitGame();
 			Setting.LoadGameOverScene();
 		}
 		lives--;

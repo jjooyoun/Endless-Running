@@ -169,10 +169,16 @@ public class Setting : Singleton<Setting> {
 		EventManager.Instance.resumeEvent.Invoke(); //obstacle resume
 	}
 
+	public static void StaticQuitGame(){
+		GameObjectUtil.ClearPool ();
+		ResumeGame();
+	}
+
 	public void QuitGame(){
 		GameObjectUtil.ClearPool ();
 		ResumeGame();
 	}
+
 
 	public static void LoadLevelCompletescene(){
 		PlayerPrefs.SetInt("LastScore", ScoreSystem.count);
