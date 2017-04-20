@@ -88,7 +88,7 @@ public class PowerUp : Entity {
 
     public static void PowerUpShieldUp(Entity ent, Entity powerUp)
     {
-		//Debug.Log("ShieldUp!!!");
+		Debug.Log("ShieldUp!!!");
         //already have shield?
         if (!hasShield)
         {
@@ -106,9 +106,10 @@ public class PowerUp : Entity {
 
     public static void PowerUpShieldDown(Entity ent)
     {
-		//Debug.Log("ShieldDown!!!");
+		Debug.Log("ShieldDown!!!");
         if (hasShield)
         {
+			ent.CancelInvoke();
             //Debug.Log("destroying sphere");
             //GameObjectUtil.Destroy(ent.child);
 			Destroy(ent.child); 
@@ -139,6 +140,7 @@ public class PowerUp : Entity {
 		//Debug.Log("WaterDown!!!");
         if (hasWater)
         {
+			ent.CancelInvoke();
 			Destroy(ent.child); 
 			if(ent.SpawnFX)
 				Destroy(ent.SpawnFX);
@@ -166,6 +168,7 @@ public class PowerUp : Entity {
 	public static void PowerUpFireDown(Entity ent){
 		//Debug.Log("FireDown");
 		if(hasFire){
+			ent.CancelInvoke();
 			ent.StopCoroutine(ent.FireCoRoutine);
 			ent.GetComponent<Renderer>().material = ent.OriginalMat;
 			

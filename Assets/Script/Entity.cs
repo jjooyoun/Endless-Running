@@ -113,7 +113,7 @@ public class Entity : MonoBehaviour {
 		return Mathf.Abs( a - b ) < Epsilon;
 	}
 
-	public static void ShieldDown(Entity ent){
+	static void ShieldDown(Entity ent){
 		//Debug.Log("Down-call::ShieldDown!!!" + ent.name);
 		ent.CurFXType = -1;
 		PowerUp.PowerUpShieldDown(ent);
@@ -376,25 +376,19 @@ public class Entity : MonoBehaviour {
 
 				EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
 			}
-			//set trigger
-			//gameObject.GetComponent<Collider>().isTrigger = true;//go through and hit despawner later
-			//Debug.Log("return????");
+			
 			return;
 		}
-		Debug.Log (name + "collided with:" + other.gameObject.name);
+		//Debug.Log (name + "collided with:" + other.gameObject.name);
 		//send colliding event accordingly
 		Entity otherEnt = other.gameObject.GetComponent<Entity>();
 		if (otherEnt) {
-			
-
-			//Debug.Log (otherEnt.entityName + ": in here");
 			if (otherEnt.entityType == ENTITY_TYPE.PLAYER || otherEnt.entityType == entityType) { // what if we have to handle other player ? NOTE to make use of guid later on
 				return;
 			}
 
 			playEntSoundOnCollided(this, otherEnt); // hit sound
 			//shield
-			//StartCoroutine(ResumeAfterPause(3.0f));
 			
 
 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
@@ -413,20 +407,17 @@ public class Entity : MonoBehaviour {
 				//prevPowerUpType = currentPowerupType;
 				int powerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
 				
-				//Debug.Log("currentpowerupType:" + powerupType);
+				Debug.Log("currentpowerupType:" + powerupType);
 				//down the current powerup
 				if(isFXPowerUpType(powerupType) && isFXPowerUpType(CurFXType)){ //within range of down call
-					//Debug.Log("invoking down call");
 					//Debug.Log("currentpoweruptype:" + powerupType);
-					//Debug.Log("prev FX:" + CurFXType);
+					Debug.Log("prev FX:" + CurFXType);
 					//Debug.Log("-" + (CurFXType - FXRangeBegin));
 					// if(CurFXType == powerupType)
 					// 	DownCalls[CurFXType].Invoke(this);
 					DownCalls[CurFXType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
 					//CurFXType = powerupType;
 				}
-				
-				//Debug.Log(">>currentpowerupType:" + currentPowerupType);
 				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
@@ -453,10 +444,7 @@ public class Entity : MonoBehaviour {
 					}
 					else if (PowerUp.hasWater) {
 						Debug.Log ("Dretoy Water FX");
-
-						//Setting.PauseGame ();
 					}
-
 					return;
 				}
 				
@@ -470,7 +458,6 @@ public class Entity : MonoBehaviour {
 					IsAtMaxScale = false;
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);
-					//Debug.Log("Scale down:" + name);
 					if(otherEnt.entityName == BARRIER_NAME){//barrier flash no matter what
 						EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 					}
