@@ -5842,7 +5842,7 @@ Prefab:
         type: 2}
       propertyPath: defaultGameSetting
       value: 
-      objectReference: {fileID: 11400000, guid: 270f938f3ee1f41d9b5daf0b9c20a2b3,
+      objectReference: {fileID: 11400000, guid: 5ded2960ea2114104b4060ce0114bb35,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8bf54dac108b447a9dcb63ae90531dd, type: 2}
