@@ -1615,7 +1615,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1850448076915868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9303483, y: 0, z: -2.6892438}
+  m_LocalPosition: {x: 0.17, y: -0.16, z: -3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4682366733043032}
@@ -1929,8 +1929,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23638296, y: 2.719728, z: 1.7084174}
-  m_Center: {x: -0.1903168, y: 1.8136103, z: 0.3542087}
+  m_Size: {x: 2.6491191, y: 3.8139915, z: 2.3492389}
+  m_Center: {x: 0.15424468, y: 2.360742, z: 0.03379798}
 --- !u!82 &82533115104195352
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1850448076915868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3034032dbd4cd6a4fa7c86f9c5d4eea7, type: 3}
   m_Name: 
@@ -2064,16 +2064,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
+  onCollidedFX: {fileID: 0}
+  flashSound: {fileID: 0}
   entityType: 1
   entityName: Trump
-  isOnFire: 0
 --- !u!114 &114970177465677654
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1850448076915868}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61115783e8d604d398c8b240ae7cc1d5, type: 3}
   m_Name: 
@@ -2081,7 +2082,9 @@ MonoBehaviour:
   trump: {fileID: 1850448076915868}
   startMarker: {fileID: 0}
   endMarker: {fileID: 0}
-  speed: 1
+  speed: 0.5
+  BossLifeNum: 10
+  startMoving: 1
 --- !u!137 &137396827767152408
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

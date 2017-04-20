@@ -8,18 +8,25 @@ public class BossLevel : MonoBehaviour {
 
 	public Transform startMarker;
 	public Transform endMarker;
-	public float speed = 10.0F;
+	public float speed = 1.0F;
+	public int BossLifeNum = 10;
+	public bool startMoving = true;
 	private float startTime;
 	private float journeyLength;
 
+
 	// Use this for initialization
 	void Start () {
+		startMarker = transform;
+		endMarker = GameObject.Find ("ball").transform;
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (!startMoving)
+			return;
 		int randIndex = Random.Range (0, 2);
 		if (randIndex == 0) {
 			//trump.transform.Translate (0.005f, 0, 0);
@@ -32,5 +39,19 @@ public class BossLevel : MonoBehaviour {
 		float fracJourney = distCovered / journeyLength;
 		transform.position = Vector3.Lerp(startMarker.position, endMarker.position, fracJourney);
 
+	}
+
+	public static void BossOnHit(Entity bossEnt){
+		BossLevel boss = bossEnt.GetComponent<BossLevel> ();
+		if (boss.BossLifeNum - 1 == 0) {
+			//play explosion animation
+			//call finish level
+			return;
+		}
+		boss.BossLifeNum -= 1;
+		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
+		ss.StartFlashWrapper (bossEnt);
+		Debug.Log ("boss life after:" + boss.BossLifeNum);
+		boss.startMoving = false;
 	}
 }

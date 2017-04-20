@@ -86,9 +86,10 @@ public class ScoreSystem : MonoBehaviour {
 		//Debug.Log ("ent:" + ent.name);
 		//Debug.Log ("other:" + other.name);
 		//flashing the entity
-		Renderer entRenderer = ent.GetComponent<Renderer>();
-		ent.GetComponent<Collider>().enabled = false;
-		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
+//		Renderer entRenderer = ent.GetComponent<Renderer>();
+//		ent.GetComponent<Collider>().enabled = false;
+//		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
+		StartFlashWrapper(ent);
 		Handheld.Vibrate();
 		if (lives - 1 == 0) {
 			Time.timeScale = 0;
@@ -100,6 +101,14 @@ public class ScoreSystem : MonoBehaviour {
 		SetText (countLives, LIVE_TEXT, lives.ToString ());
 	}
 
+	public void StartFlashWrapper(Entity ent){
+		Renderer entRenderer = ent.GetComponent<Renderer>();
+		if (!entRenderer)
+			entRenderer = ent.GetComponentInChildren<Renderer> ();
+		ent.GetComponent<Collider>().enabled = false;
+		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
+	}
+
 	IEnumerator Flash(Entity ent, Renderer entRenderer, Color originalColor, Color flashColor){
 		for (int i = 0; i < flashTime; i++) {
 			entRenderer.material.color = flashColor;
@@ -109,6 +118,9 @@ public class ScoreSystem : MonoBehaviour {
 		}
 		ent.GetComponent<Collider> ().enabled = true;
 		Debug.Log ("finished flashing!!!");
+		if (ent.entityName == Entity.BOSS_NAME) {
+			ent.GetComponent<BossLevel> ().startMoving = true;
+		}
 	}
 
 	void SetText(Text text, string preMsg, string msg){

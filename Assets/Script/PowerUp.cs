@@ -88,7 +88,7 @@ public class PowerUp : Entity {
 
     public static void PowerUpShieldUp(Entity ent, Entity powerUp)
     {
-		Debug.Log("ShieldUp!!!");
+		//Debug.Log("ShieldUp!!!");
         //already have shield?
         if (!hasShield)
         {
@@ -106,7 +106,7 @@ public class PowerUp : Entity {
 
     public static void PowerUpShieldDown(Entity ent)
     {
-		Debug.Log("ShieldDown!!!");
+		//Debug.Log("ShieldDown!!!");
         if (hasShield)
         {
             //Debug.Log("destroying sphere");
@@ -119,7 +119,7 @@ public class PowerUp : Entity {
 
    
    public static void PowerUpWaterUp(Entity ent, Entity powerUp){
-	   Debug.Log("WaterUp!!!");
+	   //Debug.Log("WaterUp!!!");
 	   if(!hasWater){
 		   ent.child = CreateSphereChild(ent.transform, OFFSET_SHIELD, powerUp.GetComponent<Renderer>().material);
 		   //play
@@ -136,7 +136,7 @@ public class PowerUp : Entity {
 
    public static void PowerUpWaterDown(Entity ent)
     {
-		Debug.Log("WaterDown!!!");
+		//Debug.Log("WaterDown!!!");
         if (hasWater)
         {
 			Destroy(ent.child); 
@@ -148,7 +148,7 @@ public class PowerUp : Entity {
     }
 
 	public static void PowerUpFireUp(Entity ent, Entity powerUp){
-		Debug.Log("FireUp!!!");
+		//Debug.Log("FireUp!!!");
 		if(!hasFire){
 			ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(FIRE_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);                    
 			ParticleSystem OilSplashHighRootParticleSystem = ent.SpawnFX.GetComponent<ParticleSystem>();
@@ -157,14 +157,14 @@ public class PowerUp : Entity {
 			ent.FireCoRoutine = ent.playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, fireDownSec);
 			ent.StartCoroutine(ent.FireCoRoutine);
 			ent.CurFXType = (int)PowerUp.PowerUpType.FIRE;
-			Debug.Log("CurFXUp:" + ent.CurFXType);
+			//Debug.Log("CurFXUp:" + ent.CurFXType);
 			ent.Invoke(FIRE_DOWN_WRAPPER, fireDownSec);
 			hasFire = !hasFire;
 		}
 	}
 
 	public static void PowerUpFireDown(Entity ent){
-		Debug.Log("FireDown");
+		//Debug.Log("FireDown");
 		if(hasFire){
 			ent.StopCoroutine(ent.FireCoRoutine);
 			ent.GetComponent<Renderer>().material = ent.OriginalMat;

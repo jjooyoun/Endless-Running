@@ -66,6 +66,9 @@ public class Entity : MonoBehaviour {
 	public static readonly string WATER_DOWN_WRAPPER = "WaterDownWrapper";
 	public static readonly string SHIELD_DOWN_WRAPPER = "ShieldDownWrapper";
 
+
+	public static readonly string BOSS_NAME = "Trump";
+
 	
 
 	//HIDE
@@ -111,20 +114,20 @@ public class Entity : MonoBehaviour {
 	}
 
 	public static void ShieldDown(Entity ent){
-		Debug.Log("Down-call::ShieldDown!!!" + ent.name);
+		//Debug.Log("Down-call::ShieldDown!!!" + ent.name);
 		ent.CurFXType = -1;
 		PowerUp.PowerUpShieldDown(ent);
 		//Destroy(ent.SpawnFX.gameObject);
 	}
 
 	static void FireDown(Entity ent){
-		Debug.Log("Down-call::FireDown!!!");
+		//Debug.Log("Down-call::FireDown!!!");
 		ent.CurFXType = -1;
 		PowerUp.PowerUpFireDown(ent);
 	}
 
 	static void WaterDown(Entity ent){
-		Debug.Log("Down-call::WaterDown!!!");
+		//Debug.Log("Down-call::WaterDown!!!");
 		ent.CurFXType = -1;
 		PowerUp.PowerUpWaterDown(ent);
 	}
@@ -365,6 +368,9 @@ public class Entity : MonoBehaviour {
 		if (entityType != ENTITY_TYPE.PLAYER) {
 			//Debug.Log("entity_type:" + entityType);
 			if(entityType == ENTITY_TYPE.ENEMY && other.name == WATER_FX_COLLIDER){
+				if (name == BOSS_NAME) {
+					BossLevel.BossOnHit (this);
+				}
 				Debug.Log("water destroyed:" + name);
 				PlayPEAtPosition (Resources.Load (WATER_DESTORY_FX_PATH) as GameObject, transform.position);
 
@@ -375,10 +381,13 @@ public class Entity : MonoBehaviour {
 			//Debug.Log("return????");
 			return;
 		}
-		//Debug.Log (name + "collided with:" + other.gameObject.name);
+		Debug.Log (name + "collided with:" + other.gameObject.name);
 		//send colliding event accordingly
 		Entity otherEnt = other.gameObject.GetComponent<Entity>();
 		if (otherEnt) {
+			
+
+			//Debug.Log (otherEnt.entityName + ": in here");
 			if (otherEnt.entityType == ENTITY_TYPE.PLAYER || otherEnt.entityType == entityType) { // what if we have to handle other player ? NOTE to make use of guid later on
 				return;
 			}
@@ -408,9 +417,9 @@ public class Entity : MonoBehaviour {
 				//down the current powerup
 				if(isFXPowerUpType(powerupType) && isFXPowerUpType(CurFXType)){ //within range of down call
 					//Debug.Log("invoking down call");
-					Debug.Log("currentpoweruptype:" + powerupType);
-					Debug.Log("prev FX:" + CurFXType);
-					Debug.Log("-" + (CurFXType - FXRangeBegin));
+					//Debug.Log("currentpoweruptype:" + powerupType);
+					//Debug.Log("prev FX:" + CurFXType);
+					//Debug.Log("-" + (CurFXType - FXRangeBegin));
 					// if(CurFXType == powerupType)
 					// 	DownCalls[CurFXType].Invoke(this);
 					DownCalls[CurFXType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
@@ -421,7 +430,7 @@ public class Entity : MonoBehaviour {
 				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
-				
+				//Debug.Log (otherEnt.entityName + ": in here");
 				if(PowerUp.hasShield){
 					return;
 				}
@@ -430,6 +439,14 @@ public class Entity : MonoBehaviour {
 				EnableMeshCutOut(this, otherEnt);
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
+					if (otherEnt.entityName == BOSS_NAME) {
+						Debug.Log ("Boss Attack");
+						//add force
+						otherEnt.GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 5.0f, ForceMode.Impulse);
+						BossLevel.BossOnHit (otherEnt);
+					}
+
+
 					otherEnt.Invisiblify(true);
 					if(otherEnt.entityName == BARRIER_NAME) {
 						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
