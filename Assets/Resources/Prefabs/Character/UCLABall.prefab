@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23343322600440818}
   - component: {fileID: 54083030976587726}
   m_Layer: 0
-  m_Name: Snowball2
+  m_Name: UCLABall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1b66d152aa31842e8a34473c010e61ef, type: 2}
+  - {fileID: 2100000, guid: 1a37d212766c4e444bd183225d3816c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -8,7 +8,7 @@ public class CharacterSelector : MonoBehaviour {
     public List<GameObject> characterList;
     public int index = 0;
     public Text charName;
-    public string[] charNameList = { "SnowBall", "FireBall" };
+    public string[] nameList = { "SnowBall", "UCLABall", "USCBall" };
 
     void Start () {
         GameObject[] character = Resources.LoadAll<GameObject>("Prefabs/Character");
@@ -44,12 +44,12 @@ public class CharacterSelector : MonoBehaviour {
     }
 
     public void Select(){
-        string ball_mat_path = "Prefabs/Character" + "/" + charNameList[index];
+        string ball_mat_path = "Prefabs/Character" + "/" + nameList[index];
         PlayerPrefs.SetString("BALL_MAT_PATH", ball_mat_path);
         Debug.Log("mat_path:" + ball_mat_path);
     }
 
     private void setCharInfo() {
-        charName.GetComponent<Text>().text = charNameList[index];
+        charName.GetComponent<Text>().text = nameList[index];
     }
 }
