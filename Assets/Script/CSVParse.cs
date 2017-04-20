@@ -49,6 +49,7 @@ public class CSVParse : MonoBehaviour
 			// Debug.Log ("row index:" + i);
 			Row row = new Row();
 			row.lanes = new int[grid [i].Length];
+			int spawnRowCount = 0;
 			//read a row
 			for(int j = 0; j < row.lanes.Length; j++){
 				//Debug.Log ("grid[" + i + "][" + j + "]:" + grid[i][j]   );
@@ -56,9 +57,12 @@ public class CSVParse : MonoBehaviour
 				row.lanes [j] = Convert.ToInt32 (grid [i] [j]);
 				if (row.lanes[j] != -1) {
 					spawnerNum += 1;
+					spawnRowCount += 1;
 				}
 			}
 			rowList.Add(row);
+			if(spawnRowCount == 0)
+				spawnerNum += 1;
 		}
 		Debug.Log ("row length:" + rowList.Count);
 		isLoaded = true;

@@ -407,11 +407,11 @@ public class Entity : MonoBehaviour {
 				//prevPowerUpType = currentPowerupType;
 				int powerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
 				
-				Debug.Log("currentpowerupType:" + powerupType);
+				//Debug.Log("currentpowerupType:" + powerupType);
 				//down the current powerup
 				if(isFXPowerUpType(powerupType) && isFXPowerUpType(CurFXType)){ //within range of down call
 					//Debug.Log("currentpoweruptype:" + powerupType);
-					Debug.Log("prev FX:" + CurFXType);
+					//Debug.Log("prev FX:" + CurFXType);
 					//Debug.Log("-" + (CurFXType - FXRangeBegin));
 					// if(CurFXType == powerupType)
 					// 	DownCalls[CurFXType].Invoke(this);
@@ -454,7 +454,7 @@ public class Entity : MonoBehaviour {
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
-					Debug.Log("here?");
+					//Debug.Log("here?");
 					IsAtMaxScale = false;
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);

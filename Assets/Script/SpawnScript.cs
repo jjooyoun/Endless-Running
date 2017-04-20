@@ -118,7 +118,8 @@ public class SpawnScript : MonoBehaviour {
 		ent.SetEntAudioVolume (Setting.gameSetting.soundLevel);
 	}
 
-	void SpawnNext(List<CSVParse.Row> rows, int rowIndex){
+	bool SpawnNext(List<CSVParse.Row> rows, int rowIndex){
+		int spawnCount = 0;
 		CSVParse.Row row = rows [rowIndex];
 		for(int i = 0; i < row.lanes.Length;i++){
 			int laneIndex = i;
@@ -127,9 +128,11 @@ public class SpawnScript : MonoBehaviour {
 			//Debug.Log ("spawnType:" + spawnType);
 			if (spawnType != -1) {
 				Spawn(laneIndex, spawnType);
+				spawnCount++;
 			}
 
 		}
+		return spawnCount != 0;
 	}
 
     void Update()
@@ -151,14 +154,16 @@ public class SpawnScript : MonoBehaviour {
 			//Debug.Log("spawn at time:" + timeElapsed);
 			//Debug.Log("numRows:" + csvParser.NumRows());
 			if (currentRow == csvParser.NumRows()) { // finished spawning
+				//Debug.Log("finished spawning:");
 				EventManager.Instance.finishedSpawningEvent.Invoke();
 				return;
 			}
 			//EventManager.Instance.percentCompleteEvent.Invoke((float)currentRow/csvParser.NumRows());
-			SpawnNext (csvParser.rowList, currentRow);
+			if(!SpawnNext (csvParser.rowList, currentRow)){
+				EventManager.Instance.spawnerDestroyedEvent.Invoke(null);
+			}
 			currentRow++;
 			//Debug.Log ("currentRow:" + currentRow);
-
 		}
     }
 }

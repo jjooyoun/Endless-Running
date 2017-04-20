@@ -88,7 +88,7 @@ public class PowerUp : Entity {
 
     public static void PowerUpShieldUp(Entity ent, Entity powerUp)
     {
-		Debug.Log("ShieldUp!!!");
+		//Debug.Log("ShieldUp!!!");
         //already have shield?
         if (!hasShield)
         {
@@ -97,7 +97,7 @@ public class PowerUp : Entity {
 			th1s.Invisiblify(true);
 			hasShield = !hasShield;
 			ent.CurFXType = (int)PowerUp.PowerUpType.SHIELD;
-			Debug.Log("CurFXUp:" + ent.CurFXType);
+			//Debug.Log("CurFXUp:" + ent.CurFXType);
 			ent.Invoke(SHIELD_DOWN_WRAPPER, shieldDownSec);
 			EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 			EventManager.Instance.shield.Invoke();
@@ -106,7 +106,7 @@ public class PowerUp : Entity {
 
     public static void PowerUpShieldDown(Entity ent)
     {
-		Debug.Log("ShieldDown!!!");
+		//Debug.Log("ShieldDown!!!");
         if (hasShield)
         {
 			ent.CancelInvoke();
@@ -129,7 +129,7 @@ public class PowerUp : Entity {
 		   th1s.Invisiblify(true);
 		   hasWater = !hasWater;
 		   ent.CurFXType = (int)PowerUp.PowerUpType.WATER;
-		   Debug.Log("CurFXUp:" + ent.CurFXType);
+		   //Debug.Log("CurFXUp:" + ent.CurFXType);
 		   ent.Invoke(WATER_DOWN_WRAPPER, waterDownSec);
 		   EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 	   }

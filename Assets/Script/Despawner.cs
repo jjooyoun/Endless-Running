@@ -6,12 +6,12 @@ public class Despawner : MonoBehaviour {
 	
 	public int spawnerTotal = -1;
 	public int spawnerDestroyed = 0;
-
 	public bool finishedSpawning = false;
 
 	void Start(){
 		EventManager.Instance.finishedSpawningEvent.AddListener(FinishedSpawning);
 		EventManager.Instance.spawningNumEvent.AddListener(SetSpawnerNum);
+		//EventManager.Instance.totalSpawnerEvent.AddListener(SetTotalSpawners);
 		EventManager.Instance.spawnerDestroyedEvent.AddListener (OnSpawnerDestroyed);
 	}
 
@@ -19,41 +19,50 @@ public class Despawner : MonoBehaviour {
 		//Debug.Log ("hello:" + other.name);
 		Entity ent = other.GetComponent<Entity>();
 		//Debug.Log("ent:" + ent);
-		if (ent) {
-			spawnerDestroyed++;
-			Entity.DisableMeshCutOut(ent);
-			ent.Invisiblify(false);
-			CheckNextLevel();
-			EventManager.Instance.percentCompleteEvent.Invoke((float)spawnerDestroyed/spawnerTotal);
-		}
-        GameObjectUtil.Destroy(other.gameObject);
+		// if (ent) {
+		// 	spawnerDestroyed++;
+		// 	Entity.DisableMeshCutOut(ent);
+		// 	ent.Invisiblify(false);
+		// 	CheckNextLevel();
+		// 	float percent = (float)spawnerDestroyed/spawnerTotal;
+		// 	//Debug.Log("percent:" + percent);
+		// 	EventManager.Instance.percentCompleteEvent.Invoke(percent);
+		// }
+		OnSpawnerDestroyed(ent);
+        if(other.gameObject) //sanity check
+			GameObjectUtil.Destroy(other.gameObject);
 	}
 
 
-	public void CheckNextLevel(){
+	void CheckNextLevel(){
 		if( spawnerTotal != -1 && spawnerDestroyed >= spawnerTotal && finishedSpawning){
 			EventManager.Instance.levelFinishedEvent.Invoke();
 		}
 	}
-	public void SetSpawnerNum(int spawnerNum){
+	void SetSpawnerNum(int spawnerNum){
 		spawnerTotal = spawnerNum;
 		Debug.Log("spawnerTotal:" + spawnerTotal);
 		CheckNextLevel();
 	}
 
-	public void OnSpawnerDestroyed(Entity ent){
+
+	void OnSpawnerDestroyed(Entity ent){
 		spawnerDestroyed++;
-		Entity.DisableMeshCutOut(ent);
-		PowerUp pu = ent.GetComponent<PowerUp>();
-		if(pu){
-			pu.Invisiblify(false);
+		if(ent){
+			Entity.DisableMeshCutOut(ent);
+			PowerUp pu = ent.GetComponent<PowerUp>();
+			if(pu){
+				pu.Invisiblify(false);
+			}
+			GameObjectUtil.Destroy(ent.gameObject);
+			CheckNextLevel();
 		}
-		GameObjectUtil.Destroy(ent.gameObject);
-		CheckNextLevel();
-		EventManager.Instance.percentCompleteEvent.Invoke((float)spawnerDestroyed/spawnerTotal);
+		float percent = (float)spawnerDestroyed/spawnerTotal;
+		Debug.Log("percent:" + percent);
+		EventManager.Instance.percentCompleteEvent.Invoke(percent);
 	}
 
-	public void FinishedSpawning(){
+	void FinishedSpawning(){
 		finishedSpawning = true;
 		Debug.Log("finished spawning!!!");
 		CheckNextLevel();
