@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23343322600440818}
   - component: {fileID: 54083030976587726}
   m_Layer: 0
-  m_Name: USCBall
+  m_Name: Snowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

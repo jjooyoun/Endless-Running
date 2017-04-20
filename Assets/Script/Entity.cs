@@ -15,6 +15,10 @@ public class Entity : MonoBehaviour {
 	private ParticleSystem ps = null;
 	//public AudioSource audioSource;
 
+	public AudioClip flashSound;
+
+	private AudioSource source;
+
     System.Guid id = System.Guid.NewGuid();
 
 	public enum ENTITY_TYPE{
@@ -149,6 +153,8 @@ public class Entity : MonoBehaviour {
     };
 
 	public void Init(){
+		source = GetComponent<AudioSource>();
+
 		meshes = GetComponents<MeshRenderer>();
 		if(meshes.Length == 0){
 			meshes = GetComponentsInChildren<MeshRenderer>();
@@ -167,12 +173,14 @@ public class Entity : MonoBehaviour {
 				rend.material = ball.GetComponent<Renderer>().material;
 				Destroy(ball);
 				originalMaterial = 	rend.material;
+
 			}
 		}
 	}
 
 	void Start(){
 		Init ();
+		//source = GetComponent<AudioSource>();
 		if (entityType == ENTITY_TYPE.PLAYER && Setting.gameSetting.gameMode == GameSetting.GameMode.TEST) {
 			EventManager.Instance.shield.AddListener (OnShieldUp);
 			EventManager.Instance.shieldDownEvent.AddListener (OnShieldDown);
@@ -385,6 +393,7 @@ public class Entity : MonoBehaviour {
 
 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
+				source.PlayOneShot(flashSound,1);
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;
 			}

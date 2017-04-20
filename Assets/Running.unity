@@ -686,6 +686,11 @@ Prefab:
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 8300000, guid: 84f372b59b5f4444f8cb7be0b57746db, type: 3}
+    - target: {fileID: 114890642070225290, guid: c00bbe054875f4766a0fa406d3325667,
+        type: 2}
+      propertyPath: flashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cdf8489ff19f401f883f4028ec40738, type: 3}
     m_RemovedComponents:
     - {fileID: 114052716034890552, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
     - {fileID: 54083030976587726, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
