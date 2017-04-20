@@ -28,6 +28,9 @@ public class PlayerMovementController : MonoBehaviour {
 	private float originalY = 0.0f;
 	private float topY = 0.0f;
 
+	public AudioClip jumpSound;
+	private AudioSource source;
+
 
 	// Shake variables
 
@@ -61,6 +64,8 @@ public class PlayerMovementController : MonoBehaviour {
 		EventManager.Instance.swipeUpEvent.AddListener (Jump);
 		EventManager.Instance.shakeEvent.AddListener (Shake);
         useAccelerometer(true);
+
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -278,6 +283,7 @@ public class PlayerMovementController : MonoBehaviour {
 			reachedTop = false;
 			reachedBottom = false;
 			isJumping = !isJumping;
+			source.PlayOneShot (jumpSound, 1);
 		}
 	}
 

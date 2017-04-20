@@ -321,7 +321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &208111999
 AudioSource:
   m_ObjectHideFlags: 0
@@ -681,6 +681,11 @@ Prefab:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114794455719597514, guid: c00bbe054875f4766a0fa406d3325667,
+        type: 2}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 84f372b59b5f4444f8cb7be0b57746db, type: 3}
     m_RemovedComponents:
     - {fileID: 114052716034890552, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
     - {fileID: 54083030976587726, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
