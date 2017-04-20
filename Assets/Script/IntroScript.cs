@@ -64,7 +64,7 @@ public class IntroScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (startSummary == true) {
-			summary.transform.Translate (0, speedUp, 0);
+			summary.transform.Translate (0, speedUp * Time.deltaTime, 0);
 
 		}
 
