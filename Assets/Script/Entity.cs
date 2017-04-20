@@ -38,9 +38,6 @@ public class Entity : MonoBehaviour {
 	}
 
 	private GameObject PEGameObject = null;
-	public static int MaxScaleFXIndex = 0;
-
-	public ParticleSystem[] InternalFX;
 
 	public static readonly string BALL_MAT_PATH = "BALL_MAT_PATH";
 	public static readonly string LASER_BEAM_PATH = "Prefabs/LaserBeam";
@@ -90,11 +87,16 @@ public class Entity : MonoBehaviour {
 		set{isOnFireCoRoutine = value;}
 	}
 
-	private static readonly int FXRangeBegin = 2;
-	private static readonly int FXRangeEnd = 4;
+	public static readonly int FXRangeBegin = 2;
+	public static readonly int FXRangeEnd = 4;
 
-	private int currentPowerupType = -1;
-	private int prevPowerUpType = -1;
+	private int currentFXPowerupType = -1;
+	public int CurFXType{
+		get{return currentFXPowerupType;}
+		set{currentFXPowerupType = value;}
+	}
+
+	private int prevFXPowerUpType = -1;
 
 	//the FX that is spawned
 	protected GameObject currentSpawnFX;
@@ -108,35 +110,31 @@ public class Entity : MonoBehaviour {
 		return Mathf.Abs( a - b ) < Epsilon;
 	}
 
-	
-
 	public static void ShieldDown(Entity ent){
-		Debug.Log("Down-call::ShieldDown!!!");
+		Debug.Log("Down-call::ShieldDown!!!" + ent.name);
+		ent.CurFXType = -1;
 		PowerUp.PowerUpShieldDown(ent);
 		//Destroy(ent.SpawnFX.gameObject);
 	}
 
 	static void FireDown(Entity ent){
 		Debug.Log("Down-call::FireDown!!!");
-		//PowerUp.FireDown(ent);
-		//ent.StopFireFX();
+		ent.CurFXType = -1;
 		PowerUp.PowerUpFireDown(ent);
 	}
 
 	static void WaterDown(Entity ent){
 		Debug.Log("Down-call::WaterDown!!!");
+		ent.CurFXType = -1;
 		PowerUp.PowerUpWaterDown(ent);
 	}
 
 	//get schedule from PowerUp.ShieldDw
 	public void ShieldDownWrapper(){
-		//PowerUp.PowerUpShieldDown(this);
-		//Debug.Log("shield down wrapper:" + name);
 		Entity.ShieldDown(this);
 	}
 
 	public void WaterDownWrapper(){
-		//PowerUp.PowerUpWaterDown(this);
 		Entity.WaterDown(this);
 	}
 
@@ -149,7 +147,6 @@ public class Entity : MonoBehaviour {
 		FireDown,
         ShieldDown,
 		WaterDown
-		
     };
 
 	public void Init(){
@@ -261,6 +258,7 @@ public class Entity : MonoBehaviour {
 
     
     //support for the ball only
+	//FIRE
     public IEnumerator playParticleEffectEvery(Material beginMat, Material endMat, ParticleSystem ps, float every, float total)
     {
         Renderer r = GetComponent<Renderer>();
@@ -282,6 +280,7 @@ public class Entity : MonoBehaviour {
     }
 
 	void Update(){
+		//Debug.Log("currentFX:" + CurFXType);
 		if(IsAtMaxScale && !PEGameObject){
 			//Debug.Log(name + ":do a max scale");
 			PEGameObject = PlayPEAtPosition((GameObject)Resources.Load(MAX_SCALE_FX_PATH), transform.position, false, transform);
@@ -339,13 +338,11 @@ public class Entity : MonoBehaviour {
 
 
 	bool FlashAble(Entity otherEnt){
-		//Debug.Log("max_scale:" + PowerUp.MAX_SCALE);
-		//return otherEnt.entityType != ENTITY_TYPE.POWER_UP && transform.localScale.x < PowerUp.MAX_SCALE;
 		return (otherEnt.entityType == ENTITY_TYPE.ENEMY && !IsAtMaxScale || otherEnt.entityType == ENTITY_TYPE.OBSTACLE && !IsAtMaxScale ) ;
 	}
 
 	bool isFXPowerUpType(int powerUpType){
-		return powerUpType >= FXRangeBegin && powerUpType <= FXRangeEnd;
+		return powerUpType >= (int)PowerUp.PowerUpType.FIRE && powerUpType <= (int)PowerUp.PowerUpType.WATER;
 	}
 
 	//TO DO : Performance tuning
@@ -404,16 +401,23 @@ public class Entity : MonoBehaviour {
 
            //player collided with powerup
 			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
-				prevPowerUpType = currentPowerupType;
-				currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
-				Debug.Log("currentpowerupType:" + currentPowerupType);
+				//prevPowerUpType = currentPowerupType;
+				int powerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
+				
+				//Debug.Log("currentpowerupType:" + powerupType);
 				//down the current powerup
-				if(isFXPowerUpType(currentPowerupType) && isFXPowerUpType(prevPowerUpType)){ //within range of down call
+				if(isFXPowerUpType(powerupType) && isFXPowerUpType(CurFXType)){ //within range of down call
 					//Debug.Log("invoking down call");
-					DownCalls[currentPowerupType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
+					Debug.Log("currentpoweruptype:" + powerupType);
+					Debug.Log("prev FX:" + CurFXType);
+					Debug.Log("-" + (CurFXType - FXRangeBegin));
+					// if(CurFXType == powerupType)
+					// 	DownCalls[CurFXType].Invoke(this);
+					DownCalls[CurFXType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
+					//CurFXType = powerupType;
 				}
 				
-				Debug.Log(">>currentpowerupType:" + currentPowerupType);
+				//Debug.Log(">>currentpowerupType:" + currentPowerupType);
 				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {

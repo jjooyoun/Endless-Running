@@ -30,9 +30,7 @@ public class PowerUp : Entity {
 		SCALE_DOWN,
 		FIRE,
         SHIELD,
-		WATER,
-		SHRINK,
-		JAPANESE_GAME
+		WATER
 	};
 
 	public Material invisibleMaterial;
@@ -65,8 +63,6 @@ public class PowerUp : Entity {
 		//hide power up
 		PowerUp th1s = (PowerUp)powerUp;
 		th1s.Invisiblify(true);
-		//Invisiblify(true);
-		//th1s.gameObject.SetActive (false);
 		//scale entity
 		if(!ScaleUp (ent.gameObject.transform)){
 			//ent.PlayInternalFX(Entity.MaxScaleFXIndex);
@@ -77,10 +73,6 @@ public class PowerUp : Entity {
 
 	private static void PowerUpScaleDown(Entity ent, Entity powerUp){
 		PowerUp th1s = (PowerUp)powerUp;
-		//th1s.gameObject.SetActive (false);
-		// if(ScaleDown (ent.gameObject.transform)){
-		// 	ent.StopInternalFX();
-		// }
 		EventManager.Instance.entPowerupCollisionEvent.Invoke(ent, powerUp);
 	}
 
@@ -100,18 +92,12 @@ public class PowerUp : Entity {
         //already have shield?
         if (!hasShield)
         {
-            //Debug.Log("creating sphere");
-            // ent.child = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            // ent.child.GetComponent<SphereCollider>().enabled = false;
-            // ent.child.transform.position = ent.transform.position;
-			// ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
-            // ent.child.transform.parent = ent.transform;//inherit rotation
-            // ////ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
-			// ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
 			ent.child = CreateSphereChild(ent.transform, OFFSET_SHIELD, powerUp.GetComponent<Renderer>().material);
 			PowerUp th1s = (PowerUp)powerUp;
 			th1s.Invisiblify(true);
 			hasShield = !hasShield;
+			ent.CurFXType = (int)PowerUp.PowerUpType.SHIELD;
+			Debug.Log("CurFXUp:" + ent.CurFXType);
 			ent.Invoke(SHIELD_DOWN_WRAPPER, shieldDownSec);
 			EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 			EventManager.Instance.shield.Invoke();
@@ -136,18 +122,13 @@ public class PowerUp : Entity {
 	   Debug.Log("WaterUp!!!");
 	   if(!hasWater){
 		   ent.child = CreateSphereChild(ent.transform, OFFSET_SHIELD, powerUp.GetComponent<Renderer>().material);
-		//    ent.child = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        //     ent.child.GetComponent<SphereCollider>().enabled = false;
-        //     ent.child.transform.position = ent.transform.position;
-		// 	ent.child.transform.localScale = new Vector3(ent.transform.localScale.x + OFFSET_SHIELD, ent.transform.localScale.y + OFFSET_SHIELD, ent.transform.localScale.z + OFFSET_SHIELD);
-        //     ent.child.transform.parent = ent.transform;//inherit rotation
-        //     ////ent.transform.position += new Vector3(0.0f, OFFSET_SHIELD * 0.5f, 0.0f); // floating inside
-		// 	ent.child.GetComponent<Renderer>().material = powerUp.GetComponent<Renderer>().material;
 		   //play
 		   ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(WATER_FX_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);
 		   PowerUp th1s = (PowerUp)powerUp;
 		   th1s.Invisiblify(true);
 		   hasWater = !hasWater;
+		   ent.CurFXType = (int)PowerUp.PowerUpType.WATER;
+		   Debug.Log("CurFXUp:" + ent.CurFXType);
 		   ent.Invoke(WATER_DOWN_WRAPPER, waterDownSec);
 		   EventManager.Instance.entPowerupCollisionEvent.Invoke (ent, powerUp);
 	   }
@@ -158,8 +139,6 @@ public class PowerUp : Entity {
 		Debug.Log("WaterDown!!!");
         if (hasWater)
         {
-            //Debug.Log("destroying sphere");
-            //GameObjectUtil.Destroy(ent.child);
 			Destroy(ent.child); 
 			if(ent.SpawnFX)
 				Destroy(ent.SpawnFX);
@@ -177,6 +156,8 @@ public class PowerUp : Entity {
 			Material curBallMat = ent.GetComponent<Renderer>().material;
 			ent.FireCoRoutine = ent.playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, fireDownSec);
 			ent.StartCoroutine(ent.FireCoRoutine);
+			ent.CurFXType = (int)PowerUp.PowerUpType.FIRE;
+			Debug.Log("CurFXUp:" + ent.CurFXType);
 			ent.Invoke(FIRE_DOWN_WRAPPER, fireDownSec);
 			hasFire = !hasFire;
 		}
