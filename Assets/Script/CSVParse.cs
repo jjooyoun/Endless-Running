@@ -60,7 +60,7 @@ public class CSVParse : MonoBehaviour
 			}
 			rowList.Add(row);
 		}
-		// Debug.Log ("row length:" + rowList.Count);
+		Debug.Log ("row length:" + rowList.Count);
 		isLoaded = true;
 		EventManager.Instance.spawningNumEvent.Invoke(spawnerNum);
 	}

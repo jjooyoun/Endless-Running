@@ -154,6 +154,7 @@ public class SpawnScript : MonoBehaviour {
 				EventManager.Instance.finishedSpawningEvent.Invoke();
 				return;
 			}
+			EventManager.Instance.percentCompleteEvent.Invoke((float)currentRow/csvParser.NumRows());
 			SpawnNext (csvParser.rowList, currentRow);
 			currentRow++;
 			//Debug.Log ("currentRow:" + currentRow);

@@ -17,6 +17,10 @@ public class SpawningNumEvent : UnityEvent<int>
 public class EntityDestroyedEvent : UnityEvent<Entity>
 {}
 
+[System.Serializable]
+public class ProgressEvent: UnityEvent<float>
+{}
+
 
 public class EventManager : Singleton<EventManager> {
 	protected EventManager(){}
@@ -45,6 +49,7 @@ public class EventManager : Singleton<EventManager> {
 	public SpawningNumEvent spawningNumEvent;
 	public UnityEvent levelFinishedEvent;
 	public UnityEvent finishedSpawningEvent;
+	public ProgressEvent percentCompleteEvent;
 	public EntityDestroyedEvent spawnerDestroyedEvent;
 
 	void OnDestroy(){

@@ -17,6 +17,7 @@ public class ScoreSystem : MonoBehaviour {
 
 	public float flashVar1;
 	public float flashVar2;
+	public GameObject Progress;
 	private const string LIVE_TEXT = "Lives: ";
 	private const string SCORE_TEXT = "Score: ";
 	private const string DISTANCE_TEXT = "Distance: ";
@@ -27,9 +28,6 @@ public class ScoreSystem : MonoBehaviour {
 	private DistanceSystem distancesystem;
 
 	void SetUpScoreLUT(){
-		//int[] scoreLUT = Setting.gameSetting.ScoresLUT;
-		//string[] entNameLUT = Setting.gameSetting.EntityNameLUT;
-		//int length = scoreLUT.Length;
 		foreach(GameSetting.ScoreEntry se in Setting.gameSetting.ScoreLUT){
 			ScoreLUT.Add(se.entName, se.score);
 		}
@@ -44,6 +42,7 @@ public class ScoreSystem : MonoBehaviour {
 		SetText(countText, SCORE_TEXT, count.ToString());
 		SetUpScoreLUT();
 		//	SetText(countDistance, DISTANCE_TEXT, distances.ToString());
+		EventManager.Instance.percentCompleteEvent.AddListener(UpdateProgressBar);
 		//listen to event
 		EventManager.Instance.entPowerupCollisionEvent.AddListener (EntPowerUpCollisionHandler);
 		EventManager.Instance.entObstacleCollisionEvent.AddListener (EntCrushEntHandler);
@@ -83,12 +82,6 @@ public class ScoreSystem : MonoBehaviour {
 	}
 
 	void FlashAndLoseLive(Entity ent, Entity other){
-		//Debug.Log ("ent:" + ent.name);
-		//Debug.Log ("other:" + other.name);
-		//flashing the entity
-//		Renderer entRenderer = ent.GetComponent<Renderer>();
-//		ent.GetComponent<Collider>().enabled = false;
-//		StartCoroutine(Flash(ent, entRenderer, entRenderer.material.color, HitFlash));
 		StartFlashWrapper(ent);
 		Handheld.Vibrate();
 		if (lives - 1 == 0) {
@@ -125,5 +118,10 @@ public class ScoreSystem : MonoBehaviour {
 
 	void SetText(Text text, string preMsg, string msg){
 		text.text = preMsg + msg;
+	}
+
+	void UpdateProgressBar(float percent){
+		Debug.Log("percent:" + percent);
+		Progress.GetComponent<Renderer>().material.SetFloat("_Progress", percent);
 	}
 }
