@@ -21,22 +21,11 @@ public class Despawner : MonoBehaviour {
 		//Debug.Log("ent:" + ent);
 		if (ent) {
 			spawnerDestroyed++;
-			// if( spawnerTotal != -1 && spawnerDestroyed >= spawnerTotal && finishedSpawning){
-			// 	Debug.Log("level finished!!!");
-			// 	EventManager.Instance.levelFinishedEvent.Invoke();
-			// }
-
-			
 			Entity.DisableMeshCutOut(ent);
 			ent.Invisiblify(false);
-			// PowerUp pu = ent.GetComponent<PowerUp>();
-			// if(pu){
-			// 	pu.Invisiblify(false);
-			// }
-
 			CheckNextLevel();
+			EventManager.Instance.percentCompleteEvent.Invoke((float)spawnerDestroyed/spawnerTotal);
 		}
-		//other.gameObject.GetComponent<Collider> ().isTrigger = false;
         GameObjectUtil.Destroy(other.gameObject);
 	}
 
@@ -61,6 +50,7 @@ public class Despawner : MonoBehaviour {
 		}
 		GameObjectUtil.Destroy(ent.gameObject);
 		CheckNextLevel();
+		EventManager.Instance.percentCompleteEvent.Invoke((float)spawnerDestroyed/spawnerTotal);
 	}
 
 	public void FinishedSpawning(){

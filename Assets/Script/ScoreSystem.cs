@@ -84,8 +84,8 @@ public class ScoreSystem : MonoBehaviour {
 	void FlashAndLoseLive(Entity ent, Entity other){
 		StartFlashWrapper(ent);
 		Handheld.Vibrate();
-		if (lives - 1 == 0) {
-			Time.timeScale = 0;
+		if (lives - 1 == 0) { 
+			Time.timeScale = 0;//POTENTIAL BUG HERE. NOTORIOUS BLACK SCREEN ? LEAVE NOTES AND WILL TEST
 			distancesystem.distanceIncreasing=false;
 			//SceneManager.LoadScene (3);
 			Setting.LoadGameOverScene();
@@ -121,7 +121,6 @@ public class ScoreSystem : MonoBehaviour {
 	}
 
 	void UpdateProgressBar(float percent){
-		//Debug.Log("percent:" + percent);
 		Progress.GetComponent<Renderer>().material.SetFloat("_Progress", percent);
 	}
 }
