@@ -14,6 +14,10 @@ public class BossLevel : MonoBehaviour {
 	private float startTime;
 	private float journeyLength;
 
+	public AudioClip TrumpTakeDamageSound;
+
+	private AudioSource source;
+
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +25,7 @@ public class BossLevel : MonoBehaviour {
 		endMarker = GameObject.Find ("ball").transform;
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+		source = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -48,6 +53,7 @@ public class BossLevel : MonoBehaviour {
 			//call finish level
 			return;
 		}
+		boss.source.PlayOneShot(boss.TrumpTakeDamageSound, 1);
 		boss.BossLifeNum -= 1;
 		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
 		ss.StartFlashWrapper (bossEnt);

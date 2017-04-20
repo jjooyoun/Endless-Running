@@ -57,4 +57,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 4900000, guid: 287600e8bffe1cb40ae787b57c72ba40, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: aeaf27f7da60843e58d09754da703639, type: 3}
