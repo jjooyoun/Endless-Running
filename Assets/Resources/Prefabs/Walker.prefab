@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1944993490182120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5975173, y: 0.26, z: -2.6625185}
+  m_LocalPosition: {x: 2.2476878, y: 0.28, z: -2.9940276}
   m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_Children:
   - {fileID: 4531624387156128}
@@ -151,7 +151,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ba04ee76a67d74e209b52974a684d2c3, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -249,9 +249,9 @@ MonoBehaviour:
   child: {fileID: 0}
   onCollidedFX: {fileID: 1568030154736012, guid: 5ddc09408b4f94a68b36ccb8da1a629b,
     type: 2}
+  flashSound: {fileID: 0}
   entityType: 1
   entityName: Walker
-  InternalFX: []
 --- !u!114 &114510927158488686
 MonoBehaviour:
   m_ObjectHideFlags: 1
