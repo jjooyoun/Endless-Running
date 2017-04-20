@@ -274,4 +274,4 @@ MonoBehaviour:
   onCollidedFX: {fileID: 0}
   flashSound: {fileID: 0}
   entityType: 2
-  entityName: BossWall
+  entityName: Barrier

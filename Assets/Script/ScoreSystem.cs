@@ -121,7 +121,7 @@ public class ScoreSystem : MonoBehaviour {
 	}
 
 	void UpdateProgressBar(float percent){
-		Debug.Log("percent:" + percent);
+		//Debug.Log("percent:" + percent);
 		Progress.GetComponent<Renderer>().material.SetFloat("_Progress", percent);
 	}
 }

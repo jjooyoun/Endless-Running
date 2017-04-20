@@ -36,6 +36,7 @@ public class GameSetting : ScriptableObject {
 		new ScoreEntry("RepGunship", 2),
 		new ScoreEntry("TIE_Fighter", 2),
 		new ScoreEntry("Trump", 3),
+		new ScoreEntry("BossWall", 1),
 	};
 	
 	public float spawnCycle = 0.5f;
