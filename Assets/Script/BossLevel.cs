@@ -15,8 +15,15 @@ public class BossLevel : MonoBehaviour {
 	private float journeyLength;
 
 	public AudioClip TrumpTakeDamageSound;
+	public AudioClip startTrumpSound;
 
 	private AudioSource source;
+
+	public static readonly string TRUMP_HIT_FX_PATH = "Prefabs/TrumpHitFX";
+
+	void Awake() {
+		source = GetComponent<AudioSource>();
+	}
 
 
 	// Use this for initialization
@@ -25,7 +32,8 @@ public class BossLevel : MonoBehaviour {
 		endMarker = GameObject.Find ("ball").transform;
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
-		source = GetComponent<AudioSource>();
+		//source = GetComponent<AudioSource>();
+		source.PlayOneShot(startTrumpSound, 1);
 	}
 
 	// Update is called once per frame
@@ -54,6 +62,9 @@ public class BossLevel : MonoBehaviour {
 			return;
 		}
 		boss.source.PlayOneShot(boss.TrumpTakeDamageSound, 1);
+		//if(boosEnt.entityName == bossEtBARRIER_NAME) {
+		bossEnt.PlayPEAtPosition( Resources.Load(TRUMP_HIT_FX_PATH) as GameObject,bossEnt.transform.position, true, bossEnt.transform);
+		//}
 		boss.BossLifeNum -= 1;
 		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
 		ss.StartFlashWrapper (bossEnt);

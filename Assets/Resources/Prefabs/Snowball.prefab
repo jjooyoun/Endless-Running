@@ -24,10 +24,10 @@ GameObject:
   - component: {fileID: 23343322600440818}
   - component: {fileID: 114794455719597514}
   - component: {fileID: 114890642070225290}
-  - component: {fileID: 114052716034890552}
-  - component: {fileID: 54083030976587726}
   - component: {fileID: 114397342992226214}
-  m_Layer: 0
+  - component: {fileID: 54208982212090458}
+  - component: {fileID: 82144242393178388}
+  m_Layer: 11
   m_Name: Snowball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1a37d212766c4e444bd183225d3816c9, type: 2}
+  - {fileID: 2100000, guid: b2b1efd5c01d2a04e975a4b2fa45450b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,39 +85,101 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860218963462410}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54083030976587726
+--- !u!54 &54208982212090458
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860218963462410}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.001
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114052716034890552
-MonoBehaviour:
+--- !u!82 &82144242393178388
+AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860218963462410}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcbdf664dec5343f5a9925cfb561d145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HitFlash: {r: 0.2445934, g: 0.2739618, b: 0.85294116, a: 0}
-  flashTime: 5
-  distance: 0
-  player: {fileID: 0}
-  countText: {fileID: 0}
-  countLives: {fileID: 0}
-  countDistance: {fileID: 0}
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f025762f47e684d0b958666f622b4d40, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114397342992226214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,6 +198,9 @@ MonoBehaviour:
   countText: {fileID: 0}
   countLives: {fileID: 0}
   countDistance: {fileID: 0}
+  flashVar1: 0.1
+  flashVar2: 0.1
+  Progress: {fileID: 0}
 --- !u!114 &114794455719597514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +223,7 @@ MonoBehaviour:
   reachedTop: 0
   reachedBottom: 0
   speed: 8
+  jumpSound: {fileID: 8300000, guid: 84f372b59b5f4444f8cb7be0b57746db, type: 3}
 --- !u!114 &114890642070225290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +236,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   child: {fileID: 0}
+  onCollidedFX: {fileID: 0}
+  flashSound: {fileID: 8300000, guid: ba04ee76a67d74e209b52974a684d2c3, type: 3}
+  TrumpHitsYouSound1: {fileID: 8300000, guid: 83a1fd174085d445a9fa667b6dc0ca08, type: 3}
+  TrumpHitsYouSound2: {fileID: 8300000, guid: bab52c28497ce48a3a11ef7971681c40, type: 3}
+  TrumpHitsYouSound3: {fileID: 8300000, guid: d4df523f302d143898bf18c0593f63cb, type: 3}
+  TrumpHitsYouSound4: {fileID: 8300000, guid: 2f9799111ac2140b8a6edf1f773d70d7, type: 3}
   entityType: 0
   entityName: Entity
 --- !u!135 &135160090863969106

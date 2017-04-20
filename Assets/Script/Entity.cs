@@ -16,6 +16,10 @@ public class Entity : MonoBehaviour {
 	//public AudioSource audioSource;
 
 	public AudioClip flashSound;
+	public AudioClip TrumpHitsYouSound1;
+	public AudioClip TrumpHitsYouSound2;
+	public AudioClip TrumpHitsYouSound3;
+	public AudioClip TrumpHitsYouSound4;
 
 	private AudioSource source;
 
@@ -36,6 +40,8 @@ public class Entity : MonoBehaviour {
 		get{return isAtMaxScale;}
 		set{isAtMaxScale = value;}
 	}
+
+	private int counter = 1;
 
 	private GameObject PEGameObject = null;
 
@@ -393,6 +399,26 @@ public class Entity : MonoBehaviour {
 
 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
+
+
+				if (otherEnt.entityName == BOSS_NAME) {
+					
+					if (counter == 1) {
+						Debug.Log ("isplaying:" + source.isPlaying + "-" + source.clip.name);
+						source.PlayOneShot (TrumpHitsYouSound1, 1);
+					} else if (counter == 2) {
+						source.PlayOneShot (TrumpHitsYouSound2, 1);
+					} else if (counter == 3) {
+						source.PlayOneShot (TrumpHitsYouSound3, 1);
+					} else if (counter == 4) {
+						source.PlayOneShot (TrumpHitsYouSound4, 1);
+						counter = 1;
+					}
+
+					counter++;
+
+
+				} 
 				source.PlayOneShot(flashSound,1);
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;

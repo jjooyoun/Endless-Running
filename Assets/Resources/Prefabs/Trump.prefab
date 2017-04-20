@@ -2066,6 +2066,10 @@ MonoBehaviour:
   child: {fileID: 0}
   onCollidedFX: {fileID: 0}
   flashSound: {fileID: 0}
+  TrumpHitsYouSound1: {fileID: 0}
+  TrumpHitsYouSound2: {fileID: 0}
+  TrumpHitsYouSound3: {fileID: 0}
+  TrumpHitsYouSound4: {fileID: 0}
   entityType: 1
   entityName: Trump
 --- !u!114 &114970177465677654
@@ -2087,6 +2091,7 @@ MonoBehaviour:
   startMoving: 1
   TrumpTakeDamageSound: {fileID: 8300000, guid: 979be5a712e584ab1b310c82a68095c2,
     type: 3}
+  startTrumpSound: {fileID: 8300000, guid: d5ff46782525b4f20ac152489ca6d198, type: 3}
 --- !u!137 &137396827767152408
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
