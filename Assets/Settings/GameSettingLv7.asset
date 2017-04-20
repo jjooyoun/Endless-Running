@@ -43,9 +43,9 @@ MonoBehaviour:
   spawnCycle: 1.09375
   objectSpeed: -20
   soundLevel: 1
-  enableJump: 0
+  enableJump: 1
   enableShake: 0
-  enableSound: 0
+  enableSound: 1
   currentLevel: 1
   isPaused: 0
   JUMP_KEY: 32
