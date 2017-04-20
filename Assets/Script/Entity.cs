@@ -394,17 +394,17 @@ public class Entity : MonoBehaviour {
 			
 
            //player collided with powerup
-			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP /*&& !isOnFire*/) {
+			if (otherEnt.entityType == ENTITY_TYPE.POWER_UP) {
 				prevPowerUpType = currentPowerupType;
 				currentPowerupType = (int)otherEnt.GetComponent<PowerUp>().powerUptype;
-				//Debug.Log("currentpowerupType:" + currentPowerupType);
+				Debug.Log("currentpowerupType:" + currentPowerupType);
 				//down the current powerup
 				if(isFXPowerUpType(currentPowerupType) && isFXPowerUpType(prevPowerUpType)){ //within range of down call
 					//Debug.Log("invoking down call");
 					DownCalls[currentPowerupType-FXRangeBegin].Invoke(this);//clamping to the down-calls array
 				}
 				
-				//Debug.Log(">>currentpowerupType:" + currentPowerupType);
+				Debug.Log(">>currentpowerupType:" + currentPowerupType);
 				//up call
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
