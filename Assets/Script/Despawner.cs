@@ -58,7 +58,7 @@ public class Despawner : MonoBehaviour {
 			CheckNextLevel();
 		}
 		float percent = (float)spawnerDestroyed/spawnerTotal;
-		Debug.Log("percent:" + percent);
+		//Debug.Log("percent:" + percent);
 		EventManager.Instance.percentCompleteEvent.Invoke(percent);
 	}
 

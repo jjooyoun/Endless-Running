@@ -9,7 +9,7 @@ public class LevelSelector : MonoBehaviour {
 
 	void Start ()
 	{
-		PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteKey("levelReached");
         int levelReached = PlayerPrefs.GetInt("levelReached", 10);
 
 		for (int i = 0; i < levelButtons.Length; i++)

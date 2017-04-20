@@ -164,10 +164,10 @@ public class Entity : MonoBehaviour {
 		if(entityType == ENTITY_TYPE.PLAYER){
 			rend = GetComponent<Renderer>();
 			originalMaterial = rend.material; //for player
-			string ball_mat = PlayerPrefs.GetString(BALL_MAT_PATH, "");
-			//Debug.Log("BALL_MAT_PATH:" + ball_mat);
+			string ball_mat = PlayerPrefs.GetString("BALL_MAT_PATH");
+			Debug.Log("BALL_MAT_PATH:" + ball_mat);
 			if(ball_mat != ""){
-				//Debug.Log("loading material!!! from:" + ball_mat);
+				Debug.Log("loading material!!! from:" + ball_mat);
 				//rend.material = Resources.Load(ball_mat, typeof(Material)) as Material;
 				GameObject ball = GameObject.Instantiate(Resources.Load(ball_mat) as GameObject);
 				rend.material = ball.GetComponent<Renderer>().material;
