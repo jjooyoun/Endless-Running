@@ -72,7 +72,7 @@ public class PlayerMovementController : MonoBehaviour {
 	void Update () {
 		if(Setting.gameSetting.isPaused)
 			return;
-		transform.Rotate ( new Vector3(1,0,0) * ( Mathf.Abs(Setting.gameSetting.objectSpeed) * Time.deltaTime ) );
+		transform.Rotate ( new Vector3(1,0,0) * ( Mathf.Abs(Setting.gameSetting.objectSpeed * 10.0f) * Time.deltaTime ) );
 		if (isJumping) {
 			//Debug.Log (transform.position);
 			if (!reachedTop) {
