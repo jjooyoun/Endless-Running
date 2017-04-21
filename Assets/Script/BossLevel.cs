@@ -9,6 +9,7 @@ public class BossLevel : MonoBehaviour {
 	public Transform startMarker;
 	public Transform endMarker;
 	public float speed = 1.0F;
+	public bool isHit = false;
 	public int BossLifeNum = 10;
 	public bool startMoving = true;
 	private float startTime;
@@ -72,6 +73,16 @@ public class BossLevel : MonoBehaviour {
 		boss.startMoving = false;
 	}
 
+	public void WaitForSecBeforeStartHunting(float sec){
+		startMoving = false;
+		StartCoroutine(StartHuntingInSec(sec));
+	}
+
+	IEnumerator StartHuntingInSec(float sec){
+		yield return new WaitForSeconds(sec);
+		startMoving = true;
+		GetComponent<Rigidbody>().isKinematic = true;
+	}
 //	private void OnTriggerEnter(Collider other){
 //		Entity otherEnt = other.GetComponent<Entity>();
 //		if(otherEnt){

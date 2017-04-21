@@ -114,6 +114,7 @@ public class ScoreSystem : MonoBehaviour {
 		Debug.Log ("finished flashing!!!");
 		if (ent.entityName == Entity.BOSS_NAME) {
 			ent.GetComponent<BossLevel> ().startMoving = true;
+			ent.GetComponent<Rigidbody>().isKinematic = true;
 		}
 	}
 

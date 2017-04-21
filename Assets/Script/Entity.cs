@@ -399,12 +399,13 @@ public class Entity : MonoBehaviour {
 
 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
-
-
 				if (otherEnt.entityName == BOSS_NAME) {
+					otherEnt.GetComponent<Rigidbody>().isKinematic = false;
 					Debug.Log ("boss hit us?");
-					GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 100.0f, ForceMode.Impulse);
-					
+					//BossLevel.BossOnHit (otherEnt);
+					otherEnt.GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 5.0f, ForceMode.Impulse);
+					otherEnt.GetComponent<BossLevel>().WaitForSecBeforeStartHunting(2.0f);
+					//otherEnt.GetComponent<Rigidbody>().isKinematic = true;
 					if (counter == 1) {
 						//Debug.Log ("isplaying:" + source.isPlaying + "-" + source.clip.name);
 						source.PlayOneShot (TrumpHitsYouSound1, 1);
@@ -459,6 +460,7 @@ public class Entity : MonoBehaviour {
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
 					if (otherEnt.entityName == BOSS_NAME) {
+						otherEnt.GetComponent<Rigidbody>().isKinematic = false;
 						Debug.Log ("Boss Attack");
 						//add force
 						otherEnt.GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 5.0f, ForceMode.Impulse);
@@ -493,4 +495,20 @@ public class Entity : MonoBehaviour {
 			}
 		}
 	}
+
+	// void OnTriggerStay(Collider other){
+	// 	if (entityType != ENTITY_TYPE.PLAYER) {
+	// 		return;
+	// 	}
+	// 	//player now
+	// 	Entity otherEnt = other.gameObject.GetComponent<Entity>();
+	// 	if (otherEnt) {
+	// 		if(otherEnt.entityName == BOSS_NAME){
+	// 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){
+	// 				Debug.Log("here?");
+	// 				otherEnt.GetComponent<Rigidbody>().AddForce(Vector3.forward, ForceMode.Acceleration);
+	// 			}
+	// 		}
+	// 	}
+	// }
 }
