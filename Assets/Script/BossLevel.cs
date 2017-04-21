@@ -26,6 +26,7 @@ public class BossLevel : MonoBehaviour {
 	private float journeyLength;
 
 	public AudioClip TrumpTakeDamageSound;
+	public AudioClip TrumpTakeDamageHit;
 	public AudioClip startTrumpSound;
 
 	private AudioSource source;
@@ -100,6 +101,7 @@ public class BossLevel : MonoBehaviour {
 		}
 		BossLifeNum -= 1;
 		source.PlayOneShot(TrumpTakeDamageSound, 1);
+		source.PlayOneShot(TrumpTakeDamageHit, 1);
 		thisEnt.PlayPEAtPosition( Resources.Load(TRUMP_HIT_FX_PATH) as GameObject,thisEnt.transform.position, true, thisEnt.transform);
 		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
 		ss.StartFlashWrapper (thisEnt);
