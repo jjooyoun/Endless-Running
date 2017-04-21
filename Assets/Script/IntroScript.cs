@@ -12,6 +12,9 @@ public class IntroScript : MonoBehaviour {
 	public Text intro;
 	public Text title;
 	public GameObject summary;
+
+	public GameObject bossIntro;
+
 	private Bounds summaryTextBound;
 	private float screenY;
 	private float extentY;
@@ -65,7 +68,7 @@ public class IntroScript : MonoBehaviour {
 	void Update () {
 		if (startSummary == true) {
 			summary.transform.Translate (0, speedUp * Time.deltaTime, 0);
-
+			bossIntro.transform.Translate(0, (speedUp + 5.0f) * Time.deltaTime, 0);
 		}
 
 		if (Input.GetMouseButtonDown (0) && !isOnFade) {
