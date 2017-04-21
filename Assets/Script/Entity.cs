@@ -61,6 +61,8 @@ public class Entity : MonoBehaviour {
 
 	public static readonly string WATER_DESTORY_FX_PATH = "Prefabs/WaterDestroyFX";
 
+	public static readonly string SMOKE_FX_PATH = "Prefabs/SmokeFX";
+
 
 	public static readonly string FIRE_DOWN_WRAPPER = "FireDownWrapper";
 	public static readonly string WATER_DOWN_WRAPPER = "WaterDownWrapper";
@@ -401,10 +403,11 @@ public class Entity : MonoBehaviour {
 			}
 			//NOT FLASHABLE
 			//play collided FX
-			else if (PowerUp.hasShield && FlashAble(otherEnt)) {
-				PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+			if (PowerUp.hasShield && IsAtMaxScale == false) {
+				PlayPEAtPosition (Resources.Load (SMOKE_FX_PATH) as GameObject, transform.position);
+			} else {
+				PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
 			}
-			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
 			
 
            //player collided with powerup
