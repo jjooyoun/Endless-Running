@@ -20,6 +20,7 @@ public class BossLevel : MonoBehaviour {
 	public bool isHit = false;
 	public int BossLifeNum = 10;
 	public bool startMoving = true;
+	private bool endLevel = false;
 
 	private int counter = 0;
 	private float startTime;
@@ -33,6 +34,8 @@ public class BossLevel : MonoBehaviour {
 
 	public static readonly string BALL_NAME = "ball";
 	public static readonly string TRUMP_HIT_FX_PATH = "Prefabs/TrumpHitFX";
+	public static readonly string TRUMP_EXPLODE_FX_PATH = "Prefabs/TrumpExplodeFX";
+	public static readonly string IMPACT_FX_PATH = "Prefabs/ImpactFX";
 
 	void Awake() {
 		source = GetComponent<AudioSource>();
@@ -55,7 +58,11 @@ public class BossLevel : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!startMoving)
+		if(endLevel == true) {
+			//Setting.StaticQuitGame();
+			//Setting.LoadLevelCompletescene();
+		}
+		else if (!startMoving)
 			return;
 		// int randIndex = Random.Range (0, 2);
 		// if (randIndex == 0) {
@@ -92,13 +99,24 @@ public class BossLevel : MonoBehaviour {
 	}
 
 	void OnHit(){
+
 		if (BossLifeNum - 1 == 0) {
 			//play explosion animation
 			//call finish level
-			Setting.StaticQuitGame();
-			Setting.LoadLevelCompletescene();
+			//Setting.StaticQuitGame();
+			//Setting.LoadLevelCompletescene();
+			thisEnt.PlayPEAtPosition( Resources.Load(TRUMP_EXPLODE_FX_PATH) as GameObject,transform.position);
+			thisEnt.PlayPEAtPosition( Resources.Load(IMPACT_FX_PATH) as GameObject,transform.position);
+			trump.SetActive(false);
+			//StartWaitForSec(5.0f);
+			endLevel = true;
+
+
+			//Setting.StaticQuitGame();
+			//Setting.LoadLevelCompletescene();
 			return;
 		}
+		
 		BossLifeNum -= 1;
 		source.PlayOneShot(TrumpTakeDamageSound, 1);
 		source.PlayOneShot(TrumpTakeDamageHit, 1);
@@ -107,6 +125,9 @@ public class BossLevel : MonoBehaviour {
 		ss.StartFlashWrapper (thisEnt);
 		Debug.Log ("boss life after:" + BossLifeNum);
 		startMoving = false;
+
+
+
 	}
 
 	public void WaitForSecBeforeStartHunting(float sec){
@@ -124,5 +145,17 @@ public class BossLevel : MonoBehaviour {
 		if(clips.Length > 0  && index < clips.Length){
 			source.PlayOneShot(clips[index]);
 		}
-	}	
+	}
+
+	void WaitForSec(float sec)
+	{
+		StartCoroutine(StartWaitForSec(sec));
+	}
+
+	IEnumerator StartWaitForSec(float sec)
+	{
+		print(Time.time);
+		yield return new WaitForSeconds(sec);
+		print(Time.time);
+	}
 }
