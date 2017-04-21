@@ -35,6 +35,7 @@ public class WaterDestruction : MonoBehaviour {
 		Entity otherEnt = other.GetComponent<Entity> ();
 		if (PowerUp.hasWater && otherEnt && (otherEnt.entityType == Entity.ENTITY_TYPE.ENEMY || otherEnt.entityType == Entity.ENTITY_TYPE.OBSTACLE)) {
 			Debug.Log ("water collided w/ :" + otherEnt.name);
+			Debug.Log(">DASd?AsdA");
 			//EventManager.Instance.spawnerDestroyedEvent.Invoke (otherEnt);
 		}
 	}

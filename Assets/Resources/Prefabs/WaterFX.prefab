@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4100885917900320}
   - component: {fileID: 199687085026255904}
   - component: {fileID: 198941270604421072}
-  - component: {fileID: 114158132847704586}
   - component: {fileID: 82739811229946498}
   m_Layer: 13
   m_Name: WaterFX
@@ -169,17 +168,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114158132847704586
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1433758122483906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936f86337d5a02848844aeef7ea9a216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135988864207661272
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -8,10 +8,20 @@ public class BossLevel : MonoBehaviour {
 
 	public Transform startMarker;
 	public Transform endMarker;
+
+	public AudioClip[] clips;
+	private static readonly float DISTANCE_CONSTRAINT = 0.5f;
+	public float forceStrength = 5.0f;
+	public float DelayBeforeHuntingSec = 2.0f;
+	private Rigidbody rigidbody;
+	private Entity thisEnt;
+	private Entity playerEnt;
 	public float speed = 1.0F;
 	public bool isHit = false;
 	public int BossLifeNum = 10;
 	public bool startMoving = true;
+
+	private int counter = 0;
 	private float startTime;
 	private float journeyLength;
 
@@ -20,6 +30,7 @@ public class BossLevel : MonoBehaviour {
 
 	private AudioSource source;
 
+	public static readonly string BALL_NAME = "ball";
 	public static readonly string TRUMP_HIT_FX_PATH = "Prefabs/TrumpHitFX";
 
 	void Awake() {
@@ -29,8 +40,12 @@ public class BossLevel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		rigidbody = GetComponent<Rigidbody>();
 		startMarker = transform;
-		endMarker = GameObject.Find ("ball").transform;
+		GameObject playerGO = GameObject.Find (BALL_NAME);
+		endMarker = playerGO.transform;
+		playerEnt = playerGO.GetComponent<Entity>();
+		thisEnt = GetComponent<Entity>();
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
 		//source = GetComponent<AudioSource>();
@@ -41,36 +56,50 @@ public class BossLevel : MonoBehaviour {
 	void Update () {
 		if (!startMoving)
 			return;
-		int randIndex = Random.Range (0, 2);
-		if (randIndex == 0) {
-			//trump.transform.Translate (0.005f, 0, 0);
-		}
-		else if (randIndex == 1) {
-			//trump.transform.Translate (0.005f, 0, 0.005f);
-		}
+		// int randIndex = Random.Range (0, 2);
+		// if (randIndex == 0) {
+		// 	//trump.transform.Translate (0.005f, 0, 0);
+		// }
+		// else if (randIndex == 1) {
+		// 	//trump.transform.Translate (0.005f, 0, 0.005f);
+		// }
 
 		float distCovered = (Time.time - startTime) * speed;
 		float fracJourney = distCovered / journeyLength;
 		transform.position = Vector3.Lerp(startMarker.position, endMarker.position, fracJourney);
-
+		//check distance, hit
+		if(Vector3.Distance(transform.position, endMarker.position) <= DISTANCE_CONSTRAINT){
+			rigidbody.isKinematic = false;
+			rigidbody.AddForce(0.0f, 0.0f, forceStrength, ForceMode.Impulse);
+			//ent no equipped wweapon
+			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && !playerEnt.IsAtMaxScale){
+				//flash player...maybe already did
+				//play sound accordingly
+				PlayTrumpSoundAtIndex(counter);
+				counter++;
+				WaitForSecBeforeStartHunting(DelayBeforeHuntingSec);
+			}else{//got weapon or max scale
+				//BossLevel.BossOnHit(playerEnt);
+				OnHit();
+			}
+		}
 	}
 
-	public static void BossOnHit(Entity bossEnt){
-		BossLevel boss = bossEnt.GetComponent<BossLevel> ();
-		if (boss.BossLifeNum - 1 == 0) {
+	void OnHit(){
+		if (BossLifeNum - 1 == 0) {
 			//play explosion animation
 			//call finish level
+			Setting.StaticQuitGame();
+			Setting.LoadLevelCompletescene();
 			return;
 		}
-		boss.source.PlayOneShot(boss.TrumpTakeDamageSound, 1);
-		//if(boosEnt.entityName == bossEtBARRIER_NAME) {
-		bossEnt.PlayPEAtPosition( Resources.Load(TRUMP_HIT_FX_PATH) as GameObject,bossEnt.transform.position, true, bossEnt.transform);
-		//}
-		boss.BossLifeNum -= 1;
+		BossLifeNum -= 1;
+		source.PlayOneShot(TrumpTakeDamageSound, 1);
+		thisEnt.PlayPEAtPosition( Resources.Load(TRUMP_HIT_FX_PATH) as GameObject,thisEnt.transform.position, true, thisEnt.transform);
 		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
-		ss.StartFlashWrapper (bossEnt);
-		Debug.Log ("boss life after:" + boss.BossLifeNum);
-		boss.startMoving = false;
+		ss.StartFlashWrapper (thisEnt);
+		Debug.Log ("boss life after:" + BossLifeNum);
+		startMoving = false;
 	}
 
 	public void WaitForSecBeforeStartHunting(float sec){
@@ -83,13 +112,10 @@ public class BossLevel : MonoBehaviour {
 		startMoving = true;
 		GetComponent<Rigidbody>().isKinematic = true;
 	}
-//	private void OnTriggerEnter(Collider other){
-//		Entity otherEnt = other.GetComponent<Entity>();
-//		if(otherEnt){
-//			Debug.Log ("trump collided with:" + otherEnt.entityName);
-//			if(otherEnt.entityType == Entity.ENTITY_TYPE.PLAYER){
-//				GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 10.0f, ForceMode.Impulse);
-//			}
-//		}
-//	}
+
+	void PlayTrumpSoundAtIndex(int index){
+		if(clips.Length > 0  && index < clips.Length){
+			source.PlayOneShot(clips[index]);
+		}
+	}	
 }

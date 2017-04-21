@@ -16,11 +16,6 @@ public class Entity : MonoBehaviour {
 	//public AudioSource audioSource;
 
 	public AudioClip flashSound;
-	public AudioClip TrumpHitsYouSound1;
-	public AudioClip TrumpHitsYouSound2;
-	public AudioClip TrumpHitsYouSound3;
-	public AudioClip TrumpHitsYouSound4;
-	public AudioClip TrumpHitsYouSound5;
 
 	private AudioSource source;
 
@@ -41,8 +36,6 @@ public class Entity : MonoBehaviour {
 		get{return isAtMaxScale;}
 		set{isAtMaxScale = value;}
 	}
-
-	private int counter = 1;
 
 	private GameObject PEGameObject = null;
 
@@ -176,11 +169,13 @@ public class Entity : MonoBehaviour {
 			if(ball_mat != ""){
 				Debug.Log("loading material!!! from:" + ball_mat);
 				//rend.material = Resources.Load(ball_mat, typeof(Material)) as Material;
-				GameObject ball = GameObject.Instantiate(Resources.Load(ball_mat) as GameObject);
-				rend.material = ball.GetComponent<Renderer>().material;
-				Destroy(ball);
-				originalMaterial = 	rend.material;
-
+				UnityEngine.Object ball = Resources.Load(ball_mat);
+				if(ball){//sanity check
+					GameObject ballGO = GameObject.Instantiate((GameObject)ball);
+					rend.material = ballGO.GetComponent<Renderer>().material;
+					Destroy(ballGO);
+					originalMaterial = 	rend.material;
+				}
 			}
 		}
 	}
@@ -375,12 +370,12 @@ public class Entity : MonoBehaviour {
 		if (entityType != ENTITY_TYPE.PLAYER) {
 			//Debug.Log("entity_type:" + entityType);
 			if(entityType == ENTITY_TYPE.ENEMY && other.name == WATER_FX_COLLIDER){
-				if (name == BOSS_NAME) {
-					BossLevel.BossOnHit (this);
+				//exclude trump
+				if(entityName == BOSS_NAME){
+					return;
 				}
 				Debug.Log("water destroyed:" + name);
 				PlayPEAtPosition (Resources.Load (WATER_DESTORY_FX_PATH) as GameObject, transform.position);
-
 				EventManager.Instance.spawnerDestroyedEvent.Invoke(this);
 			}
 			
@@ -400,32 +395,6 @@ public class Entity : MonoBehaviour {
 
 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){//snow ball small
 				Debug.Log("flashable");
-				if (otherEnt.entityName == BOSS_NAME) {
-					otherEnt.GetComponent<Rigidbody>().isKinematic = false;
-					Debug.Log ("boss hit us?");
-					//BossLevel.BossOnHit (otherEnt);
-					otherEnt.GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 5.0f, ForceMode.Impulse);
-					otherEnt.GetComponent<BossLevel>().WaitForSecBeforeStartHunting(2.0f);
-					//otherEnt.GetComponent<Rigidbody>().isKinematic = true;
-					if (counter == 1) {
-						//Debug.Log ("isplaying:" + source.isPlaying + "-" + source.clip.name);
-						source.PlayOneShot (TrumpHitsYouSound1, 1);
-					} else if (counter == 2) {
-						source.PlayOneShot (TrumpHitsYouSound2, 1);
-					} else if (counter == 3) {
-						source.PlayOneShot (TrumpHitsYouSound3, 1);
-					} else if (counter == 4) {
-						source.PlayOneShot (TrumpHitsYouSound4, 1);
-					}
-					else if (counter == 5) {
-						source.PlayOneShot (TrumpHitsYouSound5, 1);
-						counter = 0;
-					}
-
-					counter++;
-
-
-				} 
 				source.PlayOneShot(flashSound,1);
 				EventManager.Instance.FlashAndLoseLiveEvent.Invoke (this, otherEnt);
 				return;
@@ -463,15 +432,6 @@ public class Entity : MonoBehaviour {
 				EnableMeshCutOut(this, otherEnt);
 				//fire
 				if(PowerUp.hasFire || PowerUp.hasWater){
-					if (otherEnt.entityName == BOSS_NAME) {
-						otherEnt.GetComponent<Rigidbody>().isKinematic = false;
-						Debug.Log ("Boss Attack");
-						//add force
-						otherEnt.GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 5.0f, ForceMode.Impulse);
-						BossLevel.BossOnHit (otherEnt);
-					}
-
-
 					otherEnt.Invisiblify(true);
 					if(otherEnt.entityName == BARRIER_NAME) {
 						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
@@ -499,20 +459,4 @@ public class Entity : MonoBehaviour {
 			}
 		}
 	}
-
-	// void OnTriggerStay(Collider other){
-	// 	if (entityType != ENTITY_TYPE.PLAYER) {
-	// 		return;
-	// 	}
-	// 	//player now
-	// 	Entity otherEnt = other.gameObject.GetComponent<Entity>();
-	// 	if (otherEnt) {
-	// 		if(otherEnt.entityName == BOSS_NAME){
-	// 			if(!PowerUp.hasWater && !PowerUp.hasFire && !PowerUp.hasShield && FlashAble(otherEnt)){
-	// 				Debug.Log("here?");
-	// 				otherEnt.GetComponent<Rigidbody>().AddForce(Vector3.forward, ForceMode.Acceleration);
-	// 			}
-	// 		}
-	// 	}
-	// }
 }
