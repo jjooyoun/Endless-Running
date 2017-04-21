@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameSettingLv9
   m_EditorClassIdentifier: 
   gameMode: 0
-  lives: 10
+  lives: 40
   ScoreLUT:
   - entName: PowerUp
     score: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
     score: 2
   - entName: Trump
     score: 3
-  spawnCycle: 1.03125
+  spawnCycle: 1
   objectSpeed: -20
   soundLevel: 1
   enableJump: 1
