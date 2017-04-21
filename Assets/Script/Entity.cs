@@ -401,6 +401,9 @@ public class Entity : MonoBehaviour {
 			}
 			//NOT FLASHABLE
 			//play collided FX
+			else if (PowerUp.hasShield && FlashAble(otherEnt)) {
+				PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+			}
 			PlayPEAtPosition(otherEnt.onCollidedFX, transform.position);
 			
 
