@@ -2066,10 +2066,6 @@ MonoBehaviour:
   child: {fileID: 0}
   onCollidedFX: {fileID: 0}
   flashSound: {fileID: 0}
-  TrumpHitsYouSound1: {fileID: 0}
-  TrumpHitsYouSound2: {fileID: 0}
-  TrumpHitsYouSound3: {fileID: 0}
-  TrumpHitsYouSound4: {fileID: 0}
   entityType: 1
   entityName: Trump
 --- !u!114 &114970177465677654
@@ -2086,7 +2082,17 @@ MonoBehaviour:
   trump: {fileID: 1850448076915868}
   startMarker: {fileID: 0}
   endMarker: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 83a1fd174085d445a9fa667b6dc0ca08, type: 3}
+  - {fileID: 8300000, guid: bab52c28497ce48a3a11ef7971681c40, type: 3}
+  - {fileID: 8300000, guid: d4df523f302d143898bf18c0593f63cb, type: 3}
+  - {fileID: 8300000, guid: 09cc7c89e3c4e49d48968b268fa45f8c, type: 3}
+  - {fileID: 8300000, guid: 0310b44b554414d26b2c492c045a4106, type: 3}
+  - {fileID: 8300000, guid: d5ff46782525b4f20ac152489ca6d198, type: 3}
+  forceStrength: 5
+  DelayBeforeHuntingSec: 2
   speed: 0.25
+  isHit: 0
   BossLifeNum: 10
   startMoving: 1
   TrumpTakeDamageSound: {fileID: 8300000, guid: 979be5a712e584ab1b310c82a68095c2,

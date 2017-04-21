@@ -77,6 +77,11 @@ public class BossLevel : MonoBehaviour {
 				//play sound accordingly
 				PlayTrumpSoundAtIndex(counter);
 				counter++;
+
+				// reset the counter
+				if(counter == clips.Length) {
+					counter = 0;
+				}
 				WaitForSecBeforeStartHunting(DelayBeforeHuntingSec);
 			}else{//got weapon or max scale
 				//BossLevel.BossOnHit(playerEnt);
