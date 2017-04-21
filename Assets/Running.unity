@@ -1834,6 +1834,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1736617771997934, guid: fb6586270a294984e9f542ef3022db62, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb6586270a294984e9f542ef3022db62, type: 2}
   m_IsPrefabParent: 0
@@ -4366,11 +4370,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198189774878271158, guid: 9e3fa3866b0e74490980d61549b17b7d,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e3fa3866b0e74490980d61549b17b7d, type: 2}
   m_IsPrefabParent: 0
@@ -6040,7 +6039,7 @@ Prefab:
         type: 2}
       propertyPath: defaultGameSetting
       value: 
-      objectReference: {fileID: 11400000, guid: 270f938f3ee1f41d9b5daf0b9c20a2b3,
+      objectReference: {fileID: 11400000, guid: 1390ce811ce4734479be3d4f84e0cb27,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8bf54dac108b447a9dcb63ae90531dd, type: 2}

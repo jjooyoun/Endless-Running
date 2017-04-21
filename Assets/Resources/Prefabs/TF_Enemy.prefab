@@ -674,7 +674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1737109177662060
 GameObject:
   m_ObjectHideFlags: 1
@@ -3629,7 +3629,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3731,6 +3731,11 @@ MonoBehaviour:
   onCollidedFX: {fileID: 1568030154736012, guid: 5ddc09408b4f94a68b36ccb8da1a629b,
     type: 2}
   flashSound: {fileID: 0}
+  TrumpHitsYouSound1: {fileID: 0}
+  TrumpHitsYouSound2: {fileID: 0}
+  TrumpHitsYouSound3: {fileID: 0}
+  TrumpHitsYouSound4: {fileID: 0}
+  TrumpHitsYouSound5: {fileID: 0}
   entityType: 1
   entityName: TIE_Fighter
 --- !u!114 &114411949043983066
@@ -3770,7 +3775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe05c52c57eca49c49bed4c7ae5593ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSound: {fileID: 8300000, guid: 4749bc6d81af6455d888bf94a3983ac6, type: 3}
+  shootSound: {fileID: 0}
 --- !u!114 &114811926155456856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3801,14 +3806,14 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224367513582092}
   serializedVersion: 5
-  lengthInSec: 0.1
+  lengthInSec: 0.5
   simulationSpeed: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   autoRandomSeed: 1
   startDelay:
-    scalar: 2
+    scalar: 0
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -3849,7 +3854,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1502913963
+  randomSeed: 1501452217
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6486,7 +6491,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -242238451
+  randomSeed: 1746807846
   InitialModule:
     serializedVersion: 3
     enabled: 1
