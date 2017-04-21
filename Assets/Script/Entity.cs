@@ -20,6 +20,7 @@ public class Entity : MonoBehaviour {
 	public AudioClip TrumpHitsYouSound2;
 	public AudioClip TrumpHitsYouSound3;
 	public AudioClip TrumpHitsYouSound4;
+	public AudioClip TrumpHitsYouSound5;
 
 	private AudioSource source;
 
@@ -415,7 +416,10 @@ public class Entity : MonoBehaviour {
 						source.PlayOneShot (TrumpHitsYouSound3, 1);
 					} else if (counter == 4) {
 						source.PlayOneShot (TrumpHitsYouSound4, 1);
-						counter = 1;
+					}
+					else if (counter == 5) {
+						source.PlayOneShot (TrumpHitsYouSound5, 1);
+						counter = 0;
 					}
 
 					counter++;

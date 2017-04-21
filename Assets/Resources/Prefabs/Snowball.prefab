@@ -92,7 +92,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860218963462410}
   serializedVersion: 2
-  m_Mass: 0.001
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -241,7 +241,8 @@ MonoBehaviour:
   TrumpHitsYouSound1: {fileID: 8300000, guid: 83a1fd174085d445a9fa667b6dc0ca08, type: 3}
   TrumpHitsYouSound2: {fileID: 8300000, guid: bab52c28497ce48a3a11ef7971681c40, type: 3}
   TrumpHitsYouSound3: {fileID: 8300000, guid: d4df523f302d143898bf18c0593f63cb, type: 3}
-  TrumpHitsYouSound4: {fileID: 8300000, guid: 2f9799111ac2140b8a6edf1f773d70d7, type: 3}
+  TrumpHitsYouSound4: {fileID: 8300000, guid: 542dbdc43803d49239eb5674d20b25c0, type: 3}
+  TrumpHitsYouSound5: {fileID: 8300000, guid: d5ff46782525b4f20ac152489ca6d198, type: 3}
   entityType: 0
   entityName: Entity
 --- !u!135 &135160090863969106
@@ -251,7 +252,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860218963462410}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
