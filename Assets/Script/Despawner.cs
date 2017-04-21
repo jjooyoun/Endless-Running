@@ -50,10 +50,7 @@ public class Despawner : MonoBehaviour {
 		spawnerDestroyed++;
 		if(ent){
 			Entity.DisableMeshCutOut(ent);
-			PowerUp pu = ent.GetComponent<PowerUp>();
-			if(pu){
-				pu.Invisiblify(false);
-			}
+			ent.Invisiblify(false);
 			GameObjectUtil.Destroy(ent.gameObject);
 			CheckNextLevel();
 		}
