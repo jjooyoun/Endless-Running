@@ -692,6 +692,16 @@ Prefab:
       propertyPath: RightWall
       value: 
       objectReference: {fileID: 862316368}
+    - target: {fileID: 135160090863969106, guid: c00bbe054875f4766a0fa406d3325667,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54208982212090458, guid: c00bbe054875f4766a0fa406d3325667,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c00bbe054875f4766a0fa406d3325667, type: 2}
   m_IsPrefabParent: 0

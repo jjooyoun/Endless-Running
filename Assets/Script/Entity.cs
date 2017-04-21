@@ -402,9 +402,11 @@ public class Entity : MonoBehaviour {
 
 
 				if (otherEnt.entityName == BOSS_NAME) {
+					Debug.Log ("boss hit us?");
+					GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 100.0f, ForceMode.Impulse);
 					
 					if (counter == 1) {
-						Debug.Log ("isplaying:" + source.isPlaying + "-" + source.clip.name);
+						//Debug.Log ("isplaying:" + source.isPlaying + "-" + source.clip.name);
 						source.PlayOneShot (TrumpHitsYouSound1, 1);
 					} else if (counter == 2) {
 						source.PlayOneShot (TrumpHitsYouSound2, 1);

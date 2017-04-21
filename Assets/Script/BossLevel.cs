@@ -71,4 +71,14 @@ public class BossLevel : MonoBehaviour {
 		Debug.Log ("boss life after:" + boss.BossLifeNum);
 		boss.startMoving = false;
 	}
+
+//	private void OnTriggerEnter(Collider other){
+//		Entity otherEnt = other.GetComponent<Entity>();
+//		if(otherEnt){
+//			Debug.Log ("trump collided with:" + otherEnt.entityName);
+//			if(otherEnt.entityType == Entity.ENTITY_TYPE.PLAYER){
+//				GetComponent<Rigidbody>().AddForce(0.0f, 0.0f, 10.0f, ForceMode.Impulse);
+//			}
+//		}
+//	}
 }
