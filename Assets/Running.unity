@@ -3476,7 +3476,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4699331581050660, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4699331581050660, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3501,6 +3501,10 @@ Prefab:
     - target: {fileID: 4699331581050660, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850448076915868, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
@@ -6034,7 +6038,7 @@ Prefab:
         type: 2}
       propertyPath: defaultGameSetting
       value: 
-      objectReference: {fileID: 11400000, guid: 68db6114220550c45875568c31dd792b,
+      objectReference: {fileID: 11400000, guid: 270f938f3ee1f41d9b5daf0b9c20a2b3,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8bf54dac108b447a9dcb63ae90531dd, type: 2}

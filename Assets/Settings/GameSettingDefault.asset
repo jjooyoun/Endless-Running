@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameSettingDefault
   m_EditorClassIdentifier: 
   gameMode: 0
-  lives: 10
+  lives: 20
   ScoreLUT:
   - entName: PowerUp
     score: 1
