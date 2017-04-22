@@ -1533,6 +1533,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  percentCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ProgressEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   spawnerDestroyedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1998,6 +2003,61 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1297478475}
+    - target: {fileID: 224618945294718214, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224618945294718214, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224618945294718214, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114455588165267304, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 114455588165267304, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114455588165267304, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172548891322588, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172548891322588, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726443221772832, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726443221772832, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726443221772832, guid: a7e79db9e7d0544318084e3ee4c4316c,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114730466788339126, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a7e79db9e7d0544318084e3ee4c4316c, type: 2}
