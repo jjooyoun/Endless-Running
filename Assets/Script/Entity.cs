@@ -429,7 +429,10 @@ public class Entity : MonoBehaviour {
 				//Debug.Log (otherEnt.entityName + ": in here");
 				if(PowerUp.hasShield && IsAtMaxScale){
 					otherEnt.Invisiblify(true);
-					PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
+					if(otherEnt.entityName == BARRIER_NAME) {
+						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+					}
+					else PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
 					return;
 				}
 
@@ -449,16 +452,19 @@ public class Entity : MonoBehaviour {
 					if(otherEnt.entityName == BARRIER_NAME) {
 						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
 					}
-					else if (PowerUp.hasFire) {
-						Debug.Log ("Dretoy Water FX");
+					else{
 						PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
 					}
 					return;
 				}
 				
 				//ATMAXSCALE HERE??
-				if(IsAtMaxScale) 
-					PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
+				if(IsAtMaxScale){
+					if(otherEnt.entityName == BARRIER_NAME) {
+						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
+					}
+					else PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
+				}
 
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY) {
 					otherEnt.Invisiblify(true);
