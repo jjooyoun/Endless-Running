@@ -403,11 +403,8 @@ public class Entity : MonoBehaviour {
 			}
 			//NOT FLASHABLE
 			//play collided FX
-			if (PowerUp.hasShield && IsAtMaxScale == false) {
-				PlayPEAtPosition (Resources.Load (SMOKE_FX_PATH) as GameObject, transform.position);
-			} else {
+			if(!PowerUp.hasShield)
 				PlayPEAtPosition (otherEnt.onCollidedFX, transform.position);
-			}
 			
 
            //player collided with powerup
@@ -438,6 +435,7 @@ public class Entity : MonoBehaviour {
 
 				//EITHER HAS SHIELD 
 				if(PowerUp.hasShield){
+					PlayPEAtPosition (Resources.Load (SMOKE_FX_PATH) as GameObject, transform.position);
 					return;
 				}
 				//OR ATMAXSCALE : check down there
