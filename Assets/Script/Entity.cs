@@ -430,14 +430,14 @@ public class Entity : MonoBehaviour {
 				PowerUp.PowerUpHandler (this, otherEnt); // let powerup fire event
 			} else if (otherEnt.entityType == ENTITY_TYPE.ENEMY || otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
 				//Debug.Log (otherEnt.entityName + ": in here");
-				if(PowerUp.hasShield){
-					return;
-				}
+				// if(PowerUp.hasShield){
+				// 	return;
+				// }
 
 				//changing shader
 				EnableMeshCutOut(this, otherEnt);
 				//fire
-				if(PowerUp.hasFire || PowerUp.hasWater){
+				if(PowerUp.hasFire || PowerUp.hasWater || PowerUp.hasShield){
 					otherEnt.Invisiblify(true);
 					if(otherEnt.entityName == BARRIER_NAME) {
 						PlayPEAtPosition( Resources.Load(BRICK_DESTROY_FX_PATH) as GameObject,transform.position);
@@ -448,14 +448,16 @@ public class Entity : MonoBehaviour {
 					return;
 				}
 				
+				if(IsAtMaxScale){
+					IsAtMaxScale = false;
+				}
 				
 				if (otherEnt.entityType == ENTITY_TYPE.ENEMY) {
 					otherEnt.Invisiblify(true);
 					EventManager.Instance.entEnemyCollisionEvent.Invoke (this, otherEnt);
 				} else if (otherEnt.entityType == ENTITY_TYPE.OBSTACLE) {
+					otherEnt.Invisiblify(true);
 					EventManager.Instance.entObstacleCollisionEvent.Invoke (this, otherEnt);
-					//Debug.Log("here?");
-					IsAtMaxScale = false;
 					PowerUp.ScaleDown (this.transform);
 					PowerUp.ScaleDown (this.transform);
 					if(otherEnt.entityName == BARRIER_NAME){//barrier flash no matter what
