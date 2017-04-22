@@ -21,6 +21,7 @@ public class BossLevel : MonoBehaviour {
 	public int BossLifeNum = 10;
 	public bool startMoving = true;
 	private bool endLevel = false;
+	private bool playStartSound = false;
 
 	private int counter = 0;
 	private float startTime;
@@ -36,6 +37,7 @@ public class BossLevel : MonoBehaviour {
 	public static readonly string TRUMP_HIT_FX_PATH = "Prefabs/TrumpHitFX";
 	public static readonly string TRUMP_EXPLODE_FX_PATH = "Prefabs/TrumpExplodeFX";
 	public static readonly string IMPACT_FX_PATH = "Prefabs/ImpactFX";
+	public static readonly string STAR_FX_PATH = "Prefabs/StarFX";
 
 	void Awake() {
 		source = GetComponent<AudioSource>();
@@ -53,7 +55,8 @@ public class BossLevel : MonoBehaviour {
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
 		//source = GetComponent<AudioSource>();
-		source.PlayOneShot(startTrumpSound, 1);
+		WaitForSec(1.5f);
+		//source.PlayOneShot(startTrumpSound, 1);
 	}
 
 	// Update is called once per frame
@@ -61,6 +64,12 @@ public class BossLevel : MonoBehaviour {
 		if(endLevel == true) {
 			//Setting.StaticQuitGame();
 			//Setting.LoadLevelCompletescene();
+		}
+
+		if(playStartSound == true) {
+			playStartSound = false;
+			source.PlayOneShot(startTrumpSound, 1);
+
 		}
 		else if (!startMoving)
 			return;
@@ -121,6 +130,7 @@ public class BossLevel : MonoBehaviour {
 		source.PlayOneShot(TrumpTakeDamageSound, 1);
 		source.PlayOneShot(TrumpTakeDamageHit, 1);
 		thisEnt.PlayPEAtPosition( Resources.Load(TRUMP_HIT_FX_PATH) as GameObject,thisEnt.transform.position, true, thisEnt.transform);
+
 		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
 		ss.StartFlashWrapper (thisEnt);
 		Debug.Log ("boss life after:" + BossLifeNum);
@@ -157,5 +167,6 @@ public class BossLevel : MonoBehaviour {
 		print(Time.time);
 		yield return new WaitForSeconds(sec);
 		print(Time.time);
+		playStartSound = true;
 	}
 }
