@@ -55,7 +55,7 @@ public class BossLevel : MonoBehaviour {
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
 		//source = GetComponent<AudioSource>();
-		WaitForSec(1.5f);
+		WaitForSec(2);
 		//source.PlayOneShot(startTrumpSound, 1);
 	}
 
