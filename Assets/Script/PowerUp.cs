@@ -24,6 +24,8 @@ public class PowerUp : Entity {
 	private static float fireDownSec = 5.0f;
 	private static float waterDownSec = 5.0f;
 
+	public static readonly string REPUBLICAN_PATH = "Prefabs/RepublicanFX";
+
 	//private static int level = 0; for debug purpose
 	public enum PowerUpType{
 		SCALE_UP = 0,
@@ -152,7 +154,8 @@ public class PowerUp : Entity {
 	public static void PowerUpFireUp(Entity ent, Entity powerUp){
 		//Debug.Log("FireUp!!!");
 		if(!hasFire){
-			ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(FIRE_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);                    
+			ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(REPUBLICAN_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);  
+			//ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(FIRE_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);                    
 			ParticleSystem OilSplashHighRootParticleSystem = ent.SpawnFX.GetComponent<ParticleSystem>();
 			Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
 			Material curBallMat = ent.GetComponent<Renderer>().material;

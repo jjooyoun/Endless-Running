@@ -216,9 +216,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 0}
   onCollidedFX: {fileID: 0}
+  flashSound: {fileID: 0}
   entityType: 3
   entityName: PowerUp
-  InternalFX: []
   PowerupFX: {fileID: 0}
   invisibleMaterial: {fileID: 2100000, guid: 186c5a50edde54f8db5057a24417ab54, type: 2}
   powerUptype: 0
