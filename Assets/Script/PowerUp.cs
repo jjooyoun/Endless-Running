@@ -160,6 +160,7 @@ public class PowerUp : Entity {
 			Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
 			Material curBallMat = ent.GetComponent<Renderer>().material;
 			ent.FireCoRoutine = ent.playParticleEffectEvery(lavaBallMat, curBallMat, OilSplashHighRootParticleSystem, OilSplashHighRootParticleSystem.main.duration, fireDownSec);
+			ent.IsAtMaxScale = false;
 			ent.StartCoroutine(ent.FireCoRoutine);
 			ent.CurFXType = (int)PowerUp.PowerUpType.FIRE;
 			//Debug.Log("CurFXUp:" + ent.CurFXType);
