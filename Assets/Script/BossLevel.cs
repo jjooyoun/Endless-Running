@@ -38,6 +38,7 @@ public class BossLevel : MonoBehaviour {
 	public static readonly string TRUMP_EXPLODE_FX_PATH = "Prefabs/TrumpExplodeFX";
 	public static readonly string IMPACT_FX_PATH = "Prefabs/ImpactFX";
 	public static readonly string STAR_FX_PATH = "Prefabs/StarFX";
+	public static readonly string GOP_FX_PATH = "Prefabs/GOPFX";
 
 	void Awake() {
 		source = GetComponent<AudioSource>();
@@ -55,7 +56,7 @@ public class BossLevel : MonoBehaviour {
 		startTime = Time.time;
 		journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
 		//source = GetComponent<AudioSource>();
-		WaitForSec(2);
+		WaitForSec(2.5f);
 		//source.PlayOneShot(startTrumpSound, 1);
 	}
 
@@ -93,6 +94,8 @@ public class BossLevel : MonoBehaviour {
 				//flash player...maybe already did
 				//play sound accordingly
 				PlayTrumpSoundAtIndex(counter);
+				//thisEnt.PlayPEAtPosition( Resources.Load(STAR_FX_PATH) as GameObject,thisEnt.transform.position, true, thisEnt.transform);
+				//thisEnt.PlayPEAtPosition( Resources.Load(STAR_FX_PATH) as GameObject,transform.position);
 				counter++;
 
 				// reset the counter
@@ -115,7 +118,8 @@ public class BossLevel : MonoBehaviour {
 			//Setting.StaticQuitGame();
 			//Setting.LoadLevelCompletescene();
 			thisEnt.PlayPEAtPosition( Resources.Load(TRUMP_EXPLODE_FX_PATH) as GameObject,transform.position);
-			thisEnt.PlayPEAtPosition( Resources.Load(IMPACT_FX_PATH) as GameObject,transform.position);
+			//thisEnt.PlayPEAtPosition( Resources.Load(IMPACT_FX_PATH) as GameObject,transform.position);
+			thisEnt.PlayPEAtPosition( Resources.Load(GOP_FX_PATH) as GameObject,transform.position);
 			trump.SetActive(false);
 			//StartWaitForSec(5.0f);
 			endLevel = true;
@@ -130,6 +134,7 @@ public class BossLevel : MonoBehaviour {
 		source.PlayOneShot(TrumpTakeDamageSound, 1);
 		source.PlayOneShot(TrumpTakeDamageHit, 1);
 		thisEnt.PlayPEAtPosition( Resources.Load(TRUMP_HIT_FX_PATH) as GameObject,thisEnt.transform.position, true, thisEnt.transform);
+		thisEnt.PlayPEAtPosition( Resources.Load(STAR_FX_PATH) as GameObject,thisEnt.transform.position, true, thisEnt.transform);
 
 		ScoreSystem ss = GameObject.FindObjectOfType<ScoreSystem> ();
 		ss.StartFlashWrapper (thisEnt);
