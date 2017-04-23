@@ -110,6 +110,6 @@ public class IntroScript : MonoBehaviour {
 
 
 	void DoActivateTrigger(){
-		SceneManager.LoadScene (0);
+		//SceneManager.LoadScene (0);
 	}
 }

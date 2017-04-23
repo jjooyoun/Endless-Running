@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44659364, g: 0.4964301, b: 0.5748256, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -322,12 +322,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "REVENGE OF THE REPUBLICANS\n\n\n \"There is unrest in Winterland.  The
-    evil emperor Trump has announced a ban on all snowballs entering Winterland.\n\nHoping
-    to further block illegal snowballs from entering, Emperor Trump and his Republican
-    allies have ordered the construction of a great wall.\n\nPrincess Hillary, Leader
-    of the United Snowball Federation has sent her most daring snowball on a secret
-    mission to deal with the ongoing crisis\u2026.\""
+  m_Text: "REVENGE OF THE REPUBLICANS\n\n\n\u201CWar!  A bipartisan alliance of rebels
+    have just won their first major victory against Emperor Trump and the Republican
+    Empire.  \n\nHowever, Republican agents have discovered the secret base of the
+    rebels in the wintry state of Minnesota.\n\nEmperor Trump departs the capital
+    with the Republican Armada to destroy the rebels once and for all.\n\nOut of supplies
+    and as a last resort, the rebels launch snowballs at the incoming armada\u2026\""
 --- !u!222 &315288866
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1160,6 +1160,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 53.120953
       objectReference: {fileID: 0}
+    - target: {fileID: 1850448076915868, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebb9b620263a64b23b8a438cfdeaeb54, type: 2}
   m_IsPrefabParent: 0
@@ -1215,8 +1219,8 @@ MonoBehaviour:
   title: {fileID: 1917240558}
   summary: {fileID: 315288863}
   bossIntro: {fileID: 865916932}
-  speedUp: 1
-  deltaSpeed: 1
+  speedUp: 100
+  deltaSpeed: 100
   timeTilButtonDisappear: 1
   backButton: {fileID: 1898624115}
 --- !u!114 &2132074479
@@ -1251,7 +1255,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: 'A long time ago on a mountain far,
+  m_Text: 'A long time ago in a country not so far,
 
     far away....'
 --- !u!222 &2132074480
