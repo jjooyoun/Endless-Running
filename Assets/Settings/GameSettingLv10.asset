@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameSettingLv10
   m_EditorClassIdentifier: 
   gameMode: 0
-  lives: 10
+  lives: 30
   ScoreLUT:
   - entName: PowerUp
     score: 1
@@ -57,4 +57,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 4900000, guid: aeaf27f7da60843e58d09754da703639, type: 3}
+  spawnCsvFile: {fileID: 4900000, guid: b8dc8cf01f6274c32ac8f19265c0d13f, type: 3}
