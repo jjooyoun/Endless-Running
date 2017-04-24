@@ -155,7 +155,9 @@ public class PowerUp : Entity {
 		//Debug.Log("FireUp!!!");
 		if(!hasFire){
 			ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(REPUBLICAN_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);  
-			//ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(FIRE_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);                    
+			//ent.SpawnFX = ent.PlayPEAtPosition( Resources.Load(FIRE_PATH) as GameObject, ent.transform.position, false, ent.transform, 1.0f);   
+			PowerUp th1s = (PowerUp)powerUp;
+			th1s.Invisiblify(true);
 			ParticleSystem OilSplashHighRootParticleSystem = ent.SpawnFX.GetComponent<ParticleSystem>();
 			Material lavaBallMat = Resources.Load(FIRE_MAT_PATH) as Material;
 			Material curBallMat = ent.GetComponent<Renderer>().material;
