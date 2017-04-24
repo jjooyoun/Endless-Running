@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd345c4b23ed43dcb93a62b76449dd2, type: 3}
   m_Name: GameSettingLv1
   m_EditorClassIdentifier: 
-  gameMode: 1
-  lives: 1000
+  gameMode: 0
+  lives: 10
   ScoreLUT:
   - entName: PowerUp
     score: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
   spawnCycle: 0.5
   objectSpeed: -20
   soundLevel: 1
-  enableJump: 0
+  enableJump: 1
   enableShake: 0
   enableSound: 1
   currentLevel: 1
@@ -57,4 +57,4 @@ MonoBehaviour:
   SHIELD_DOWN_KEY: 116
   SHAKE_KEY: 115
   CONTINUE_KEY: 102
-  spawnCsvFile: {fileID: 0}
+  spawnCsvFile: {fileID: 4900000, guid: f9977f7a1ddf0450db277ce3af85b81d, type: 3}
